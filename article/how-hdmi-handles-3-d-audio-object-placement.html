@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Handles 3D Audio Object Placement - hdmi</title>
+    <meta name="description" content="Modern home theater systems rely on High-Definition Multimedia Interface (HDMI) technology to deliver immersive, multidimensional soundscapes. Unlike legacy channel-based audio formats, dynamic 3D audio treats sounds as individual "objects" mapped in a t">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-handles-3-d-audio-object-placement">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Handles 3D Audio Object Placement - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-handles-3-d-audio-object-placement" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Modern home theater systems rely on High-Definition Multimedia Interface (HDMI) technology to deliver immersive, multidimensional soundscapes. Unlike legacy channel-based audio formats, dynamic 3D audio treats sounds as individual "objects" mapped in a t" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-handles-3d-audio-object-placement">How HDMI Handles 3D
+Audio Object Placement</h1>
+<p>Modern home theater systems rely on High-Definition Multimedia
+Interface (HDMI) technology to deliver immersive, multidimensional
+soundscapes. Unlike legacy channel-based audio formats, dynamic 3D audio
+treats sounds as individual "objects" mapped in a three-dimensional
+acoustic space. HDMI facilitates this process by acting as a
+high-bandwidth digital conduit that transmits audio waveforms packaged
+with spatial metadata, enabling an audio/video receiver (AVR) or
+soundbar to render these sound objects dynamically to match any specific
+speaker configuration.</p>
+<h3 id="channel-based-audio-vs-audio-objects">Channel-Based Audio vs.
+Audio Objects</h3>
+<p>Traditional surround sound formats, such as 5.1 and 7.1, mix audio
+into fixed, dedicated channels designed for specific physical speaker
+locations. If a sound is meant to move across the room, the mixer
+predetermines how much volume shifts from the left surround speaker to
+the front left speaker.</p>
+<p>In contrast, object-based formats like Dolby Atmos and DTS:X treat
+individual sound elements—such as a buzzing insect or a flying
+aircraft—as discrete audio tracks accompanied by real-time metadata.
+This metadata defines the object’s spatial coordinates (X, Y, and Z
+axes), trajectory, gain, and acoustic spread.</p>
+<h3 id="how-hdmi-transports-object-metadata">How HDMI Transports Object
+Metadata</h3>
+<p>HDMI does not process or render the spatial placement of audio
+objects directly. Instead, it serves as the physical and logical
+pipeline that delivers the data intact via digital bitstreaming.</p>
+<ol type="1">
+<li><strong>Packetization via IEC 61937:</strong> HDMI encapsulates the
+compressed audio streams and their spatial metadata into Audio Sample
+Packets conforming to the IEC 61937 standard. This standard allows
+non-linear PCM audio (encoded bitstreams) to travel across digital
+interfaces alongside video signals without loss of synchronization.</li>
+<li><strong>Bitstream Transmission:</strong> The source device (such as
+a Blu-ray player, streaming console, or PC) bypasses its internal
+digital-to-analog conversion and transmits the raw bitstream across the
+HDMI data channels. The HDMI connection carries both the audio essence
+and the spatial positioning instructions within the same data
+packets.</li>
+</ol>
+<h3 id="bandwidth-and-protocol-requirements-arc-vs-earc">Bandwidth and
+Protocol Requirements: ARC vs. eARC</h3>
+<p>The fidelity and complexity of the spatial metadata transported over
+HDMI depend on the interface version and audio return path used:</p>
+<ul>
+<li><strong>HDMI ARC (Audio Return Channel):</strong> Introduced with
+HDMI 1.4, standard ARC has a maximum audio bandwidth of approximately 1
+to 3 Mbps. It cannot pass uncompressed object-based audio. To transmit
+3D audio, ARC relies on lossy Dolby Digital Plus (E-AC-3), which
+multiplexes a reduced set of Atmos metadata alongside compressed audio
+tracks.</li>
+<li><strong>HDMI eARC (Enhanced Audio Return Channel):</strong>
+Introduced with HDMI 2.1, eARC increases the dedicated audio bandwidth
+up to 37 Mbps. This massive bandwidth allows the transport of
+uncompressed, lossless formats such as Dolby TrueHD and DTS-HD Master
+Audio, complete with full, high-resolution 3D positional metadata.</li>
+</ul>
+<h3 id="dynamic-rendering-at-the-receiver">Dynamic Rendering at the
+Receiver</h3>
+<p>Once the bitstream reaches the AVR or processor via HDMI, the
+receiver's digital signal processor (DSP) executes the spatial
+rendering:</p>
+<ol type="1">
+<li><strong>Decoding:</strong> The DSP unpacks the bitstream, separating
+the audio tracks from their spatial coordinate metadata.</li>
+<li><strong>Layout Mapping:</strong> The processor references its
+internal map of the listener's specific environment, determined by
+initial speaker calibration (e.g., 5.1.2, 7.2.4, or 9.1.6 setups).</li>
+<li><strong>Dynamic Acoustic Placement:</strong> The rendering engine
+calculates the exact output and timing delays required for each speaker
+in the room to place the sound at its targeted X, Y, and Z
+coordinate.</li>
+</ol>
+<p>Because the HDMI pipeline preserves the raw metadata, the audio
+adapts dynamically to whatever speaker configuration is present,
+ensuring that sounds originate from their intended three-dimensional
+positions relative to the listener.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

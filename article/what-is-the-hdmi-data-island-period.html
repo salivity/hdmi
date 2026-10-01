@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is the HDMI Data Island Period? - hdmi</title>
+    <meta name="description" content="The HDMI Data Island period is a dedicated transmission phase within the HDMI specification used to transport high-priority non-video data, including multi-channel audio, synchronization markers, and auxiliary metadata. By utilizing the brief pauses betw">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/what-is-the-hdmi-data-island-period">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Is the HDMI Data Island Period? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/what-is-the-hdmi-data-island-period" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The HDMI Data Island period is a dedicated transmission phase within the HDMI specification used to transport high-priority non-video data, including multi-channel audio, synchronization markers, and auxiliary metadata. By utilizing the brief pauses betw" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="what-is-the-hdmi-data-island-period">What Is the HDMI Data
+Island Period?</h1>
+<p>The HDMI Data Island period is a dedicated transmission phase within
+the HDMI specification used to transport high-priority non-video data,
+including multi-channel audio, synchronization markers, and auxiliary
+metadata. By utilizing the brief pauses between active video
+rendering—known as horizontal and vertical blanking intervals—the Data
+Island period allows HDMI to deliver rich, synchronized audio and device
+configuration data alongside high-resolution video streams across the
+same physical Transition-Minimized Differential Signaling (TMDS) or
+Fixed Rate Link (FRL) lines.</p>
+<h2 id="how-the-data-island-period-functions">How the Data Island Period
+Functions</h2>
+<p>HDMI divides its signal transmission into three distinct periods: the
+Video Data Period, the Control Period, and the Data Island Period. While
+the Video Data Period carries raw pixel color information and the
+Control Period transmits synchronization signals (HSYNC and VSYNC)
+between active video frames, the Data Island period occurs specifically
+within the horizontal and vertical blanking intervals.</p>
+<p>To guarantee high integrity for sensitive data like audio and
+configuration tables, the Data Island uses a specialized encoding scheme
+known as TERC4 (TMDS Error Reduction Coding 4-bit). TERC4 converts 4-bit
+data words into 10-bit symbols on TMDS channels 1 and 2, which provides
+superior noise immunity and error detection compared to standard video
+transmission. TMDS channel 0 carries the HSYNC and VSYNC signals
+combined with packet framing characters during this period to maintain
+display timing.</p>
+<p>Data during this phase is organized into fixed-size, 32-byte packets
+consisting of a 4-byte header and a 28-byte payload, protected by
+Bose-Chaudhuri-Hocquenghem (BCH) error correction parity bits.</p>
+<h2 id="non-video-information-carried-in-the-data-island">Non-Video
+Information Carried in the Data Island</h2>
+<p>The Data Island carries several distinct categories of non-video data
+vital for rendering, timing, and device interoperability:</p>
+<h3 id="1-digital-audio-data">1. Digital Audio Data</h3>
+<ul>
+<li><strong>Audio Sample Packets:</strong> Carries up to 8 channels of
+uncompressed LPCM audio (at sample rates up to 192 kHz) or compressed
+multi-channel bitstreams such as Dolby Digital, DTS, Dolby TrueHD, and
+DTS-HD Master Audio.</li>
+<li><strong>Audio Clock Regeneration (ACR):</strong> Transmits precise
+timing values (Cycle Time Stamp, or CTS, and continuous factor <span
+class="math inline">\(N\)</span>) that allow the receiving device to
+reconstruct the fractional audio clock from the video pixel clock
+without phase drift or jitter.</li>
+<li><strong>Audio Metadata:</strong> Carries Channel Status bits and
+Audio Content Protection (ACP) packets to govern sample rate indicators,
+copy management, and digital rights handling.</li>
+</ul>
+<h3 id="2-infoframes">2. InfoFrames</h3>
+<p>Defined under the CTA-861 standard, InfoFrames provide the receiving
+display with critical contextual parameters required to decode and
+present the video and audio correctly:</p>
+<ul>
+<li><strong>Auxiliary Video Information (AVI) InfoFrame:</strong>
+Informs the sink of the source's color space (RGB, YCbCr 4:2:2, YCbCr
+4:4:4), colorimetry (BT.709, BT.2020), aspect ratio, pixel repetition
+factors, and quantization ranges (Full vs. Limited).</li>
+<li><strong>Audio InfoFrame:</strong> Defines channel counts, speaker
+placement allocations, and downmix coefficients.</li>
+<li><strong>Dynamic Range and Mastering (DRM) InfoFrame:</strong>
+Transmits static HDR metadata (SMPTE ST 2086), including mastering
+display color volume, MaxFALL (Maximum Frame-Average Light Level), and
+MaxCLL (Maximum Content Light Level).</li>
+<li><strong>Source Product Description (SPD) InfoFrame:</strong>
+Identifies the source device by name and product type (e.g., game
+console, Blu-ray player).</li>
+<li><strong>Vendor-Specific InfoFrames (VSIF):</strong> Transmits
+proprietary or extended features such as 3D format signaling, Dolby
+Vision metadata, and HDMI Forum Variable Refresh Rate (VRR)
+attributes.</li>
+</ul>
+<h3 id="3-general-control-packets-gcp">3. General Control Packets
+(GCP)</h3>
+<p>The General Control Packet handles immediate hardware control
+operations across the interface:</p>
+<ul>
+<li><strong>Deep Color Indication:</strong> Informs the receiver when
+video data uses higher bit depths (10-bit, 12-bit, or 16-bit per
+channel) rather than standard 8-bit color, directing the sink to adjust
+its pixel-unpacking pipeline.</li>
+<li><strong>AVMUTE:</strong> A hardware-level flag used by the source
+during resolution changes or stream initialization to silently mute
+video and audio output, preventing visible image artifacts or loud audio
+pops.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

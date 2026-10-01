@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI 2.0 Receiver Eye Height and Width Specs - hdmi</title>
+    <meta name="description" content="This article provides a direct overview of the physical layer eye diagram specifications for an HDMI 2.0 receiver (Sink). Operating at signaling rates up to 6.0 Gbps per channel, HDMI 2.0 requires compliant receivers to correctly decode signals under sev">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-2-0-receiver-eye-height-and-width-specs">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI 2.0 Receiver Eye Height and Width Specs - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-2-0-receiver-eye-height-and-width-specs" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a direct overview of the physical layer eye diagram specifications for an HDMI 2.0 receiver (Sink). Operating at signaling rates up to 6.0 Gbps per channel, HDMI 2.0 requires compliant receivers to correctly decode signals under sev" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-20-receiver-eye-height-and-width-specs">HDMI 2.0 Receiver
+Eye Height and Width Specs</h1>
+<p>This article provides a direct overview of the physical layer eye
+diagram specifications for an HDMI 2.0 receiver (Sink). Operating at
+signaling rates up to 6.0 Gbps per channel, HDMI 2.0 requires compliant
+receivers to correctly decode signals under severe channel loss and
+jitter. Below are the precise minimum eye height and eye width
+requirements, along with the operational context in which these
+measurements are evaluated.</p>
+<h3 id="minimum-specifications">Minimum Specifications</h3>
+<p>For HDMI 2.0 data rates exceeding 3.4 Gbps and up to 6.0 Gbps per
+TMDS data channel, the receiver eye mask defines the following minimum
+limits:</p>
+<ul>
+<li><strong>Minimum Eye Height (<span
+class="math inline">\(EH_{min}\)</span>):</strong> 150 mV (differential
+peak-to-peak)</li>
+<li><strong>Minimum Eye Width (<span
+class="math inline">\(EW_{min}\)</span>):</strong> 0.40 UI (Unit
+Interval)</li>
+</ul>
+<p>At the maximum HDMI 2.0 transmission rate of 6.0 Gbps, one Unit
+Interval (1 UI) equals approximately 166.67 picoseconds (ps).
+Consequently, a minimum eye width of 0.40 UI corresponds to an absolute
+time opening of roughly <strong>66.67 ps</strong>.</p>
+<h3 id="test-point-and-equalization-context-tp2_eq">Test Point and
+Equalization Context (TP2_EQ)</h3>
+<p>Unlike earlier HDMI standards where compliance was verified directly
+at the receiver input pins (Test Point 2, or TP2), high-frequency
+attenuation over standard HDMI cables at 6.0 Gbps causes the physical
+signal at TP2 to be completely closed.</p>
+<p>To account for this, the HDMI 2.0 specification defines the receiver
+minimum eye requirements at <strong>TP2_EQ</strong>:</p>
+<ol type="1">
+<li><strong>Reference Equalization:</strong> The input signal from the
+worst-case compliant cable is passed through a mathematically
+standardized Reference Cable Equalizer (a Continuous Time Linear
+Equalizer, or CTLE model).</li>
+<li><strong>Post-Equalizer Measurement:</strong> The resulting eye
+diagram must meet or exceed the 150 mV height and 0.40 UI width inside
+the receiver's internal physical layer circuitry.</li>
+</ol>
+<h3 id="jitter-tolerance">Jitter Tolerance</h3>
+<p>The eye width requirement directly corresponds to the receiver's
+jitter tolerance specifications. With an eye width requirement of 0.40
+UI, the HDMI 2.0 sink device must be capable of tolerating up to
+<strong>0.60 UI of Total Jitter (TJ)</strong> composed of both
+deterministic jitter (DJ) and random jitter (RJ) while maintaining an
+error-free link (a bit error rate of <span
+class="math inline">\(10^{-9}\)</span> or better).</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

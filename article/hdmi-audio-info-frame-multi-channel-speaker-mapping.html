@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Audio InfoFrame Multi-Channel Speaker Mapping - hdmi</title>
+    <meta name="description" content="The HDMI Audio InfoFrame is a critical metadata packet transmitted alongside digital audio streams to ensure multi-channel audio is correctly rendered by receiving devices like AV receivers and soundbars. By defining speaker allocation mappings, the Info">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-audio-info-frame-multi-channel-speaker-mapping">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Audio InfoFrame Multi-Channel Speaker Mapping - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-audio-info-frame-multi-channel-speaker-mapping" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The HDMI Audio InfoFrame is a critical metadata packet transmitted alongside digital audio streams to ensure multi-channel audio is correctly rendered by receiving devices like AV receivers and soundbars. By defining speaker allocation mappings, the Info" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-audio-infoframe-multi-channel-speaker-mapping">HDMI Audio
+InfoFrame Multi-Channel Speaker Mapping</h1>
+<p>The HDMI Audio InfoFrame is a critical metadata packet transmitted
+alongside digital audio streams to ensure multi-channel audio is
+correctly rendered by receiving devices like AV receivers and soundbars.
+By defining speaker allocation mappings, the InfoFrame tells the sink
+device exactly which audio channel corresponds to which physical speaker
+position (such as front left, center, surround, or subwoofer). This
+article explains the technical purpose of the Audio InfoFrame, how it
+uses standardized allocation codes defined in the CTA-861 standard, and
+why it is essential for preventing channel misrouting in multi-channel
+uncompressed audio setups.</p>
+<h2 id="the-role-of-the-audio-infoframe">The Role of the Audio
+InfoFrame</h2>
+<p>HDMI carries both audio data and auxiliary metadata across its
+transition-minimized differential signaling (TMDS) or fixed-rate link
+(FRL) channels during data blanking intervals. The Audio InfoFrame is a
+specific type of auxiliary data packet defined by CTA-861 and the HDMI
+specification.</p>
+<p>When transmitting multi-channel linear pulse-code modulation (LPCM)
+audio, the raw audio stream contains multiple interleaved channels of
+digital samples without intrinsic physical location markers. The primary
+purpose of the Audio InfoFrame is to provide dynamic metadata that
+describes the characteristics of the stream, including audio coding
+type, sample size, sampling frequency, channel count, and speaker
+mapping.</p>
+<h2 id="speaker-allocation-data-byte-4">Speaker Allocation (Data Byte
+4)</h2>
+<p>The core mechanism for designating speaker layouts resides in Data
+Byte 4 of the Audio InfoFrame, designated as the Speaker Allocation (CA)
+field.</p>
+<p>The CA field contains an 8-bit hex value corresponding to predefined
+speaker placement configurations:</p>
+<ul>
+<li><strong>Channel Mapping:</strong> The byte indicates the presence
+and placement of specific channels, such as Front Left/Right (FL/FR),
+Low Frequency Effects (LFE), Front Center (FC), Surround Left/Right
+(SL/SR), and Rear Left/Right (RL/RR).</li>
+<li><strong>Predefined Profiles:</strong> Standard configurations
+correspond to common setups (e.g., <code>0x00</code> for traditional 2.0
+stereo, <code>0x0B</code> for standard 5.1 surround, and
+<code>0x13</code> for 7.1 surround).</li>
+<li><strong>Spatial Differentiation:</strong> It distinguishes between
+side surround speakers and back surround speakers, which is vital for
+modern 7.1 configurations to establish an accurate spatial
+soundfield.</li>
+</ul>
+<h2 id="resolving-channel-ambiguity">Resolving Channel Ambiguity</h2>
+<p>Without the Audio InfoFrame's speaker allocation data, an AV receiver
+receiving an uncompressed 6-channel or 8-channel LPCM signal must guess
+the assignment of individual audio streams. This frequently causes
+channel mismatch errors, such as dialogue (center channel) routing to a
+surround speaker, or deep bass (LFE) routing to a full-range
+tweeter.</p>
+<p>By referencing the InfoFrame’s CA byte at the hardware level, the
+receiving processor automatically routes each discrete audio track from
+the HDMI subpackets to the correct digital-to-analog converter (DAC) and
+corresponding speaker terminal.</p>
+<h2 id="coordination-with-edid">Coordination with EDID</h2>
+<p>The Audio InfoFrame completes a two-way synchronization loop between
+the HDMI source and the HDMI sink:</p>
+<ol type="1">
+<li><strong>Sink Capability Reporting:</strong> The display or receiver
+advertises its physical speaker layout capabilities to the source using
+a Speaker Allocation Data Block (SADB) inside its Extended Display
+Identification Data (EDID).</li>
+<li><strong>Source Stream Definition:</strong> The source device
+analyzes the EDID, formats the audio accordingly, and transmits the
+Audio InfoFrame to declare which layout is actively being output.</li>
+</ol>
+<p>This handshake ensures that multi-channel media is adapted to the
+actual speaker hardware present in the system, maintaining optimal
+acoustic imaging and director-intended sound placement.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sync Timecode and Record Triggers Over HDMI - hdmi</title>
+    <meta name="description" content="Synchronizing camera record triggers and timecode over an HDMI connection is fully possible and widely utilized in modern video production workflows. This article explains how HDMI transmits embedded metadata, the hardware requirements for external recor">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/sync-timecode-and-record-triggers-over-hdmi">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Sync Timecode and Record Triggers Over HDMI - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/sync-timecode-and-record-triggers-over-hdmi" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Synchronizing camera record triggers and timecode over an HDMI connection is fully possible and widely utilized in modern video production workflows. This article explains how HDMI transmits embedded metadata, the hardware requirements for external recor" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="sync-timecode-and-record-triggers-over-hdmi">Sync Timecode and
+Record Triggers Over HDMI</h1>
+<p>Synchronizing camera record triggers and timecode over an HDMI
+connection is fully possible and widely utilized in modern video
+production workflows. This article explains how HDMI transmits embedded
+metadata, the hardware requirements for external recorders and monitors,
+and the essential camera settings needed to ensure seamless start/stop
+synchronization and frame-accurate timecode matching.</p>
+<h2 id="how-hdmi-transmits-timecode-and-trigger-flags">How HDMI
+Transmits Timecode and Trigger Flags</h2>
+<p>While HDMI was originally developed for consumer audio and video
+transmission, later revisions and manufacturer implementations expanded
+the standard to carry auxiliary metadata packets. When a supported
+camera is connected to an external recorder—such as an Atomos Ninja or
+Blackmagic Video Assist—the camera can embed SMPTE timecode and trigger
+commands directly into the HDMI data stream alongside the uncompressed
+video signal.</p>
+<p>The record trigger operates as a simple flag: pressing the record
+button on the camera transmits a "run" command over HDMI, prompting the
+external recorder to start capturing simultaneously. When recording
+stops, a "stop" command halts the external unit. Concurrently, the
+embedded timecode ensures that both the internal media and the external
+file share identical frame-accurate timestamps.</p>
+<h2 id="hardware-and-protocol-compatibility">Hardware and Protocol
+Compatibility</h2>
+<p>HDMI timecode and trigger synchronization are not universal across
+all devices; they depend on explicit hardware and firmware support from
+both the camera and the receiving device.</p>
+<ul>
+<li><strong>Camera Support:</strong> Most mirrorless and cinema cameras
+from brands like Sony, Canon, Panasonic, Nikon, and Fujifilm include
+menu options to output embedded timecode and HDMI record control.
+Entry-level consumer cameras typically omit these features.</li>
+<li><strong>Recorder Support:</strong> Dedicated video recorders and
+monitor-recorders are built specifically to decode these packets. Most
+modern external recorders feature auto-detection systems that listen for
+brand-specific protocols (such as Sony or Canon HDMI protocols) or open
+standards like Atomos HDMI triggering.</li>
+<li><strong>Cable Considerations:</strong> The feature does not require
+specialized cables beyond a standard High-Speed or Premium High-Speed
+HDMI cable capable of handling the video resolution and frame rate.
+However, using high-quality, securely seated cables is essential to
+prevent signal dropouts that can interrupt trigger commands.</li>
+</ul>
+<h2 id="setup-requirements-in-the-camera">Setup Requirements in the
+Camera</h2>
+<p>To enable synchronization, several settings must be properly
+configured inside the camera’s setup menu:</p>
+<ol type="1">
+<li><strong>Enable HDMI Timecode Output:</strong> Locate the camera's
+timecode (TC/UB) menu and set timecode output over HDMI to "On."</li>
+<li><strong>Enable HDMI Record Control:</strong> Turn on "HDMI Rec
+Control" (sometimes labeled as "Control for HDMI" or "External Rec
+Trigger"). This allows the camera's shutter or record button to trigger
+the downstream device.</li>
+<li><strong>Clean HDMI Output:</strong> Ensure the HDMI output displays
+clean video without camera interface elements (menus, exposure meters,
+or focus peaking), as overlays can interfere with recording.</li>
+<li><strong>Configure the External Monitor/Recorder:</strong> Set the
+external recorder’s input source to HDMI, turn trigger detection to
+"HDMI," and select the matching camera brand protocol if auto-detection
+is not available.</li>
+</ol>
+<h2 id="hdmi-vs-sdi-for-synchronization">HDMI vs. SDI for
+Synchronization</h2>
+<p>While HDMI handles both record triggering and timecode reliably, SDI
+(Serial Digital Interface) remains the preferred standard on
+professional broadcast sets. SDI incorporates robust, standardized SMPTE
+RP188 metadata handling and uses locking BNC connectors. HDMI
+connections lack a physical locking mechanism, making them more
+vulnerable to physical disconnections during production. Nevertheless,
+when configured properly, an HDMI workflow provides the exact same
+frame-accurate synchronization and automatic recording functionality as
+professional SDI setups.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

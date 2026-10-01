@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Baluns Use Cat6 Cables to Extend AV Signals - hdmi</title>
+    <meta name="description" content="An HDMI balun extends audiovisual signals over long distances by converting high-definition media interface signals into a format suitable for transmission across standard Category 6 (Cat6) twisted-pair network cables. Standard HDMI cables experience sev">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-baluns-use-cat-6-cables-to-extend-av-signals">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Baluns Use Cat6 Cables to Extend AV Signals - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-baluns-use-cat-6-cables-to-extend-av-signals" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="An HDMI balun extends audiovisual signals over long distances by converting high-definition media interface signals into a format suitable for transmission across standard Category 6 (Cat6) twisted-pair network cables. Standard HDMI cables experience sev" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-baluns-use-cat6-cables-to-extend-av-signals">How HDMI
+Baluns Use Cat6 Cables to Extend AV Signals</h1>
+<p>An HDMI balun extends audiovisual signals over long distances by
+converting high-definition media interface signals into a format
+suitable for transmission across standard Category 6 (Cat6) twisted-pair
+network cables. Standard HDMI cables experience severe signal
+degradation, latency, and packet loss when pushed beyond short
+distances, typically maxing out around 25 to 50 feet. By utilizing a
+transmitter and receiver kit, an HDMI balun bridges this gap, allowing
+uncompressed or minimally compressed ultra-high-definition video,
+multi-channel audio, and control data to travel reliably up to 150 to
+330 feet.</p>
+<h3 id="the-conversion-balanced-vs-unbalanced-signals">The Conversion:
+Balanced vs. Unbalanced Signals</h3>
+<p>The term "balun" originates from combining "balanced" and
+"unbalanced." Standard HDMI cables carry high-frequency, unbalanced
+digital signals over closely packed internal conductors, making them
+susceptible to electromagnetic interference (EMI) and attenuation over
+extended runs.</p>
+<p>Cat6 cabling, by contrast, consists of four balanced twisted pairs.
+In a balanced line, two complementary signals are sent down each
+pair—one positive and one inverted negative. The HDMI transmitter
+converts the unbalanced HDMI signal into a balanced differential signal.
+As the signal travels through the cable, any external interference
+affects both conductors equally. When the signal reaches the receiving
+balun, the receiver subtracts the inverted signal from the positive
+signal. This process, known as common-mode rejection, completely
+eliminates the noise picked up along the wire and doubles the original
+signal strength.</p>
+<h3
+id="transmission-mechanisms-hdbaset-and-proprietary-conversion">Transmission
+Mechanisms: HDBaseT and Proprietary Conversion</h3>
+<p>HDMI baluns primarily use either proprietary digital compression or
+standardized HDBaseT technology to manage the massive bandwidth required
+for video and audio.</p>
+<ol type="1">
+<li><strong>Digital Modulation:</strong> Modern HDMI baluns do not
+merely route raw electrical traces to twisted pairs. Instead, an
+internal processing chip takes the Transition-Minimized Differential
+Signaling (TMDS) data from the HDMI source, serializes it, and applies
+advanced modulation (such as Pulse Amplitude Modulation) to package the
+high-bandwidth data into frequencies that Cat6 cable can handle (up to
+250 MHz).</li>
+<li><strong>Auxiliary Data Streams:</strong> In addition to the primary
+audio and video streams, HDMI requires sideband signals to function
+correctly, including Display Data Channel (DDC) for EDID handshakes,
+High-bandwidth Digital Content Protection (HDCP) encryption, and
+Consumer Electronics Control (CEC). The balun multiplexes these
+auxiliary signals into the main data stream across the Cat6 pairs,
+ensuring that the source device and display can continuously
+authenticate each other without dropping the connection.</li>
+</ol>
+<h3 id="the-advantage-of-cat6-architecture">The Advantage of Cat6
+Architecture</h3>
+<p>Cat6 cable provides the physical infrastructure necessary for this
+high-speed transmission. Compared to older standards like Cat5e, Cat6
+features thicker copper conductors (typically 23 AWG) and tighter twists
+per inch, often separated by a physical internal plastic spline. This
+internal isolation drastically minimizes near-end crosstalk (NEXT) and
+alien crosstalk between the pairs. This high-frequency structural
+integrity prevents "skew," a phenomenon where data across different
+pairs arrives at slightly different times, which would otherwise cause
+image corruption or signal dropouts.</p>
+<h3 id="signal-reconstruction-at-the-receiver">Signal Reconstruction at
+the Receiver</h3>
+<p>At the destination, the receiver balun reverses the process:</p>
+<ol type="1">
+<li><strong>Equalization and De-skewing:</strong> The receiver
+automatically compensates for high-frequency signal loss caused by the
+cable length and aligns the arrival times of data packets across all
+four pairs.</li>
+<li><strong>De-multiplexing:</strong> It separates the video, audio,
+HDCP, and control channels.</li>
+<li><strong>Re-conversion:</strong> The balanced signals are
+reconstructed back into an unbalanced HDMI TMDS format and sent via a
+short HDMI patch cable directly into the display.</li>
+</ol>
+<p>Through this balanced conversion, noise cancellation, and
+high-frequency digital modulation, an HDMI balun uses the physical
+strengths of Cat6 cabling to deliver stable, zero-latency 4K audiovisual
+performance over commercial and residential distances.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

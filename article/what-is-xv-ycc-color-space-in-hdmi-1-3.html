@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is xvYCC Color Space in HDMI 1.3? - hdmi</title>
+    <meta name="description" content="The xvYCC color space, introduced alongside the HDMI 1.3 specification, is an advanced video standard designed to significantly broaden the spectrum of viewable colors on digital displays. By expanding beyond the limitations of standard sRGB and Rec. 709">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/what-is-xv-ycc-color-space-in-hdmi-1-3">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Is xvYCC Color Space in HDMI 1.3? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/what-is-xv-ycc-color-space-in-hdmi-1-3" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The xvYCC color space, introduced alongside the HDMI 1.3 specification, is an advanced video standard designed to significantly broaden the spectrum of viewable colors on digital displays. By expanding beyond the limitations of standard sRGB and Rec. 709" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="what-is-xvycc-color-space-in-hdmi-13">What Is xvYCC Color Space
+in HDMI 1.3?</h1>
+<p>The xvYCC color space, introduced alongside the HDMI 1.3
+specification, is an advanced video standard designed to significantly
+broaden the spectrum of viewable colors on digital displays. By
+expanding beyond the limitations of standard sRGB and Rec. 709 gamuts,
+xvYCC enables televisions and monitors to reproduce roughly 1.8 times
+more colors, allowing modern video hardware to present deeper, more
+natural, and highly accurate hues. This article breaks down the primary
+function of xvYCC, how it operates technically, and its role in modern
+digital video.</p>
+<h3 id="the-purpose-of-xvycc">The Purpose of xvYCC</h3>
+<p>Before the advent of HDMI 1.3, consumer digital video was confined to
+the Rec. 709 color gamut (virtually identical to the computer sRGB
+standard). While Rec. 709 was adequate for standard-definition and early
+high-definition video, it only covers approximately 35% of the colors
+the human eye can perceive. Many real-world colors—such as the deep reds
+of a rose or the vivid cyan of tropical water—fell outside this
+boundary.</p>
+<p>As digital camcorders and cameras evolved, their sensors became
+capable of capturing colors far beyond the Rec. 709 envelope. However,
+because older HDMI standards and color profiles could not transmit these
+extended values, the extra color information was clipped and discarded
+before reaching the screen. The xvYCC standard (formally recognized as
+IEC 61966-2-4) was developed to eliminate this bottleneck by serving as
+a wide-gamut transmission conduit.</p>
+<h3 id="how-xvycc-works-technically">How xvYCC Works Technically</h3>
+<p>The primary innovation of xvYCC is its ability to deliver a wider
+color gamut without requiring an increase in bit depth or disrupting
+backward compatibility with conventional displays.</p>
+<ol type="1">
+<li><strong>Repurposing Reserved Values:</strong> Standard digital
+component video (YCbCr) encodes brightness and color difference using
+8-bit values (ranging from 0 to 255). Standard Rec. 709 reserves values
+16 through 235 for video information, treating values 0–15 and 236–255
+as headroom and footroom to prevent signal distortion. xvYCC frees these
+reserved outer values, allowing them to map negative RGB values and
+extended positive values that represent colors outside the standard Rec.
+709 triangle.</li>
+<li><strong>Backward Compatibility:</strong> Because xvYCC maintains the
+same primary color axes and basic encoding structure as standard Rec.
+709, a standard display reading an xvYCC signal simply clips the
+out-of-range values, resulting in an accurate standard image rather than
+a corrupted, distorted picture.</li>
+</ol>
+<h3 id="practical-requirements-and-commercial-naming">Practical
+Requirements and Commercial Naming</h3>
+<p>To experience xvYCC, every component in the video pipeline must
+support the standard:</p>
+<ul>
+<li><strong>Source Material:</strong> Content natively mastered or
+recorded with extended color data, such as footage from AVCHD
+camcorders.</li>
+<li><strong>Playback Device:</strong> A compatible media player,
+camcorder, or game console supporting HDMI 1.3 or later.</li>
+<li><strong>Display:</strong> An HDTV or monitor equipped with a panel
+capable of reproducing an extended color gamut.</li>
+</ul>
+<p>In the consumer market, the technology was largely commercialized
+under the promotional brand name <strong>"x.v.Color"</strong>, adopted
+by manufacturers like Sony to help buyers identify compliant
+devices.</p>
+<h3 id="legacy-and-modern-context">Legacy and Modern Context</h3>
+<p>While xvYCC established the foundation for modern wide color gamut
+(WCG) video, it has largely been superseded in newer consumer media by
+standards such as DCI-P3 and Rec. 2020, which accompany High Dynamic
+Range (HDR) formats like HDR10 and Dolby Vision. Nevertheless, the
+function of xvYCC in HDMI 1.3 remains a vital milestone in display
+technology, as it first proved that transmission standards could evolve
+to deliver true-to-life color reproduction to consumer living rooms.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

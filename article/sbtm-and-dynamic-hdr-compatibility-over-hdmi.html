@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBTM and Dynamic HDR Compatibility Over HDMI - hdmi</title>
+    <meta name="description" content="Source-Based Tone Mapping (SBTM) and dynamic HDR formats such as Dolby Vision and HDR10+ cannot actively apply tone mapping simultaneously to the same video pipeline over an HDMI link. While SBTM is designed to coexist within the broader HDMI 2.1a specif">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/sbtm-and-dynamic-hdr-compatibility-over-hdmi">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SBTM and Dynamic HDR Compatibility Over HDMI - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/sbtm-and-dynamic-hdr-compatibility-over-hdmi" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Source-Based Tone Mapping (SBTM) and dynamic HDR formats such as Dolby Vision and HDR10+ cannot actively apply tone mapping simultaneously to the same video pipeline over an HDMI link. While SBTM is designed to coexist within the broader HDMI 2.1a specif" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="sbtm-and-dynamic-hdr-compatibility-over-hdmi">SBTM and Dynamic
+HDR Compatibility Over HDMI</h1>
+<p>Source-Based Tone Mapping (SBTM) and dynamic HDR formats such as
+Dolby Vision and HDR10+ cannot actively apply tone mapping
+simultaneously to the same video pipeline over an HDMI link. While SBTM
+is designed to coexist within the broader HDMI 2.1a specification
+alongside dynamic HDR technologies, they represent two fundamentally
+different approaches to processing high dynamic range video.
+Consequently, an HDMI source and display must negotiate which device
+handles tone mapping, preventing both systems from operating
+concurrently on the same signal.</p>
+<h3 id="understanding-sbtm-and-dynamic-hdr">Understanding SBTM and
+Dynamic HDR</h3>
+<p>To understand why concurrent operation does not occur, it is
+essential to look at where tone mapping takes place:</p>
+<ul>
+<li><strong>Dynamic HDR (Dolby Vision, HDR10+):</strong> The source
+sends the video stream accompanied by dynamic metadata (frame-by-frame
+or scene-by-scene instructions). The display (sink) uses this metadata
+to tone-map the incoming signal according to its specific panel
+brightness, contrast, and color volume capabilities.</li>
+<li><strong>Source-Based Tone Mapping (SBTM):</strong> Introduced in
+HDMI 2.1a, SBTM shifts the tone-mapping responsibility to the source
+device (such as a PC, gaming console, or set-top box). The display
+communicates its physical capabilities to the source, and the source
+optimizes the output signal to match the display’s limits before sending
+it across the HDMI cable.</li>
+</ul>
+<h3 id="why-concurrent-operation-is-not-supported">Why Concurrent
+Operation Is Not Supported</h3>
+<p>Tone mapping adjusts the dynamic range of an image so that it fits
+within the target display's physical boundaries. Applying two separate
+tone-mapping algorithms simultaneously results in severe image
+degradation:</p>
+<ol type="1">
+<li><strong>Redundant Processing:</strong> If a source uses SBTM to map
+highlights and shadow detail directly to the display's exact
+capabilities, the resulting signal requires no further adjustment.
+Applying a dynamic HDR tone curve at the display level on top of an
+already tone-mapped SBTM image would lead to double tone mapping,
+causing crushed blacks, clipped highlights, and inaccurate colors.</li>
+<li><strong>Metadata Conflict:</strong> Dynamic HDR depends on metadata
+instructing the display how to adapt content. SBTM outputs content that
+is already tailored to the display's native parameters, rendering
+dynamic tone-mapping instructions unnecessary.</li>
+<li><strong>Pipeline Arbitration:</strong> Over an HDMI link, the source
+and display establish an agreed-upon signal path during the HDMI
+handshake. The system either routes the signal through a source-side
+processing pipeline (SBTM) or passes raw content with metadata to
+activate the display’s internal dynamic HDR engine.</li>
+</ol>
+<h3 id="how-sbtm-handles-mixed-dynamic-content">How SBTM Handles Mixed
+Dynamic Content</h3>
+<p>The primary purpose of SBTM is not to replace dynamic HDR for
+full-screen movies, but to solve the issue of mixed-format environments.
+In gaming and desktop environments, SDR graphics (such as user interface
+elements, chat overlays, or menu systems) often sit alongside HDR video
+or 3D graphics.</p>
+<p>Instead of forcing the entire screen into an arbitrary display-side
+tone-mapping profile, SBTM allows the source device to:</p>
+<ul>
+<li>Receive the display's peak brightness and color limits.</li>
+<li>Internally combine SDR, static HDR, and dynamic HDR assets.</li>
+<li>Map the composite image into a single, cohesive signal tailored
+specifically for the display.</li>
+</ul>
+<p>In this context, the source may read the dynamic HDR metadata of a
+specific video asset internally, map it alongside other graphical
+elements, and then output a unified signal using SBTM. However, the
+transmission across the HDMI link itself does not run SBTM and
+display-led dynamic HDR concurrently.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why HDMI 2.0 Uses a 1/40 TMDS Clock Ratio - hdmi</title>
+    <meta name="description" content="HDMI 2.0 expands transmission bandwidth to support 4K resolution at 60 Hz by increasing the maximum data rate from 3.4 Gbps to 6.0 Gbps per lane. To achieve these higher speeds across standard copper cables without causing severe signal degradation, the">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/why-hdmi-2-0-uses-a-1-40-tmds-clock-ratio">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why HDMI 2.0 Uses a 1/40 TMDS Clock Ratio - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/why-hdmi-2-0-uses-a-1-40-tmds-clock-ratio" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI 2.0 expands transmission bandwidth to support 4K resolution at 60 Hz by increasing the maximum data rate from 3.4 Gbps to 6.0 Gbps per lane. To achieve these higher speeds across standard copper cables without causing severe signal degradation, the" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-hdmi-20-uses-a-140-tmds-clock-ratio">Why HDMI 2.0 Uses a
+1/40 TMDS Clock Ratio</h1>
+<p>HDMI 2.0 expands transmission bandwidth to support 4K resolution at
+60 Hz by increasing the maximum data rate from 3.4 Gbps to 6.0 Gbps per
+lane. To achieve these higher speeds across standard copper cables
+without causing severe signal degradation, the HDMI specification
+altered the physical relationship between the transmitted clock and
+data. For lane rates exceeding 3.4 Gbps, the standard switches from the
+traditional 1/10 TMDS clock ratio to a 1/40 clock ratio, mitigating
+high-frequency transmission loss, minimizing electromagnetic
+interference (EMI), and ensuring backward compatibility.</p>
+<h3 id="the-legacy-110-clock-ratio">The Legacy 1/10 Clock Ratio</h3>
+<p>HDMI uses Transition-Minimized Differential Signaling (TMDS) across
+three primary data lanes and one dedicated clock lane. Under the HDMI
+1.4 specification and earlier, the system uses an 8b/10b-style encoding
+scheme where every 8-bit byte of raw data is encoded into a 10-bit TMDS
+character.</p>
+<p>In this legacy scheme, the TMDS clock channel operates at the
+character rate—exactly one clock cycle for every 10 serial bits
+transmitted. This establishes a 1/10 clock-to-data ratio:</p>
+<p><span class="math display">\[\text{TMDS Clock Frequency} =
+\frac{\text{Bit Rate per Lane}}{10}\]</span></p>
+<p>At the maximum HDMI 1.4 speed of 3.4 Gbps per lane, the physical TMDS
+clock runs at 340 MHz.</p>
+<h3 id="the-high-frequency-problem-at-60-gbps">The High-Frequency
+Problem at 6.0 Gbps</h3>
+<p>HDMI 2.0 raised the ceiling to 6.0 Gbps per lane (18 Gbps total
+across all three data lanes). If the system had retained the 1/10 ratio
+at 6.0 Gbps, the dedicated clock lane would be required to transmit
+at:</p>
+<p><span class="math display">\[\frac{6000 \text{ Mbps}}{10} = 600
+\text{ MHz}\]</span></p>
+<p>Transmitting a 600 MHz reference clock over passive, low-cost copper
+cables introduces major physical challenges:</p>
+<ol type="1">
+<li><strong>High-Frequency Attenuation:</strong> Signal loss increases
+dramatically as frequencies rise, resulting in closed "eye diagrams" and
+clock jitter at the receiver.</li>
+<li><strong>Electromagnetic Interference (EMI):</strong> A discrete,
+single-frequency 600 MHz clock radiates significant RF energy, making
+regulatory compliance (such as FCC and CE limits) difficult to
+meet.</li>
+<li><strong>Crosstalk:</strong> A high-frequency clock signal couples
+into adjacent high-speed data pairs inside the cable assembly, degrading
+the overall signal-to-noise ratio.</li>
+</ol>
+<h3 id="how-the-140-ratio-solves-the-problem">How the 1/40 Ratio Solves
+the Problem</h3>
+<p>To prevent these physical-layer issues, HDMI 2.0 defines a
+clock-divided mode for any signal operating above 3.4 Gbps. Instead of
+transmitting the clock at the full character rate, the transmitter
+divides the character clock by four, resulting in a 1/40 ratio relative
+to the serial bit rate:</p>
+<p><span class="math display">\[\text{TMDS Clock Frequency} =
+\frac{\text{Bit Rate per Lane}}{40}\]</span></p>
+<p>At the maximum HDMI 2.0 rate of 6.0 Gbps per lane, the clock channel
+operates at:</p>
+<p><span class="math display">\[\frac{6000 \text{ Mbps}}{40} = 150
+\text{ MHz}\]</span></p>
+<p>A 150 MHz signal is lower in frequency than the 340 MHz clock used by
+maximum-spec HDMI 1.4 transmissions. This low frequency ensures that
+standard HDMI Category 2 cables can transmit the clock channel reliably
+over practical distances without excessive attenuation, skew, or
+radiated emissions.</p>
+<h3 id="implementation-at-the-receiver">Implementation at the
+Receiver</h3>
+<p>Because the clock frequency is divided on the cable, the sink device
+(display or receiver) cannot directly sample characters using the
+incoming clock edges. The receiver handles the 1/40 ratio through the
+following steps:</p>
+<ul>
+<li><strong>Clock Multiplication:</strong> The receiver uses an internal
+Phase-Locked Loop (PLL) or frequency multiplier to multiply the 150 MHz
+incoming clock by 40 to reconstruct the 6.0 GHz bit clock, and by 4 to
+reconstruct the character clock.</li>
+<li><strong>Scrambling:</strong> Because high-speed data lanes run at
+full rate (6.0 Gbps) and can produce EMI spikes, HDMI 2.0 mandates data
+scrambling on lanes exceeding 3.4 Gbps to distribute spectral energy
+evenly.</li>
+<li><strong>SCDC Negotiation:</strong> The source and sink coordinate
+the ratio switch using the Status and Control Data Channel (SCDC) via
+the <span class="math inline">\(I^2C\)</span> line. The source reads the
+display's capabilities and configures the
+<code>TMDS_Bit_Clock_Ratio</code> bit in the sink's registers to
+<code>1</code> (indicating 1/40) before sending high-bandwidth
+signals.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

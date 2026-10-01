@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How DDC/CI Controls Monitor Brightness via HDMI - hdmi</title>
+    <meta name="description" content="The Display Data Channel/Command Interface (DDC/CI) enables computer software to control monitor hardware settings—such as brightness, contrast, and color balance—directly through a display cable like HDMI. By utilizing a dedicated, bidirectional com">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-ddc-ci-controls-monitor-brightness-via-hdmi">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How DDC/CI Controls Monitor Brightness via HDMI - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-ddc-ci-controls-monitor-brightness-via-hdmi" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The Display Data Channel/Command Interface (DDC/CI) enables computer software to control monitor hardware settings—such as brightness, contrast, and color balance—directly through a display cable like HDMI. By utilizing a dedicated, bidirectional com" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-ddcci-controls-monitor-brightness-via-hdmi">How DDC/CI
+Controls Monitor Brightness via HDMI</h1>
+<p>The Display Data Channel/Command Interface (DDC/CI) enables computer
+software to control monitor hardware settings—such as brightness,
+contrast, and color balance—directly through a display cable like HDMI.
+By utilizing a dedicated, bidirectional communication bus built into the
+HDMI interface, software can bypass physical on-screen display (OSD)
+buttons and send digital commands straight to the monitor's display
+controller. This guide explains the physical architecture, protocol
+stack, and step-by-step process that allows software to alter an HDMI
+display's internal parameters in real time.</p>
+<h2 id="the-physical-foundation-i2c-over-hdmi">The Physical Foundation:
+I2C over HDMI</h2>
+<p>While HDMI cables are primarily known for carrying high-bandwidth
+digital audio and video streams via Transition-Minimized Differential
+Signaling (TMDS) or Fixed Rate Link (FRL) lanes, they also include
+auxiliary wiring dedicated to low-speed communication.</p>
+<p>Within an HDMI cable:</p>
+<ul>
+<li><strong>Pin 15:</strong> DDC SCL (Serial Clock)</li>
+<li><strong>Pin 16:</strong> DDC SDA (Serial Data)</li>
+<li><strong>Pin 17:</strong> DDC/CEC Ground</li>
+</ul>
+<p>These pins operate an <strong>I²C (Inter-Integrated Circuit)</strong>
+bus, a standard two-wire serial communication system. The host graphics
+card (GPU) acts as the I²C bus master, and the connected monitor
+functions as the slave device. Because I²C is inherently bidirectional,
+the host can both write commands to and read state information back from
+the monitor.</p>
+<h2 id="the-software-and-protocol-layers">The Software and Protocol
+Layers</h2>
+<p>DDC/CI relies on a layered communication model to translate a user's
+slider adjustment into an electrical change inside the display:</p>
+<ol type="1">
+<li><strong>DDC (Display Data Channel):</strong> The foundational
+hardware specification created by VESA that uses the I²C bus to query
+monitor capabilities, originally used for retrieving EDID (Extended
+Display Identification Data) containing supported resolutions and
+refresh rates.</li>
+<li><strong>CI (Command Interface):</strong> An extension that
+standardizes bidirectional messaging over DDC, allowing structured
+commands and replies rather than passive data retrieval.</li>
+<li><strong>MCCS (Monitor Control Command Set):</strong> The standard
+"vocabulary" defined by VESA that defines specific operations using
+Virtual Control Panel (VCP) codes. For example:
+<ul>
+<li><strong>VCP Code <code>0x10</code>:</strong> Luminance
+(Brightness)</li>
+<li><strong>VCP Code <code>0x12</code>:</strong> Contrast</li>
+<li><strong>VCP Code <code>0xD6</code>:</strong> Power Mode</li>
+</ul></li>
+</ol>
+<h2 id="how-a-brightness-command-is-transmitted-and-executed">How a
+Brightness Command is Transmitted and Executed</h2>
+<p>When an application (such as a third-party utility, display manager,
+or the operating system) adjusts brightness, the following sequence
+occurs:</p>
+<ol type="1">
+<li><strong>API Call:</strong> The application calls an operating system
+API (such as Windows' High-Level Monitor Configuration API or Linux’s
+<code>ddcutil</code> interface) with the desired value (e.g., set
+brightness to 70%).</li>
+<li><strong>GPU Driver Encoding:</strong> The operating system passes
+the request to the graphics driver. The driver formats a standardized
+MCCS packet containing the destination I²C address (commonly
+<code>0x37</code> for DDC/CI), the command type (Set VCP Feature), the
+VCP code (<code>0x10</code>), and the payload value. A checksum byte is
+appended to ensure data integrity.</li>
+<li><strong>Transmission Across HDMI:</strong> The graphics hardware
+sends this byte sequence across the HDMI cable’s SCL and SDA lines using
+the standard I²C clock rate (typically 100 kHz).</li>
+<li><strong>Processing by the Monitor Scaler:</strong> The display's
+internal microcontroller/scaler receives the packet, verifies the
+checksum, and extracts the target VCP code and value.</li>
+<li><strong>Hardware Execution:</strong> The display's controller
+modifies its internal state:
+<ul>
+<li>For <strong>brightness</strong>, the controller adjusts the
+Pulse-Width Modulation (PWM) duty cycle or current sent to the display's
+backlight (or OLED subpixels).</li>
+<li>For <strong>contrast</strong>, the controller alters the digital
+look-up tables (LUTs) governing the dynamic range mapping of the liquid
+crystal panel.</li>
+</ul></li>
+</ol>
+<h2 id="common-obstacles-to-ddcci-communication">Common Obstacles to
+DDC/CI Communication</h2>
+<p>Because DDC/CI relies on an auxiliary I²C data path, direct software
+control can occasionally fail due to specific hardware limitations:</p>
+<ul>
+<li><strong>OSD Settings:</strong> Many monitors feature a toggle in
+their physical OSD menu to enable or disable DDC/CI. If disabled, the
+internal controller ignores incoming I²C commands.</li>
+<li><strong>Cable and Adapter Interference:</strong> Passive adapters
+(such as DisplayPort to HDMI), poor-quality HDMI cables with inadequate
+shielding, or certain HDMI splitters and switches may not correctly
+route or terminate the SCL and SDA pins, dropping the communication
+packets.</li>
+<li><strong>Docking Stations:</strong> Some USB-C and Thunderbolt
+docking stations do not expose the I²C bus back to the operating
+system's graphics drivers, preventing DDC/CI commands from reaching the
+display.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

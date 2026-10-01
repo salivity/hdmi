@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Capacitive Loading Slows HDMI Digital Transitions - hdmi</title>
+    <meta name="description" content="Capacitive loading on an HDMI circuit board trace significantly alters high-speed signal integrity by reducing the slew rate of transmitted digital signals. When parasitic or discrete capacitance accumulates along a differential trace, it forms an RC low">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-capacitive-loading-slows-hdmi-digital-transitions">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Capacitive Loading Slows HDMI Digital Transitions - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-capacitive-loading-slows-hdmi-digital-transitions" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Capacitive loading on an HDMI circuit board trace significantly alters high-speed signal integrity by reducing the slew rate of transmitted digital signals. When parasitic or discrete capacitance accumulates along a differential trace, it forms an RC low" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-capacitive-loading-slows-hdmi-digital-transitions">How
+Capacitive Loading Slows HDMI Digital Transitions</h1>
+<p>Capacitive loading on an HDMI circuit board trace significantly
+alters high-speed signal integrity by reducing the slew rate of
+transmitted digital signals. When parasitic or discrete capacitance
+accumulates along a differential trace, it forms an RC low-pass filter
+with the system's characteristic impedance and source resistance. This
+article examines the physical mechanisms behind capacitive loading, how
+it expands signal rise and fall times, and the resulting impact on
+high-speed HDMI data streams.</p>
+<h3 id="the-physics-of-the-rc-time-constant">The Physics of the RC Time
+Constant</h3>
+<p>A digital transition consists of a shift between two voltage levels
+representing binary ones and zeros. In a theoretical environment, this
+change occurs instantaneously. In reality, every printed circuit board
+(PCB) trace possesses an intrinsic resistance (<span
+class="math inline">\(R\)</span>) and capacitance to adjacent copper
+references (<span class="math inline">\(C\)</span>).</p>
+<p>When an HDMI transmitter switches states, it must charge or discharge
+the total capacitance present along the path. The rate at which this
+voltage changes is dictated by the RC time constant (<span
+class="math inline">\(\tau = R \times C\)</span>). The voltage across
+the capacitance during a rising edge follows the exponential charging
+equation:</p>
+<p><span class="math display">\[V(t) = V_{final} \cdot (1 - e^{-t /
+RC})\]</span></p>
+<p>As the capacitive load (<span class="math inline">\(C\)</span>)
+increases, the time constant (<span class="math inline">\(\tau\)</span>)
+increases proportionally. Consequently, the trace requires more time to
+reach the required threshold voltages, stretching the rise time (<span
+class="math inline">\(t_r\)</span>) and fall time (<span
+class="math inline">\(t_f\)</span>) and flattening the edge of the
+pulse.</p>
+<h3 id="sources-of-capacitance-in-hdmi-routing">Sources of Capacitance
+in HDMI Routing</h3>
+<p>HDMI operates using Transition Minimized Differential Signaling
+(TMDS) or Fixed Rate Link (FRL), both of which require strictly
+controlled 100-ohm differential impedance. Capacitive loading stems from
+several primary sources along the channel:</p>
+<ul>
+<li><strong>Board Layer Parasitics:</strong> Tight coupling between the
+signal trace and underlying reference ground planes introduces natural
+distributed parasitic capacitance.</li>
+<li><strong>Component Pads and Connectors:</strong> Surface-mount pads
+for the HDMI receptacle, passive components, and IC pins are wider than
+the traces, creating local reductions in trace impedance due to
+increased localized surface area over the ground plane.</li>
+<li><strong>Via Transitions:</strong> Signal vias introduce
+barrel-to-plane capacitance where the via barrel passes through antipads
+in internal copper planes.</li>
+<li><strong>ESD Protection Diodes:</strong> HDMI lines require
+electrostatic discharge (ESD) suppression at the connector. Even
+ultra-low-capacitance diodes introduce a fractional picofarad load per
+line directly onto the high-speed path.</li>
+</ul>
+<h3 id="slew-rate-reduction-and-signal-distortion">Slew Rate Reduction
+and Signal Distortion</h3>
+<p>The HDMI specification dictates strict rise and fall times, often
+requiring transitions within tens of picoseconds to support
+multi-gigabit data rates (up to 12 Gbps per lane in HDMI 2.1). Excessive
+capacitance slows the slew rate (<span
+class="math inline">\(dV/dt\)</span>), transforming sharp, square-like
+transitions into rounded curves.</p>
+<p>When transition times become too slow relative to the unit interval
+(UI)—the time duration allocated for a single bit—the signal cannot
+reach its full amplitude before the next bit transition occurs. This
+condition creates Intersymbol Interference (ISI), where the energy from
+a preceding bit bleeds into subsequent bits.</p>
+<h3 id="eye-diagram-closure-and-bit-errors">Eye Diagram Closure and Bit
+Errors</h3>
+<p>In high-speed digital communications, signal quality is measured
+using an eye diagram, which superimposes thousands of waveform cycles.
+Capacitive loading affects the eye diagram in two distinct ways:</p>
+<ol type="1">
+<li><strong>Vertical Eye Closure:</strong> Because the signal cannot
+fully charge to logic-high or discharge to logic-low within one UI, the
+vertical opening shrinks, diminishing the noise margin.</li>
+<li><strong>Horizontal Eye Closure (Jitter):</strong> Slower transition
+slopes mean that slight voltage variations cross the receiver's
+switching thresholds at vastly different times, generating substantial
+data-dependent jitter.</li>
+</ol>
+<p>If the eye diagram degrades beyond the minimum mask defined by the
+HDMI specification, the receiver's clock and data recovery (CDR)
+circuitry cannot accurately interpret the incoming states, resulting in
+packet loss, audio dropouts, visual artifacts, or a total loss of
+display synchronization.</p>
+<h3 id="design-countermeasures">Design Countermeasures</h3>
+<p>To mitigate the slowing effects of capacitive loading on high-speed
+HDMI transitions, hardware designers employ specific layout
+techniques:</p>
+<ul>
+<li><strong>Antipad Optimization:</strong> Enlarging copper cutouts
+(antipads) beneath surface-mount pads and via barrels removes the
+adjacent reference plane, directly lowering localized capacitance.</li>
+<li><strong>Low-Capacitance Components:</strong> Selecting ESD
+protection components with parasitic capacitance below 0.3 pF minimizes
+lumped loads at the connector.</li>
+<li><strong>Trace Geometry Control:</strong> Maintaining exact trace
+width and spacing ensures continuous 100-ohm differential impedance,
+avoiding capacitive discontinuities that cause both edge-rounding and
+signal reflections.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

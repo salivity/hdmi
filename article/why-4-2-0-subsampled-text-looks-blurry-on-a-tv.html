@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why 4:2:0 Subsampled Text Looks Blurry on a TV - hdmi</title>
+    <meta name="description" content="Connecting a PC to a television via HDMI can often result in thin text appearing blurry, smudged, or surrounded by unnatural colored halos. This visual degradation occurs because the video signal is transmitting using 4:2:0 chroma subsampling, a compress">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/why-4-2-0-subsampled-text-looks-blurry-on-a-tv">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why 4:2:0 Subsampled Text Looks Blurry on a TV - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/why-4-2-0-subsampled-text-looks-blurry-on-a-tv" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Connecting a PC to a television via HDMI can often result in thin text appearing blurry, smudged, or surrounded by unnatural colored halos. This visual degradation occurs because the video signal is transmitting using 4:2:0 chroma subsampling, a compress" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-420-subsampled-text-looks-blurry-on-a-tv">Why 4:2:0
+Subsampled Text Looks Blurry on a TV</h1>
+<p>Connecting a PC to a television via HDMI can often result in thin
+text appearing blurry, smudged, or surrounded by unnatural colored
+halos. This visual degradation occurs because the video signal is
+transmitting using 4:2:0 chroma subsampling, a compression method that
+drastically cuts color resolution to save bandwidth. While this
+compression is virtually invisible in video content and video games,
+computer operating systems rely on sharp, single-pixel color boundaries
+and subpixel text rendering, both of which are severely corrupted when
+chroma data is discarded.</p>
+<h3 id="understanding-chroma-subsampling">Understanding Chroma
+Subsampling</h3>
+<p>Digital video signals split image data into luminance (brightness,
+represented by <span class="math inline">\(Y\)</span>) and chrominance
+(color, represented by <span class="math inline">\(Cb\)</span> and <span
+class="math inline">\(Cr\)</span>). Human vision is far more sensitive
+to changes in brightness than to changes in color detail. Video
+standards take advantage of this by preserving full brightness
+resolution while reducing the color data through chroma subsampling.</p>
+<p>In an uncompressed full-bandwidth signal—designated as
+<strong>4:4:4</strong> or full <strong>RGB</strong>—every individual
+pixel receives its own dedicated brightness and color information.</p>
+<p>In a <strong>4:2:0</strong> signal:</p>
+<ul>
+<li>Brightness (<span class="math inline">\(Y\)</span>) remains at full
+resolution (a full <span class="math inline">\(1:1\)</span> pixel
+grid).</li>
+<li>Color (<span class="math inline">\(Cb/Cr\)</span>) is sampled at
+only half the horizontal resolution and half the vertical
+resolution.</li>
+<li>A <span class="math inline">\(2 \times 2\)</span> block of four
+pixels shares just one single color sample.</li>
+</ul>
+<p>To display a 4:2:0 image, the television's internal processor must
+extrapolate and upscale the missing color information to fill the
+screen's physical pixel grid.</p>
+<h3 id="why-computer-text-breaks-under-420">Why Computer Text Breaks
+Under 4:2:0</h3>
+<p>Desktop operating systems such as Windows and macOS are engineered
+under the assumption of uncompressed 4:4:4 or RGB output. Text rendering
+exposes the weaknesses of 4:2:0 subsampling in two distinct ways:</p>
+<h4 id="1-high-contrast-single-pixel-transitions">1. High-Contrast,
+Single-Pixel Transitions</h4>
+<p>Fine text consists of high-frequency geometric lines that are often
+only one pixel wide. When black text sits on a white background, the
+luminance channel handles most of the contrast, minimizing color issues.
+However, colored text on contrasting backgrounds—such as red text on a
+black background or blue links on a grey page—relies almost entirely on
+the chroma channel.</p>
+<p>Under 4:2:0 subsampling, four adjacent pixels must share the same
+color value. The TV attempts to interpolate the sharp boundary between
+the text and background, creating a blur or a muddy blend where crisp
+pixel edges should exist.</p>
+<h4 id="2-subpixel-anti-aliasing-cleartype">2. Subpixel Anti-Aliasing
+(ClearType)</h4>
+<p>Modern operating systems use subpixel rendering technologies, such as
+Windows ClearType, to make text appear smoother on LCD panels. These
+algorithms intentionally tint the individual red, green, and blue
+physical subpixels along the edges of letters to triple the effective
+horizontal resolution for font smoothing.</p>
+<p>When a 4:2:0 signal compresses the color information, the precise
+subpixel color placement calculated by the operating system is
+completely destroyed. Instead of smooth, sharp edges, the subpixel
+adjustments are smeared across adjacent pixels, resulting in severe
+chromatic aberration, magenta/cyan halos, and an out-of-focus appearance
+around letters.</p>
+<h3 id="bandwidth-and-tv-configurations">Bandwidth and TV
+Configurations</h3>
+<p>PC signals drop to 4:2:0 primarily due to HDMI bandwidth limitations.
+For instance, transmitting 4K resolution at 60Hz with HDR over an older
+HDMI 2.0 port exceeds the 18 Gbps bandwidth limit unless the color is
+compressed to 4:2:0.</p>
+<p>Additionally, many TVs default to standard video processing modes
+that force 4:2:0 internal processing to apply motion smoothing,
+sharpening, and noise reduction.</p>
+<h3 id="resolving-the-issue">Resolving the Issue</h3>
+<p>To restore crisp text clarity, the signal chain must maintain 4:4:4
+chroma or RGB from the PC to the display:</p>
+<ul>
+<li><strong>Enable "PC Mode":</strong> Label the TV’s HDMI input as "PC"
+or enable the television's specific "PC Mode." This instructs the TV's
+processor to bypass internal downsampling and process incoming signals
+as uncompressed 4:4:4.</li>
+<li><strong>Enable HDMI Enhanced / Deep Color:</strong> In the TV
+settings, enable "Enhanced Format" or "HDMI Ultra HD Deep Color" on the
+active HDMI port to unlock full HDMI bandwidth.</li>
+<li><strong>Adjust PC GPU Output Settings:</strong> Open your graphics
+card control panel (NVIDIA Control Panel, AMD Radeon Software, or Intel
+Graphics Command Center) and set the output color format explicitly to
+<strong>RGB (Full)</strong> or <strong>YCbCr 4:4:4</strong>.</li>
+<li><strong>Upgrade Hardware if Necessary:</strong> If running at 4K at
+60Hz or 120Hz with HDR, ensure both the graphics card, the TV, and the
+cable support HDMI 2.1 specifications, which provide the bandwidth
+required to deliver uncompressed color at high resolutions and refresh
+rates.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI eARC Delivers 37 Mbps Audio Bandwidth - hdmi</title>
+    <meta name="description" content="HDMI Enhanced Audio Return Channel (eARC) achieves its remarkable 37 Mbps throughput by replacing the single-ended signaling of legacy ARC with a dedicated high-speed differential transmission pair. Introduced as part of the HDMI 2.1 specification, this">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-e-arc-delivers-37-mbps-audio-bandwidth">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI eARC Delivers 37 Mbps Audio Bandwidth - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-e-arc-delivers-37-mbps-audio-bandwidth" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI Enhanced Audio Return Channel (eARC) achieves its remarkable 37 Mbps throughput by replacing the single-ended signaling of legacy ARC with a dedicated high-speed differential transmission pair. Introduced as part of the HDMI 2.1 specification, this" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-earc-delivers-37-mbps-audio-bandwidth">How HDMI eARC
+Delivers 37 Mbps Audio Bandwidth</h1>
+<p>HDMI Enhanced Audio Return Channel (eARC) achieves its remarkable 37
+Mbps throughput by replacing the single-ended signaling of legacy ARC
+with a dedicated high-speed differential transmission pair. Introduced
+as part of the HDMI 2.1 specification, this architecture bypasses
+standard transmission bottlenecks, allowing modern displays to pass
+lossless, uncompressed audio formats—including 8-channel 24-bit/192kHz
+LPCM, Dolby TrueHD, and DTS-HD Master Audio—directly to external sound
+systems without downsampling or dynamic range compression.</p>
+<h3 id="the-shift-to-differential-signaling">The Shift to Differential
+Signaling</h3>
+<p>Legacy HDMI ARC relies on a single wire within the HDMI cable (pin
+14) running an unbalanced, single-ended signal. This design is highly
+susceptible to electromagnetic interference (EMI) and crosstalk from
+neighboring video lines, capping ARC's functional bandwidth at roughly 1
+Mbps—just enough for stereo PCM or lossy, compressed 5.1 surround sound
+(such as standard Dolby Digital or DTS).</p>
+<p>To achieve up to 37 Mbps (specifically 36.864 Mbps of audio data
+payload), eARC utilizes a balanced differential signaling pair over two
+physical pins:</p>
+<ul>
+<li><strong>Pin 14 (Utility / HEAC+)</strong></li>
+<li><strong>Pin 19 (Hot Plug Detect / HEAC-)</strong></li>
+</ul>
+<p>These pins were originally designated for the HDMI Ethernet and Audio
+Return Channel (HEAC) in HDMI 1.4. By sending two inverted versions of
+the same signal across this twisted pair, the receiving audio processor
+can cancel out common-mode noise through differential subtraction. This
+noise immunity permits significantly higher clock rates and cleaner data
+integrity across distances up to several meters.</p>
+<h3 id="the-audio-payload-architecture">The Audio Payload
+Architecture</h3>
+<p>The theoretical maximum bandwidth for uncompressed studio-master
+audio across 8 channels is calculated directly from industry-standard
+framing:</p>
+<p><span class="math display">\[\text{8 channels} \times 192\text{ kHz
+sampling rate} \times 24\text{ bits per sample} = 36.864\text{
+Mbps}\]</span></p>
+<p>eARC transmits this high-resolution audio using an IEC 60958 framing
+structure. The data stream is modulated using Biphase Mark Code (BMC) on
+the differential pair, enabling the clock and data signals to be
+recovered simultaneously by the receiver's Phase-Locked Loop (PLL).
+Because the physical layer handles approximately 75 to 98 MHz of raw
+differential transition speed, it reliably sustains the net 36.864 Mbps
+payload required for uncompressed studio-quality tracks.</p>
+<h3 id="common-mode-discovery-and-lip-sync-control">Common-Mode
+Discovery and Lip-Sync Control</h3>
+<p>In addition to the high-speed differential audio link, eARC
+simultaneously transmits low-speed bidirectional communication across
+the same two wires using common-mode signaling. Known as the eARC Data
+Channel (eADC), this lower-frequency channel operates independently of
+Consumer Electronics Control (CEC).</p>
+<p>The eADC continually handles:</p>
+<ul>
+<li>Device capability negotiation and link training</li>
+<li>Format detection to verify bandwidth compatibility before
+transmission begins</li>
+<li>Mandatory lip-sync correction data, compensating for video
+processing delays in the television without requiring user
+calibration</li>
+</ul>
+<h3 id="physical-cable-implementation">Physical Cable
+Implementation</h3>
+<p>Because eARC utilizes the dedicated HEAC physical traces, it does not
+require an Ultra High Speed (48 Gbps) HDMI cable to function for audio
+alone. Standard High Speed or Premium High Speed HDMI cables with
+Ethernet possess the required internal wiring on pins 14 and 19 to
+establish the differential pair, allowing the 37 Mbps audio pipe to
+operate independently of the primary High-Speed Transition-Minimized
+Differential Signaling (TMDS) or Fixed Rate Link (FRL) video lanes.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

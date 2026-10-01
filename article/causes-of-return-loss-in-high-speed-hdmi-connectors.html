@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Causes of Return Loss in High-Speed HDMI Connectors - hdmi</title>
+    <meta name="description" content="Operating at multi-gigabit data rates, modern HDMI standards—such as HDMI 2.0 (up to 6 Gbps per lane) and HDMI 2.1 (up to 12 Gbps per lane)—require rigorous signal integrity along the entire transmission path. Return loss measures the amount of signa">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/causes-of-return-loss-in-high-speed-hdmi-connectors">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Causes of Return Loss in High-Speed HDMI Connectors - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/causes-of-return-loss-in-high-speed-hdmi-connectors" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Operating at multi-gigabit data rates, modern HDMI standards—such as HDMI 2.0 (up to 6 Gbps per lane) and HDMI 2.1 (up to 12 Gbps per lane)—require rigorous signal integrity along the entire transmission path. Return loss measures the amount of signa" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="causes-of-return-loss-in-high-speed-hdmi-connectors">Causes of
+Return Loss in High-Speed HDMI Connectors</h1>
+<p>Operating at multi-gigabit data rates, modern HDMI standards—such as
+HDMI 2.0 (up to 6 Gbps per lane) and HDMI 2.1 (up to 12 Gbps per
+lane)—require rigorous signal integrity along the entire transmission
+path. Return loss measures the amount of signal power reflected back
+toward the source rather than transmitted through the connector. In
+poorly terminated HDMI connectors, return loss is fundamentally driven
+by localized characteristic impedance mismatches between the bulk cable,
+the connector pins, and the PCB interface. This article examines the
+primary physical and electrical mechanisms that cause high return loss
+in improperly assembled or terminated high-speed HDMI connectors.</p>
+<h3 id="the-physics-of-high-speed-signal-reflection">The Physics of
+High-Speed Signal Reflection</h3>
+<p>At multi-gigabit frequencies, signal wavelengths become comparable to
+the physical dimensions of the connector pins and exposed wire leads
+(often just a few millimeters). High-speed HDMI relies on
+Transition-Minimized Differential Signaling (TMDS) or Fixed Rate Link
+(FRL) architectures with a nominal differential impedance target of 100
+ohms (or 50 ohms single-ended).</p>
+<p>Whenever a high-frequency electromagnetic wave encounters a change in
+the instantaneous characteristic impedance (<span
+class="math inline">\(Z_0 = \sqrt{L/C}\)</span>), a portion of the
+incident wave is reflected back to the transmitter. Return loss is the
+logarithmic ratio of incident power to reflected power; lower return
+loss values (closer to zero dB) indicate severe reflections that cause
+inter-symbol interference (ISI), eye-closure, and bit errors.</p>
+<h3 id="primary-drivers-of-return-loss-in-poor-terminations">Primary
+Drivers of Return Loss in Poor Terminations</h3>
+<h4 id="1-excessive-conductor-untwisting">1. Excessive Conductor
+Untwisting</h4>
+<p>HDMI bulk cable pairs are tightly shielded and twisted to maintain a
+consistent differential impedance and field cancellation. During manual
+or poorly automated termination, stripping too much outer jacket and
+untwisting the differential pairs before soldering or crimping exposes
+the bare conductors. This increases the physical distance between the
+true and complementary signals, sharply decreasing mutual capacitance
+and spiking the series loop inductance (<span
+class="math inline">\(L\)</span>). This sudden surge in characteristic
+impedance generates significant signal reflections at multi-gigabit
+frequencies.</p>
+<h4 id="2-solder-joint-anomalies-and-parasitic-capacitance">2. Solder
+Joint Anomalies and Parasitic Capacitance</h4>
+<p>The interface where the wire conductor meets the connector solder cup
+or paddle board is highly vulnerable:</p>
+<ul>
+<li><strong>Excess Solder:</strong> Large solder blobs introduce excess
+metal volume close to adjacent grounds or neighboring pins, creating
+localized parasitic capacitance (<span
+class="math inline">\(C\)</span>). This causes a sharp capacitive dip in
+impedance below the 100-ohm target.</li>
+<li><strong>Cold Joints and Solder Voids:</strong> Incomplete wetting or
+air voids reduce the effective contact area and create uneven current
+distribution, raising high-frequency resistance and creating inductive
+discontinuities.</li>
+</ul>
+<h4 id="3-conductor-stubs-and-overhang">3. Conductor Stubs and
+Overhang</h4>
+<p>Any portion of an exposed wire lead or solder pad that extends beyond
+the electrical contact point acts as an open-ended transmission line
+stub. At multi-gigabit rates with sub-nanosecond rise times, even a
+1-millimeter wire stub behaves as an antenna and an impedance anomaly.
+Stubs reflect energy back into the main signal path with a phase delay,
+severely degrading high-frequency return loss.</p>
+<h4 id="4-dielectric-discontinuities">4. Dielectric Discontinuities</h4>
+<p>Impedance is heavily dependent on the dielectric constant (<span
+class="math inline">\(\epsilon_r\)</span>) of the surrounding material.
+Poor terminations often leave inconsistent air gaps between the wires
+and the connector housing, or use uneven applications of hot-melt
+adhesives, epoxies, or underfills. Transitioning from the cable's foamed
+polyethylene insulation to bare air, and then to a solid connector
+dielectric, introduces abrupt changes in propagation velocity and
+impedance.</p>
+<h4 id="5-faulty-ground-and-shield-terminations">5. Faulty Ground and
+Shield Terminations</h4>
+<p>Differential signaling still relies on a low-impedance reference
+ground to contain field leakage and return common-mode currents. When
+the drain wire or the 360-degree braided cable shield is poorly bonded
+to the connector shell:</p>
+<ul>
+<li><strong>High Ground Inductance:</strong> Long, pigtail ground wire
+terminations introduce high series inductance.</li>
+<li><strong>Mode Conversion:</strong> Differential signals can partially
+convert into common-mode energy upon encountering asymmetrical ground
+returns. This energy reflects back into the differential pair,
+manifesting as severe degradation in differential return loss (<span
+class="math inline">\(SDD11\)</span>).</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

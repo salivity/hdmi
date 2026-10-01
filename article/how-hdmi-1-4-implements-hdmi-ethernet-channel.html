@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI 1.4 Implements HDMI Ethernet Channel - hdmi</title>
+    <meta name="description" content="The HDMI Ethernet Channel (HEC) introduced in HDMI 1.4 allows connected home entertainment devices to share a standard 100 Mbps bidirectional Ethernet connection over the same HDMI cable used for audio and video. By combining networking capabilities with">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-1-4-implements-hdmi-ethernet-channel">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI 1.4 Implements HDMI Ethernet Channel - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-1-4-implements-hdmi-ethernet-channel" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The HDMI Ethernet Channel (HEC) introduced in HDMI 1.4 allows connected home entertainment devices to share a standard 100 Mbps bidirectional Ethernet connection over the same HDMI cable used for audio and video. By combining networking capabilities with" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-14-implements-hdmi-ethernet-channel">How HDMI 1.4
+Implements HDMI Ethernet Channel</h1>
+<p>The HDMI Ethernet Channel (HEC) introduced in HDMI 1.4 allows
+connected home entertainment devices to share a standard 100 Mbps
+bidirectional Ethernet connection over the same HDMI cable used for
+audio and video. By combining networking capabilities with audio/video
+transmission, HEC was designed to eliminate the need for dedicated
+Ethernet cables running to smart TVs, gaming consoles, and streaming
+set-top boxes. This article explains the physical pin reassignments,
+electrical signaling techniques, and cable construction required to
+implement HEC under the HDMI 1.4 specification.</p>
+<h3 id="pin-allocation-and-the-heac-pair">Pin Allocation and the HEAC
+Pair</h3>
+<p>Prior to HDMI 1.4, the 19-pin Type A HDMI connector contained several
+unused or single-purpose pins. HDMI 1.4 repurposed two of these pins to
+create a new hybrid data channel:</p>
+<ul>
+<li><strong>Pin 14:</strong> Formerly designated as "Reserved" (NC),
+this pin was repurposed as the Utility pin.</li>
+<li><strong>Pin 19:</strong> Originally dedicated solely to Hot Plug
+Detect (HPD), which detects when a sink device is connected.</li>
+</ul>
+<p>Together, Pin 14 and Pin 19 form a balanced differential transmission
+line known as the HDMI Ethernet and Audio Return Channel (HEAC) pair.
+Pin 17 provides the reference ground and shielding for this pair.</p>
+<h3 id="signal-multiplexing-and-differential-signaling">Signal
+Multiplexing and Differential Signaling</h3>
+<p>The primary technical challenge in implementing HEC was transmitting
+high-speed bidirectional network data without interfering with the
+existing Hot Plug Detect mechanism or the simultaneously introduced
+Audio Return Channel (ARC).</p>
+<p>HDMI 1.4 solves this by separating DC and AC signaling across the
+HEAC pair:</p>
+<ol type="1">
+<li><strong>Hot Plug Detect (DC):</strong> Pin 19 maintains its original
+HPD function using a steady DC voltage level. Sink devices pull this
+line high to signal their presence to the source device.</li>
+<li><strong>HEC Data (Differential AC):</strong> Ethernet communication
+operates as a differential AC signal (100BASE-TX equivalent) transmitted
+across both Pin 14 and Pin 19. Capacitive coupling isolates the
+high-frequency Ethernet signals from the DC voltage used by the HPD
+signal.</li>
+<li><strong>ARC Integration:</strong> When single-mode Audio Return
+Channel is active, it runs over Pin 14 (Utility) as a single-ended
+signal. When common-mode ARC is used alongside HEC, the audio and
+network traffic are combined across the differential pair via digital
+modulation without disrupting the DC state of Pin 19.</li>
+</ol>
+<p>This hybrid physical layer allows devices to maintain 100 Mbps
+full-duplex Ethernet data transfer simultaneously with audio return and
+connection detection.</p>
+<h3 id="physical-cable-construction">Physical Cable Construction</h3>
+<p>Standard HDMI cables manufactured prior to version 1.4 often wired
+Pin 14 and Pin 19 as simple, unshielded single conductors. Because Fast
+Ethernet requires impedance-controlled, noise-resistant transmission
+lines, HDMI 1.4 introduced new cable categories:</p>
+<ul>
+<li><strong>Standard HDMI Cable with Ethernet</strong></li>
+<li><strong>High Speed HDMI Cable with Ethernet</strong></li>
+</ul>
+<p>In cables certified for Ethernet, the wires connected to Pin 14 and
+Pin 19 are manufactured as a dedicated shielded twisted pair (STP), with
+Pin 17 acting as the drain/shield wire. This internal shielding prevents
+crosstalk between the high-frequency TMDS video lines and the Ethernet
+channel, ensuring reliable 100 Mbps throughput over cable lengths up to
+standard specification limits.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

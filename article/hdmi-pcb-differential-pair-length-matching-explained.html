@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI PCB Differential Pair Length Matching Explained - hdmi</title>
+    <meta name="description" content="High-Definition Multimedia Interface (HDMI) relies on ultra-high-speed differential signaling to transmit uncompressed video and audio data. In an HDMI printed circuit board (PCB) design, differential trace pairs must be matched in length down to microsc">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-pcb-differential-pair-length-matching-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI PCB Differential Pair Length Matching Explained - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-pcb-differential-pair-length-matching-explained" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="High-Definition Multimedia Interface (HDMI) relies on ultra-high-speed differential signaling to transmit uncompressed video and audio data. In an HDMI printed circuit board (PCB) design, differential trace pairs must be matched in length down to microsc" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-pcb-differential-pair-length-matching-explained">HDMI PCB
+Differential Pair Length Matching Explained</h1>
+<p>High-Definition Multimedia Interface (HDMI) relies on
+ultra-high-speed differential signaling to transmit uncompressed video
+and audio data. In an HDMI printed circuit board (PCB) design,
+differential trace pairs must be matched in length down to microscopic
+tolerances—often measured in thousandths of an inch (mils) or microns—to
+prevent timing skew, maintain signal integrity, control electromagnetic
+interference (EMI), and ensure the receiver can properly decode the
+incoming data stream.</p>
+<h3 id="understanding-differential-signaling-in-hdmi">Understanding
+Differential Signaling in HDMI</h3>
+<p>HDMI utilizes Transition Minimized Differential Signaling (TMDS) or
+Fixed Rate Link (FRL) technology. In these architectures, signals are
+sent over complementary pairs of copper traces carrying signals of equal
+magnitude but opposite polarity (positive and negative). When the
+signals reach the receiver, the receiver subtracts the negative signal
+from the positive signal. This process cancels out common-mode noise and
+doubles the effective signal amplitude.</p>
+<p>For this subtraction to work cleanly, both the true and inverted
+signals must arrive at the receiver's differential inputs at the exact
+same instant.</p>
+<h3 id="the-problem-with-intra-pair-skew">The Problem with Intra-Pair
+Skew</h3>
+<p>When traces within a differential pair are mismatched in length, one
+signal arrives before the other. This delay is known as intra-pair skew.
+In modern HDMI standards:</p>
+<ul>
+<li><strong>HDMI 1.4</strong> transmits up to 3.4 Gbps per channel.</li>
+<li><strong>HDMI 2.0</strong> increases this to 6 Gbps per channel.</li>
+<li><strong>HDMI 2.1</strong> reaches up to 12 Gbps per channel using
+FRL.</li>
+</ul>
+<p>At 12 Gbps, a single bit of data is transmitted in approximately 83.3
+picoseconds (ps). In standard PCB materials like FR-4, electrical
+signals travel at roughly 150 to 180 picoseconds per inch (about 6 to 7
+picoseconds per millimeter).</p>
+<p>A length mismatch of just 1 millimeter (approx. 40 mils) introduces
+roughly 6 to 7 picoseconds of phase delay. At HDMI 2.1 speeds, that
+accounts for nearly 8% of the entire bit period (unit interval).</p>
+<h3 id="consequences-of-length-mismatch">Consequences of Length
+Mismatch</h3>
+<p>If traces are not matched to tight microscopic tolerances (typically
+within 5 mils or ~0.127 mm for intra-pair routing), several critical
+failures occur:</p>
+<ol type="1">
+<li><strong>Eye Diagram Collapse:</strong> Intra-pair skew degrades the
+receiver's eye diagram. The timing margin closes, and the voltage
+margins shrink, causing bit errors, screen flickering, or complete loss
+of the video signal.</li>
+<li><strong>Common-Mode Noise Generation:</strong> When the positive and
+negative signals are out of phase, they no longer cancel each other out.
+The difference between them converts into high-frequency common-mode
+current.</li>
+<li><strong>Severe Electromagnetic Interference (EMI):</strong> The
+unconverted common-mode current radiates outward from the PCB traces and
+connected cables. This easily causes the device to fail FCC and CE
+electromagnetic compliance testing.</li>
+<li><strong>Rise and Fall Time Distortion:</strong> Phase shifts cause
+the reconstructed differential signal to have slower edge transitions,
+reducing overall bandwidth and throughput.</li>
+</ol>
+<h3 id="inter-pair-skew-considerations">Inter-Pair Skew
+Considerations</h3>
+<p>In addition to intra-pair skew (between the positive and negative
+lines of a single lane), HDMI requires length matching between different
+pairs (inter-pair skew). In TMDS architectures, three data pairs must
+synchronize with a clock pair. If the data pairs drift too far relative
+to the clock, the receiver will sample the data at the incorrect moment,
+causing cross-channel synchronization failure.</p>
+<h3 id="pcb-design-execution">PCB Design Execution</h3>
+<p>To achieve the necessary tolerances, PCB designers implement
+serpentine trace tuning near the source of the mismatch (often right
+after a bend or component pad). Designers must also account for the PCB
+substrate's microscopic fiberglass weave, as routing a trace directly
+over a glass fiber bundle versus a resin pocket changes the signal
+velocity, inadvertently introducing skew even if trace lengths are
+physically identical.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

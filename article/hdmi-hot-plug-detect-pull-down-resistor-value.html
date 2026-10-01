@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Hot Plug Detect Pull-Down Resistor Value - hdmi</title>
+    <meta name="description" content="The HDMI Hot Plug Detect (HPD) line relies on voltage-level transitions to notify a Source device when a Sink (display) is connected or disconnected. To reliably detect a disconnection, the HDMI Source must implement a pull-down resistor that drains resi">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-hot-plug-detect-pull-down-resistor-value">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Hot Plug Detect Pull-Down Resistor Value - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-hot-plug-detect-pull-down-resistor-value" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The HDMI Hot Plug Detect (HPD) line relies on voltage-level transitions to notify a Source device when a Sink (display) is connected or disconnected. To reliably detect a disconnection, the HDMI Source must implement a pull-down resistor that drains resi" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-hot-plug-detect-pull-down-resistor-value">HDMI Hot Plug
+Detect Pull-Down Resistor Value</h1>
+<p>The HDMI Hot Plug Detect (HPD) line relies on voltage-level
+transitions to notify a Source device when a Sink (display) is connected
+or disconnected. To reliably detect a disconnection, the HDMI Source
+must implement a pull-down resistor that drains residual voltage and
+pulls the floating signal to ground. According to standard HDMI design
+practices and compliance specifications, this pull-down resistor
+typically requires a nominal value of <strong>100 kΩ</strong> (with an
+acceptable functional range between <strong>10 kΩ and 100
+kΩ</strong>).</p>
+<h3 id="how-hpd-disconnection-signaling-works">How HPD Disconnection
+Signaling Works</h3>
+<p>The HPD mechanism operates on Pin 19 of the standard HDMI Type-A
+connector.</p>
+<ul>
+<li><strong>Connected State:</strong> The Sink asserts a logical high
+signal by asserting a voltage between 2.4 V and 5.0 V (typically
+outputting +5 V through an internal resistor, often 1 kΩ).</li>
+<li><strong>Disconnected State:</strong> When the HDMI cable is
+unplugged, the Sink stops driving the line. Without an active pull-down
+on the Source, Pin 19 would float, causing unpredictable behavior,
+signal bouncing, or false assertions of an active link.</li>
+</ul>
+<p>The Source-side pull-down resistor ties Pin 19 to ground (GND),
+ensuring that when the Sink disconnects, the line rapidly drops below
+the logical low threshold (<span class="math inline">\(V_{IL} \le
+0.4\text{ V}\)</span> to <span class="math inline">\(0.8\text{
+V}\)</span>, depending on the receiver IC logic).</p>
+<h3 id="recommended-resistor-value-and-design-tolerances">Recommended
+Resistor Value and Design Tolerances</h3>
+<p>While the HDMI specification mandates that a Source device must pull
+the HPD line to ground, hardware implementations must balance signal
+decay speed and current consumption:</p>
+<ul>
+<li><strong>Nominal Standard Value:</strong> <strong>100 kΩ</strong> is
+the industry-standard recommendation across most HDMI receiver and
+transmitter datasheets.</li>
+<li><strong>Acceptable Range:</strong> <strong>10 kΩ to 100 kΩ</strong>
+is commonly utilized in production hardware.</li>
+<li><strong>Alternative Value (Fast Discharges):</strong> <strong>47
+kΩ</strong> is frequently used when routing high-capacitance traces or
+when ESD protection diodes add extra capacitance that must be discharged
+quickly to meet strict timing windows.</li>
+</ul>
+<h3 id="why-values-outside-10-kω-to-100-kω-are-problematic">Why Values
+Outside 10 kΩ to 100 kΩ Are Problematic</h3>
+<p>Choosing a resistor outside the recommended range causes signaling
+failures:</p>
+<ul>
+<li><strong>Values lower than 10 kΩ:</strong> A pull-down that is too
+strong creates a voltage divider with the Sink's internal pull-up (often
+~1 kΩ). If the pull-down resistance is too low, the voltage at Pin 19
+may drop below the required 2.4 V threshold even when connected,
+preventing the display from being detected.</li>
+<li><strong>Values higher than 100 kΩ (or floating):</strong> High
+values (such as &gt; 1 MΩ) slow down the discharge of parasitic trace
+capacitance and ESD diodes. This delay prolongs the transition below the
+low threshold (<span class="math inline">\(V_{IL}\)</span>), leading to
+delayed disconnect recognition or floating logic errors caused by
+electromagnetic interference (EMI).</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

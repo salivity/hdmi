@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Dolby Vision Shows as RGB 8-Bit 4:2:2 - hdmi</title>
+    <meta name="description" content="When viewing HDMI diagnostic menus while playing Dolby Vision content, seeing the signal identified as an 8-bit RGB or 4:2:2 stream can be alarming, but it is entirely normal. This readout is the result of Dolby's proprietary transmission method—known">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/why-dolby-vision-shows-as-rgb-8-bit-4-2-2">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Dolby Vision Shows as RGB 8-Bit 4:2:2 - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/why-dolby-vision-shows-as-rgb-8-bit-4-2-2" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When viewing HDMI diagnostic menus while playing Dolby Vision content, seeing the signal identified as an 8-bit RGB or 4:2:2 stream can be alarming, but it is entirely normal. This readout is the result of Dolby's proprietary transmission method—known" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-dolby-vision-shows-as-rgb-8-bit-422">Why Dolby Vision Shows
+as RGB 8-Bit 4:2:2</h1>
+<p>When viewing HDMI diagnostic menus while playing Dolby Vision
+content, seeing the signal identified as an 8-bit RGB or 4:2:2 stream
+can be alarming, but it is entirely normal. This readout is the result
+of Dolby's proprietary transmission method—known as HDMI
+tunneling—rather than a reduction in video quality. Instead of sending
+an uncompressed, high-bandwidth 12-bit signal that legacy HDMI
+specifications cannot natively interpret, the source device packages the
+high-bit-depth data into an 8-bit container that HDMI diagnostics report
+at face value.</p>
+<h3 id="the-purpose-of-dolby-hdmi-tunneling">The Purpose of Dolby HDMI
+Tunneling</h3>
+<p>When Dolby Vision was developed, standard HDMI 1.4b and 2.0
+specifications did not natively support dynamic metadata transmission
+alongside 12-bit color. To ensure broad hardware compatibility across
+source players, AV receivers, and displays, Dolby created a transport
+mechanism called "RGB Tunneling."</p>
+<p>Under this method:</p>
+<ul>
+<li>The player takes the full 12-bit YCbCr 4:2:2 video signal and
+dynamic metadata.</li>
+<li>It repackages (or "tunnels") that data into a standard 8-bit RGB
+4:4:4 transport stream.</li>
+<li>To the HDMI pipeline, switches, and intermediate receivers, the
+signal appears to be a conventional, uncompressed 8-bit SDR
+transmission, preventing intermediate hardware from altering or
+discarding the proprietary data.</li>
+</ul>
+<h3 id="player-led-vs-display-led-dolby-vision">Player-Led vs.
+Display-Led Dolby Vision</h3>
+<p>Dolby Vision operates in two primary modes depending on hardware
+capabilities:</p>
+<ol type="1">
+<li><strong>Display-Led (Standard):</strong> The source sends the
+tunneled 12-bit data and dynamic metadata straight to the TV, and the
+TV’s internal Dolby processing chip handles tone mapping.</li>
+<li><strong>Player-Led (Low Latency Dolby Vision / LLDV):</strong>
+Developed initially for Sony televisions lacking dedicated internal
+processing chips, tone mapping is calculated on the source player (such
+as an Apple TV, Xbox, or Shield TV).</li>
+</ol>
+<p>In Player-Led mode, the source processes the metadata internally.
+Depending on the device implementation, it either transmits the
+processed signal over a standard YCbCr 4:2:2 10/12-bit pipeline or
+packages it inside an 8-bit transport wrapper. When a diagnostic menu
+reports contradictory terms like "RGB 8-bit 4:2:2," it is typically
+reading the 8-bit RGB container header on one end of the handshake while
+detecting the underlying 4:2:2 chroma subsampling format of the
+payload.</p>
+<h3 id="why-diagnostic-menus-read-the-container-not-the-content">Why
+Diagnostic Menus Read the Container, Not the Content</h3>
+<p>HDMI diagnostic menus—such as those found on LG TVs, Denon/Marantz AV
+receivers, or external video processors—only inspect the outer HDMI
+transport layer.</p>
+<p>The menu queries the HDMI InfoFrame, which describes the wrapper
+rather than the encoded payload. Because the wrapper is strictly
+structured as an 8-bit stream to maintain transmission integrity, the
+diagnostic utility reports an 8-bit signal. The TV’s internal Dolby
+Vision decoder identifies the hidden signaling flag, bypasses the
+standard display pipeline, unpacks the encapsulated 12-bit data, and
+renders the content in full dynamic range and color depth.</p>
+<h3 id="conclusion">Conclusion</h3>
+<p>An HDMI diagnostic reading of RGB 8-bit or 4:2:2 during Dolby Vision
+playback is not an error, nor does it indicate color banding, chroma
+compression, or a degraded signal. It simply confirms that the HDMI
+tunneling protocol is functioning as intended, safely delivering
+full-fidelity HDR data to your display.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

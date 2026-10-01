@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Type A TMDS Pinout Configuration - hdmi</title>
+    <meta name="description" content="This article provides an overview and technical breakdown of the Transition-Minimized Differential Signaling (TMDS) pinout within a standard 19-pin HDMI Type A receptacle. The TMDS architecture carries high-speed digital video, audio, and auxiliary data">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-type-a-tmds-pinout-configuration">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Type A TMDS Pinout Configuration - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-type-a-tmds-pinout-configuration" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides an overview and technical breakdown of the Transition-Minimized Differential Signaling (TMDS) pinout within a standard 19-pin HDMI Type A receptacle. The TMDS architecture carries high-speed digital video, audio, and auxiliary data" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-type-a-tmds-pinout-configuration">HDMI Type A TMDS Pinout
+Configuration</h1>
+<p>This article provides an overview and technical breakdown of the
+Transition-Minimized Differential Signaling (TMDS) pinout within a
+standard 19-pin HDMI Type A receptacle. The TMDS architecture carries
+high-speed digital video, audio, and auxiliary data across four
+differential pairs. Below, you will find the precise pin assignments,
+polarities, and shielding arrangements for pins 1 through 12, which
+encompass all primary TMDS channels.</p>
+<h2 id="tmds-architecture-in-hdmi-type-a">TMDS Architecture in HDMI Type
+A</h2>
+<p>HDMI Type A connectors utilize four discrete TMDS communication
+lanes: three data channels (Data 0, Data 1, and Data 2) and one
+independent clock channel. Each lane is implemented as a differential
+pair comprising a positive line (<code>+</code>), a negative line
+(<code>-</code>), and a dedicated ground shield to reduce
+electromagnetic interference (EMI) and signal crosstalk.</p>
+<p>These channels occupy the first 12 pins of the 19-pin receptacle
+layout.</p>
+<h2 id="tmds-pinout-breakdown-pins-112">TMDS Pinout Breakdown (Pins
+1–12)</h2>
+<p>The 12 TMDS pins are organized sequentially into alternating groups
+of positive signal, ground shield, and negative signal:</p>
+<h3 id="tmds-data-channel-2">TMDS Data Channel 2</h3>
+<ul>
+<li><strong>Pin 1:</strong> TMDS Data2+ (Carries the positive
+differential signal for red video components and auxiliary data)</li>
+<li><strong>Pin 2:</strong> TMDS Data2 Shield (Dedicated ground/shield
+for Data Channel 2)</li>
+<li><strong>Pin 3:</strong> TMDS Data2- (Carries the negative
+differential signal for red video components and auxiliary data)</li>
+</ul>
+<h3 id="tmds-data-channel-1">TMDS Data Channel 1</h3>
+<ul>
+<li><strong>Pin 4:</strong> TMDS Data1+ (Carries the positive
+differential signal for green video components and auxiliary data)</li>
+<li><strong>Pin 5:</strong> TMDS Data1 Shield (Dedicated ground/shield
+for Data Channel 1)</li>
+<li><strong>Pin 6:</strong> TMDS Data1- (Carries the negative
+differential signal for green video components and auxiliary data)</li>
+</ul>
+<h3 id="tmds-data-channel-0">TMDS Data Channel 0</h3>
+<ul>
+<li><strong>Pin 7:</strong> TMDS Data0+ (Carries the positive
+differential signal for blue video components, sync pulses, and
+auxiliary data)</li>
+<li><strong>Pin 8:</strong> TMDS Data0 Shield (Dedicated ground/shield
+for Data Channel 0)</li>
+<li><strong>Pin 9:</strong> TMDS Data0- (Carries the negative
+differential signal for blue video components, sync pulses, and
+auxiliary data)</li>
+</ul>
+<h3 id="tmds-clock-channel">TMDS Clock Channel</h3>
+<ul>
+<li><strong>Pin 10:</strong> TMDS Clock+ (Carries the positive
+differential clock signal used for pixel synchronization)</li>
+<li><strong>Pin 11:</strong> TMDS Clock Shield (Dedicated ground/shield
+for the Clock Channel)</li>
+<li><strong>Pin 12:</strong> TMDS Clock- (Carries the negative
+differential clock signal used for pixel synchronization)</li>
+</ul>
+<h2 id="electrical-design-considerations">Electrical Design
+Considerations</h2>
+<p>The physical geometry of the HDMI Type A receptacle places the shield
+pin directly between the positive and negative conductors of adjacent
+channels rather than between the complementary pairs themselves. This
+interleaving pattern ensures impedance matching (typically 100 ohms
+differential) and minimizes skew across high-frequency transmissions up
+to the maximum data rates defined by the HDMI specification. Pins 13
+through 19 handle low-speed control functions (CEC, DDC, HPD, and power)
+and do not carry TMDS data.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI 2.1a Source-Based Tone Mapping Explained - hdmi</title>
+    <meta name="description" content="The HDMI 2.1a specification introduces Source-Based Tone Mapping (SBTM), a feature designed to optimize High Dynamic Range (HDR) content delivery by offloading tone mapping processes from the display to the source device. This article explores how HDMI 2">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-2-1-a-source-based-tone-mapping-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI 2.1a Source-Based Tone Mapping Explained - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-2-1-a-source-based-tone-mapping-explained" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The HDMI 2.1a specification introduces Source-Based Tone Mapping (SBTM), a feature designed to optimize High Dynamic Range (HDR) content delivery by offloading tone mapping processes from the display to the source device. This article explores how HDMI 2" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-21a-source-based-tone-mapping-explained">HDMI 2.1a
+Source-Based Tone Mapping Explained</h1>
+<p>The HDMI 2.1a specification introduces Source-Based Tone Mapping
+(SBTM), a feature designed to optimize High Dynamic Range (HDR) content
+delivery by offloading tone mapping processes from the display to the
+source device. This article explores how HDMI 2.1a defines SBTM, how the
+technology improves upon traditional tone mapping methods, and how it
+handles complex viewing environments, such as simultaneous HDR and
+Standard Dynamic Range (SDR) content on a single screen.</p>
+<h2 id="what-is-source-based-tone-mapping">What Is Source-Based Tone
+Mapping?</h2>
+<p>Source-Based Tone Mapping is an optional feature introduced in the
+HDMI 2.1a update. In standard HDR implementations, the source device
+(such as a gaming console, streaming box, or PC) transmits a fixed HDR
+signal, leaving the display (such as a television or monitor) entirely
+responsible for mapping that signal to match its specific brightness,
+contrast, and color volume capabilities.</p>
+<p>Under the HDMI 2.1a standard, SBTM allows the source device to
+actively participate in or entirely manage the tone mapping process.
+Instead of leaving the interpretation exclusively to the target display,
+the source device adapts its output to match the precise capabilities of
+the connected screen.</p>
+<h2 id="how-sbtm-works">How SBTM Works</h2>
+<p>The operation of SBTM relies on two-way communication between the
+source and the sink (display):</p>
+<ol type="1">
+<li><strong>Capability Reporting:</strong> The display sends detailed
+metadata regarding its specific color and luminance limits to the source
+device via the HDMI interface.</li>
+<li><strong>Source-Side Adjustment:</strong> Armed with the display's
+performance parameters, the source device processes and adapts the video
+signal to fit within those exact limits before transmitting the signal
+over the cable.</li>
+<li><strong>Optimized Signal Delivery:</strong> The display receives a
+pre-adjusted signal, eliminating the need for aggressive, broad-brush
+tone mapping on the display side, which often leads to clipped
+highlights or crushed shadows.</li>
+</ol>
+<p>SBTM does not necessarily replace the display's native tone mapping
+capabilities; instead, it works in tandem with them. A display can still
+apply tone mapping, but SBTM ensures that the signal it receives is
+already optimized for its native panel performance.</p>
+<h2 id="solving-the-mixed-content-problem">Solving the Mixed-Content
+Problem</h2>
+<p>The primary problem SBTM aims to solve is the presentation of mixed
+HDR and SDR content on a single screen.</p>
+<p>Without SBTM, a system outputting mixed content—such as a PC
+displaying an HDR game alongside an SDR chat window, or a set-top box
+showing an SDR electronic program guide (EPG) over an HDR broadcast—must
+choose a single tone mapping approach for the entire display. This
+frequently causes SDR graphics to appear washed out or overly bright, or
+HDR elements to lose dynamic range.</p>
+<p>Because the source device understands the structure of its own
+operating system and software windows, SBTM enables the source to
+tone-map individual elements independently. The source adjusts the HDR
+window, properly maps the SDR interface, and outputs a composite,
+unified video stream where every element maintains its intended
+brightness and color accuracy.</p>
+<h2 id="implementation-and-compatibility">Implementation and
+Compatibility</h2>
+<p>HDMI 2.1a specifies SBTM as an optional feature for manufacturers.
+Because it is largely a software- and protocol-level communication
+layer, it can often be added via firmware updates to existing HDMI 2.1
+hardware, provided the source and sink manufacturers choose to support
+it. To take advantage of SBTM, both the source device and the connected
+display must support the feature.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

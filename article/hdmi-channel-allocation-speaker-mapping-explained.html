@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Channel Allocation Speaker Mapping Explained - hdmi</title>
+    <meta name="description" content="When an AV processor receives multichannel uncompressed LPCM audio over an HDMI connection, it uses standardized Channel Allocation (CA) bytes contained within the HDMI Audio InfoFrame to map incoming audio channels to physical speakers. This mechanism r">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-channel-allocation-speaker-mapping-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Channel Allocation Speaker Mapping Explained - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-channel-allocation-speaker-mapping-explained" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When an AV processor receives multichannel uncompressed LPCM audio over an HDMI connection, it uses standardized Channel Allocation (CA) bytes contained within the HDMI Audio InfoFrame to map incoming audio channels to physical speakers. This mechanism r" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-channel-allocation-speaker-mapping-explained">HDMI Channel
+Allocation Speaker Mapping Explained</h1>
+<p>When an AV processor receives multichannel uncompressed LPCM audio
+over an HDMI connection, it uses standardized Channel Allocation (CA)
+bytes contained within the HDMI Audio InfoFrame to map incoming audio
+channels to physical speakers. This mechanism relies on the CTA-861
+(formerly CEA-861) standard, which establishes an indexed table linking
+specific 8-bit values to predefined multi-speaker configurations. By
+reading this byte alongside its own internal speaker layout calibration,
+the processor determines exactly which audio stream belongs to which
+speaker, routing or downmixing channels accordingly.</p>
+<h3 id="the-role-of-the-hdmi-audio-infoframe">The Role of the HDMI Audio
+InfoFrame</h3>
+<p>HDMI transmits audio data packets along with auxiliary control data
+known as InfoFrames. For audio routing, the source device (such as a
+Blu-ray player, gaming console, or PC) transmits an Audio InfoFrame at
+regular intervals.</p>
+<p>Within this InfoFrame, Payload Byte 4 (PB4) is specifically
+designated as the Channel Allocation (CA) field. This 8-bit byte
+explicitly declares the spatial layout and intended loudspeaker
+destinations for each transmitted audio channel slot (Channel 1 through
+Channel 8 for standard LPCM).</p>
+<h3 id="how-the-cta-861-standard-defines-ca-values">How the CTA-861
+Standard Defines CA Values</h3>
+<p>The CTA-861 specification defines a lookup table of hexadecimal
+values representing standard speaker arrangements. Each byte corresponds
+to an exact mapping of audio channels:</p>
+<ul>
+<li><strong>0x00:</strong> Standard 2.0 stereo (Channel 1: Front Left,
+Channel 2: Front Right).</li>
+<li><strong>0x01:</strong> 2.1 channel (Front Left, Front Right,
+LFE/Subwoofer).</li>
+<li><strong>0x03:</strong> 3.1 channel (Front Left, Front Right, LFE,
+Front Center).</li>
+<li><strong>0x0B:</strong> Standard 5.1 surround (Front Left, Front
+Right, LFE, Front Center, Surround Left, Surround Right).</li>
+<li><strong>0x13:</strong> Standard 7.1 surround (Front Left, Front
+Right, LFE, Front Center, Surround Left, Surround Right, Rear Surround
+Left, Rear Surround Right).</li>
+<li><strong>Other Hex Codes:</strong> Alternative configurations, such
+as wide channels, top channels, or center-surround combinations.</li>
+</ul>
+<p>When the source prepares uncompressed PCM audio, it positions the
+audio streams into time-division multiplexed sub-packets and writes the
+corresponding hex value into PB4.</p>
+<h3 id="processor-decoding-and-speaker-remapping">Processor Decoding and
+Speaker Remapping</h3>
+<p>Once the AV processor detects the HDMI Audio InfoFrame, it executes
+the following steps to finalize speaker mapping:</p>
+<ol type="1">
+<li><strong>InfoFrame Parsing:</strong> The processor reads the CA byte
+from PB4 to determine the intended channel order of the incoming PCM
+payload.</li>
+<li><strong>Layout Comparison:</strong> The processor compares the
+source layout signaled by the CA byte to the user's calibrated physical
+speaker configuration (stored in the processor's memory during room
+setup).</li>
+<li><strong>Routing Execution:</strong>
+<ul>
+<li><strong>Direct Match:</strong> If the incoming CA matches the
+physical layout (e.g., CA is 0x0B for 5.1, and the room is 5.1), audio
+channels are routed directly to the designated digital-to-analog
+converters (DACs) and amplifier channels.</li>
+<li><strong>Downmixing:</strong> If the incoming audio has more channels
+than the physical setup (e.g., 0x13 for 7.1 incoming to a 5.1 layout),
+the processor blends rear surround channels (RL/RR) into the side
+surround channels based on internal downmixing coefficients.</li>
+<li><strong>Upmixing or Padding:</strong> If the incoming audio contains
+fewer channels than the physical setup (e.g., 0x00 for 2.0 into a 5.1
+system), the processor either plays audio solely through the assigned
+left/right channels or passes the stream to an upmixer (such as Dolby
+Surround or DTS Neural:X) to synthesize the missing speaker
+channels.</li>
+</ul></li>
+</ol>
+<h3 id="bitstream-formats-vs-lpcm">Bitstream Formats vs. LPCM</h3>
+<p>Channel Allocation bytes only apply to uncompressed linear PCM
+transmissions. When bitstream formats like Dolby TrueHD or DTS-HD Master
+Audio are transmitted via HDMI, the audio is encoded as a compressed
+data burst (IEC 61937), and the CA byte is typically set to 0x00. In
+those cases, the AV processor relies on the embedded metadata within the
+compressed bitstream itself to decode and map channels to the speaker
+layout.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

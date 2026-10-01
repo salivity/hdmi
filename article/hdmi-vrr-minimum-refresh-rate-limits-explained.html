@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI VRR Minimum Refresh Rate Limits Explained - hdmi</title>
+    <meta name="description" content="Variable Refresh Rate (VRR) is a core feature of the HDMI 2.1 specification designed to eliminate screen tearing and stuttering during gaming. While the protocol theoretically supports dynamically fluctuating frame rates, the HDMI VRR standard relies on">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-vrr-minimum-refresh-rate-limits-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI VRR Minimum Refresh Rate Limits Explained - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-vrr-minimum-refresh-rate-limits-explained" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Variable Refresh Rate (VRR) is a core feature of the HDMI 2.1 specification designed to eliminate screen tearing and stuttering during gaming. While the protocol theoretically supports dynamically fluctuating frame rates, the HDMI VRR standard relies on" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-vrr-minimum-refresh-rate-limits-explained">HDMI VRR Minimum
+Refresh Rate Limits Explained</h1>
+<p>Variable Refresh Rate (VRR) is a core feature of the HDMI 2.1
+specification designed to eliminate screen tearing and stuttering during
+gaming. While the protocol theoretically supports dynamically
+fluctuating frame rates, the HDMI VRR standard relies on hardware
+capabilities to define minimum operational floors, which typically sit
+between 40 Hz and 48 Hz on modern displays. Below these thresholds,
+technologies like Low Framerate Compensation (LFC) take over to ensure a
+smooth visual experience.</p>
+<h2 id="the-hdmi-forum-vrr-specification-range">The HDMI Forum VRR
+Specification Range</h2>
+<p>Under the official HDMI Forum VRR specification, there is no single
+mandated universal minimum refresh rate that every display must share.
+Instead, the HDMI 2.1 protocol allows manufacturers to declare their
+display's supported VRR range through its Extended Display
+Identification Data (EDID).</p>
+<p>The protocol supports a wide theoretical spectrum ranging from
+near-zero to 120 Hz, 144 Hz, or higher depending on resolution and
+bandwidth. However, hardware physics dictate strict minimum limits on
+practical panels.</p>
+<h2 id="typical-minimum-refresh-rate-limits">Typical Minimum Refresh
+Rate Limits</h2>
+<p>For most consumer televisions and gaming monitors using HDMI 2.1 VRR,
+the actual minimum refresh rate limits fall into two primary
+brackets:</p>
+<ul>
+<li><strong>48 Hz Floor:</strong> The most common minimum limit found on
+modern televisions, especially OLED and high-end LCD panels.</li>
+<li><strong>40 Hz Floor:</strong> The baseline common on dedicated PC
+gaming monitors and certain optimized gaming modes on modern
+displays.</li>
+</ul>
+<p>If a game runs at a frame rate inside this window (for example, 48
+FPS to 120 FPS on a 48 Hz-floor panel), the display synchronizes its
+physical refresh cycle 1:1 with the graphics processor's output.</p>
+<h2 id="dropping-below-the-minimum-low-framerate-compensation">Dropping
+Below the Minimum: Low Framerate Compensation</h2>
+<p>When a game’s frame rate falls below the panel’s minimum VRR
+threshold, native HDMI VRR disengages. To prevent stutter or screen
+tearing, source devices (such as the PlayStation 5, Xbox Series X, or
+modern PC graphics cards) rely on Low Framerate Compensation (LFC).</p>
+<p>LFC activates when the maximum refresh rate of the display is at
+least double the minimum refresh rate (for example, a 48–120 Hz display
+easily satisfies this condition). If rendering drops to 30 FPS on a 48
+Hz-minimum screen, LFC doubles the transmission of each frame so the
+display receives 60 Hz, keeping the panel safely inside its functional
+VRR window without introducing visible artifacts.</p>
+<h2 id="why-hardware-minimum-limits-exist">Why Hardware Minimum Limits
+Exist</h2>
+<p>Panel manufacturers cannot allow refresh rates to drop to extremely
+low values (such as 10 Hz or 20 Hz) due to display panel physics:</p>
+<ul>
+<li><strong>Flicker:</strong> When refresh rates fall too low, the human
+eye begins to perceive the decay of individual subpixels between
+refreshes, causing distracting brightness fluctuations.</li>
+<li><strong>Pixel Retention and Voltage Drift:</strong> Liquid crystals
+and OLED organic layers require periodic electrical charge refreshment
+to maintain stable image representation and avoid image retention.</li>
+</ul>
+<p>Because of these hardware constraints, the effective operational
+limit for HDMI VRR remains anchored around 40 Hz to 48 Hz across the
+majority of commercial hardware.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

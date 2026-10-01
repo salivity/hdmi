@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Adapters Draw Phantom Power From Displays - hdmi</title>
+    <meta name="description" content="Active HDMI adapters, signal boosters, and active optical cables often require more electrical power than a source device can deliver on its own. While traditional active adapters rely on an external USB cable for power, phantom-powered active adapters h">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-adapters-draw-phantom-power-from-displays">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Adapters Draw Phantom Power From Displays - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-adapters-draw-phantom-power-from-displays" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Active HDMI adapters, signal boosters, and active optical cables often require more electrical power than a source device can deliver on its own. While traditional active adapters rely on an external USB cable for power, phantom-powered active adapters h" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-adapters-draw-phantom-power-from-displays">How HDMI
+Adapters Draw Phantom Power From Displays</h1>
+<p>Active HDMI adapters, signal boosters, and active optical cables
+often require more electrical power than a source device can deliver on
+its own. While traditional active adapters rely on an external USB cable
+for power, phantom-powered active adapters harvest supplemental power
+directly from the display input. This article explains how these
+adapters draw current from the sink (display) interface using TMDS
+termination voltage and control lines, eliminating the need for external
+power supplies.</p>
+<h3 id="the-source-power-limitation">The Source Power Limitation</h3>
+<p>The standard HDMI specification includes a dedicated power rail on
+Pin 18 (+5V Power). Transmitting devices (sources) like laptops, media
+players, and graphics cards are only required to deliver a minimum of 55
+mA at 4.8V to 5.3V, though some provide up to 300 mA. Active adapters,
+which convert signals (e.g., HDMI to DisplayPort or VGA) or equalize
+degraded signals over long distances, frequently demand 200 mA to 500 mA
+or more. When the source port fails to supply enough current, the
+connection drops, stutters, or fails entirely.</p>
+<h3 id="tmds-line-termination-and-bias-tee-harvesting">TMDS Line
+Termination and Bias-Tee Harvesting</h3>
+<p>The primary mechanism a phantom-powered HDMI adapter uses to draw
+supplemental energy from a display input (sink) is harvesting DC voltage
+from the Transition-Minimized Differential Signaling (TMDS) lines.</p>
+<ol type="1">
+<li><strong>Current-Mode Logic (CML) Architecture:</strong> HDMI data
+and clock channels utilize Current-Mode Logic. Inside the receiving
+display, each differential signal line is pulled up to an internal 3.3V
+rail through a 50-ohm termination resistor.</li>
+<li><strong>Extracting Common-Mode DC:</strong> Because the
+high-frequency video data is alternating differential AC, a DC voltage
+offset remains present on the transmission lines. Phantom-powered
+adapters tap into this offset using passive inductors (chokes) or
+bias-tee circuits.</li>
+<li><strong>Filtering Signal from Power:</strong> The high-frequency
+video signal passes through coupling capacitors to the display receiver,
+while the inductive chokes isolate and pull the DC current from the
+display's 3.3V termination rail without degrading the video data.</li>
+</ol>
+<p>This process mirrors the classic phantom power method used in
+professional audio microphones, running power and high-frequency data
+across the exact same physical conductors.</p>
+<h3 id="supplemental-harvesting-from-hpd-and-ddc-lines">Supplemental
+Harvesting from HPD and DDC Lines</h3>
+<p>Beyond the primary TMDS data lanes, phantom-powered active adapters
+can also scavenge small amounts of standby energy from the display's
+control pins:</p>
+<ul>
+<li><strong>Hot Plug Detect (HPD - Pin 19):</strong> Monitors and
+displays hold the HPD line high (typically 3.3V to 5V) via an internal
+pull-up resistor to signal that a display is connected and ready to
+receive data. Ultra-low-power logic circuits inside the adapter can sip
+microamps from this rail.</li>
+<li><strong>Display Data Channel (DDC):</strong> The I2C clock (SCL, Pin
+15) and data (SDA, Pin 16) lines used for EDID handshaking are pulled
+high inside the display. In certain circuit designs, diodes tap
+transient power from these lines during idle states to supplement
+internal microcontrollers.</li>
+</ul>
+<h3 id="dynamic-power-path-management">Dynamic Power Path
+Management</h3>
+<p>Drawing power from both an HDMI source (Pin 18 at 5V) and an HDMI
+sink (TMDS termination at 3.3V) creates an electrical challenge: the
+voltages must not back-feed into either device, as reverse current can
+damage the silicon in graphics cards or display controller boards.</p>
+<p>To prevent this, phantom-powered adapters incorporate a Power Path
+Management circuit using low-forward-voltage Schottky diodes or an ideal
+diode controller (ORing MOSFETs):</p>
+<ul>
+<li><strong>Source Priority:</strong> When the HDMI source provides
+sufficient 5V power, the adapter runs entirely off Pin 18, keeping sink
+current draw to a minimum.</li>
+<li><strong>Supplemental Sink Draw:</strong> When source voltage dips
+due to high impedance or load, the adapter switches or supplements
+current from the display's termination lines.</li>
+<li><strong>Buck-Boost Conversion:</strong> The adapter employs an
+onboard high-efficiency DC-DC buck-boost converter. It takes the
+disparate, fluctuating voltages—the dropping 5V rail from the source and
+the 3.3V scavenged from the display—and stabilizes them into a clean
+1.2V, 1.8V, or 3.3V rail required by the adapter's active signal
+processing chipsets.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Equalizers Open Closed Eye Diagrams - hdmi</title>
+    <meta name="description" content="High-speed HDMI signals degrade as they travel through copper cables, where frequency-dependent attenuation smears data transitions and collapses the signal's eye diagram. An HDMI cable equalizer resolves this by applying high-frequency peaking filters">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-equalizers-open-closed-eye-diagrams">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Equalizers Open Closed Eye Diagrams - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-equalizers-open-closed-eye-diagrams" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="High-speed HDMI signals degrade as they travel through copper cables, where frequency-dependent attenuation smears data transitions and collapses the signal's eye diagram. An HDMI cable equalizer resolves this by applying high-frequency peaking filters" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-equalizers-open-closed-eye-diagrams">How HDMI
+Equalizers Open Closed Eye Diagrams</h1>
+<p>High-speed HDMI signals degrade as they travel through copper cables,
+where frequency-dependent attenuation smears data transitions and
+collapses the signal's eye diagram. An HDMI cable equalizer resolves
+this by applying high-frequency peaking filters—typically implemented as
+Continuous-Time Linear Equalizers (CTLE)—to selectively amplify the lost
+high-frequency components relative to low frequencies. By dynamically
+tuning its filter response to match the exact loss profile of the cable,
+the equalizer flattens the channel's overall frequency response,
+eliminates inter-symbol interference (ISI), and reopens the closed eye
+to restore signal integrity at the receiver.</p>
+<h3 id="the-cause-of-a-closed-eye">The Cause of a Closed Eye</h3>
+<p>Copper HDMI cables suffer from physical limitations, primarily the
+skin effect and dielectric losses. These phenomena cause attenuation
+that increases dramatically with frequency:</p>
+<ul>
+<li><strong>Low-frequency signals</strong> pass through the cable with
+minimal loss.</li>
+<li><strong>High-frequency components</strong>, which define the sharp
+rising and falling edges of digital data transitions, suffer heavy
+attenuation.</li>
+</ul>
+<p>When high-frequency edges lose amplitude and slow down, adjacent bits
+bleed into one another. In an eye diagram—which overlays millions of
+transmitted bit cycles—this inter-symbol interference causes the
+vertical eye height (voltage margin) and horizontal eye width (timing
+margin) to collapse entirely. A "closed eye" means the receiver cannot
+distinguish between a digital '1' and a digital '0', leading to bit
+errors or total signal loss.</p>
+<h3 id="high-frequency-peaking-filters-ctle">High-Frequency Peaking
+Filters (CTLE)</h3>
+<p>To counteract this loss, HDMI receivers employ active equalizers
+containing high-frequency peaking filters. The transfer function of
+these filters is designed to be the mathematical inverse of the cable's
+attenuation curve:</p>
+<ol type="1">
+<li><strong>Low-Frequency Attenuation or Flat Gain:</strong> The filter
+passes low-frequency signals with little or no amplification (or applies
+slight attenuation to lower the baseline).</li>
+<li><strong>High-Frequency Peaking:</strong> The filter introduces a
+zero in its frequency response followed by a pole, creating an active
+boost peak near the fundamental Nyquist frequency of the HDMI data
+rate.</li>
+</ol>
+<p>By multiplying the cable's low-pass response with the equalizer's
+high-pass peaking response, the combined channel transfer function
+becomes approximately flat across the entire signal bandwidth.</p>
+<h3 id="how-the-equalizer-adjusts-the-peaking-response">How the
+Equalizer Adjusts the Peaking Response</h3>
+<p>HDMI cables vary in length, gauge, and quality, meaning the amount of
+high-frequency loss is unknown until a connection is established. To
+adaptively open a closed eye, the equalizer uses internal feedback loops
+to tune the peaking filter:</p>
+<ul>
+<li><strong>Frequency Spectrum Sensing:</strong> The equalizer splits
+the incoming signal into low-frequency and high-frequency paths using
+analog bandpass filters. By comparing the energy ratio between the
+low-frequency baseline and high-frequency content, the circuit estimates
+the degree of cable loss.</li>
+<li><strong>Tuning Resistor-Capacitor (RC) Networks:</strong> Based on
+the detected loss, the equalizer adjusts programmable capacitor arrays
+and variable resistor degeneration within its differential amplifier
+stages. Increasing the capacitive degeneration shifts the peaking
+frequency and increases the gain peak.</li>
+<li><strong>Adaptive Finite State Machines (FSM):</strong> Digital
+control logic sweeps through discrete equalization settings during the
+HDMI link-training or startup phase. It monitors internal transition
+metrics—such as edge jitter, transition density, or early/late phase
+detector feedback from the Clock and Data Recovery (CDR) circuit.</li>
+<li><strong>Iterative Optimization:</strong> The FSM increments the
+peaking gain until the CDR successfully locks and horizontal edge jitter
+is minimized. If the peaking gain is set too low (under-equalization),
+the eye remains closed due to slow edge transitions. If set too high
+(over-equalization), high-frequency noise and overshoot re-close the
+eye. The equalizer locks onto the optimal setting that maximizes both
+eye height and eye width.</li>
+</ul>
+<h3 id="the-reopened-eye">The Reopened Eye</h3>
+<p>Once the peaking filters are tuned to balance the channel loss, the
+signal's rise and fall times are restored to their original steepness.
+High-frequency transitions arrive in phase with low-frequency
+transitions, clearing the center of the eye diagram. This wide-open
+aperture provides the receiver’s decision threshold slicer with ample
+voltage and timing margins to reliably sample the digital stream without
+bit errors.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

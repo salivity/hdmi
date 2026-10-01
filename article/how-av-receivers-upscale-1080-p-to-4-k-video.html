@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How AV Receivers Upscale 1080p to 4K Video - hdmi</title>
+    <meta name="description" content="When an AV receiver upscales an HDMI 1080p signal to 4K Ultra HD, it uses a dedicated video processing chip to increase the frame resolution from 1920x1080 (roughly 2.1 million pixels) to 3840x2160 (roughly 8.3 million pixels) in real time. This article">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-av-receivers-upscale-1080-p-to-4-k-video">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How AV Receivers Upscale 1080p to 4K Video - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-av-receivers-upscale-1080-p-to-4-k-video" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When an AV receiver upscales an HDMI 1080p signal to 4K Ultra HD, it uses a dedicated video processing chip to increase the frame resolution from 1920x1080 (roughly 2.1 million pixels) to 3840x2160 (roughly 8.3 million pixels) in real time. This article" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-av-receivers-upscale-1080p-to-4k-video">How AV Receivers
+Upscale 1080p to 4K Video</h1>
+<p>When an AV receiver upscales an HDMI 1080p signal to 4K Ultra HD, it
+uses a dedicated video processing chip to increase the frame resolution
+from 1920x1080 (roughly 2.1 million pixels) to 3840x2160 (roughly 8.3
+million pixels) in real time. This article breaks down the exact digital
+signal processing (DSP) pipeline involved in this transformation,
+covering signal ingestion, spatial interpolation, edge detection, color
+space reconstruction, and output re-serialization.</p>
+<h3 id="1-hdmi-receiver-and-signal-demuxing">1. HDMI Receiver and Signal
+Demuxing</h3>
+<p>The process begins at the HDMI input controller (typically supporting
+HDMI 2.0 or 2.1 specifications).</p>
+<ul>
+<li><strong>TMDS/FRL Decoding:</strong> The incoming
+Transition-Minimized Differential Signaling (TMDS) or Fixed Rate Link
+(FRL) signals are deserialized and decoded.</li>
+<li><strong>Stream Extraction:</strong> The processor strips the HDMI
+packet wrappers, separating the digital video payload from embedded
+multi-channel audio, HDCP encryption metadata, and InfoFrames.</li>
+<li><strong>Frame Buffering:</strong> The uncompressed digital video
+frames (usually in YCbCr 4:2:2 or 4:2:0 format at 8 or 10 bits per
+channel) are loaded into high-speed DDR memory for line-by-line DSP
+access.</li>
+</ul>
+<h3 id="2-pre-processing-and-noise-reduction">2. Pre-Processing and
+Noise Reduction</h3>
+<p>Before multiplying pixels, the DSP chip cleans the incoming 1080p
+image to prevent upscaling compression artifacts.</p>
+<ul>
+<li><strong>De-blocking and De-ringing:</strong> The processor applies
+temporal and spatial filters to smooth out discrete cosine transform
+(DCT) block boundaries and ringing noise typical of compressed 1080p
+sources (such as cable boxes or streaming sticks).</li>
+<li><strong>Temporal Noise Reduction (TNR):</strong> Comparing
+consecutive frames allows the DSP to identify and suppress random
+luminance and chrominance noise without softening moving objects.</li>
+</ul>
+<h3 id="3-spatial-interpolation-pixel-multiplication">3. Spatial
+Interpolation (Pixel Multiplication)</h3>
+<p>Because 4K contains exactly four times the pixels of 1080p, the
+scaler must generate three artificial pixels for every original pixel.
+Modern AVRs use adaptive interpolation rather than simple
+nearest-neighbor or linear scaling:</p>
+<ul>
+<li><strong>Polyphase Filtering:</strong> The chip uses mathematical
+filters (such as bicubic, Lanczos, or proprietary B-spline curves) to
+calculate luminance (<span class="math inline">\(Y\)</span>) and
+chrominance (<span class="math inline">\(Cb/Cr\)</span>) values based on
+a grid of surrounding original pixels.</li>
+<li><strong>Directional Edge-Adaptive Interpolation:</strong> To avoid
+pixelation or jagged edges ("staircasing"), the DSP calculates gradients
+across neighboring pixels to determine edge angles. Interpolation is
+applied along the contour of edges rather than across them, preserving
+sharp object boundaries.</li>
+</ul>
+<h3 id="4-detail-enhancement-and-edge-sharpening">4. Detail Enhancement
+and Edge Sharpening</h3>
+<p>Interpolation inherently introduces softness. The DSP applies
+high-frequency restoration algorithms to recreate the appearance of
+native 4K:</p>
+<ul>
+<li><strong>High-Pass Filtering:</strong> The processor isolates
+high-frequency spatial data to identify textures and contours.</li>
+<li><strong>Unsharp Masking and Contrast Peaking:</strong>
+Micro-contrast is boosted along localized edges to simulate higher
+resolution.</li>
+<li><strong>Over-shoot/Under-shoot Suppression:</strong> The algorithm
+clamps luminance spikes near sharp transitions to prevent "haloing"
+(bright white or dark outlines around objects).</li>
+</ul>
+<h3 id="5-chroma-resampling-and-precision-management">5. Chroma
+Resampling and Precision Management</h3>
+<p>Video scaling engines perform internal math at high bit depths to
+avoid precision loss.</p>
+<ul>
+<li><strong>Bit-Depth Expansion:</strong> An 8-bit incoming signal is
+typically expanded to 10-bit or 12-bit precision during processing to
+eliminate round-off errors and banding.</li>
+<li><strong>Chroma Upsampling:</strong> If the signal enters as YCbCr
+4:2:0, the DSP interpolates the sub-sampled color channels up to 4:2:2
+or 4:4:4 before or during the scaling stage to maintain color edge
+alignment.</li>
+</ul>
+<h3 id="6-frame-formatting-hdcp-22-and-hdmi-serialization">6. Frame
+Formatting, HDCP 2.2, and HDMI Serialization</h3>
+<p>Once the 3840x2160 pixel grid is fully rendered, the output stage
+preps the signal for delivery to the display:</p>
+<ul>
+<li><strong>Dithering:</strong> If the display requires an 8-bit output
+format, spatial error diffusion or temporal dithering is applied to
+scale back down from the internal 10/12-bit processing pipeline without
+introducing contour lines.</li>
+<li><strong>HDCP Handshake:</strong> The outgoing video data is
+re-encrypted using HDCP 2.2 or 2.3 protocols, which are mandatory for 4K
+content transmission.</li>
+<li><strong>HDMI Transmitter:</strong> The 4K digital frame buffer is
+serialized into higher-bandwidth TMDS lanes (up to 18 Gbps) or FRL lanes
+(up to 48 Gbps) alongside the synchronized, delay-compensated audio
+stream and transmitted to the television or projector.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

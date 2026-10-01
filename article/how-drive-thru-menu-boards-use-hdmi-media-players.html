@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Drive-Thru Menu Boards Use HDMI Media Players - hdmi</title>
+    <meta name="description" content="Drive-thru digital menu boards rely on networked HDMI media players to deliver coordinated, high-impact visuals across multiple outdoor screens. This article explains how quick-service restaurants use networked media hardware, local area network protocol">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-drive-thru-menu-boards-use-hdmi-media-players">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Drive-Thru Menu Boards Use HDMI Media Players - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-drive-thru-menu-boards-use-hdmi-media-players" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Drive-thru digital menu boards rely on networked HDMI media players to deliver coordinated, high-impact visuals across multiple outdoor screens. This article explains how quick-service restaurants use networked media hardware, local area network protocol" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-drive-thru-menu-boards-use-hdmi-media-players">How
+Drive-Thru Menu Boards Use HDMI Media Players</h1>
+<p>Drive-thru digital menu boards rely on networked HDMI media players
+to deliver coordinated, high-impact visuals across multiple outdoor
+screens. This article explains how quick-service restaurants use
+networked media hardware, local area network protocols, centralized
+content management systems, and HDMI connectivity to achieve
+frame-accurate synchronization across drive-thru display arrays.</p>
+<h3 id="hardware-configuration-and-connectivity">Hardware Configuration
+and Connectivity</h3>
+<p>A typical drive-thru menu board setup consists of two to four
+high-brightness, weather-resistant commercial displays mounted in an
+outdoor enclosure. Each screen is powered by a dedicated digital signage
+media player connected via a high-speed HDMI interface.</p>
+<p>Because drive-thru environments face extreme temperatures and
+moisture, the media players are either hardened for outdoor use inside
+the display housing or installed indoors within the restaurant’s server
+rack. When players are kept indoors, HDMI extenders using Cat6 or
+fiber-optic cables transmit high-definition audio and video signals over
+long distances directly to the outdoor panels with zero latency or
+signal degradation.</p>
+<h3 id="local-network-architecture">Local Network Architecture</h3>
+<p>To synchronize visual content across multiple screens—such as a
+single promotional video or graphic banner spanning the entire
+array—each media player connects to a dedicated, high-speed Local Area
+Network (LAN).</p>
+<p>While the players pull schedule and menu data from the cloud, the
+real-time synchronization between screens does not rely on an external
+internet connection. Instead, the players communicate locally over wired
+Ethernet switches. This local architecture ensures near-zero latency,
+prevents bandwidth bottlenecks, and keeps the boards synchronized even
+if the restaurant temporarily loses internet connectivity.</p>
+<h3 id="synchronization-protocols">Synchronization Protocols</h3>
+<p>Media players maintain synchronized playback using standardized
+timing protocols, most commonly:</p>
+<ul>
+<li><strong>Precision Time Protocol (PTP) and NTP:</strong> Media
+players sync their internal hardware clocks to a shared local time
+server, aligning playback to the millisecond.</li>
+<li><strong>Master-Replica (Leader-Follower) Architecture:</strong> One
+primary media player is designated as the master device. As it plays
+scheduled media, it continuously broadcasts synchronization packets
+(heartbeats) over the local network via UDP (User Datagram Protocol).
+The secondary players listen for these timestamps and continuously
+micro-adjust their playback speeds to match the master
+frame-for-frame.</li>
+<li><strong>Genlock Emulation:</strong> Advanced digital signage players
+emulate hardware genlock over the network, ensuring video frames refresh
+at the exact same vertical interval across all screens to prevent screen
+tearing or staggered transitions.</li>
+</ul>
+<h3 id="content-management-and-pos-integration">Content Management and
+POS Integration</h3>
+<p>Networked HDMI players are governed by a Centralized Management
+System (CMS). The CMS slices large, multi-screen video assets into
+discrete display feeds, assigning each portion to the appropriate player
+based on display positioning.</p>
+<p>Furthermore, these players integrate directly with the restaurant's
+Point of Sale (POS) and inventory databases. When an item runs out or
+the menu transitions from breakfast to lunch, the CMS issues a localized
+trigger. The media players coordinate this change instantly, switching
+layouts across all screens simultaneously to maintain a seamless,
+professional presentation.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

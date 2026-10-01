@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI QMS Eliminates Black Screen Delays - hdmi</title>
+    <meta name="description" content="Quick Media Switching (QMS), a feature introduced in HDMI 2.1a, completely eliminates the temporary black screen—often called the "HDMI bonk"—that occurs when a display adjusts to match a new video frame rate. By leveraging the underlying architectur">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-qms-eliminates-black-screen-delays">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI QMS Eliminates Black Screen Delays - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-qms-eliminates-black-screen-delays" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Quick Media Switching (QMS), a feature introduced in HDMI 2.1a, completely eliminates the temporary black screen—often called the "HDMI bonk"—that occurs when a display adjusts to match a new video frame rate. By leveraging the underlying architectur" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-qms-eliminates-black-screen-delays">How HDMI QMS
+Eliminates Black Screen Delays</h1>
+<p>Quick Media Switching (QMS), a feature introduced in HDMI 2.1a,
+completely eliminates the temporary black screen—often called the "HDMI
+bonk"—that occurs when a display adjusts to match a new video frame
+rate. By leveraging the underlying architecture of Variable Refresh Rate
+(VRR) technology, QMS allows source devices and displays to seamlessly
+change refresh rates on the fly without requiring the display to
+renegotiate its digital connection.</p>
+<h3 id="the-root-cause-of-hdmi-black-screens">The Root Cause of HDMI
+Black Screens</h3>
+<p>Historically, whenever a media player switches video modes—such as
+moving from a 60Hz user interface to a 24Hz movie—the display
+momentarily loses signal. During this transition, the screen goes black
+for one to three seconds.</p>
+<p>This delay happens because traditional HDMI connections require a
+full clock resynchronization and an audio/video mute handshake whenever
+the video timing parameters change. The display's internal timing
+controller must lock onto the new clock frequency before it can decode
+and render the incoming frames, forcing the display to blank out the
+screen to hide artifacts, tearing, or static.</p>
+<h3 id="how-qms-solves-the-problem-via-vrr">How QMS Solves the Problem
+via VRR</h3>
+<p>Quick Media Switching bypasses the traditional clock
+resynchronization process by utilizing HDMI Variable Refresh Rate (VRR)
+mechanisms.</p>
+<p>Instead of treating a frame rate change as an entirely new video
+format that demands a hardware re-handshake, QMS modifies the timing
+parameters within the existing signal stream:</p>
+<ol type="1">
+<li><strong>Continuous Video Clock:</strong> QMS keeps the base
+transmission frequency (the Fixed Rate Link or TMDS clock) constant
+between the source and the television.</li>
+<li><strong>Dynamic Blanking Intervals:</strong> Rather than changing
+the physical pixel transmission speed, QMS adjusts the vertical blanking
+intervals (the time between the end of one frame and the start of the
+next). By lengthening or shortening these blanking periods, the source
+can output frames at 24Hz, 50Hz, 60Hz, or any other supported rate
+without altering the baseline transmission clock.</li>
+<li><strong>Pre-Signaled Transitions:</strong> The source device uses
+QMS metadata to inform the television in advance of an upcoming frame
+rate shift, allowing the display’s panel driver to adjust smoothly
+without dropping the visual feed.</li>
+</ol>
+<p>Because the physical link remains active and uninterrupted, the
+display does not initiate an AV mute, resulting in an instantaneous,
+invisible transition between different frame rates.</p>
+<h3 id="what-qms-does-not-eliminate">What QMS Does Not Eliminate</h3>
+<p>While QMS resolves frame rate transitions, it does not prevent black
+screens caused by other signal alterations. A display will still go
+black momentarily if:</p>
+<ul>
+<li><strong>Resolution changes:</strong> Shifting from 1080p to 4K
+requires redefining the active pixel grid.</li>
+<li><strong>Color format changes:</strong> Switching between 8-bit SDR,
+10-bit HDR10, and Dolby Vision requires renegotiating color bandwidth,
+chroma subsampling, and tone-mapping pipelines.</li>
+</ul>
+<p>For QMS to function, both the playback device (such as a streaming
+box or console) and the receiving screen (such as an AV receiver or TV)
+must explicitly support HDMI 2.1a QMS. When active, it ensures that
+matching the original content frame rate no longer interrupts the
+viewing experience.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

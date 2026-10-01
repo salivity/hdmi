@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI CEC Security Vulnerabilities and Attack Risks - hdmi</title>
+    <meta name="description" content="HDMI Consumer Electronics Control (CEC) is a single-wire protocol designed to allow connected home theater components, displays, and media devices to communicate and be controlled via a single remote. However, because the standard was conceived without m">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-cec-security-vulnerabilities-and-attack-risks">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI CEC Security Vulnerabilities and Attack Risks - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-cec-security-vulnerabilities-and-attack-risks" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI Consumer Electronics Control (CEC) is a single-wire protocol designed to allow connected home theater components, displays, and media devices to communicate and be controlled via a single remote. However, because the standard was conceived without m" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-cec-security-vulnerabilities-and-attack-risks">HDMI CEC
+Security Vulnerabilities and Attack Risks</h1>
+<p>HDMI Consumer Electronics Control (CEC) is a single-wire protocol
+designed to allow connected home theater components, displays, and media
+devices to communicate and be controlled via a single remote. However,
+because the standard was conceived without modern security mechanisms,
+it lacks authentication, encryption, and source validation.
+Consequently, malicious peripherals connected to an HDMI port can inject
+arbitrary CEC commands directly into the bus, exposing connected systems
+to physical state manipulation, unauthorized input injection, firmware
+exploitation, and cross-device lateral movement.</p>
+<h3 id="the-architectural-flaw-an-unauthenticated-bus">The Architectural
+Flaw: An Unauthenticated Bus</h3>
+<p>The core vulnerability of HDMI CEC lies in its shared,
+broadcast-style bus architecture. Every device in an HDMI chain shares
+the same low-speed physical wire (pin 13). When a peripheral transmits a
+frame, there is no cryptographic signature or handshake to verify the
+sender's identity.</p>
+<p>A rogue peripheral—such as a compromised streaming stick, a modified
+presentation dongle, or a malicious hardware implant—can easily claim
+any valid logical address (e.g., claiming to be a TV, an audio system,
+or a recording device) and send targeted control codes to any other
+device on the network.</p>
+<h3 id="key-security-vulnerabilities">Key Security Vulnerabilities</h3>
+<h4 id="1-unauthorized-input-simulation">1. Unauthorized Input
+Simulation</h4>
+<p>CEC commands include standard directional keys, selection inputs,
+numeric entry, and media playback controls
+(<code>User Control Pressed</code> and
+<code>User Control Released</code> opcodes). A malicious device can
+inject these codes to navigate interfaces on modern smart TVs, set-top
+boxes, and conference room systems without user intervention. In some
+implementations, this enables an attacker to:</p>
+<ul>
+<li>Navigate menus to alter network, privacy, or security settings.</li>
+<li>Accept unauthorized pairing requests (e.g., Bluetooth, Wi-Fi
+Direct).</li>
+<li>Launch pre-installed applications or browser shortcuts that expose
+network services.</li>
+</ul>
+<h4 id="2-physical-state-manipulation-and-denial-of-service">2. Physical
+State Manipulation and Denial of Service</h4>
+<p>Attackers can issue broadcast or directed control codes to repeatedly
+manipulate the operational state of a display or connected AV receiver.
+Common injections include:</p>
+<ul>
+<li><strong>System Standby:</strong> Forcing displays or connected PCs
+into sleep or power-off states, causing a persistent Denial of Service
+(DoS) during presentations or operations.</li>
+<li><strong>Active Source Switching:</strong> Forcibly changing the
+active video input away from a legitimate source to disrupt workflow or
+trick users into viewing an attacker-controlled display output.</li>
+<li><strong>Volume Manipulation:</strong> Maximizing or muting audio
+dynamically to cause physical disruption.</li>
+</ul>
+<h4 id="3-protocol-stack-and-firmware-exploitation">3. Protocol Stack
+and Firmware Exploitation</h4>
+<p>Because CEC is frequently implemented at the microcode or low-level
+firmware tier of displays and embedded controllers, the parsing logic
+for incoming CEC packets is rarely subjected to robust security
+auditing. Attackers can transmit:</p>
+<ul>
+<li><strong>Malformed Frame Sizes:</strong> Triggering buffer overflows
+or out-of-bounds reads/writes in the display's CEC handler.</li>
+<li><strong>Out-of-Spec Timing Signals:</strong> Causing state machine
+desynchronization, which can crash the underlying display controller or
+force the host SoC into a recovery mode.</li>
+<li><strong>Vendor-Specific Command Injection:</strong> Many
+manufacturers implement non-standard, proprietary CEC commands (under
+the <code>Vendor Specific Command</code> opcode). These undocumented
+functions can expose hidden factory menus, diagnostic modes, or
+unsecured debug interfaces.</li>
+</ul>
+<h4 id="4-reconnaissance-and-device-fingerprinting">4. Reconnaissance
+and Device Fingerprinting</h4>
+<p>Before launching an attack, an injected device can monitor traffic
+across the CEC bus or issue polling queries
+(<code>Get CEC Version</code>, <code>Give Physical Address</code>,
+<code>Give Device Vendor ID</code>). This allows an attacker to
+automatically map every device connected to the HDMI network, extract
+precise vendor and product data, and tailor secondary exploits to the
+exact hardware present.</p>
+<h3 id="mitigation-and-defense">Mitigation and Defense</h3>
+<p>Protecting environments from HDMI CEC injection requires limiting
+untrusted physical access and severing the CEC control line:</p>
+<ul>
+<li><strong>Disable CEC in System Settings:</strong> If interoperability
+features like one-touch play are not strictly required, CEC (marketed
+under names such as Anynet+, Bravia Sync, SimpLink, or EasyLink) should
+be toggled off in the firmware settings of displays and hosts.</li>
+<li><strong>Hardware CEC Blockers:</strong> In high-risk environments,
+such as public conference rooms or shared workspaces, physical
+"CEC-less" adapters or modified cables that leave pin 13 disconnected
+can physically isolate the bus while still transmitting digital video
+and audio.</li>
+<li><strong>Firmware Hardening:</strong> Hardware vendors must implement
+strict input validation on all standard and vendor-specific CEC opcodes,
+treating the CEC line as an untrusted communication channel.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

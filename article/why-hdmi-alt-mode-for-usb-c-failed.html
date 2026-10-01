@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why HDMI Alt Mode for USB-C Failed - hdmi</title>
+    <meta name="description" content="When USB-C emerged as the universal connector, both the HDMI Forum and VESA introduced Alternate Modes to transmit native video signals over the port. While DisplayPort Alt Mode achieved massive commercial success and ubiquitous hardware adoption, HDMI A">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/why-hdmi-alt-mode-for-usb-c-failed">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why HDMI Alt Mode for USB-C Failed - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/why-hdmi-alt-mode-for-usb-c-failed" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When USB-C emerged as the universal connector, both the HDMI Forum and VESA introduced Alternate Modes to transmit native video signals over the port. While DisplayPort Alt Mode achieved massive commercial success and ubiquitous hardware adoption, HDMI A" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-hdmi-alt-mode-for-usb-c-failed">Why HDMI Alt Mode for USB-C
+Failed</h1>
+<p>When USB-C emerged as the universal connector, both the HDMI Forum
+and VESA introduced Alternate Modes to transmit native video signals
+over the port. While DisplayPort Alt Mode achieved massive commercial
+success and ubiquitous hardware adoption, HDMI Alt Mode struggled to
+find relevance and was officially retired in early 2023 without ever
+appearing on a consumer device. This article examines the technical
+limitations, silicon architecture conflicts, and ecosystem realities
+that caused HDMI Alt Mode to fail against DisplayPort.</p>
+<h3 id="outdated-specifications-at-launch">Outdated Specifications at
+Launch</h3>
+<p>HDMI Alt Mode was introduced in September 2016, nearly two years
+after VESA unveiled DisplayPort Alt Mode. Despite the late entry, the
+HDMI Forum restricted the initial Alt Mode specification to HDMI 1.4b.
+This limitation meant it could only output 4K resolution at 30Hz, lacked
+support for modern HDR standards, and did not support variable refresh
+rates.</p>
+<p>By contrast, DisplayPort Alt Mode launched with DisplayPort 1.2
+support, which already handled 4K at 60Hz. Shortly after, VESA adopted
+DisplayPort 1.4, enabling 8K resolutions and robust HDR support. By
+launching with a specification that was already obsolete for modern
+displays, HDMI Alt Mode held no appeal for hardware manufacturers.</p>
+<h3 id="gpu-architecture-favors-displayport">GPU Architecture Favors
+DisplayPort</h3>
+<p>Modern PC graphics architectures from Intel, AMD, and Nvidia transmit
+DisplayPort natively from the GPU die. Native HDMI ports on modern
+graphics cards and laptops frequently rely on internal level-shifters or
+protocol converters that translate DisplayPort signals to HDMI
+(TMDS/FRL).</p>
+<p>Because the graphics hardware was already built around DisplayPort
+signaling, implementing DisplayPort Alt Mode required minimal
+engineering overhead and no protocol translation. Adopting HDMI Alt Mode
+would have required dedicated HDMI controllers routed to the Type-C
+port, driving up motherboard manufacturing costs and power
+consumption.</p>
+<h3 id="inability-to-balance-high-speed-data">Inability to Balance
+High-Speed Data</h3>
+<p>A key advantage of USB-C is its ability to handle video and
+high-speed data simultaneously through lane multiplexing. A standard
+USB-C cable contains four high-speed differential pairs (lanes):</p>
+<ul>
+<li><strong>DisplayPort Alt Mode</strong> can operate on two lanes while
+leaving the other two lanes for USB 3.x data. This allows single-cable
+docking stations to deliver 4K video, gigabit Ethernet, and external
+drive access concurrently.</li>
+<li><strong>HDMI Alt Mode</strong> required all four high-speed lanes to
+transmit video, clock, and audio signals. As a result, devices using
+HDMI Alt Mode were restricted to USB 2.0 speeds (480 Mbps) for any
+attached peripherals, crippling its usefulness for multi-port adapters
+and docks.</li>
+</ul>
+<h3 id="displayports-superior-adaptability">DisplayPort's Superior
+Adaptability</h3>
+<p>DisplayPort was designed from its inception as a packet-based,
+multi-purpose transport protocol. Through DisplayPort Dual-Mode (DP++)
+and active converter chips, a DisplayPort Alt Mode port can easily
+output to HDMI, DVI, or VGA using inexpensive adapters.</p>
+<p>Because a single DisplayPort Alt Mode implementation could
+effortlessly serve both DisplayPort monitors and HDMI televisions,
+hardware vendors had no incentive to support a separate, HDMI-specific
+protocol.</p>
+<h3 id="industry-standardization-around-thunderbolt-and-usb4">Industry
+Standardization Around Thunderbolt and USB4</h3>
+<p>DisplayPort solidified its dominance through its integration with
+Thunderbolt 3 and Thunderbolt 4. When Intel contributed the Thunderbolt
+protocol to the USB Implementers Forum (USB-IF) to form the basis of the
+USB4 standard, DisplayPort was embedded directly into the foundational
+tunneling specification.</p>
+<p>With DisplayPort serving as the native display standard for both USB4
+and Thunderbolt, HDMI Alt Mode was rendered completely redundant. The
+HDMI Forum formally acknowledged this market reality in January 2023 by
+sunsetting the specification entirely. Today, any USB-C port displaying
+video to an HDMI screen relies on DisplayPort Alt Mode paired with
+internal conversion hardware.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

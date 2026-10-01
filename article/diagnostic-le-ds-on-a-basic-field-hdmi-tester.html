@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic LEDs on a Basic Field HDMI Tester - hdmi</title>
+    <meta name="description" content="A basic field HDMI continuity tester relies on a series of diagnostic light-emitting diodes (LEDs) to verify pin-to-pin continuity and physical integrity across all conductors within an HDMI cable. During a functional test, the unit sequences or simultan">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/diagnostic-le-ds-on-a-basic-field-hdmi-tester">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Diagnostic LEDs on a Basic Field HDMI Tester - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/diagnostic-le-ds-on-a-basic-field-hdmi-tester" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="A basic field HDMI continuity tester relies on a series of diagnostic light-emitting diodes (LEDs) to verify pin-to-pin continuity and physical integrity across all conductors within an HDMI cable. During a functional test, the unit sequences or simultan" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="diagnostic-leds-on-a-basic-field-hdmi-tester">Diagnostic LEDs on
+a Basic Field HDMI Tester</h1>
+<p>A basic field HDMI continuity tester relies on a series of diagnostic
+light-emitting diodes (LEDs) to verify pin-to-pin continuity and
+physical integrity across all conductors within an HDMI cable. During a
+functional test, the unit sequences or simultaneously lights individual
+LEDs corresponding to the 19 standard HDMI Type-A pins plus the outer
+chassis shield. This guide breaks down exactly which LEDs illuminate
+during a healthy continuity sweep and what functional channels those
+indicators represent.</p>
+<h3 id="the-standard-19-pin-led-array">The Standard 19-Pin LED
+Array</h3>
+<p>Most field HDMI testers feature 19 individually numbered LEDs
+(labeled 1 through 19) on both the master transmitter and the remote
+receiver unit. In a fully functional, non-damaged cable, all 19 of these
+LEDs illuminate in consecutive sequence (in sweep mode) or concurrently
+(in static mode). These 19 lights correspond directly to the standard
+HDMI pinout:</p>
+<ul>
+<li><strong>LEDs 1 to 12 (TMDS Video and Audio Channels):</strong> These
+pins handle Transition Minimized Differential Signaling (TMDS). They
+carry the uncompressed digital video and audio signals.
+<ul>
+<li><strong>LEDs 1, 2, 3:</strong> TMDS Data 2 (Data 2+, Data 2 Shield,
+Data 2-)</li>
+<li><strong>LEDs 4, 5, 6:</strong> TMDS Data 1 (Data 1+, Data 1 Shield,
+Data 1-)</li>
+<li><strong>LEDs 7, 8, 9:</strong> TMDS Data 0 (Data 0+, Data 0 Shield,
+Data 0-)</li>
+<li><strong>LEDs 10, 11, 12:</strong> TMDS Clock (Clock+, Clock Shield,
+Clock-)</li>
+</ul></li>
+<li><strong>LED 13 (CEC):</strong> Consumer Electronics Control pin,
+enabling connected hardware to exchange commands using a single remote
+control.</li>
+<li><strong>LED 14 (Utility / HEC / ARC):</strong> Carries Ethernet
+(HEC) and Audio Return Channel (ARC/eARC) signals.</li>
+<li><strong>LEDs 15 and 16 (DDC Bus):</strong> Display Data Channel
+lines (Pin 15: SCL/Clock, Pin 16: SDA/Data), essential for EDID
+handshakes and HDCP copy-protection negotiation.</li>
+<li><strong>LED 17 (DDC/CEC Ground):</strong> The dedicated ground
+reference for the DDC and CEC lines.</li>
+<li><strong>LED 18 (+5V Power):</strong> Verifies the carrying wire for
+the low-voltage power rail used by the display to read EDID data from
+the source when the source is off or in standby.</li>
+<li><strong>LED 19 (Hot Plug Detect):</strong> Senses the physical
+connection to initiate the communication handshake between the source
+and display.</li>
+</ul>
+<h3 id="the-shield--ground-led">The Shield / Ground LED</h3>
+<p>In addition to the 19 numbered pin lights, nearly every field tester
+features an extra LED labeled <strong>"G"</strong>,
+<strong>"S"</strong>, or <strong>"Shield"</strong>.</p>
+<ul>
+<li>During a successful test, the <strong>Shield LED</strong>
+illuminates alongside the 19 numbered pins.</li>
+<li>This indicator confirms electrical continuity through the cable's
+external metal braided shield, foil layer, and the metal connector
+housings on each end, which protect against electromagnetic interference
+(EMI).</li>
+</ul>
+<h3 id="reading-diagnostic-results">Reading Diagnostic Results</h3>
+<ul>
+<li><strong>Pass / Good Cable:</strong> LEDs 1 through 19, plus the
+Shield LED, illuminate bright and solid in a sequential 1-to-1 pattern
+across both the transmitter and receiver.</li>
+<li><strong>Open Circuit (Broken Wire):</strong> A specific LED fails to
+light on the receiver while illuminating on the transmitter, pinpointing
+an internal conductor break.</li>
+<li><strong>Short Circuit:</strong> Two or more LEDs illuminate
+simultaneously or abnormally bright on the receiver during what should
+be an individual step in the test cycle.</li>
+<li><strong>Crossed / Miswired Conductor:</strong> The LEDs light out of
+numerical sequence, indicating improper pin termination during custom
+field terminations.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI System Audio Control Works for Volume - hdmi</title>
+    <meta name="description" content="HDMI System Audio Control is a specialized feature of the HDMI Consumer Electronics Control (CEC) standard that designates an AV receiver (AVR) as the primary audio output device for a home theater system. By establishing a direct, bi-directional communi">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-system-audio-control-works-for-volume">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI System Audio Control Works for Volume - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-system-audio-control-works-for-volume" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI System Audio Control is a specialized feature of the HDMI Consumer Electronics Control (CEC) standard that designates an AV receiver (AVR) as the primary audio output device for a home theater system. By establishing a direct, bi-directional communi" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-system-audio-control-works-for-volume">How HDMI System
+Audio Control Works for Volume</h1>
+<p>HDMI System Audio Control is a specialized feature of the HDMI
+Consumer Electronics Control (CEC) standard that designates an AV
+receiver (AVR) as the primary audio output device for a home theater
+system. By establishing a direct, bi-directional communication protocol
+over a single HDMI cable, it automatically mutes the television's
+internal speakers and forwards volume and mute commands directly to the
+AV receiver. This integration allows users to seamlessly adjust the
+receiver's amplifier gain using the standard TV remote control, creating
+a unified audio experience without requiring multiple remotes or complex
+configurations.</p>
+<h3 id="the-role-of-hdmi-cec">The Role of HDMI-CEC</h3>
+<p>HDMI System Audio Control operates entirely within the HDMI-CEC
+framework, which utilizes Pin 13 of a standard HDMI cable to transmit
+low-speed control signals between connected devices. Rather than sending
+analog or PCM sound data over this pin, CEC transmits standardized
+operational codes (opcodes). These digital messages allow separate
+components—regardless of brand—to discover each other's capabilities and
+negotiate device roles on the network.</p>
+<h3 id="the-handshake-and-speaker-handoff">The Handshake and Speaker
+Handoff</h3>
+<p>When both the TV and AV receiver are powered on and connected via an
+HDMI port supporting ARC (Audio Return Channel) or eARC, the AV receiver
+broadcasts a <code>&lt;Set System Audio Mode&gt;</code> message.</p>
+<p>Once the TV acknowledges this request:</p>
+<ol type="1">
+<li><strong>Internal Muting:</strong> The TV automatically disables or
+mutes its integrated speakers to prevent phase cancellation or echo
+effects.</li>
+<li><strong>Audio Redirection:</strong> Audio originating from the TV
+(such as smart apps or broadcast tuners) is routed through the HDMI
+ARC/eARC channel to the AV receiver.</li>
+<li><strong>Control Delegation:</strong> The TV marks the AV receiver as
+the master audio processor for the entire setup.</li>
+</ol>
+<h3 id="how-volume-commands-are-relayed">How Volume Commands Are
+Relayed</h3>
+<p>When a user presses the volume up, volume down, or mute buttons on
+the television remote, the TV does not adjust its own audio output
+levels. Instead, the process works as follows:</p>
+<ol type="1">
+<li><strong>User Action:</strong> The TV receiver registers the infrared
+(IR) or radio-frequency (RF) signal from the TV remote.</li>
+<li><strong>CEC Translation:</strong> The TV translates the remote's
+input into standardized CEC opcodes:
+<code>&lt;User Control Pressed&gt; [Volume Up]</code>,
+<code>&lt;User Control Pressed&gt; [Volume Down]</code>, or
+<code>&lt;User Control Pressed&gt; [Mute]</code>.</li>
+<li><strong>Transmission:</strong> These data packets travel across Pin
+13 of the HDMI link directly to the AV receiver.</li>
+<li><strong>Amplifier Adjustment:</strong> The AV receiver interprets
+the opcode and physically adjusts its own internal volume attenuator or
+digital signal processor.</li>
+<li><strong>Release Command:</strong> When the user releases the remote
+button, the TV sends a <code>&lt;User Control Released&gt;</code>
+message to stop the volume change.</li>
+</ol>
+<h3 id="visual-feedback-and-status-reporting">Visual Feedback and Status
+Reporting</h3>
+<p>To keep the user informed, the system utilizes bi-directional status
+reporting. After adjusting its volume level, the AV receiver can send a
+<code>&lt;Report Audio Status&gt;</code> message back to the TV over the
+CEC line. This packet contains the current volume level and mute status.
+The TV can then display an on-screen graphic indicating the receiver's
+current volume, or simply display an icon indicating that external audio
+system volume is being modified.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

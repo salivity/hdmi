@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is HDMI Device Menu Control? - hdmi</title>
+    <meta name="description" content="HDMI Device Menu Control is a dedicated feature of the HDMI Consumer Electronics Control (HDMI-CEC) standard that allows a television remote to operate the internal menus and user interface of a connected third-party streaming box. This article explains">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/what-is-hdmi-device-menu-control">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Is HDMI Device Menu Control? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/what-is-hdmi-device-menu-control" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI Device Menu Control is a dedicated feature of the HDMI Consumer Electronics Control (HDMI-CEC) standard that allows a television remote to operate the internal menus and user interface of a connected third-party streaming box. This article explains" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="what-is-hdmi-device-menu-control">What Is HDMI Device Menu
+Control?</h1>
+<p>HDMI Device Menu Control is a dedicated feature of the HDMI Consumer
+Electronics Control (HDMI-CEC) standard that allows a television remote
+to operate the internal menus and user interface of a connected
+third-party streaming box. This article explains the technical
+foundation of HDMI Device Menu Control, how it transmits directional and
+selection commands across standard HDMI cables, and the way it enables
+seamless navigation on devices such as Apple TV, Roku, Amazon Fire TV,
+and Android TV without requiring dedicated remotes.</p>
+<h3 id="understanding-hdmi-device-menu-control">Understanding HDMI
+Device Menu Control</h3>
+<p>HDMI Device Menu Control is an operational mode defined within the
+HDMI-CEC specification. While general HDMI-CEC handles basic functions
+such as one-touch play, standby power synchronization, and volume
+passthrough via Audio Return Channel (ARC/eARC), Device Menu Control
+specifically standardizes menu-driven interaction.</p>
+<p>It defines a universal language of command codes that allows a
+display device (the "Root" or "Controller") to query, command, and
+control the menu system of an external source device (the "Target").</p>
+<h3 id="how-it-navigates-third-party-streaming-boxes">How It Navigates
+Third-Party Streaming Boxes</h3>
+<p>The navigation process relies on bidirectional communication through
+a specific physical path within the HDMI interface:</p>
+<ol type="1">
+<li><strong>Hardware Communication via Pin 13:</strong> HDMI cables
+contain a dedicated, low-speed communication line on Pin 13 known as the
+CEC line. This single-wire bus operates independently of video and audio
+transmission lines, allowing data packets to travel between devices even
+when the video pipeline is running at high resolutions and refresh
+rates.</li>
+<li><strong>Command Translation:</strong> When you press a button on
+your TV remote—such as Up, Down, Left, Right, Select, Back, or Exit—the
+television translates that physical button press into a standardized CEC
+opcode (operational code), specifically from the
+<code>&lt;User Control Pressed&gt;</code> and
+<code>&lt;User Control Released&gt;</code> command sets.</li>
+<li><strong>Packet Transmission:</strong> The TV transmits this opcode
+across Pin 13 to the assigned logical address of the connected streaming
+box.</li>
+<li><strong>Action Execution:</strong> The operating system of the
+third-party streaming box receives the standard CEC opcode and
+translates it into its native navigation event. For example, a "Select"
+or "OK" opcode from a Samsung or LG TV remote is read by an Apple TV or
+Roku as an activation tap, moving the cursor or opening an app just as
+its proprietary remote would.</li>
+</ol>
+<h3 id="supported-remote-commands">Supported Remote Commands</h3>
+<p>Device Menu Control supports the fundamental inputs needed to operate
+modern streaming interfaces:</p>
+<ul>
+<li><strong>Directional Navigation:</strong> Up, Down, Left, and Right
+commands allow grid and list traversal.</li>
+<li><strong>Selection:</strong> The Enter/OK button confirms highlighted
+items.</li>
+<li><strong>Return and Exit:</strong> "Back" commands navigate up one
+directory level or return to the previous screen.</li>
+<li><strong>Root Menu / Home:</strong> Triggers the streaming device's
+home screen or main dashboard.</li>
+<li><strong>Media Playback:</strong> Play, Pause, Stop, Rewind, and
+Fast-Forward commands are routed directly to the active media player app
+on the external device.</li>
+</ul>
+<h3 id="manufacturer-implementation-and-compatibility">Manufacturer
+Implementation and Compatibility</h3>
+<p>Because HDMI-CEC is an open standard, major manufacturers implement
+it under proprietary trade names, such as Sony BRAVIA Sync, LG SimpLink,
+Samsung Anynet+, and Philips EasyLink. Despite the different branding,
+Device Menu Control functions cross-brand because the underlying
+protocol codes are standardized. As long as CEC is toggled on within
+both the television's settings and the streaming player's system menu,
+third-party navigation works out of the box without requiring manual
+pairing or infrared (IR) line-of-sight programming.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

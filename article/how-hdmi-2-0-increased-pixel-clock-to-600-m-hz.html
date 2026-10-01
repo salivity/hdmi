@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI 2.0 Increased Pixel Clock to 600 MHz - hdmi</title>
+    <meta name="description" content="The transition from HDMI 1.4 to HDMI 2.0 increased the maximum pixel clock limit from 340 MHz to 600 MHz, expanding the total bandwidth from 10.2 Gbps to 18.0 Gbps. This architectural jump allowed displays to support 4K resolution at 60 frames per second">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-2-0-increased-pixel-clock-to-600-m-hz">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI 2.0 Increased Pixel Clock to 600 MHz - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-2-0-increased-pixel-clock-to-600-m-hz" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The transition from HDMI 1.4 to HDMI 2.0 increased the maximum pixel clock limit from 340 MHz to 600 MHz, expanding the total bandwidth from 10.2 Gbps to 18.0 Gbps. This architectural jump allowed displays to support 4K resolution at 60 frames per second" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-20-increased-pixel-clock-to-600-mhz">How HDMI 2.0
+Increased Pixel Clock to 600 MHz</h1>
+<p>The transition from HDMI 1.4 to HDMI 2.0 increased the maximum pixel
+clock limit from 340 MHz to 600 MHz, expanding the total bandwidth from
+10.2 Gbps to 18.0 Gbps. This architectural jump allowed displays to
+support 4K resolution at 60 frames per second with full 24-bit RGB/4:4:4
+color. Rather than redesigning the physical connector or adding extra
+data lanes, HDMI 2.0 achieved this higher throughput over existing
+Category 2 (High Speed) copper cables through three core technical
+modifications: changing the clock lane signaling ratio, mandating
+pseudo-random data scrambling, and implementing active signal
+equalization.</p>
+<h3
+id="transition-minimized-differential-signaling-tmds-baseline">Transition
+Minimized Differential Signaling (TMDS) Baseline</h3>
+<p>Both HDMI 1.4 and HDMI 2.0 rely on TMDS technology across four
+shielded differential pairs: three data lanes and one dedicated clock
+lane. In TMDS, each 8-bit byte of color data is encoded into a 10-bit
+character to balance DC bias and limit transitions.</p>
+<p>In HDMI 1.4, the maximum character rate (and effective pixel clock
+for standard 24-bit color) capped out at 340 MHz. Because each character
+is 10 bits, the maximum bit rate was:</p>
+<p><span class="math display">\[\text{340 MHz} \times 10\text{ bits} =
+3.4\text{ Gbps per lane}\]</span></p>
+<p>Across the three TMDS data lanes, this produced a cumulative
+throughput of 10.2 Gbps. Pushing the pixel clock to 600 MHz meant
+driving data at 6.0 Gbps per lane (<span class="math inline">\(600
+\text{ MHz} \times 10\text{ bits}\)</span>), yielding the 18.0 Gbps
+total throughput of HDMI 2.0. Achieving this over legacy wiring required
+overcoming significant physical constraints, specifically high-frequency
+attenuation, crosstalk, and electromagnetic interference (EMI).</p>
+<h3 id="the-140-clock-divider-mode">The 1:40 Clock Divider Mode</h3>
+<p>In HDMI 1.4, the physical TMDS clock line operated at a 1:1 ratio
+with the TMDS character clock (a 1:10 ratio with the bit rate). At a 340
+MHz character clock, the physical clock line oscillated at 340 MHz.</p>
+<p>Running the physical clock line at 600 MHz would have resulted in
+severe transmission loss and EMI compliance failures on standard cables.
+To resolve this, HDMI 2.0 introduced a dual-mode clock structure:</p>
+<ul>
+<li><strong>For rates <span class="math inline">\(\le\)</span> 3.4 Gbps
+(character clock <span class="math inline">\(\le\)</span> 340
+MHz):</strong> The interface maintains standard HDMI 1.4 behavior with a
+1:10 clock-to-bit ratio.</li>
+<li><strong>For rates &gt; 3.4 Gbps up to 6.0 Gbps (character clock up
+to 600 MHz):</strong> The transmitter switches to a 1:40 clock-to-bit
+ratio.</li>
+</ul>
+<p>Under the 1:40 ratio, the physical clock lane runs at one-fourth the
+character clock rate. For the maximum 600 MHz character clock (6.0 Gbps
+data lanes), the clock line operates at only 150 MHz:</p>
+<p><span class="math display">\[\frac{600\text{ MHz}}{4} = 150\text{
+MHz}\]</span></p>
+<p>The sink device (such as a TV or monitor) uses an internal
+Phase-Locked Loop (PLL) to detect this signal, multiply the 150 MHz
+reference frequency by 4 to recover the 600 MHz character clock, and
+deserialize the 6.0 Gbps data streams.</p>
+<h3 id="mandatory-data-scrambling">Mandatory Data Scrambling</h3>
+<p>At 6.0 Gbps, repetitive bit patterns in video signals—such as
+blanking intervals or solid color fields—create concentrated peaks of RF
+energy. These spectral spikes frequently breach EMI limits and cause
+signal degradation due to adjacent pair crosstalk.</p>
+<p>HDMI 2.0 resolved this by requiring a pseudo-random bit sequence
+(PRBS) data scrambler on all three data lanes whenever the pixel clock
+exceeds 340 MHz. The scrambling algorithm whitens the transmitted
+spectrum, dispersing radio frequency emissions evenly across a broad
+frequency band rather than concentrating power at specific harmonics.
+This reduction in peak energy allows high-speed transmissions to clear
+regulatory interference standards while maintaining signal integrity
+across unshielded or standard-grade twisted pairs.</p>
+<h3 id="receiver-equalization-and-eye-margins">Receiver Equalization and
+Eye Margins</h3>
+<p>Doubling the effective signal rate from 3.4 Gbps to 6.0 Gbps causes
+significant high-frequency roll-off (skin effect and dielectric loss)
+over standard cable runs, completely closing the data "eye" at the
+receiver's inputs.</p>
+<p>HDMI 2.0 revised the sink's physical layer requirements, mandating
+Continuous Time Linear Equalization (CTLE) and Decision Feedback
+Equalization (DFE) at the receiver end. These active signal-processing
+techniques boost high-frequency components, suppress inter-symbol
+interference (ISI), and reconstruct the 600 MHz eye diagram from an
+otherwise degraded analog signal.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

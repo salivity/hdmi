@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Sinks Store HDCP Keys in Secure Memory - hdmi</title>
+    <meta name="description" content="This article explains how an HDMI sink device, such as a television, monitor, or AV receiver, securely stores and manages High-bandwidth Digital Content Protection (HDCP) operational keys within non-volatile memory. To prevent unauthorized interception a">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-sinks-store-hdcp-keys-in-secure-memory">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Sinks Store HDCP Keys in Secure Memory - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-sinks-store-hdcp-keys-in-secure-memory" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how an HDMI sink device, such as a television, monitor, or AV receiver, securely stores and manages High-bandwidth Digital Content Protection (HDCP) operational keys within non-volatile memory. To prevent unauthorized interception a" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-sinks-store-hdcp-keys-in-secure-memory">How HDMI Sinks
+Store HDCP Keys in Secure Memory</h1>
+<p>This article explains how an HDMI sink device, such as a television,
+monitor, or AV receiver, securely stores and manages High-bandwidth
+Digital Content Protection (HDCP) operational keys within non-volatile
+memory. To prevent unauthorized interception and cloning of copyrighted
+digital media, manufacturers implement hardware-based security
+architectures—including eFuses, Hardware Roots of Trust, and
+cryptographic hardware engines—that ensure private keys remain
+confidential and tamper-proof throughout the lifecycle of the
+device.</p>
+<h3 id="the-role-of-hdcp-operational-keys">The Role of HDCP Operational
+Keys</h3>
+<p>An HDMI sink must authenticate with an upstream source (such as a
+media player or console) to negotiate an encrypted audiovisual link.
+Under HDCP 1.x, the sink uses a Key Selection Vector (KSV) and a set of
+device private keys. Under HDCP 2.2 and later, it relies on asymmetric
+cryptography requiring an RSA or elliptic curve (ECC) private key,
+paired with a public key certificate issued by Digital Content
+Protection (DCP) LLC. Because access to these private keys compromises
+the entire cryptographic chain, the HDCP specification mandates that
+keys must never appear unencrypted on standard, externally accessible
+buses.</p>
+<h3 id="secure-non-volatile-storage-architectures">Secure Non-Volatile
+Storage Architectures</h3>
+<p>HDMI sink system-on-chip (SoC) architectures employ two primary
+approaches for storing operational keys in non-volatile memory:</p>
+<ol type="1">
+<li><p><strong>On-Chip One-Time Programmable (OTP) Memory and
+eFuses</strong> The most direct method stores HDCP keys directly inside
+the receiver SoC using on-die OTP ROM or an eFuse array. During the
+manufacturing and provisioning process, individual fuses are
+electrically blown to encode the keys permanently. Because the OTP
+structure is embedded directly into the silicon, it lacks external pins
+or accessible traces, making physical extraction via standard probing
+extremely difficult.</p></li>
+<li><p><strong>Encrypted External Non-Volatile Memory</strong> When
+on-chip capacity is constrained, sinks store the HDCP keys in external
+non-volatile flash memory (such as SPI NOR flash or eMMC). In this
+architecture, the operational keys are never written in plaintext.
+Instead, they are encrypted with a device-unique symmetric key (often
+called the Chip Unique Key or Root Key) via AES-128 or AES-256 before
+being stored in the external flash partition. The Root Key itself is
+permanently fused into the SoC’s internal OTP memory during factory
+provisioning and cannot be read by external software.</p></li>
+</ol>
+<h3 id="boot-sequence-and-key-management">Boot Sequence and Key
+Management</h3>
+<p>During device operation, the key loading sequence follows a tightly
+isolated pipeline:</p>
+<ul>
+<li><strong>Hardware Root of Trust Initialization:</strong> Upon
+powering up, the SoC executes an immutable boot ROM to establish a
+secure execution environment.</li>
+<li><strong>Decryption via Crypto Engine:</strong> If keys reside in
+external flash, a dedicated, hardware-isolated cryptographic engine
+reads the ciphertext and decrypts it using the internal root key.</li>
+<li><strong>Isolated Volatile Memory (Secure RAM):</strong> The
+decrypted operational HDCP keys are placed exclusively into internal,
+secure SRAM or dedicated registers within the HDCP cipher engine. This
+memory is isolated from the main application processor and
+general-purpose operating system (such as Android TV or Linux).</li>
+<li><strong>Cryptographic Handshake:</strong> During the HDCP
+authentication protocol, the internal hardware engine uses the keys
+directly to compute response values and generate session keys without
+ever exposing the raw operational keys to system memory.</li>
+</ul>
+<h3 id="tamper-resistance-and-physical-protection">Tamper Resistance and
+Physical Protection</h3>
+<p>To comply with DCP LLC security requirements, sink manufacturers
+enforce strict hardware-level barriers:</p>
+<ul>
+<li><strong>JTAG and Debug Port Disabling:</strong> Post-provisioning,
+hardware fuses are blown to permanently disable JTAG, boundary scan, and
+test interfaces, preventing attackers from reading memory registers via
+debuggers.</li>
+<li><strong>Memory Shielding and Bus Scrambling:</strong> Advanced SoCs
+use active top-layer metal meshes and internal bus encryption to defeat
+physical decapping, microprobing, and side-channel analysis.</li>
+<li><strong>Revocation and Integrity Checking:</strong> The sink
+verifies the integrity of the key block before use, halting HDMI
+reception if any tampering or corruption is detected.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

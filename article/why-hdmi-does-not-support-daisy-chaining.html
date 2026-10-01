@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why HDMI Does Not Support Daisy Chaining - hdmi</title>
+    <meta name="description" content="Unlike DisplayPort, which supports native daisy-chaining through Multi-Stream Transport (MST), the HDMI standard does not natively support running multiple independent video displays off a single source port. This fundamental difference stems from distin">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/why-hdmi-does-not-support-daisy-chaining">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why HDMI Does Not Support Daisy Chaining - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/why-hdmi-does-not-support-daisy-chaining" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Unlike DisplayPort, which supports native daisy-chaining through Multi-Stream Transport (MST), the HDMI standard does not natively support running multiple independent video displays off a single source port. This fundamental difference stems from distin" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-hdmi-does-not-support-daisy-chaining">Why HDMI Does Not
+Support Daisy Chaining</h1>
+<p>Unlike DisplayPort, which supports native daisy-chaining through
+Multi-Stream Transport (MST), the HDMI standard does not natively
+support running multiple independent video displays off a single source
+port. This fundamental difference stems from distinct design
+philosophies, underlying transmission architectures, and the target
+markets each standard was originally built to serve. While DisplayPort
+was engineered from the ground up for desktop computing and modular
+monitor setups, HDMI was developed primarily for consumer audio/video
+electronics where single, dedicated point-to-point connections are
+standard.</p>
+<h3 id="fundamental-transmission-architectures">Fundamental Transmission
+Architectures</h3>
+<p>The primary technical barrier preventing HDMI from daisy-chaining
+lies in how it packages and transmits data. DisplayPort relies on a
+packetized data architecture similar to Ethernet or PCI Express. It
+breaks down audio and video into discrete micro-packets, assigns them
+stream identifiers, and routes them across available data lanes. Because
+of this structure, DisplayPort 1.2 was able to introduce Multi-Stream
+Transport (MST), allowing a single cable to carry multiple independent
+video streams that compatible monitors can demultiplex, display, and
+pass along to the next screen down the chain.</p>
+<p>HDMI, on the other hand, was built around Transition-Minimized
+Differential Signaling (TMDS) and later Fixed Rate Link (FRL) in HDMI
+2.1. These protocols are fundamentally streaming-based rather than
+packet-routed. An HDMI connection establishes a strict, dedicated clock
+and data pipeline between one transmitter (the source) and one receiver
+(the sink). Because the data is delivered as a continuous, synchronized
+stream without a packetized multiplexing layer, an HDMI port cannot
+divide its bandwidth into discrete independent streams within the native
+specification.</p>
+<h3 id="divergent-market-priorities">Divergent Market Priorities</h3>
+<p>HDMI and DisplayPort were created by different groups with different
+goals:</p>
+<ul>
+<li><strong>HDMI:</strong> Governed by consumer electronics
+manufacturers (including Sony, Panasonic, and Philips), HDMI was
+tailored for living room setups connecting game consoles, cable boxes,
+and Blu-ray players directly to televisions or AV receivers. In this
+ecosystem, one source invariably feeds one screen, making daisy-chaining
+an unnecessary complexity. Instead, the HDMI Forum focused development
+on features like Consumer Electronics Control (CEC), Audio Return
+Channel (eARC), and Variable Refresh Rate (VRR).</li>
+<li><strong>DisplayPort:</strong> Governed by the Video Electronics
+Standards Association (VESA), DisplayPort was created explicitly for the
+PC industry. Workstation productivity, multi-monitor trading desks, and
+clutter-free laptop docking stations made multi-monitor routing a core
+business requirement.</li>
+</ul>
+<h3 id="cost-hardware-and-backward-compatibility">Cost, Hardware, and
+Backward Compatibility</h3>
+<p>Implementing daisy-chaining requires hardware logic not just at the
+graphics card, but inside the display itself. A daisy-chainable monitor
+must contain an integrated routing hub, display controller, and
+downstream transmitter to extract its intended stream and forward the
+remaining data down the line.</p>
+<p>Integrating this hardware into HDMI displays would raise
+manufacturing costs for a feature largely irrelevant to the television
+market. Furthermore, the HDMI Forum places a massive emphasis on strict
+backward compatibility across all consumer gear. Overhauling HDMI's
+signal framework to support stream demultiplexing would introduce
+fragmentation, driver conflicts, and potential handshake failures across
+millions of legacy devices.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Video Wall Controllers Split 4K into 1080p - hdmi</title>
+    <meta name="description" content="An HDMI video wall controller takes a single 4K Ultra HD source signal, digitizes and buffers the video data, and segments the visual field into a 2x2 grid to drive four independent 1080p displays. By leveraging internal field-programmable gate arrays (F">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-video-wall-controllers-split-4-k-into-1080-p">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Video Wall Controllers Split 4K into 1080p - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-video-wall-controllers-split-4-k-into-1080-p" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="An HDMI video wall controller takes a single 4K Ultra HD source signal, digitizes and buffers the video data, and segments the visual field into a 2x2 grid to drive four independent 1080p displays. By leveraging internal field-programmable gate arrays (F" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-video-wall-controllers-split-4k-into-1080p">How Video Wall
+Controllers Split 4K into 1080p</h1>
+<p>An HDMI video wall controller takes a single 4K Ultra HD source
+signal, digitizes and buffers the video data, and segments the visual
+field into a 2x2 grid to drive four independent 1080p displays. By
+leveraging internal field-programmable gate arrays (FPGAs) or
+application-specific integrated circuits (ASICs), the hardware
+coordinates pixel mapping, bezel compensation, and frame
+synchronization. This process allows a standard 3840x2160 input to
+appear as a single, unified image across four 1920x1080 Full HD panels
+without distortion or lag.</p>
+<h3 id="1-signal-ingestion-and-decoding">1. Signal Ingestion and
+Decoding</h3>
+<p>The process begins at the controller’s HDMI input port (typically
+HDMI 2.0 or higher to support 4K at 60Hz). The receiver chip decodes the
+Transition-Minimized Differential Signaling (TMDS) or Fixed Rate Link
+(FRL) data stream. At this stage, the controller authenticates HDCP
+(High-bandwidth Digital Content Protection) encryption, strips audio if
+necessary, and extracts the raw uncompressed digital video frames into a
+standard digital color format, such as RGB or YUV 4:4:4.</p>
+<h3 id="2-high-speed-frame-buffering">2. High-Speed Frame Buffering</h3>
+<p>Once decoded, the 4K image stream (consisting of approximately 8.3
+million pixels per frame) is routed into high-speed video memory,
+typically DDR RAM. This frame buffer acts as an intermediate holding
+area. Storing the frames temporarily allows the onboard processor to
+manipulate pixels across the entire canvas simultaneously and prevents
+screen tearing by ensuring that incoming frames align with the refresh
+cycles of the outgoing displays.</p>
+<h3 id="3-spatial-coordinate-mapping-and-slicing">3. Spatial Coordinate
+Mapping and Slicing</h3>
+<p>Because a standard 4K UHD resolution (3840x2160) is mathematically
+equal to exactly four 1080p FHD resolutions (1920x1080) arranged in a
+2x2 layout, the controller does not need to compress or downscale the
+native resolution. Instead, the video processor assigns pixel coordinate
+boundaries to divide the canvas into four distinct quadrants:</p>
+<ul>
+<li><strong>Display 1 (Top-Left):</strong> Pixels from X: 0 to 1919, Y:
+0 to 1079</li>
+<li><strong>Display 2 (Top-Right):</strong> Pixels from X: 1920 to 3839,
+Y: 0 to 1079</li>
+<li><strong>Display 3 (Bottom-Left):</strong> Pixels from X: 0 to 1919,
+Y: 1080 to 2159</li>
+<li><strong>Display 4 (Bottom-Right):</strong> Pixels from X: 1920 to
+3839, Y: 1080 to 2159</li>
+</ul>
+<p>The FPGA reads these specific coordinate blocks directly from the
+frame buffer and assigns each block to a dedicated processing
+pipeline.</p>
+<h3 id="4-bezel-correction-adjustments">4. Bezel Correction
+Adjustments</h3>
+<p>Before sending the cropped sections to the outputs, the controller
+applies bezel compensation. Physical screens have outer frames (bezels)
+that interrupt the continuity of the image. The controller’s firmware
+mathematically calculates the physical width of the monitor borders and
+masks or hides a corresponding number of pixels behind the bezels. This
+creates the optical illusion that the image is continuing smoothly
+behind the physical gaps rather than breaking unnaturally.</p>
+<h3 id="5-multi-channel-output-synchronization">5. Multi-Channel Output
+Synchronization</h3>
+<p>Each of the four segmented 1080p quadrants is routed to its own HDMI
+transmitter chip. A master clock generator ensures genlock (generator
+locking) across all four outputs. By synchronizing the vertical and
+horizontal blanking intervals across all four HDMI ports, the controller
+transmits the four discrete 1080p video streams in perfect unison,
+preventing any phase misalignment or vertical tearing across the seams
+of the video wall.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

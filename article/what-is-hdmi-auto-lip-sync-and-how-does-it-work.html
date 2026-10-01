@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is HDMI Auto LipSync and How Does It Work? - hdmi</title>
+    <meta name="description" content="The HDMI Auto LipSync feature, introduced in the HDMI 1.3 specification, is an automated timing mechanism designed to eliminate audio and video synchronization errors in home entertainment systems. Modern televisions use complex digital video processing">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/what-is-hdmi-auto-lip-sync-and-how-does-it-work">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Is HDMI Auto LipSync and How Does It Work? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/what-is-hdmi-auto-lip-sync-and-how-does-it-work" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The HDMI Auto LipSync feature, introduced in the HDMI 1.3 specification, is an automated timing mechanism designed to eliminate audio and video synchronization errors in home entertainment systems. Modern televisions use complex digital video processing" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="what-is-hdmi-auto-lipsync-and-how-does-it-work">What Is HDMI
+Auto LipSync and How Does It Work?</h1>
+<p>The HDMI Auto LipSync feature, introduced in the HDMI 1.3
+specification, is an automated timing mechanism designed to eliminate
+audio and video synchronization errors in home entertainment systems.
+Modern televisions use complex digital video processing—such as
+upscaling, frame interpolation, and dynamic contrast adjustments—which
+introduces slight processing delays to the video signal. Because audio
+processing takes significantly less time, the sound is often output
+before the corresponding image appears on screen. Auto LipSync resolves
+this issue by allowing devices across the HDMI chain to communicate
+video latency values automatically, ensuring dialogue matches the
+actors' lip movements without requiring manual user intervention.</p>
+<h3 id="the-problem-audio-and-video-timing-discrepancies">The Problem:
+Audio and Video Timing Discrepancies</h3>
+<p>In a traditional setup where audio is handled by an A/V receiver
+(AVR) or soundbar and video is sent to a display, the two signals take
+different processing paths:</p>
+<ul>
+<li><strong>Audio Path:</strong> Audio decoding (like Dolby Digital or
+DTS) requires minimal computational overhead, typically taking only a
+few milliseconds.</li>
+<li><strong>Video Path:</strong> High-definition video processing
+requires significant time to deinterlace, upscale, tone-map, or apply
+motion smoothing, creating a delay of 20 to over 100 milliseconds
+depending on the display mode.</li>
+</ul>
+<p>Without synchronization, the audio plays before the video reaches the
+screen, causing a jarring discrepancy commonly known as "lip-sync
+error." Prior to HDMI 1.3, users had to manually adjust audio delay
+settings in milliseconds on their AVRs through trial and error.</p>
+<h3 id="how-hdmi-auto-lipsync-functions">How HDMI Auto LipSync
+Functions</h3>
+<p>The Auto LipSync feature automates timing compensation through
+bidirectional communication over the HDMI connection:</p>
+<ol type="1">
+<li><strong>Latency Measurement:</strong> The display device (such as an
+HDTV or 4K monitor) calculates the precise processing delay it requires
+to render incoming video frames.</li>
+<li><strong>EDID Communication:</strong> The display broadcasts this
+exact latency value via Extended Display Identification Data (EDID) to
+the connected audio processor or AVR over the HDMI cable.</li>
+<li><strong>Automatic Delay Matching:</strong> Upon receiving the
+latency metric, the audio processor automatically holds back the audio
+track by the corresponding number of milliseconds before outputting it
+to the speakers.</li>
+</ol>
+<h3 id="dynamic-adjustment-and-modern-capabilities">Dynamic Adjustment
+and Modern Capabilities</h3>
+<p>Because video latency changes depending on content and display
+settings—such as switching from a high-processing "Cinema" mode to a
+low-latency "Game" mode—Auto LipSync supports dynamic updates. When a
+user changes display modes or inputs, the display reports the new
+latency value, and the audio processor updates its delay buffer in real
+time.</p>
+<p>For HDMI Auto LipSync to function, both the display device and the
+audio receiving equipment must support HDMI 1.3 or higher and have the
+feature enabled within their respective system settings.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

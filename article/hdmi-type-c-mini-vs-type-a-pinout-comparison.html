@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Type C Mini vs Type A Pinout Comparison - hdmi</title>
+    <meta name="description" content="This article provides a direct comparison between the HDMI Type A (standard) and HDMI Type C (Mini HDMI) connector pinouts. While both connectors share the exact same 19-pin electrical architecture and carry identical digital video, audio, and control si">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-type-c-mini-vs-type-a-pinout-comparison">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Type C Mini vs Type A Pinout Comparison - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-type-c-mini-vs-type-a-pinout-comparison" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a direct comparison between the HDMI Type A (standard) and HDMI Type C (Mini HDMI) connector pinouts. While both connectors share the exact same 19-pin electrical architecture and carry identical digital video, audio, and control si" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-type-c-mini-vs-type-a-pinout-comparison">HDMI Type C Mini
+vs Type A Pinout Comparison</h1>
+<p>This article provides a direct comparison between the HDMI Type A
+(standard) and HDMI Type C (Mini HDMI) connector pinouts. While both
+connectors share the exact same 19-pin electrical architecture and carry
+identical digital video, audio, and control signals, their physical
+arrangements and pin number assignments differ. Below is an explanation
+of these structural shifts, along with a complete pin-by-pin mapping
+table showing how Type C maps directly to standard Type A.</p>
+<h3 id="key-architectural-differences">Key Architectural
+Differences</h3>
+<p>The standard HDMI Type A connector measures 13.9 mm × 4.45 mm,
+whereas the compact HDMI Type C Mini connector measures 10.42 mm × 2.42
+mm, designed primarily for portable devices like cameras, tablets, and
+single-board computers.</p>
+<p>Despite the reduction in physical size, Type C retains all 19
+functional lines:</p>
+<ol type="1">
+<li><strong>TMDS Data and Clock Pairs:</strong> Both connectors feature
+four Transition-Minimized Differential Signaling (TMDS) channels (Data
+0, Data 1, Data 2, and Clock). In Type A, the positive signal occupies
+the lowest pin number of a triad, followed by the shield, then the
+negative signal (e.g., Pin 1: Data2+, Pin 2: Shield, Pin 3: Data2-). In
+Type C, this layout is rearranged: the shield pin comes first, followed
+by the positive line, then the negative line (e.g., Pin 1: Shield, Pin
+2: Data2+, Pin 3: Data2-).</li>
+<li><strong>Control and Auxiliary Pins:</strong> Pins responsible for
+Consumer Electronics Control (CEC), Display Data Channel (DDC: SCL and
+SDA), Hot Plug Detect, and +5V power are also relocated across pins 13
+through 19.</li>
+<li><strong>Passive Compatibility:</strong> Because all signals,
+voltages, and data protocols are electrically identical, transitioning
+between Type A and Type C requires only a passive cable or adapter—no
+active conversion circuitry is needed.</li>
+</ol>
+<hr />
+<h3 id="pinout-mapping-type-c-mini-vs-type-a-standard">Pinout Mapping:
+Type C (Mini) vs. Type A (Standard)</h3>
+<p>The following table details the signal mapping between the HDMI Type
+C Mini connector and the standard HDMI Type A connector:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Signal Name</th>
+<th style="text-align: left;">HDMI Type C (Mini) Pin</th>
+<th style="text-align: left;">HDMI Type A (Standard) Pin</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>TMDS Data2 Shield</strong></td>
+<td style="text-align: left;">Pin 1</td>
+<td style="text-align: left;">Pin 2</td>
+<td style="text-align: left;">Ground shielding for Data Channel 2</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>TMDS Data2+</strong></td>
+<td style="text-align: left;">Pin 2</td>
+<td style="text-align: left;">Pin 1</td>
+<td style="text-align: left;">Data Channel 2 Positive differential
+signal</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>TMDS Data2-</strong></td>
+<td style="text-align: left;">Pin 3</td>
+<td style="text-align: left;">Pin 3</td>
+<td style="text-align: left;">Data Channel 2 Negative differential
+signal</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>TMDS Data1 Shield</strong></td>
+<td style="text-align: left;">Pin 4</td>
+<td style="text-align: left;">Pin 5</td>
+<td style="text-align: left;">Ground shielding for Data Channel 1</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>TMDS Data1+</strong></td>
+<td style="text-align: left;">Pin 5</td>
+<td style="text-align: left;">Pin 4</td>
+<td style="text-align: left;">Data Channel 1 Positive differential
+signal</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>TMDS Data1-</strong></td>
+<td style="text-align: left;">Pin 6</td>
+<td style="text-align: left;">Pin 6</td>
+<td style="text-align: left;">Data Channel 1 Negative differential
+signal</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>TMDS Data0 Shield</strong></td>
+<td style="text-align: left;">Pin 7</td>
+<td style="text-align: left;">Pin 8</td>
+<td style="text-align: left;">Ground shielding for Data Channel 0</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>TMDS Data0+</strong></td>
+<td style="text-align: left;">Pin 8</td>
+<td style="text-align: left;">Pin 7</td>
+<td style="text-align: left;">Data Channel 0 Positive differential
+signal</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>TMDS Data0-</strong></td>
+<td style="text-align: left;">Pin 9</td>
+<td style="text-align: left;">Pin 9</td>
+<td style="text-align: left;">Data Channel 0 Negative differential
+signal</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>TMDS Clock Shield</strong></td>
+<td style="text-align: left;">Pin 10</td>
+<td style="text-align: left;">Pin 11</td>
+<td style="text-align: left;">Ground shielding for Clock Channel</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>TMDS Clock+</strong></td>
+<td style="text-align: left;">Pin 11</td>
+<td style="text-align: left;">Pin 10</td>
+<td style="text-align: left;">Clock Channel Positive differential
+signal</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>TMDS Clock-</strong></td>
+<td style="text-align: left;">Pin 12</td>
+<td style="text-align: left;">Pin 12</td>
+<td style="text-align: left;">Clock Channel Negative differential
+signal</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>DDC/CEC Ground</strong></td>
+<td style="text-align: left;">Pin 13</td>
+<td style="text-align: left;">Pin 17</td>
+<td style="text-align: left;">Ground reference for DDC, CEC, and
+Utility</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>CEC</strong></td>
+<td style="text-align: left;">Pin 14</td>
+<td style="text-align: left;">Pin 13</td>
+<td style="text-align: left;">Consumer Electronics Control line</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>SCL</strong></td>
+<td style="text-align: left;">Pin 15</td>
+<td style="text-align: left;">Pin 15</td>
+<td style="text-align: left;">DDC I²C Bus Clock line</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>SDA</strong></td>
+<td style="text-align: left;">Pin 16</td>
+<td style="text-align: left;">Pin 16</td>
+<td style="text-align: left;">DDC I²C Bus Data line</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Reserved / Utility</strong></td>
+<td style="text-align: left;">Pin 17</td>
+<td style="text-align: left;">Pin 14</td>
+<td style="text-align: left;">HEAC+ (Ethernet/Audio Return) or
+Reserved</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>+5 V Power</strong></td>
+<td style="text-align: left;">Pin 18</td>
+<td style="text-align: left;">Pin 18</td>
+<td style="text-align: left;">Low-current 5V DC power for sink
+detection</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Hot Plug Detect</strong></td>
+<td style="text-align: left;">Pin 19</td>
+<td style="text-align: left;">Pin 19</td>
+<td style="text-align: left;">Sink presence detection / HEAC-</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="summary-of-shifts">Summary of Shifts</h3>
+<p>When building custom cables or troubleshooting custom hardware:</p>
+<ul>
+<li><strong>Differential lines:</strong> Type C swaps the shield and
+positive pins for all three data channels and the clock channel relative
+to Type A. The negative differential line consistently remains in the
+third position of each triad.</li>
+<li><strong>Ground and Utility:</strong> The DDC/CEC Ground line moves
+from Pin 17 on Type A to Pin 13 on Type C, shifting CEC down by one
+position (Pin 13 on Type A to Pin 14 on Type C).</li>
+<li><strong>Direct 1:1 Pins:</strong> Pins 15 (SCL), 16 (SDA), 18 (+5V
+Power), and 19 (Hot Plug Detect) maintain identical pin numbering on
+both connector form factors.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

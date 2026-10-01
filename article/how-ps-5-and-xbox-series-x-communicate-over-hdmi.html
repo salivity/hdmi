@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How PS5 and Xbox Series X Communicate Over HDMI - hdmi</title>
+    <meta name="description" content="Modern gaming consoles like the Xbox Series X and PlayStation 5 use the HDMI 2.1 specification to actively communicate their operational and rendering states to compatible displays. Through a combination of hardware handshakes, metadata packets, and dedi">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-ps-5-and-xbox-series-x-communicate-over-hdmi">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How PS5 and Xbox Series X Communicate Over HDMI - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-ps-5-and-xbox-series-x-communicate-over-hdmi" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Modern gaming consoles like the Xbox Series X and PlayStation 5 use the HDMI 2.1 specification to actively communicate their operational and rendering states to compatible displays. Through a combination of hardware handshakes, metadata packets, and dedi" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-ps5-and-xbox-series-x-communicate-over-hdmi">How PS5 and
+Xbox Series X Communicate Over HDMI</h1>
+<p>Modern gaming consoles like the Xbox Series X and PlayStation 5 use
+the HDMI 2.1 specification to actively communicate their operational and
+rendering states to compatible displays. Through a combination of
+hardware handshakes, metadata packets, and dedicated protocols—such as
+Auto Low Latency Mode (ALLM), Variable Refresh Rate (VRR), and Extended
+Display Identification Data (EDID)—the console signals whether it is
+rendering a game, streaming a movie, or navigating the system dashboard.
+This communication enables connected televisions and monitors to
+automatically adjust picture modes, latency settings, and refresh cycles
+in real time to match the console's output.</p>
+<h3 id="the-initial-handshake-edid-and-displayid">The Initial Handshake:
+EDID and DisplayID</h3>
+<p>Before any gameplay begins, the console and the display establish a
+baseline understanding of capabilities via an initial handshake:</p>
+<ol type="1">
+<li><strong>Reading Display Capabilities:</strong> When connected, the
+console queries the display's Extended Display Identification Data
+(EDID) and DisplayID via the I2C-based Display Data Channel (DDC).</li>
+<li><strong>Feature Detection:</strong> The display informs the console
+of its supported resolutions (e.g., 4K at 120Hz), color formats (RGB
+4:4:4, YUV 4:2:2), HDR standards (HDR10, Dolby Vision), and HDMI 2.1
+gaming features like ALLM and VRR.</li>
+<li><strong>Establishing the Link:</strong> The console configures its
+HDMI transmitter to match the highest mutually supported specifications
+using Fixed Rate Link (FRL) signaling, which replaces the older TMDS
+technology to achieve bandwidths of up to 40 Gbps (PS5) or 48 Gbps (Xbox
+Series X).</li>
+</ol>
+<h3 id="auto-low-latency-mode-allm">Auto Low Latency Mode (ALLM)</h3>
+<p>The primary mechanism a console uses to declare that it is in a
+"gaming state" is Auto Low Latency Mode (ALLM).</p>
+<ul>
+<li><strong>Signaling Game Mode:</strong> When a user launches a game,
+the console generates a specific flag within an HDMI Consumer Technology
+Association (CTA-861) InfoFrame packet embedded in the video blanking
+interval.</li>
+<li><strong>Display Response:</strong> Upon reading this ALLM flag, the
+display instantly disables latency-inducing image post-processing
+features (such as motion smoothing, edge enhancement, and noise
+reduction) and shifts into its low-latency "Game Mode."</li>
+<li><strong>Media Playback Switching:</strong> If the user exits the
+game to stream video through an app like Netflix, the console clears the
+ALLM flag, prompting the TV to restore standard processing modes for
+better picture quality during passive viewing.</li>
+</ul>
+<h3 id="variable-refresh-rate-vrr-and-frame-syncing">Variable Refresh
+Rate (VRR) and Frame Syncing</h3>
+<p>Gaming frame rates often fluctuate based on scene complexity. To
+maintain smooth motion without screen tearing, the console and display
+communicate frame timings continuously:</p>
+<ul>
+<li><strong>HDMI Forum VRR:</strong> Both consoles use HDMI Forum VRR
+(Xbox also supports AMD FreeSync) to control the display’s vertical
+blanking interval.</li>
+<li><strong>Dynamic Timing:</strong> Instead of pushing frames to a
+rigid 60Hz or 120Hz grid, the console's GPU transmits a frame the moment
+it finishes rendering. It embeds synchronization commands directly
+within the HDMI signal, telling the display precisely when to draw the
+next frame.</li>
+</ul>
+<h3 id="source-based-tone-mapping-sbtm-and-hdr-metadata">Source-Based
+Tone Mapping (SBTM) and HDR Metadata</h3>
+<p>To convey color and luminance states, the console sends Dynamic Range
+and Mastering InfoFrames alongside the video data:</p>
+<ul>
+<li><strong>Static and Dynamic Metadata:</strong> When outputting in
+HDR10, the console sends static metadata detailing peak brightness
+levels. For titles supporting Dolby Vision (on Xbox Series X), dynamic
+metadata is fed frame-by-frame.</li>
+<li><strong>Source-Based Tone Mapping (SBTM):</strong> This HDMI 2.1
+feature offloads HDR tone-mapping from the display to the console. The
+display communicates its color range and luminance limits to the
+console, and the console's GPU pre-adjusts the rendering output to
+eliminate clipping in highlights or crushed shadow details before
+sending the pixels down the HDMI line.</li>
+</ul>
+<h3 id="consumer-electronics-control-cec">Consumer Electronics Control
+(CEC)</h3>
+<p>At the system level, state changes are communicated via the HDMI-CEC
+channel on pin 13 of the HDMI connector:</p>
+<ul>
+<li><strong>Power and Input States:</strong> When a controller powers on
+the console, a CEC command alerts the display to wake from standby and
+automatically switch to the designated HDMI input.</li>
+<li><strong>Standby Sync:</strong> Putting the console into rest mode
+similarly transmits a signal that can trigger the display to shut down
+or revert to a previous source.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

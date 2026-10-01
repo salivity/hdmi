@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dolby Vision Metadata in HDMI Auxiliary Streams - hdmi</title>
+    <meta name="description" content="This article explains how an HDMI source device packages and transmits Dolby Vision dynamic metadata across an HDMI interface using auxiliary stream structures. It details the underlying transport mechanisms within HDMI blanking intervals, the specific s">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/dolby-vision-metadata-in-hdmi-auxiliary-streams">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Dolby Vision Metadata in HDMI Auxiliary Streams - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/dolby-vision-metadata-in-hdmi-auxiliary-streams" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how an HDMI source device packages and transmits Dolby Vision dynamic metadata across an HDMI interface using auxiliary stream structures. It details the underlying transport mechanisms within HDMI blanking intervals, the specific s" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="dolby-vision-metadata-in-hdmi-auxiliary-streams">Dolby Vision
+Metadata in HDMI Auxiliary Streams</h1>
+<p>This article explains how an HDMI source device packages and
+transmits Dolby Vision dynamic metadata across an HDMI interface using
+auxiliary stream structures. It details the underlying transport
+mechanisms within HDMI blanking intervals, the specific structures of
+Dolby Vendor-Specific InfoFrames (VSIF) and CTA-861 Extended Metadata
+Packets (EMP), and how the metadata payload is serialized and protected
+for accurate decoding by a sink display.</p>
+<h3 id="hdmi-data-island-architecture-and-auxiliary-streams">HDMI Data
+Island Architecture and Auxiliary Streams</h3>
+<p>HDMI transmits video data during active video periods, while
+non-video data—including audio, clock signals, and metadata—is
+transmitted during the horizontal and vertical blanking intervals. These
+blanking intervals are formatted as <strong>Data Island
+periods</strong>.</p>
+<p>To deliver dynamic HDR metadata alongside the video stream without
+altering active pixel values, the HDMI source packages metadata into
+discrete 32-byte data packets within these Data Island periods. Each
+packet consists of a 4-byte header and a 28-byte payload, protected by
+Bose-Chaudhuri-Hocquenghem (BCH) error-correcting code (ECC) parity bits
+to ensure integrity during TMDS (Transition-Minimized Differential
+Signaling) or FRL (Fixed Rate Link) transmission.</p>
+<h3 id="signatures-and-infoframe-identification-vsif">Signatures and
+InfoFrame Identification (VSIF)</h3>
+<p>Dolby Vision relies heavily on the <strong>Vendor-Specific InfoFrame
+(VSIF)</strong> defined by the CTA-861 standard for signaling and
+low-bandwidth payload delivery. When an HDMI source identifies a Dolby
+Vision-capable sink via Extended Display Identification Data (EDID), it
+generates an InfoFrame containing:</p>
+<ul>
+<li><strong>Packet Type Identifier:</strong> Set to <code>0x81</code> to
+declare an auxiliary InfoFrame.</li>
+<li><strong>InfoFrame Type and Version:</strong> Identifies the specific
+payload generation and structure.</li>
+<li><strong>IEEE Organizationally Unique Identifier (OUI):</strong> Set
+to Dolby Laboratories’ registered 24-bit identifier
+(<code>0x00D046</code>).</li>
+</ul>
+<p>The presence of this IEEE OUI informs the sink processor that the
+enclosed auxiliary data contains proprietary Dolby Vision configuration
+parameters rather than standard static HDR (CTA-861.3 Dynamic Range and
+Mastering InfoFrames).</p>
+<h3
+id="packaging-the-dolby-vision-reference-processing-unit-rpu">Packaging
+the Dolby Vision Reference Processing Unit (RPU)</h3>
+<p>The dynamic metadata governing frame-by-frame or scene-by-scene tone
+mapping is generated as a Reference Processing Unit (RPU) payload. How
+this RPU is packaged into the auxiliary stream depends on the
+transmission architecture:</p>
+<h4 id="1-extended-metadata-packets-emp">1. Extended Metadata Packets
+(EMP)</h4>
+<p>In modern implementations conforming to CTA-861-G/H and HDMI 2.1,
+large dynamic metadata sets (such as SMPTE ST 2094-10, the standardized
+variant of Dolby Vision) are transported using <strong>Extended Metadata
+Packets (EMP)</strong>.</p>
+<p>Because an RPU can exceed the 28-byte payload limit of a single
+auxiliary packet, the HDMI source fragments the RPU:</p>
+<ul>
+<li><strong>Fragmentation:</strong> The source splits the dynamic
+metadata bitstream into sequential segments.</li>
+<li><strong>Header Sequencing:</strong> Each EMP includes sequence
+markers (such as "First," "Continuation," or "Last" packet flags) and a
+sequence index to ensure deterministic reassembly.</li>
+<li><strong>Synchronization:</strong> The packets carry a
+synchronization timestamp or are tied directly to the frame counter of
+the upcoming video frame, ensuring that the target display applies tone
+mapping to the exact frame for which it was computed.</li>
+</ul>
+<h4
+id="2-low-latency-dolby-vision-lldv--player-led-auxiliary-signaling">2.
+Low-Latency Dolby Vision (LLDV / Player-Led) Auxiliary Signaling</h4>
+<p>In Player-Led mode, tone mapping occurs within the playback source
+rather than the display. However, the source must still transmit
+colorimetry and configuration instructions via the auxiliary stream. In
+this case, the Dolby VSIF payload carries compact dynamic run-time
+properties—such as target luminance, color space flags (e.g., standard
+BT.2020 vs. IPT), and back-end display mapping parameters—directly
+inside a single or minimal set of VSIF auxiliary packets, bypassing the
+need for heavy RPU data chunking.</p>
+<h4 id="3-standard-display-led-tunneling-legacy-hdmi-1420">3. Standard
+Display-Led Tunneling (Legacy HDMI 1.4/2.0)</h4>
+<p>In standard "RGB Tunneling" mode, the full RPU metadata is actually
+packed into the least significant bits (LSBs) of the active 8-bit or
+12-bit video stream to circumvent older HDMI bandwidth and InfoFrame
+size constraints. In this scenario, the auxiliary stream's primary
+function is signaling: the VSIF is injected into the Data Island to
+alert the display's HDMI receiver that the incoming standard 8-bit RGB
+4:4:4 raster is not standard video, but rather an encrypted,
+metadata-multiplexed Dolby Vision composite container that must be
+un-tunnelled.</p>
+<h3 id="serialization-and-transmission">Serialization and
+Transmission</h3>
+<p>Once the source formats the metadata into the appropriate InfoFrames
+or EMPs:</p>
+<ol type="1">
+<li><strong>Checksum Generation:</strong> A validation checksum is
+calculated across the payload bytes and written to the packet
+header.</li>
+<li><strong>Channel Allocation:</strong> The packet bytes are converted
+into HDMI Data Island characters using TMDS Error Reduction Coding
+(TERC4) or FRL packet mapping.</li>
+<li><strong>Insertion:</strong> The packets are multiplexed onto the
+high-speed data lanes during the vertical blanking interval (VBI)
+preceding the target video frame.</li>
+</ol>
+<p>This guarantees that the sink display parses, verifies, and applies
+the tone-mapping parameters before the first active video line of the
+associated frame is decoded.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

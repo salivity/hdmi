@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How DSC Enables 8K and 10K Video Over HDMI 2.1 - hdmi</title>
+    <meta name="description" content="Display Stream Compression (DSC) is the critical technology that allows HDMI 2.1 to transmit ultra-high-resolution video formats, such as 8K at high refresh rates and 10K resolution, without exceeding physical bandwidth limits. While the HDMI 2.1 specifi">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-dsc-enables-8-k-and-10-k-video-over-hdmi-2-1">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How DSC Enables 8K and 10K Video Over HDMI 2.1 - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-dsc-enables-8-k-and-10-k-video-over-hdmi-2-1" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Display Stream Compression (DSC) is the critical technology that allows HDMI 2.1 to transmit ultra-high-resolution video formats, such as 8K at high refresh rates and 10K resolution, without exceeding physical bandwidth limits. While the HDMI 2.1 specifi" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-dsc-enables-8k-and-10k-video-over-hdmi-21">How DSC Enables
+8K and 10K Video Over HDMI 2.1</h1>
+<p>Display Stream Compression (DSC) is the critical technology that
+allows HDMI 2.1 to transmit ultra-high-resolution video formats, such as
+8K at high refresh rates and 10K resolution, without exceeding physical
+bandwidth limits. While the HDMI 2.1 specification provides a
+substantial raw bandwidth capacity of 48 Gigabits per second (Gbps),
+uncompressed 8K and 10K streams with high dynamic range (HDR) demand
+data rates that far surpass this ceiling. By employing a standardized,
+visually lossless compression algorithm that operates in real time with
+virtually zero latency, DSC bridges the gap between hardware bandwidth
+limits and next-generation display demands.</p>
+<h3 id="the-bandwidth-problem-in-next-gen-resolutions">The Bandwidth
+Problem in Next-Gen Resolutions</h3>
+<p>HDMI 2.1 introduced Fixed Rate Link (FRL) technology, expanding
+maximum raw throughput from HDMI 2.0's 18 Gbps up to 48 Gbps. However,
+video bandwidth requirements scale rapidly as resolution, refresh rate,
+and color depth increase.</p>
+<p>An uncompressed 8K stream (7680 × 4320) running at 60Hz with 10-bit
+color (standard for HDR) requires roughly 64 to 80 Gbps of bandwidth,
+depending on timing margins and color subsampling. Pushing the refresh
+rate to 120Hz or moving up to 10K resolutions (10240 × 4320, often used
+in ultra-wide displays and commercial installations) requires data rates
+that exceed 100 Gbps. Because HDMI 2.1 is physically capped at 48 Gbps,
+transmitting these signals in an uncompressed state is technically
+impossible.</p>
+<h3 id="how-display-stream-compression-dsc-works">How Display Stream
+Compression (DSC) Works</h3>
+<p>Developed by the Video Electronics Standards Association (VESA) and
+integrated into the HDMI 2.1 specification as DSC 1.2a, Display Stream
+Compression solves this bottleneck by applying a real-time, lightweight
+compression algorithm.</p>
+<ul>
+<li><strong>Up to a 3:1 Compression Ratio:</strong> DSC typically
+compresses the video data stream by up to a 3:1 ratio. For example, a
+heavy 80 Gbps stream can be reduced to approximately 27 to 30 Gbps,
+placing it safely beneath the 48 Gbps limit of an HDMI 2.1
+connection.</li>
+<li><strong>Visually Lossless Quality:</strong> Unlike consumer video
+codecs like HEVC or AV1, which are designed for storage or streaming and
+introduce visible artifacts at low bitrates, DSC is classified as
+"visually lossless." It has undergone rigorous human visual testing to
+ensure that the compressed image cannot be distinguished from an
+uncompressed original under typical viewing conditions.</li>
+<li><strong>Sub-Millisecond Latency:</strong> Traditional compression
+uses temporal frame buffering (comparing previous and future frames),
+which introduces significant display lag unsuitable for gaming and
+real-time interaction. DSC uses a line-buffer-based system that
+processes images on a slice-by-slice basis. This architecture limits
+processing latency to fractions of a single microsecond, making it
+imperceptible to end users.</li>
+<li><strong>Predictive Coding and Adaptive Quantization:</strong> DSC
+divides each display frame into small blocks and applies predictive
+coding to determine color values. If a section of the image is visually
+simple, fewer bits are used. More complex, high-detail sections receive
+a larger share of the bit budget, preserving sharp text, fine textures,
+and accurate color gradients.</li>
+</ul>
+<h3 id="the-end-to-end-pipeline-for-8k-and-10k-output">The End-to-End
+Pipeline for 8K and 10K Output</h3>
+<p>For DSC to function, both the source device (such as a modern
+graphics card, gaming console, or media player) and the sink device
+(such as an 8K television or high-end monitor) must support the
+standard.</p>
+<ol type="1">
+<li><strong>Handshake:</strong> When connected via an Ultra High Speed
+HDMI cable, the display and source communicate via Extended Display
+Identification Data (EDID). The display advertises its supported
+resolutions and DSC capabilities.</li>
+<li><strong>Encoding:</strong> When an 8K 120Hz or 10K mode is selected,
+the source GPU automatically encodes the uncompressed rendering pipeline
+into a DSC-compliant stream.</li>
+<li><strong>Transmission:</strong> The compressed data is transmitted
+over the HDMI 2.1 link at a bit rate well within the 48 Gbps physical
+threshold.</li>
+<li><strong>Decoding:</strong> The display's onboard scaler or timing
+controller (TCON) decodes the DSC stream in real time and renders the
+uncompressed image to the screen.</li>
+</ol>
+<p>Without Display Stream Compression, HDMI 2.1 would be restricted to
+uncompressed 8K video capped at 30Hz (or 60Hz with heavy 4:2:0 chroma
+subsampling, which degrades text clarity and color accuracy). By
+maintaining full 4:4:4 chroma, HDR color depth, and high refresh rates
+within the 48 Gbps envelope, DSC is the foundational technology that
+makes practical 8K and 10K video output possible over a single HDMI 2.1
+cable.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

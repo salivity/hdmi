@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Can HDMI Support 192kHz 24-Bit 8-Channel LPCM Audio? - hdmi</title>
+    <meta name="description" content="Yes, an HDMI port can natively transport full uncompressed 192 kHz, 24-bit, 8-channel LPCM (Linear Pulse-Code Modulation) audio. This capability has been an integral part of the HDMI specification since HDMI 1.0 was introduced in 2002. However, whether a">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/can-hdmi-support-192-k-hz-24-bit-8-channel-lpcm-audio">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Can HDMI Support 192kHz 24-Bit 8-Channel LPCM Audio? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/can-hdmi-support-192-k-hz-24-bit-8-channel-lpcm-audio" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Yes, an HDMI port can natively transport full uncompressed 192 kHz, 24-bit, 8-channel LPCM (Linear Pulse-Code Modulation) audio. This capability has been an integral part of the HDMI specification since HDMI 1.0 was introduced in 2002. However, whether a" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="can-hdmi-support-192khz-24-bit-8-channel-lpcm-audio">Can HDMI
+Support 192kHz 24-Bit 8-Channel LPCM Audio?</h1>
+<p>Yes, an HDMI port can natively transport full uncompressed 192 kHz,
+24-bit, 8-channel LPCM (Linear Pulse-Code Modulation) audio. This
+capability has been an integral part of the HDMI specification since
+HDMI 1.0 was introduced in 2002. However, whether a user actually
+achieves this level of throughput depends on the type of HDMI connection
+used and the hardware capabilities of both the source and the receiving
+device.</p>
+<h3 id="bandwidth-and-protocol-capability">Bandwidth and Protocol
+Capability</h3>
+<p>Uncompressed 8-channel audio at 192 kHz with a 24-bit depth requires
+a sustained digital audio bandwidth of approximately 36.86 Mbps (<span
+class="math inline">\(8 \times 192,000 \times 24\)</span>). HDMI easily
+accommodates this data rate because audio is multiplexed alongside video
+during the video stream's horizontal and vertical blanking intervals
+using HDMI Audio Sample Packets.</p>
+<p>Because the HDMI audio clock was engineered to handle high-resolution
+multi-channel streams from the standard's inception, standard HDMI
+input-to-output links (such as a media PC, game console, or Blu-ray
+player connected directly to an Audio/Video Receiver) natively pass the
+full, uncompressed stream without downsampling or lossy compression.</p>
+<h3 id="standard-hdmi-vs-arc-vs-earc">Standard HDMI vs. ARC vs.
+eARC</h3>
+<p>While standard port-to-port HDMI connections handle 192 kHz 24-bit
+8-channel LPCM, differences arise when transmitting audio over Audio
+Return Channel protocols:</p>
+<ul>
+<li><strong>Direct HDMI Connections:</strong> Fully supports 8-channel,
+192 kHz, 24-bit LPCM.</li>
+<li><strong>eARC (Enhanced Audio Return Channel):</strong> Introduced in
+HDMI 2.1, eARC provides up to 37 Mbps of dedicated audio bandwidth,
+allowing it to natively transport uncompressed 8-channel, 192 kHz,
+24-bit LPCM from a television back to a sound system.</li>
+<li><strong>ARC (Standard Audio Return Channel):</strong> Does
+<strong>not</strong> support this stream. Standard ARC is limited to
+roughly 1 Mbps of bandwidth, restricting uncompressed LPCM transmission
+to 2.0 stereo channels at 48 kHz.</li>
+</ul>
+<h3 id="practical-hardware-considerations">Practical Hardware
+Considerations</h3>
+<p>Although the HDMI physical layer and transmission protocol support
+this audio standard, three conditions must be met across the chain:</p>
+<ol type="1">
+<li><strong>EDID Negotiation:</strong> The receiving device (e.g., an AV
+processor) must broadcast support for 8-channel 192 kHz/24-bit LPCM in
+its Extended Display Identification Data (EDID). If the display or
+receiver EDID lacks this capability, the source will automatically
+downsample or downmix the audio.</li>
+<li><strong>Operating System and Source Capabilities:</strong> Operating
+systems (such as Windows, macOS, or Linux) and playback software must be
+configured to output 7.1 or 8-channel multi-channel audio at 192 kHz
+without software-level downsampling.</li>
+<li><strong>DAC and DSP Hardware:</strong> The receiver's internal
+Digital-to-Analog Converters (DACs) and Digital Signal Processors (DSPs)
+must possess enough processing overhead to decode eight discrete 192 kHz
+streams simultaneously, as some budget equipment can only process 192
+kHz across two stereo channels.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

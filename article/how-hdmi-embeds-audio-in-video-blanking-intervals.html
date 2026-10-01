@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Embeds Audio in Video Blanking Intervals - hdmi</title>
+    <meta name="description" content="This article explains how an HDMI transmitter multiplexes digital audio into an active video stream by converting audio samples into structured packets and transmitting them during horizontal and vertical video blanking intervals. Rather than relying on">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-embeds-audio-in-video-blanking-intervals">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Embeds Audio in Video Blanking Intervals - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-embeds-audio-in-video-blanking-intervals" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how an HDMI transmitter multiplexes digital audio into an active video stream by converting audio samples into structured packets and transmitting them during horizontal and vertical video blanking intervals. Rather than relying on" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-embeds-audio-in-video-blanking-intervals">How HDMI
+Embeds Audio in Video Blanking Intervals</h1>
+<p>This article explains how an HDMI transmitter multiplexes digital
+audio into an active video stream by converting audio samples into
+structured packets and transmitting them during horizontal and vertical
+video blanking intervals. Rather than relying on a separate physical
+line for sound, HDMI repurposes inactive display transmission windows to
+interleave high-bandwidth digital audio directly within the primary
+Transition-Minimized Differential Signaling (TMDS) or Fixed Rate Link
+(FRL) data channels.</p>
+<h3 id="the-purpose-of-video-blanking-intervals">The Purpose of Video
+Blanking Intervals</h3>
+<p>In traditional video transmission, blanking intervals—Horizontal
+Blanking (HBLANK) and Vertical Blanking (VBLANK)—were originally
+designed for cathode-ray tube (CRT) monitors to allow the electron gun
+time to reposition to the start of the next line or frame. In modern
+digital displays, the physical beam retrace is obsolete, but the timing
+intervals remain intact within digital video timing standards (such as
+CEA-861).</p>
+<p>An HDMI transmitter takes advantage of these idle intervals. When
+pixel transmission halts between lines or full frames, the transmitter
+switches states to carry auxiliary payloads, specifically multi-channel
+audio data and metadata.</p>
+<h3 id="operating-modes-of-an-hdmi-link">Operating Modes of an HDMI
+Link</h3>
+<p>An HDMI transmission cycles through three distinct operational
+periods across its data lanes:</p>
+<ol type="1">
+<li><strong>Video Data Period:</strong> The transmitter sends
+8b/10b-encoded RGB or YCbCr pixel data.</li>
+<li><strong>Control Period:</strong> The transmitter sends
+synchronization signals (HSYNC and VSYNC) and control preambles using
+specific 2-bit-to-10-bit patterns.</li>
+<li><strong>Data Island Period:</strong> Occurring entirely within the
+HBLANK and VBLANK windows, this mode is used to send audio data, audio
+clock regeneration information, and auxiliary info-frames.</li>
+</ol>
+<h3 id="audio-clock-regeneration-acr">Audio Clock Regeneration
+(ACR)</h3>
+<p>Before raw audio can be embedded, the transmitter must solve the
+problem of clock domain mismatch. Video clocks (pixel clocks) and audio
+clocks (such as 44.1 kHz, 48 kHz, or 192 kHz) are rarely integer
+multiples of one another and operate asynchronously.</p>
+<p>The HDMI transmitter continuously calculates and transmits Audio
+Clock Regeneration packets containing two values:</p>
+<ul>
+<li><strong><span class="math inline">\(N\)</span> (Numerator):</strong>
+A predefined integer matching the audio sample rate.</li>
+<li><strong><span class="math inline">\(CTS\)</span> (Cycle Time
+Stamp):</strong> A counter dynamically measured against the pixel
+clock.</li>
+</ul>
+<p>The receiver uses these <span class="math inline">\(N\)</span> and
+<span class="math inline">\(CTS\)</span> parameters to reconstruct a
+jitter-free audio master clock (<span class="math inline">\(128 \times
+f_s\)</span> or <span class="math inline">\(512 \times f_s\)</span>)
+synchronized to the incoming video pixel clock.</p>
+<h3 id="packetization-of-audio-samples">Packetization of Audio
+Samples</h3>
+<p>Audio enters the HDMI transmitter via standard interfaces such as I2S
+or S/PDIF. The transmitter buffers these incoming linear PCM or encoded
+bitstream (e.g., Dolby Digital, DTS) samples and organizes them into
+standardized 32-byte Data Island packets.</p>
+<p>Each 32-byte packet consists of:</p>
+<ul>
+<li><strong>Header (4 bytes):</strong> 1 byte for the packet type (such
+as Audio Sample Packet or Audio Clock Regeneration), 2 bytes for
+timing/sequence flags, and 1 byte of parity data generated by a
+BCH(32,24) error-correcting code.</li>
+<li><strong>Payload (28 bytes):</strong> Divided into four 7-byte
+subpackets. Each subpacket holds up to one audio sample (up to 24 bits)
+across multiple audio channels, along with validity bits, channel status
+bits, and parity bits.</li>
+</ul>
+<p>Subpackets are protected by an internal BCH(38,28) error-correction
+algorithm to safeguard against bit errors across the physical HDMI
+cable.</p>
+<h3 id="transmission-and-terc4-encoding">Transmission and TERC4
+Encoding</h3>
+<p>When the video stream transitions into a blanking period, the
+transmitter initiates the audio insertion process:</p>
+<ol type="1">
+<li><strong>Preamble and Guard Bands:</strong> The transmitter signals
+the start of a Data Island Period by transmitting a unique 8-pixel
+control preamble, followed by a two-character Data Island Guard Band to
+synchronize the receiver's decoders.</li>
+<li><strong>TERC4 Encoding:</strong> Instead of the standard 8b/10b
+encoding used for video pixels, the transmitter converts the 4-bit
+nibbles of the Data Island packets into 10-bit symbols using TMDS Error
+Reduction Coding (TERC4). TERC4 uses a smaller set of highly
+differentiated symbols optimized to minimize electromagnetic
+interference (EMI) and bit errors.</li>
+<li><strong>Multi-Lane Distribution:</strong> The packet bytes are
+serialized across TMDS Data Channels 1 and 2, while Channel 0 continues
+to carry timing information (HSYNC and VSYNC) along with packet header
+bits.</li>
+<li><strong>Closing Guard Band:</strong> After the packet queue empties
+or the blanking interval ends, the transmitter closes the Data Island
+with a trailing guard band and transitions back to the Control Period or
+resumes the Video Data Period for active pixels.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

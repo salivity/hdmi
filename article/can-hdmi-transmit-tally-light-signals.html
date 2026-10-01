@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Can HDMI Transmit Tally Light Signals? - hdmi</title>
+    <meta name="description" content="While standard HDMI specifications do not natively include a dedicated tally light channel, an HDMI connection can transmit tally signals when using proprietary protocols developed by specific manufacturers. Standard consumer HDMI setups cannot communica">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/can-hdmi-transmit-tally-light-signals">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Can HDMI Transmit Tally Light Signals? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/can-hdmi-transmit-tally-light-signals" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="While standard HDMI specifications do not natively include a dedicated tally light channel, an HDMI connection can transmit tally signals when using proprietary protocols developed by specific manufacturers. Standard consumer HDMI setups cannot communica" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="can-hdmi-transmit-tally-light-signals">Can HDMI Transmit Tally
+Light Signals?</h1>
+<p>While standard HDMI specifications do not natively include a
+dedicated tally light channel, an HDMI connection can transmit tally
+signals when using proprietary protocols developed by specific
+manufacturers. Standard consumer HDMI setups cannot communicate tally
+status between a video switcher and a camera; however, modern live
+production hardware—most notably Blackmagic Design’s ATEM
+ecosystem—leverages the bidirectional communication capabilities of HDMI
+cables to trigger on-screen and hardware tally lights. This article
+explores how HDMI tally transmission works, its limitations, and the
+alternatives available for multi-camera broadcasts.</p>
+<h3 id="the-limitation-of-standard-hdmi">The Limitation of Standard
+HDMI</h3>
+<p>Standard HDMI was engineered primarily for consumer audiovisual
+playback, transmitting high-definition video, multi-channel audio, and
+basic consumer electronics control (CEC). It lacks native support for
+broadcast-grade auxiliary data such as timecode, camera control, and
+tally signaling. Consequently, plugging a generic camera into a standard
+video switcher via HDMI will transmit the video feed to the switcher,
+but the switcher cannot natively send an "on-air" signal back to
+illuminate the camera's tally light.</p>
+<h3 id="how-hdmi-tally-works-in-practice">How HDMI Tally Works in
+Practice</h3>
+<p>Despite the lack of a universal standard, tally signals can be
+transmitted across standard HDMI cables through manufacturer-specific
+communication protocols.</p>
+<p>The most common implementation is found in Blackmagic Design's ATEM
+series (such as the ATEM Mini) paired with compatible cameras (such as
+the Blackmagic Pocket Cinema Camera line). This system utilizes the
+bidirectional data lines within standard HDMI cables—traditionally
+reserved for HDMI-CEC, EDID, or Ethernet—to create a closed
+communication loop.</p>
+<p>Through this proprietary link, the switcher sends commands back to
+the camera. When a camera's input is cut to program (live), the switcher
+transmits a control packet that triggers the camera to:</p>
+<ul>
+<li>Turn the camera’s physical tally LED red (live) or green
+(preview).</li>
+<li>Display a colored border around the camera operator's monitor.</li>
+<li>Adjust internal camera settings remotely, such as shutter speed,
+ISO, and iris.</li>
+</ul>
+<p>This setup requires no special HDMI cables; standard, high-speed HDMI
+cables contain the physical wiring necessary to support the data
+transfer.</p>
+<h3 id="limitations-of-hdmi-for-tally-signals">Limitations of HDMI for
+Tally Signals</h3>
+<p>While effective in compact studio environments, relying on HDMI for
+tally and camera control presents several challenges:</p>
+<ul>
+<li><strong>Ecosystem Lock-In:</strong> Because there is no
+industry-wide standard for HDMI tally, the feature is almost exclusively
+proprietary. An ATEM switcher will not trigger the tally light on a
+Sony, Canon, or Panasonic camera over HDMI.</li>
+<li><strong>Cable Length:</strong> HDMI signals degrade rapidly over
+long distances, typically becoming unreliable beyond 15 to 30 feet (5 to
+10 meters) without active signal boosters or optical conversion. This
+makes it impractical for large-scale broadcast studios or arena
+productions.</li>
+<li><strong>Connector Durability:</strong> HDMI connectors lack locking
+mechanisms, making them prone to accidental disconnections during live
+productions.</li>
+</ul>
+<h3 id="alternative-solutions-for-non-proprietary-systems">Alternative
+Solutions for Non-Proprietary Systems</h3>
+<p>For multi-camera setups using mixed brands or traditional broadcast
+cameras, alternative methods are required to send tally signals:</p>
+<ol type="1">
+<li><strong>SDI (Serial Digital Interface):</strong> Broadcast-grade SDI
+connections natively support ancillary data, allowing switchers to embed
+tally and camera control commands directly into the return video feed
+over hundreds of feet.</li>
+<li><strong>Wireless Tally Systems:</strong> External tally boxes mount
+to the camera's hot shoe and receive on-air commands wirelessly from the
+switcher via Wi-Fi, radio frequency, or GPIO trigger boxes.</li>
+<li><strong>GPIO / Contact Closure:</strong> Traditional switchers use
+dedicated tally ports (often DB25 or terminal blocks) wired directly to
+external tally lights or intercom beltpacks, completely bypassing the
+video transmission cable.</li>
+</ol>
+<p>In conclusion, an HDMI connection can transmit tally light signals,
+but only when both the switcher and the camera share a proprietary
+communication protocol designed to send control data back down the
+cable. Without matching hardware, traditional broadcast connections like
+SDI or independent tally systems remain necessary.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Pre-Emphasis and De-Emphasis Explained - hdmi</title>
+    <meta name="description" content="High-speed HDMI signals degrade as they travel through copper cables due to high-frequency attenuation and dielectric losses, resulting in signal distortion known as inter-symbol interference. To combat this issue, HDMI transmitters use signal conditioni">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-pre-emphasis-and-de-emphasis-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Pre-Emphasis and De-Emphasis Explained - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-pre-emphasis-and-de-emphasis-explained" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="High-speed HDMI signals degrade as they travel through copper cables due to high-frequency attenuation and dielectric losses, resulting in signal distortion known as inter-symbol interference. To combat this issue, HDMI transmitters use signal conditioni" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-pre-emphasis-and-de-emphasis-explained">HDMI Pre-Emphasis
+and De-Emphasis Explained</h1>
+<p>High-speed HDMI signals degrade as they travel through copper cables
+due to high-frequency attenuation and dielectric losses, resulting in
+signal distortion known as inter-symbol interference. To combat this
+issue, HDMI transmitters use signal conditioning techniques called
+pre-emphasis and de-emphasis. This article explains how transmitter-side
+equalization counteracts cable losses, how pre-emphasis and de-emphasis
+function at the physical layer, and how these mechanisms ensure clear
+signal reception at the display.</p>
+<h3 id="cable-losses-and-inter-symbol-interference">Cable Losses and
+Inter-Symbol Interference</h3>
+<p>Copper HDMI cables act as low-pass filters. As data rates
+climb—reaching up to 18 Gbps in HDMI 2.0 (TMDS) and 48 Gbps in HDMI 2.1
+(Fixed Rate Link, or FRL)—two primary factors cause signal
+degradation:</p>
+<ul>
+<li><strong>Skin Effect:</strong> Higher-frequency signals travel
+primarily along the outer surface of a conductor, increasing resistance
+at high frequencies.</li>
+<li><strong>Dielectric Loss:</strong> The insulating material
+surrounding the conductors absorbs signal energy, which escalates
+rapidly as frequency increases.</li>
+</ul>
+<p>Because high-frequency components attenuate faster than low-frequency
+components, rapid signal transitions (edges) flatten out over distance.
+When a single bit does not have enough time to settle before the next
+bit begins, energy spills over into adjacent bit periods. This is called
+inter-symbol interference (ISI), and it causes the signal's "eye
+diagram" to close, making it impossible for the receiver to reliably
+distinguish between binary 1s and 0s.</p>
+<h3 id="how-pre-emphasis-works">How Pre-Emphasis Works</h3>
+<p>Pre-emphasis equalizes the signal by actively boosting high-frequency
+components before the signal leaves the transmitter.</p>
+<p>In digital video streams, high frequencies correspond to transitions
+(changing from a 0 to a 1, or from a 1 to a 0), while low frequencies
+correspond to consecutive identical bits (such as a string of 1s or
+0s).</p>
+<p>When pre-emphasis is applied:</p>
+<ol type="1">
+<li>The transmitter detects a bit transition.</li>
+<li>It increases the voltage swing for the first bit period following
+the transition above the nominal level.</li>
+<li>If the signal remains at that logic level for subsequent bits, the
+voltage returns to the normal level.</li>
+</ol>
+<p>When this boosted transition travels through the cable, the channel's
+natural high-frequency attenuation reduces the boosted edge back down to
+nominal amplitude. As a result, the signal arrives at the receiver
+balanced across all frequencies.</p>
+<h3 id="how-de-emphasis-works">How De-Emphasis Works</h3>
+<p>De-emphasis achieves the same relative frequency balancing as
+pre-emphasis, but it does so by attenuating low frequencies instead of
+boosting high frequencies.</p>
+<p>When de-emphasis is applied:</p>
+<ol type="1">
+<li>The transition bit (the first bit after a logic change) is driven at
+the full nominal voltage swing.</li>
+<li>Any subsequent consecutive bits at the same logic level are driven
+at a reduced, attenuated voltage.</li>
+</ol>
+<p>In HDMI transmitter design, de-emphasis is frequently preferred over
+pure pre-emphasis. Driving transitions at higher voltages requires extra
+headroom, consumes more power, and can cause electromagnetic
+interference (EMI) or cross-talk between adjacent differential pairs.
+De-emphasis maintains the nominal peak-to-peak voltage limits while
+achieving the relative high-frequency boost required to overcome channel
+loss.</p>
+<h3 id="physical-layer-implementation">Physical Layer
+Implementation</h3>
+<p>HDMI transmitters implement pre-emphasis and de-emphasis within their
+Current-Mode Logic (CML) output drivers using a tapped delay line,
+functionally behaving as a Finite Impulse Response (FIR) filter.</p>
+<p>A typical two-tap or three-tap FIR filter setup includes:</p>
+<ul>
+<li><strong>Main Tap (<span
+class="math inline">\(C_0\)</span>):</strong> Drives the current bit
+value.</li>
+<li><strong>Post Tap (<span
+class="math inline">\(C_1\)</span>):</strong> Evaluates the immediately
+preceding bit to adjust the current bit's amplitude depending on whether
+a transition occurred.</li>
+<li><strong>Pre Tap (<span
+class="math inline">\(C_{-1}\)</span>):</strong> In advanced standards
+like HDMI 2.1 FRL, a pre-tap may be used to counteract pre-cursor ISI by
+shaping the signal immediately before a transition.</li>
+</ul>
+<p>The transmitter’s internal digital logic continuously evaluates the
+incoming bitstream. When a transition occurs, auxiliary current sources
+inside the CML driver switch on or off. By summing or subtracting these
+auxiliary currents with the primary driver current, the transmitter
+dynamically modulates the differential output voltage across the
+termination resistors.</p>
+<h3 id="equalization-in-hdmi-standards">Equalization in HDMI
+Standards</h3>
+<p>In older HDMI implementations (HDMI 1.4/2.0 using TMDS), transmitters
+often use fixed equalization profiles designed to handle standard cable
+lengths.</p>
+<p>Under the HDMI 2.1 specification, the Fixed Rate Link (FRL)
+architecture introduces a formalized link training process:</p>
+<ol type="1">
+<li>The transmitter and receiver (sink) exchange capability
+information.</li>
+<li>The transmitter sends test patterns using predefined Transmitter
+Equalization (TX EQ) presets containing specific ratios of pre-emphasis
+and de-emphasis.</li>
+<li>The sink measures the bit error rate (BER) and eye opening, then
+requests specific adjustments until an optimal balance is achieved.</li>
+</ol>
+<p>Through this coordinated filtering, the HDMI transmitter distorts the
+signal in the exact inverse shape of the cable's loss profile,
+delivering an open eye and error-free video to the display.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

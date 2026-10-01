@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding HDMI eARC Lip-Sync Correction - hdmi</title>
+    <meta name="description" content="The mandatory lip-sync correction mechanism in the HDMI eARC (Enhanced Audio Return Channel) protocol ensures that audio and video remain perfectly aligned without requiring manual user intervention. Modern displays use complex video processing algorithm">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/understanding-hdmi-e-arc-lip-sync-correction">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Understanding HDMI eARC Lip-Sync Correction - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/understanding-hdmi-e-arc-lip-sync-correction" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The mandatory lip-sync correction mechanism in the HDMI eARC (Enhanced Audio Return Channel) protocol ensures that audio and video remain perfectly aligned without requiring manual user intervention. Modern displays use complex video processing algorithm" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="understanding-hdmi-earc-lip-sync-correction">Understanding HDMI
+eARC Lip-Sync Correction</h1>
+<p>The mandatory lip-sync correction mechanism in the HDMI eARC
+(Enhanced Audio Return Channel) protocol ensures that audio and video
+remain perfectly aligned without requiring manual user intervention.
+Modern displays use complex video processing algorithms that introduce
+noticeable display lag, while external sound systems process
+high-bitrate audio at different speeds. By integrating an automated,
+bidirectional timing handshake into the eARC standard, the protocol
+eliminates the synchronization mismatches that commonly affected older
+connection standards.</p>
+<h3 id="the-problem-with-modern-audio-video-latency">The Problem with
+Modern Audio-Video Latency</h3>
+<p>Modern televisions perform extensive real-time video processing,
+including upscaling, frame interpolation, HDR mapping, and dynamic tone
+mapping. These visual enhancements introduce processing latency,
+delaying the moment a frame is physically displayed on screen.</p>
+<p>Conversely, external audio gear such as AV receivers (AVRs) and
+soundbars process raw audio signals much faster than a television
+renders video frames. In earlier iterations of the Audio Return Channel
+(ARC), dynamic lip-sync correction was merely optional. Because many
+manufacturers chose not to implement it, the audio frequently played
+ahead of the corresponding visual action, forcing users to manually
+adjust millisecond delay sliders in their device settings.</p>
+<h3 id="the-mandatory-shift-in-hdmi-earc">The Mandatory Shift in HDMI
+eARC</h3>
+<p>Under the HDMI 2.1 specification, dynamic lip-sync correction
+transitioned from an optional feature to a mandatory requirement for any
+device certified for eARC.</p>
+<p>If a device advertises eARC capability, it must support the automated
+exchange of timing data. This mandate guarantees baseline
+interoperability across different manufacturers, ensuring that an
+eARC-enabled television from one brand automatically synchronizes with
+an eARC-enabled soundbar or receiver from another.</p>
+<h3 id="how-the-mechanism-operates">How the Mechanism Operates</h3>
+<p>The lip-sync correction mechanism relies on the dedicated
+bidirectional eARC Data Channel (eADC), which runs over the existing
+pins previously allocated for the HDMI Ethernet Channel and standard
+ARC.</p>
+<ol type="1">
+<li><strong>Latency Detection:</strong> The television continuously
+monitors its own internal video processing latency. If the picture mode
+changes—such as switching from a high-processing cinema preset to Auto
+Low Latency Mode (ALLM) for gaming—the television updates its internal
+latency metrics.</li>
+<li><strong>Timing Compensation Exchange:</strong> Through the eADC, the
+television transmits its current video latency values to the connected
+audio processor.</li>
+<li><strong>Dynamic Buffer Adjustment:</strong> The audio receiver reads
+these timing packets and dynamically adjusts its internal audio delay
+buffer in real time, holding the audio signal for the exact duration
+required for the video frame to appear.</li>
+</ol>
+<h3 id="real-world-benefits">Real-World Benefits</h3>
+<p>By enforcing this mechanism at the protocol level, eARC reliably
+handles high-bandwidth, uncompressed formats—such as 8-channel
+uncompressed LPCM, Dolby TrueHD, and DTS-HD Master Audio, as well as
+object-based formats like Dolby Atmos and DTS:X—without timing drift.
+Spoken dialogue matches mouth movements automatically, regardless of
+changing frame rates, content resolutions, or display processing
+modes.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

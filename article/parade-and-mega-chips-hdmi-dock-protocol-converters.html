@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parade and MegaChips HDMI Dock Protocol Converters - hdmi</title>
+    <meta name="description" content="This article provides an overview of protocol converters manufactured by Parade Technologies and MegaChips (now part of Kinetic Technologies) that are commonly embedded within modern USB-C and Thunderbolt HDMI docks. It explores the technical function of">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/parade-and-mega-chips-hdmi-dock-protocol-converters">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Parade and MegaChips HDMI Dock Protocol Converters - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/parade-and-mega-chips-hdmi-dock-protocol-converters" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides an overview of protocol converters manufactured by Parade Technologies and MegaChips (now part of Kinetic Technologies) that are commonly embedded within modern USB-C and Thunderbolt HDMI docks. It explores the technical function of" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="parade-and-megachips-hdmi-dock-protocol-converters">Parade and
+MegaChips HDMI Dock Protocol Converters</h1>
+<p>This article provides an overview of protocol converters manufactured
+by Parade Technologies and MegaChips (now part of Kinetic Technologies)
+that are commonly embedded within modern USB-C and Thunderbolt HDMI
+docks. It explores the technical function of these integrated circuits,
+why they are essential for translating native DisplayPort streams into
+HDMI video signals, and how popular chipsets such as the Parade
+PS176/PS186 and MegaChips MCDP28xx/MCDP29xx series govern display
+resolutions, refresh rates, and copy protection.</p>
+<h3 id="the-purpose-of-a-protocol-converter-in-an-hdmi-dock">The Purpose
+of a Protocol Converter in an HDMI Dock</h3>
+<p>Most modern computing devices output video over USB-C or Thunderbolt
+ports using DisplayPort Alternate Mode (DP Alt Mode). However, consumer
+displays, televisions, and projectors predominantly rely on HDMI
+interfaces. Because DisplayPort and HDMI use fundamentally different
+signaling methods—packet-based low-voltage differential signaling for
+DisplayPort and Transition-Minimized Differential Signaling (TMDS) or
+Fixed Rate Link (FRL) for HDMI—a host device cannot simply reroute
+electrical pins to output HDMI video.</p>
+<p>A protocol converter (also referred to as an active bridge or
+retiming converter) acts as a hardware bridge. Embedded directly onto
+the dock's printed circuit board (PCB), it demultiplexes incoming
+DisplayPort video, audio, and auxiliary data streams and re-encodes them
+into standard HDMI output formats in real time with minimal latency.</p>
+<h3 id="common-parade-technologies-protocol-converters">Common Parade
+Technologies Protocol Converters</h3>
+<p>Parade Technologies is one of the most widespread silicon providers
+for display adapters and docking stations. Their converters are renowned
+for integrated jitter cleaners and robust signal integrity
+management.</p>
+<ul>
+<li><strong>Parade PS176:</strong> A widely used DP 1.2a to HDMI 2.0b
+protocol converter. It supports data rates up to 5.4 Gbps per lane
+across 4 lanes, enabling 4K UHD resolutions at 60Hz. It handles HDCP 1.4
+to HDCP 2.2 cross-conversion and includes an on-chip microprocessor for
+firmware updates.</li>
+<li><strong>Parade PS186:</strong> An upgraded version designed for DP
+1.4a to HDMI 2.0b conversion. It introduces support for High Dynamic
+Range (HDR) static metadata pass-through and lower power consumption
+profiles suitable for compact, bus-powered travel docks.</li>
+<li><strong>Parade PS196:</strong> A newer-generation converter
+engineered for HDMI 2.1 docks, capable of converting DP 1.4 or DP 2.0
+signals into HDMI 2.1 Fixed Rate Link (FRL), allowing docks to deliver
+resolutions up to 8K at 60Hz or 4K at 120Hz.</li>
+</ul>
+<h3
+id="common-megachips-kinetic-technologies-protocol-converters">Common
+MegaChips (Kinetic Technologies) Protocol Converters</h3>
+<p>MegaChips developed high-performance display processing chips, an
+intellectual property portfolio that later transitioned under Kinetic
+Technologies. Their converters are commonly found in commercial docking
+hubs from brands like Dell, Lenovo, and HP.</p>
+<ul>
+<li><strong>MegaChips MCDP2800 / MCDP2850:</strong> These chips convert
+DisplayPort 1.2 to HDMI 1.4b or HDMI 2.0. They are engineered with
+deep-color processing and audio stream format conversions (such as
+multi-channel LPCM, Dolby Digital, and DTS).</li>
+<li><strong>MegaChips MCDP2900:</strong> A ubiquitous DP 1.4 to HDMI
+2.0b active converter. It features an integrated ARM Cortex-M0 processor
+to manage secure firmware execution, Consumer Electronics Control (CEC)
+tunneling, and conversions between DisplayPort HDCP 2.2/1.3 and HDMI
+HDCP 2.2/1.4. The MCDP2900 supports full 4K UHD at 60Hz with 24-bit
+RGB/YCbCr 4:4:4 or 12-bit HDR formats.</li>
+</ul>
+<h3 id="core-functions-managed-by-these-converters">Core Functions
+Managed by These Converters</h3>
+<p>Beyond basic signal translation, these chips oversee several
+essential operations within a dock:</p>
+<ul>
+<li><strong>HDCP Handshaking:</strong> They negotiate High-bandwidth
+Digital Content Protection between the host OS and the display,
+decrypting incoming DisplayPort content streams and re-encrypting them
+via HDMI-compliant HDCP keys.</li>
+<li><strong>Clock and Data Recovery (CDR):</strong> They clean degraded
+high-speed signals over long cable runs, reducing jitter before
+transmitting the signal to the external monitor.</li>
+<li><strong>Audio Protocol Translation:</strong> They map DisplayPort
+audio packets into the standard HDMI audio sample packets, maintaining
+sync with video frames.</li>
+<li><strong>Firmware Adaptability:</strong> Most include integrated
+flash memory or SPI interfaces, enabling dock manufacturers to update
+the converter's firmware to resolve display compatibility quirks with
+specific monitors or operating systems.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Early Digital TVs Had 5% Overscan on HDMI - hdmi</title>
+    <meta name="description" content="Early flat-panel televisions frequently applied an intentional 5% crop around the perimeter of the screen, even when receiving pristine digital signals via HDMI. While modern displays natively map digital pixels directly to screen pixels, transitional di">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/why-early-digital-t-vs-had-5-overscan-on-hdmi">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Early Digital TVs Had 5% Overscan on HDMI - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/why-early-digital-t-vs-had-5-overscan-on-hdmi" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Early flat-panel televisions frequently applied an intentional 5% crop around the perimeter of the screen, even when receiving pristine digital signals via HDMI. While modern displays natively map digital pixels directly to screen pixels, transitional di" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-early-digital-tvs-had-5-overscan-on-hdmi">Why Early Digital
+TVs Had 5% Overscan on HDMI</h1>
+<p>Early flat-panel televisions frequently applied an intentional 5%
+crop around the perimeter of the screen, even when receiving pristine
+digital signals via HDMI. While modern displays natively map digital
+pixels directly to screen pixels, transitional displays carried over an
+analog-era practice known as overscan. This article explains the
+technical constraints, broadcast inconsistencies, and shared hardware
+pipelines that caused early digital displays to default to cropping full
+digital pictures.</p>
+<h3 id="the-crt-legacy-and-edge-garbage">The CRT Legacy and Edge
+Garbage</h3>
+<p>Overscan originated with cathode-ray tube (CRT) displays. Due to
+variations in component tolerance, power supply fluctuation, and
+magnetic field interference, CRTs could not reliably position the
+electron beam at the exact physical borders of the glass. Manufacturers
+combated this by designing tubes to project an image approximately 5% to
+10% larger than the visible screen area, ensuring users never saw black
+borders.</p>
+<p>Broadcasters adapted to this hardware quirk by treating the outer
+edges of the frame as invisible. They frequently embedded operational
+data into these margins, including closed caption data, timecodes,
+teletext, and vertical blanking interval (VBI) signals. Additionally,
+analog tape switching often left jagged, discolored edges or flickering
+lines at the top and bottom of standard-definition and early
+high-definition footage.</p>
+<h3 id="preventing-customer-support-inquiries">Preventing Customer
+Support Inquiries</h3>
+<p>When flat-panel LCD and plasma screens entered the consumer market
+with native HDMI ports, broadcast content had not fully modernized.
+While the HDMI cable provided an uncompressed, purely digital pipeline,
+the video feeding it was often legacy-produced content scaled up by
+cable set-top boxes.</p>
+<p>If an early digital television displayed an exact pixel-to-pixel
+(1:1) mapping of an incoming feed, viewers would routinely see blinking
+data pixels, jagged analog edge noise, or asymmetric black bars along
+the sides of the picture. Consumers who saw these artifacts did not
+blame the broadcaster; they assumed the new, expensive television was
+defective. To eliminate high product return rates and reduce customer
+service calls, manufacturers retained the standard 5% zoom to hide
+uncurated screen edges by default.</p>
+<h3 id="shared-video-scaler-hardware">Shared Video Scaler Hardware</h3>
+<p>Early digital televisions were hybrid devices built to accept a wide
+variety of inputs, ranging from legacy RF and composite cables to
+component video and HDMI. Designing separate video processing
+architectures for analog and digital inputs was cost-prohibitive.</p>
+<p>Consequently, display manufacturers routed all incoming video through
+a unified scalar chip. The scaler operated under a single master profile
+that applied universal global processing—including de-interlacing, color
+correction, and a 2.5% to 5% scaling factor—before sending the raster to
+the flat-panel matrix. Even though the HDMI port accepted a native 720p
+or 1080i signal, the internal processor still routed it through the
+legacy pipeline that applied overscan interpolation.</p>
+<h3 id="the-shift-to-native-dot-by-dot-display">The Shift to Native
+"Dot-by-Dot" Display</h3>
+<p>The inclusion of HDMI overscan caused notable issues when users began
+connecting personal computers and video game consoles to HDTVs. Unlike
+broadcast video, computer operating systems place crucial interface
+elements, such as the taskbar and close buttons, along the extreme
+perimeter of the display. Overscan cut these UI elements off entirely
+and forced the display to interpolate pixels, degrading text clarity and
+rendering images soft.</p>
+<p>As broadcasters phased out analog equipment and mastered all content
+inside a clean digital canvas, the need for overscan diminished.
+Manufacturers gradually updated television firmware to include
+selectable scaling modes, branded under names like "Dot by Dot," "Just
+Scan," "Screen Fit," or "1:1 Mapping." By the time 1080p and 4K UHD
+became standard, TVs began automatically disabling overscan for native
+digital sources, rendering the 5% buffer an obsolete remnant of analog
+engineering.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

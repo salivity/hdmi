@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JPEG 2000 vs SDVoE Latency in HDMI Over IP - hdmi</title>
+    <meta name="description" content="When deploying HDMI over IP systems, latency is a critical performance metric governed largely by the compression technology used. This article examines the latency performance of JPEG 2000 versus SDVoE (Software Defined Video Over Ethernet), detailing h">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/jpeg-2000-vs-sd-vo-e-latency-in-hdmi-over-ip">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="JPEG 2000 vs SDVoE Latency in HDMI Over IP - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/jpeg-2000-vs-sd-vo-e-latency-in-hdmi-over-ip" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When deploying HDMI over IP systems, latency is a critical performance metric governed largely by the compression technology used. This article examines the latency performance of JPEG 2000 versus SDVoE (Software Defined Video Over Ethernet), detailing h" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="jpeg-2000-vs-sdvoe-latency-in-hdmi-over-ip">JPEG 2000 vs SDVoE
+Latency in HDMI Over IP</h1>
+<p>When deploying HDMI over IP systems, latency is a critical
+performance metric governed largely by the compression technology used.
+This article examines the latency performance of JPEG 2000 versus SDVoE
+(Software Defined Video Over Ethernet), detailing how their underlying
+compression methods operate, their exact latency figures, and how this
+performance gap affects real-world audio/visual environments.</p>
+<h2 id="compression-architecture-frame-based-vs-line-based">Compression
+Architecture: Frame-Based vs. Line-Based</h2>
+<p>The latency difference between JPEG 2000 and SDVoE stems primarily
+from how each technology processes video data.</p>
+<ul>
+<li><strong>JPEG 2000 (Frame-Based):</strong> JPEG 2000 uses discrete
+wavelet transform (DWT) technology to compress images mathematically.
+Because it compresses whole images rather than individual lines, an
+encoder must buffer an entire frame of video before it can process,
+compress, and transmit the packet over the network. The decoder at the
+receiving end must then perform the reverse process before displaying
+the frame.</li>
+<li><strong>SDVoE (Line-Based):</strong> SDVoE is built upon line-based
+compression technology (typically using the AptoVision chipset). Rather
+than waiting for a full frame to buffer, SDVoE processes and transmits
+video line by line. Video lines are packetized and streamed almost
+instantaneously across the network switch.</li>
+</ul>
+<h2 id="quantitative-latency-comparison">Quantitative Latency
+Comparison</h2>
+<p>The mechanical difference between full-frame buffering and
+line-by-line processing yields a substantial latency contrast:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Metric</th>
+<th style="text-align: left;">JPEG 2000</th>
+<th style="text-align: left;">SDVoE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Typical Latency</strong></td>
+<td style="text-align: left;">17 ms to 50 ms (1 to 2+ frames)</td>
+<td style="text-align: left;">&lt; 100 microseconds (&lt; 0.1 ms)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Network Requirement</strong></td>
+<td style="text-align: left;">Typically 1 Gbps</td>
+<td style="text-align: left;">Typically 10 Gbps</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Processing Method</strong></td>
+<td style="text-align: left;">Full-frame wavelet encoding</td>
+<td style="text-align: left;">Line-based streaming / uncompressed</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Perceptibility</strong></td>
+<td style="text-align: left;">Noticeable in interactive setups</td>
+<td style="text-align: left;">Zero-latency / Imperceptible</td>
+</tr>
+</tbody>
+</table>
+<h3 id="jpeg-2000-latency-details">JPEG 2000 Latency Details</h3>
+<p>At 60 frames per second (fps), a single video frame lasts
+approximately 16.67 milliseconds. Because JPEG 2000 requires buffering
+on both the encode and decode ends, total system latency rarely drops
+below one full frame (approx. 17 ms) and commonly stretches to two or
+three frames (33 ms to 50 ms). If network jitter buffers or video
+scaling are introduced into the signal chain, latency can exceed 60
+ms.</p>
+<h3 id="sdvoe-latency-details">SDVoE Latency Details</h3>
+<p>SDVoE avoids frame buffering entirely for native resolutions. It
+transmits video at the microsecond level—generally under 100
+microseconds (0.1 ms), which represents a fraction of a single video
+frame line. Even when performing scaling, color space conversion, or
+audio downmixing, SDVoE introduces virtually zero perceptible delay.</p>
+<h2 id="real-world-application-impacts">Real-World Application
+Impacts</h2>
+<p>The latency gap dictates which technology is suitable for specific AV
+environments:</p>
+<ul>
+<li><strong>Interactive Computing and KVM:</strong> Applications
+requiring real-time mouse and keyboard tracking (KVM) suffer
+significantly under JPEG 2000. A delay of 30–50 ms causes a tangible
+"spongy" or sluggish feel during cursor movements. SDVoE provides
+real-time response indistinguishable from a direct local HDMI cable
+connection.</li>
+<li><strong>Live Events and In-Room Monitoring:</strong> When projecting
+a live speaker onto an in-room display (image magnification, or IMAG),
+JPEG 2000's latency causes visible lip-sync mismatch and a noticeable
+echo effect between the physical speaker and the screen. SDVoE delivers
+the image instantaneously, eliminating lip-sync discrepancies.</li>
+<li><strong>Medical and Mission-Critical Operations:</strong> Operating
+rooms, financial trading floors, and high-stakes military control rooms
+require instantaneous visual feedback. SDVoE is standard in these
+environments because operators cannot tolerate the delay of
+frame-buffered codecs.</li>
+<li><strong>Passive Signage and General Distribution:</strong> For
+digital signage, background video distribution, or sports bars where
+viewers are not interacting directly with the system, JPEG 2000’s
+latency of 1 to 2 frames is generally unnoticeable. In these
+applications, JPEG 2000's ability to operate on cheaper, ubiquitous 1
+Gbps network switches often outweighs the need for the sub-millisecond
+performance of SDVoE's 10 Gbps infrastructure.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

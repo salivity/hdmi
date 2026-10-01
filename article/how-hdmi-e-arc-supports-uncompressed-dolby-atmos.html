@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI eARC Supports Uncompressed Dolby Atmos - hdmi</title>
+    <meta name="description" content="HDMI Enhanced Audio Return Channel (eARC) achieves the massive bandwidth required for uncompressed, object-based audio formats like Dolby Atmos and DTS:X by fundamentally overhauling the physical and logical data transmission structure used in legacy HDM">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-e-arc-supports-uncompressed-dolby-atmos">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI eARC Supports Uncompressed Dolby Atmos - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-e-arc-supports-uncompressed-dolby-atmos" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI Enhanced Audio Return Channel (eARC) achieves the massive bandwidth required for uncompressed, object-based audio formats like Dolby Atmos and DTS:X by fundamentally overhauling the physical and logical data transmission structure used in legacy HDM" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-earc-supports-uncompressed-dolby-atmos">How HDMI eARC
+Supports Uncompressed Dolby Atmos</h1>
+<p>HDMI Enhanced Audio Return Channel (eARC) achieves the massive
+bandwidth required for uncompressed, object-based audio formats like
+Dolby Atmos and DTS:X by fundamentally overhauling the physical and
+logical data transmission structure used in legacy HDMI ARC. By
+replacing the low-bandwidth single-wire transmission of traditional ARC
+with a high-speed differential data channel over dedicated pins, eARC
+elevates audio throughput from approximately 1 Mbps up to 37 Mbps. This
+expanded capacity allows televisions to pass pristine, high-bitrate
+bitstreams—such as Dolby TrueHD and DTS-HD Master Audio containing
+spatial metadata—directly to AV receivers and soundbars without
+compression, downmixing, or reliance on external source-switching
+hardware.</p>
+<h3 id="overcoming-the-bottleneck-of-legacy-arc">Overcoming the
+Bottleneck of Legacy ARC</h3>
+<p>Traditional HDMI ARC (Audio Return Channel) was introduced under the
+HDMI 1.4 specification to reduce cable clutter. However, it was
+constrained by its physical architecture. Legacy ARC transmits audio
+over a single-ended signal using pin 14 (Utility) referenced to ground.
+This design limited standard ARC to an effective bandwidth of roughly 1
+to 3 Mbps.</p>
+<p>While sufficient for uncompressed two-channel stereo PCM or lossy,
+compressed 5.1 surround sound (such as standard Dolby Digital or DTS),
+legacy ARC cannot accommodate the uncompressed eight-channel PCM or
+high-bitrate lossless containers required for studio-quality
+object-based spatial audio. When standard ARC handles Dolby Atmos, it is
+strictly limited to the lossy Dolby Digital Plus container.</p>
+<h3 id="the-differential-pair-architecture">The Differential Pair
+Architecture</h3>
+<p>Introduced as part of the HDMI 2.1 specification, eARC solves this
+bandwidth bottleneck by repurposing two pins within standard High-Speed
+HDMI cables (with Ethernet) and Ultra High-Speed HDMI cables:</p>
+<ul>
+<li><strong>Pin 14:</strong> Utility / HEAC+ (HDMI Ethernet and Audio
+Return Channel positive)</li>
+<li><strong>Pin 19:</strong> Hot Plug Detect / HEAC- (Hot Plug Detect
+and Audio Return Channel negative)</li>
+</ul>
+<p>Instead of using a single-ended signal susceptible to electromagnetic
+interference, eARC binds these two conductors into a shielded twisted
+pair that operates as a high-speed differential transmission line. By
+measuring the difference in voltage between the two lines rather than
+comparing a single wire to ground, eARC drastically reduces noise
+susceptibility and signal degradation. This differential signaling
+enables high-frequency transmissions without radiating excessive
+interference into adjacent high-speed video channels.</p>
+<h3
+id="bidirectional-common-mode-signaling-and-clock-recovery">Bidirectional
+Common-Mode Signaling and Clock Recovery</h3>
+<p>eARC operates using a two-tier signaling structure that balances data
+transmission with device communication:</p>
+<ol type="1">
+<li><strong>Differential Mode (eARC Data Channel):</strong> Transmits
+the high-speed forward audio stream from the display to the audio
+receiver. The audio data is packetized into IEC 60958/IEC 61937 frames,
+running at clock rates high enough to deliver raw throughput of up to 37
+Mbps.</li>
+<li><strong>Common-Mode Data Channel (eARC Discovery and
+Control):</strong> Simultaneously, low-frequency control signals travel
+over the same pair in common mode. This bidirectional channel allows the
+TV and audio processor to detect each other, negotiate capabilities,
+perform handshakes, and synchronize clocks without relying on HDMI
+Consumer Electronics Control (CEC).</li>
+</ol>
+<p>Because eARC embeds clock recovery directly within the differential
+audio stream, the receiver can reconstruct the master audio clock with
+minimal jitter. This phase alignment is crucial for passing
+wide-bandwidth, multi-channel uncompressed audio streams reliably.</p>
+<h3 id="transporting-uncompressed-dolby-atmos-and-dtsx">Transporting
+Uncompressed Dolby Atmos and DTS:X</h3>
+<p>Neither Dolby Atmos nor DTS:X is a discrete audio format on its own;
+rather, both are spatial metadata extensions mapped over underlying
+audio codecs.</p>
+<ul>
+<li><strong>Dolby Atmos</strong> in its uncompressed form is embedded
+within a <strong>Dolby TrueHD</strong> stream. A full TrueHD bitstream
+with Atmos metadata requires dynamic bandwidth varying between 8 Mbps
+and 18 Mbps, far exceeding legacy ARC limits.</li>
+<li><strong>DTS:X</strong> relies similarly on the <strong>DTS-HD Master
+Audio</strong> container, which peaks at comparable bitrates up to 24.5
+Mbps.</li>
+</ul>
+<p>Because eARC provides a consistent 37 Mbps pipe, it easily clears the
+peak bandwidth demands of these lossless codecs. The TV acts as a
+transparent passthrough device: it receives the intact, uncompressed
+bitstream from an onboard app, internal tuner, or connected HDMI source,
+strips the video, and shuttles the complete TrueHD or DTS-HD MA
+container across the differential eARC channel to the processor.</p>
+<p>The audio system receives the exact studio master audio alongside the
+dynamic spatial coordinates, mapping individual sound objects cleanly
+across 3D speaker layouts without dynamic range compression or channel
+downscaling.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

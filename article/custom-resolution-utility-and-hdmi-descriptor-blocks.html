@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Resolution Utility and HDMI Descriptor Blocks - hdmi</title>
+    <meta name="description" content="Custom Resolution Utility (CRU) is a lightweight Windows software application designed to modify display parameters by creating software-level Extended Display Identification Data (EDID) overrides directly within the operating system registry. Rather tha">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/custom-resolution-utility-and-hdmi-descriptor-blocks">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Custom Resolution Utility and HDMI Descriptor Blocks - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/custom-resolution-utility-and-hdmi-descriptor-blocks" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Custom Resolution Utility (CRU) is a lightweight Windows software application designed to modify display parameters by creating software-level Extended Display Identification Data (EDID) overrides directly within the operating system registry. Rather tha" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="custom-resolution-utility-and-hdmi-descriptor-blocks">Custom
+Resolution Utility and HDMI Descriptor Blocks</h1>
+<p>Custom Resolution Utility (CRU) is a lightweight Windows software
+application designed to modify display parameters by creating
+software-level Extended Display Identification Data (EDID) overrides
+directly within the operating system registry. Rather than flashing the
+physical firmware of a monitor or television, CRU alters how the
+graphics driver interprets a display's capabilities, specifically
+targeting CTA-861 extension blocks where HDMI-specific descriptors
+reside. This article explains what CRU is, how EDID communication
+functions, and the precise technical mechanisms CRU uses to manipulate
+HDMI display descriptor blocks to unlock custom resolutions, refresh
+rates, FreeSync ranges, and color formats.</p>
+<h2 id="what-is-custom-resolution-utility">What is Custom Resolution
+Utility?</h2>
+<p>Custom Resolution Utility is a specialized tool developed by ToastyX
+that allows users to define custom display resolutions, adjust detailed
+timing parameters, and configure advanced display capabilities. When a
+monitor connects to a PC via HDMI or DisplayPort, it transmits a
+standardized data structure called EDID to the graphics processing unit
+(GPU). The operating system and GPU drivers read this metadata to
+determine supported resolutions, refresh rates, color spaces, and audio
+formats.</p>
+<p>CRU intercepts this process. Instead of modifying the physical EEPROM
+chip on the display, CRU writes synthetic EDID data to the Windows
+Registry. When the graphics driver initializes, it reads the registry
+override instead of the raw data supplied by the monitor, allowing users
+to bypass vendor-imposed software limitations.</p>
+<h2 id="understanding-edid-and-hdmi-extension-blocks">Understanding EDID
+and HDMI Extension Blocks</h2>
+<p>A standard EDID structure consists of a base 128-byte block. Because
+legacy EDID architecture predates modern digital display standards like
+HDMI and DisplayPort, it contains limited space for advanced features.
+Modern displays use extension blocks to provide supplementary
+metadata.</p>
+<p>HDMI features are defined in the <strong>CTA-861 (formerly CEA-861)
+Extension Block</strong>, which typically occupies a second 128-byte
+block (or multiple blocks). Within this extension block lies the
+<strong>Data Block Collection (DBC)</strong>, which stores specialized
+descriptor payloads, including:</p>
+<ul>
+<li><strong>HDMI Vendor-Specific Data Block (HDMI VSDB):</strong>
+Identified by the IEEE Registration Identifier <code>0x000C03</code>,
+this block specifies HDMI 1.4b capabilities, including maximum TMDS
+clock rates, 3D video formats, deep color support (10-bit, 12-bit), and
+latency compensation.</li>
+<li><strong>HDMI Forum Vendor-Specific Data Block (HF-VSDB):</strong>
+Identified by the IEEE Registration Identifier <code>0xC45DD8</code>,
+this block handles HDMI 2.0+ and 2.1 features, including 4K at
+60Hz/120Hz support, scrambling, Status and Control Data Channel (SCDC),
+Variable Refresh Rate (VRR), and Auto Low Latency Mode (ALLM).</li>
+<li><strong>Video Data Blocks (VDB):</strong> Define standard CEA
+resolutions and timings (e.g., 1080p at 60Hz, 4K at 60Hz).</li>
+<li><strong>Audio Data Blocks:</strong> Specify supported audio formats
+(such as LPCM, Dolby Digital, or DTS) and channel counts.</li>
+<li><strong>Colorimetry Data Blocks:</strong> Define wide color gamuts
+such as BT.2020 and HDR metadata handling.</li>
+</ul>
+<h2 id="how-cru-manipulates-hdmi-display-descriptor-blocks">How CRU
+Manipulates HDMI Display Descriptor Blocks</h2>
+<p>CRU allows users to surgically modify, add, or delete the descriptor
+blocks within the CTA-861 extension. It manipulates this data through
+several precise steps:</p>
+<h3 id="1-ingesting-and-parsing-display-descriptors">1. Ingesting and
+Parsing Display Descriptors</h3>
+<p>When launched, CRU queries the graphics driver via the Windows
+Application Programming Interface (API) to extract the active EDID block
+hierarchy. It decodes the raw binary data into human-readable
+parameters, separating the base EDID from extension blocks.</p>
+<h3 id="2-modifying-the-hdmi-vendor-specific-payloads">2. Modifying the
+HDMI Vendor-Specific Payloads</h3>
+<p>CRU provides a graphical interface that maps directly to the bitmasks
+and bytes of the HDMI VSDB and HF-VSDB:</p>
+<ul>
+<li><strong>Clock Limit Adjustments:</strong> CRU allows users to modify
+the maximum TMDS clock rate field. Raising or lowering this value
+signals to the GPU whether the HDMI link can handle higher data
+throughput, enabling higher refresh rates or higher resolutions over an
+existing HDMI port.</li>
+<li><strong>Variable Refresh Rate (VRR) / FreeSync Ranges:</strong>
+Within the vendor-specific data blocks, display manufacturers declare
+the minimum and maximum operational refresh rates for adaptive sync. CRU
+allows users to directly edit these integers (e.g., changing a 48–60Hz
+range to 35–60Hz), extending the functional operational window of
+adaptive synchronization.</li>
+<li><strong>Feature Flag Toggling:</strong> CRU alters specific bit
+flags within the descriptor payload, toggling support for Deep Color
+(YCbCr 4:2:0/4:4:4, 10/12-bit), HDMI 2.0 SCDC operational modes, and HDR
+signaling.</li>
+</ul>
+<h3 id="3-reconstructing-and-validating-extension-blocks">3.
+Reconstructing and Validating Extension Blocks</h3>
+<p>Once modifications are applied, CRU re-encodes the structured
+parameters back into raw byte arrays conforming to the CTA-861
+specification. As part of this process:</p>
+<ul>
+<li>It updates the <strong>Data Block Collection header bytes</strong>,
+which contain the block type and payload length tags.</li>
+<li>It automatically recalculates the <strong>checksum byte</strong>
+located at byte offset 127 of the extension block. If the sum of all 128
+bytes in the block does not equal zero modulo 256, the GPU driver will
+reject the EDID as corrupt and fall back to safe generic timings
+(typically 640x480 or 1024x768). CRU ensures the checksum is
+consistently valid.</li>
+</ul>
+<h3 id="4-injecting-the-overrides-into-the-windows-registry">4.
+Injecting the Overrides into the Windows Registry</h3>
+<p>CRU does not interact with the monitor directly; it operates on the
+driver level. Upon saving, CRU writes the modified binary blocks to the
+following registry path:</p>
+<p><code>HKLM\SYSTEM\CurrentControlSet\Enum\DISPLAY\[Monitor Hardware ID]\[Device Instance]\Device Parameters</code></p>
+<p>Under this key, CRU creates or modifies a binary value named
+<code>EDID</code>.</p>
+<h3 id="5-driver-re-enumeration">5. Driver Re-enumeration</h3>
+<p>To apply the changes, CRU includes a helper utility called
+<code>restart.exe</code>, which issues a reset command to the graphics
+display subsystem (DWM and the graphics kernel driver). When the GPU
+driver reloads, it queries the hardware registry key, detects the newly
+written <code>EDID</code> override value, and parses the synthetic HDMI
+descriptor blocks instead of requesting physical data across the I2C/DDC
+channel of the HDMI cable. As a result, the graphics driver immediately
+exposes the new resolutions, refresh rates, and feature sets defined by
+the user.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Supports Ultrawide 21:9 and 32:9 Aspect Ratios - hdmi</title>
+    <meta name="description" content="This article explains how the HDMI standard accommodates ultrawide formats such as 21:9 and 32:9. Modern HDMI connections manage these wide displays by treating them as specific horizontal and vertical pixel grids rather than fixed physical screen shapes">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-supports-ultrawide-21-9-and-32-9-aspect-ratios">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Supports Ultrawide 21:9 and 32:9 Aspect Ratios - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-supports-ultrawide-21-9-and-32-9-aspect-ratios" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how the HDMI standard accommodates ultrawide formats such as 21:9 and 32:9. Modern HDMI connections manage these wide displays by treating them as specific horizontal and vertical pixel grids rather than fixed physical screen shapes" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-supports-ultrawide-219-and-329-aspect-ratios">How HDMI
+Supports Ultrawide 21:9 and 32:9 Aspect Ratios</h1>
+<p>This article explains how the HDMI standard accommodates ultrawide
+formats such as 21:9 and 32:9. Modern HDMI connections manage these wide
+displays by treating them as specific horizontal and vertical pixel
+grids rather than fixed physical screen shapes. Through the
+communication of display metadata (EDID/DisplayID), the expansion of
+data bandwidth across HDMI revisions, and established timing standards,
+HDMI interfaces seamlessly deliver non-standard pixel counts to
+high-performance ultrawide monitors.</p>
+<h3 id="resolution-vs-physical-aspect-ratio">Resolution vs. Physical
+Aspect Ratio</h3>
+<p>HDMI cables and interfaces do not fundamentally transmit an "aspect
+ratio." Instead, HDMI transmits raw digital video data composed of total
+horizontal pixels, total vertical pixels, refresh rates, and color
+depth.</p>
+<p>The aspect ratio is simply the mathematical proportion of the active
+horizontal pixels to vertical pixels:</p>
+<ul>
+<li><strong>21:9 formats:</strong> Common resolutions include 2560×1080
+(64:27, commercially designated 21:9) and 3440×1440.</li>
+<li><strong>32:9 formats:</strong> Often called "super ultrawide," these
+equate to two standard 16:9 displays placed side-by-side, such as
+3840×1080 (Dual FHD) or 5120×1440 (Dual QHD).</li>
+</ul>
+<p>Because video transmission relies on pixel arrays, an HDMI port can
+output to any display geometry provided the source device (GPU) and
+display agree on the timing configuration and the total data fits within
+the interface's bandwidth.</p>
+<h3 id="edid-and-display-handshaking">EDID and Display Handshaking</h3>
+<p>When an ultrawide monitor connects to a source via HDMI, an exchange
+occurs over the Display Data Channel (DDC) using Extended Display
+Identification Data (EDID) or DisplayID.</p>
+<p>The monitor transmits a block of metadata listing its capabilities to
+the graphics card, including:</p>
+<ol type="1">
+<li><strong>Detailed Timing Descriptors (DTDs):</strong> Exact
+parameters for active pixel counts, blanking intervals, synchronization
+pulses, and pixel clock limits.</li>
+<li><strong>Aspect Ratio Signaling:</strong> Starting with CTA-861-F/G
+standards, specific aspect ratio flags for 21:9 and wider formats were
+codified so devices do not default to stretching a 16:9 image.</li>
+</ol>
+<p>Once read, the graphics driver populates the matching ultrawide
+resolution natively in the operating system's display settings.</p>
+<h3 id="bandwidth-across-hdmi-generations">Bandwidth Across HDMI
+Generations</h3>
+<p>An ultrawide aspect ratio requires significantly more pixel
+throughput than a standard 16:9 equivalent at the same vertical
+resolution. The viability of running 21:9 or 32:9 screens depends
+entirely on the HDMI version:</p>
+<ul>
+<li><strong>HDMI 1.4 (10.2 Gbps):</strong> Limited bandwidth means
+running a 3440×1440 (21:9) panel usually restricts refresh rates to 30Hz
+or 50Hz.</li>
+<li><strong>HDMI 2.0 (18 Gbps):</strong> Introduced native CTA-861-F
+support for 21:9 video formats and provided sufficient bandwidth to
+handle 3440×1440 at 60Hz and 3840×1080 (32:9) at 60Hz using standard
+8-bit RGB color.</li>
+<li><strong>HDMI 2.1 (48 Gbps):</strong> Replaced Transition-Minimized
+Differential Signaling (TMDS) with Fixed Rate Link (FRL). This enables
+super-ultrawide 5120×1440 (32:9) panels to run at 120Hz or 240Hz, and
+supports "Dual 4K" (7680×2160) configurations. HDMI 2.1 also supports
+Display Stream Compression (DSC 1.2a), visually lossless compression
+that fits massive ultrawide resolutions and high refresh rates within
+the cable's physical throughput limit.</li>
+</ul>
+<h3 id="custom-timings-and-driver-handling">Custom Timings and Driver
+Handling</h3>
+<p>If a specific ultrawide aspect ratio is not hardcoded into a
+display’s primary EDID blocks, modern display drivers (NVIDIA, AMD,
+Intel) allow the creation of custom resolutions over HDMI. By entering
+manual timing parameters—such as Coordinated Video Timings-Reduced
+Blanking (CVT-RB)—users can eliminate non-visible timing overhead. This
+minimizes the required pixel clock frequency, enabling higher refresh
+rates or wider horizontal pixel bands over an existing HDMI link without
+signal degradation.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

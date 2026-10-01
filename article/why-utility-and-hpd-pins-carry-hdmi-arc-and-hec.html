@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Utility and HPD Pins Carry HDMI ARC and HEC - hdmi</title>
+    <meta name="description" content="When the HDMI 1.4 specification introduced the Audio Return Channel (ARC) and the HDMI Ethernet Channel (HEC), engineers faced the challenge of adding bidirectional data transmission without altering the physical 19-pin connector. The solution was pairin">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/why-utility-and-hpd-pins-carry-hdmi-arc-and-hec">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Utility and HPD Pins Carry HDMI ARC and HEC - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/why-utility-and-hpd-pins-carry-hdmi-arc-and-hec" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When the HDMI 1.4 specification introduced the Audio Return Channel (ARC) and the HDMI Ethernet Channel (HEC), engineers faced the challenge of adding bidirectional data transmission without altering the physical 19-pin connector. The solution was pairin" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-utility-and-hpd-pins-carry-hdmi-arc-and-hec">Why Utility and
+HPD Pins Carry HDMI ARC and HEC</h1>
+<p>When the HDMI 1.4 specification introduced the Audio Return Channel
+(ARC) and the HDMI Ethernet Channel (HEC), engineers faced the challenge
+of adding bidirectional data transmission without altering the physical
+19-pin connector. The solution was pairing Pin 14 (Utility) and Pin 19
+(Hot Plug Detect) into a shared differential transmission line known as
+HEAC (HDMI Ethernet and Audio Return Channel). This configuration
+allowed HDMI cables to carry high-speed networking and audio data while
+maintaining full backward compatibility with legacy equipment and
+preserving essential display-detection functions.</p>
+<h3 id="maintaining-connector-backward-compatibility">Maintaining
+Connector Backward Compatibility</h3>
+<p>Standard HDMI Type-A connectors contain 19 pins, most of which are
+permanently dedicated to Transition-Minimized Differential Signaling
+(TMDS) clock and data lanes, the Display Data Channel (DDC), and power
+delivery. Modifying the physical layout or adding extra pins to
+accommodate networking and upstream audio would have broken physical
+compatibility with millions of existing display devices and AV
+receivers.</p>
+<p>To introduce new capabilities without introducing a new connector
+design, the HDMI Licensing Administrator looked for existing pins that
+were either underutilized or non-essential for raw video delivery. Pin
+14 was originally designated as "Reserved" (typically left unconnected),
+and Pin 19 was dedicated solely to Hot Plug Detect (HPD).</p>
+<h3 id="the-necessity-of-a-differential-pair">The Necessity of a
+Differential Pair</h3>
+<p>Carrying high-speed networking protocols like 100BASE-TX Ethernet
+(100 Mbps) over an unshielded or minimally shielded pair inside a cable
+requires differential signaling. Differential signaling transmits two
+complementary signals (one positive, one inverted) over paired
+conductors, allowing the receiving end to extract the signal by reading
+the voltage difference between them. This approach naturally rejects
+common-mode noise and electromagnetic interference (EMI) generated by
+the adjacent high-frequency video clock and data lanes.</p>
+<p>Because Pin 14 was completely unused, it was designated as the
+Utility pin to act as one half of this new differential pair. Pin 19 was
+selected as the complementary conductor, creating the balanced "HEAC+"
+and "HEAC-" transmission line.</p>
+<h3
+id="multiplexing-dc-detection-with-high-frequency-ac-data">Multiplexing
+DC Detection with High-Frequency AC Data</h3>
+<p>The primary challenge in repurposing Pin 19 was that Hot Plug Detect
+is critical to standard HDMI operation. A sink device (such as a TV)
+holds Pin 19 high at +5V DC to indicate to the source (such as a Blu-ray
+player or console) that it is connected and ready to read the Extended
+Display Identification Data (EDID).</p>
+<p>Engineers solved this by multiplexing DC and AC signals across the
+same physical conductor:</p>
+<ul>
+<li><strong>DC Operation (HPD):</strong> The legacy Hot Plug Detect
+functionality relies purely on static or low-frequency DC voltage levels
+(0V for disconnected, +5V for connected).</li>
+<li><strong>AC Operation (HEC and ARC):</strong> High-frequency Ethernet
+and audio signals are alternating current (AC) signals.</li>
+</ul>
+<p>By placing DC-blocking capacitors on the transceivers at both ends of
+the cable, devices can isolate and extract the high-frequency
+differential AC data (HEC and differential ARC) while an inductive choke
+or resistive network monitors the steady-state DC voltage for hot-plug
+events. This allows Pin 19 to perform its original display detection
+role continuously without interrupting or corrupting the concurrent data
+streams.</p>
+<h3 id="flexible-modes-single-ended-vs-differential-operation">Flexible
+Modes: Single-Ended vs. Differential Operation</h3>
+<p>Pairing Pin 14 and Pin 19 also allowed flexible operational modes
+depending on device capability:</p>
+<ol type="1">
+<li><strong>HEAC Mode (Differential):</strong> Both Pin 14 and Pin 19
+are engaged simultaneously to transmit full 100 Mbps Ethernet alongside
+audio, or to carry advanced differential audio signaling.</li>
+<li><strong>ARC-Only Mode (Single-Ended):</strong> If Ethernet is not
+required, Pin 14 can be driven as a single-ended SPDIF-compatible audio
+transmission line, leaving Pin 19 entirely untouched for standard Hot
+Plug Detect operations.</li>
+</ol>
+<p>By uniting the unused Utility line with the DC-biased Hot Plug Detect
+line, HDMI equipment achieved modern bidirectional networking and
+simplified single-cable audio setups without abandoning the universal
+19-pin standard.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

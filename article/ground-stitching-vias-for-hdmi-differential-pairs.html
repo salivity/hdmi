@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ground Stitching Vias for HDMI Differential Pairs - hdmi</title>
+    <meta name="description" content="Routing high-speed HDMI differential lines across printed circuit board (PCB) layers disrupts the high-frequency return current path, leading to impedance discontinuities, signal degradation, and electromagnetic interference (EMI). When Transition-Minimi">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/ground-stitching-vias-for-hdmi-differential-pairs">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Ground Stitching Vias for HDMI Differential Pairs - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/ground-stitching-vias-for-hdmi-differential-pairs" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Routing high-speed HDMI differential lines across printed circuit board (PCB) layers disrupts the high-frequency return current path, leading to impedance discontinuities, signal degradation, and electromagnetic interference (EMI). When Transition-Minimi" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="ground-stitching-vias-for-hdmi-differential-pairs">Ground
+Stitching Vias for HDMI Differential Pairs</h1>
+<p>Routing high-speed HDMI differential lines across printed circuit
+board (PCB) layers disrupts the high-frequency return current path,
+leading to impedance discontinuities, signal degradation, and
+electromagnetic interference (EMI). When Transition-Minimized
+Differential Signaling (TMDS) or Fixed Rate Link (FRL) clock and data
+traces transition between layers, ground-plane stitching vias must be
+placed immediately adjacent to the signal vias. This article outlines
+the specific ground stitching via configurations, placement rules, and
+design considerations required to maintain return path continuity and
+signal integrity for HDMI interfaces.</p>
+<h3 id="the-necessity-of-return-path-continuity">The Necessity of Return
+Path Continuity</h3>
+<p>High-speed differential signals do not merely travel through copper
+traces; their electromagnetic fields propagate through the dielectric,
+relying on an adjacent reference plane to carry the high-frequency
+return current. The return current naturally follows the path of least
+inductance directly underneath the signal traces.</p>
+<p>When a differential pair drops through a via to another layer, its
+reference plane changes. If the reference planes on both layers are at
+ground (GND) potential, the return current cannot jump between planes
+without a physical conductive path. Ground-plane stitching vias bridge
+this gap. Without them, the return current spreads across the board
+until it finds the nearest path, creating a large inductive loop that
+ruins impedance matching, generates common-mode noise, and causes
+radiated emissions that fail compliance testing.</p>
+<h3 id="required-number-and-configuration-of-stitching-vias">Required
+Number and Configuration of Stitching Vias</h3>
+<p>For HDMI differential pairs, symmetry and proximity are critical to
+preserving differential balance. The required via configuration depends
+on the performance targets and available board area:</p>
+<ul>
+<li><strong>Two Ground Vias per Pair (Recommended):</strong> The optimal
+configuration places two ground stitching vias symmetrically on either
+side of the differential signal via pair. This creates a pseudo-coaxial
+structure that balances parasitic capacitance, minimizes common-mode
+conversion, and provides equal return paths for both the positive and
+negative signals.</li>
+<li><strong>One Ground Via per Pair (Minimum):</strong> In high-density
+interconnect (HDI) designs with severe routing constraints, a single
+ground stitching via centered adjacent to the differential pair is the
+absolute minimum requirement. However, this asymmetric arrangement can
+induce a slight phase skew and common-mode noise, making it less
+suitable for high-data-rate standards like HDMI 2.1 (up to 12 Gbps per
+lane).</li>
+<li><strong>Shared Ground Vias:</strong> When routing multiple HDMI
+lanes (such as Clock, D0, D1, and D2) together, ground vias can be
+placed between adjacent pairs to provide return paths while
+simultaneously serving as shielding to suppress inter-pair
+crosstalk.</li>
+</ul>
+<h3 id="placement-and-proximity-guidelines">Placement and Proximity
+Guidelines</h3>
+<p>The effectiveness of a stitching via diminishes exponentially as its
+distance from the signal via increases. Follow these strict placement
+constraints:</p>
+<ul>
+<li><strong>Distance:</strong> Place ground stitching vias as close to
+the signal vias as manufacturing design rules (DRCs) permit. The
+center-to-center distance between a signal via and its corresponding
+stitching via should typically be under 30 to 40 mils (0.75 mm to 1.0
+mm). Any distance greater than this introduces parasitic loop inductance
+that degrades the signal's rise time.</li>
+<li><strong>Via Sizing:</strong> Use the same drill size and pad
+diameter for stitching vias as used for the signal vias (typically 8–10
+mil drill, 16–18 mil pad). Matching dimensions ensures consistent
+thermal expansion and predictable parasitic inductance, which is
+generally around 0.5 nH to 1 nH per via.</li>
+<li><strong>Layer Spanning:</strong> Ensure the stitching via connects
+only the specific reference planes associated with the layer transition.
+For through-hole vias, connect the via barrel directly to the relevant
+planes with solid copper connections rather than thermal reliefs to
+minimize inductance.</li>
+</ul>
+<h3 id="anti-pad-optimization-and-impedance-matching">Anti-Pad
+Optimization and Impedance Matching</h3>
+<p>Signal vias inherently introduce excess capacitance, which drops the
+local differential impedance below the standard 100-ohm target for HDMI.
+Introducing ground stitching vias adds further capacitance if not
+managed correctly.</p>
+<p>To offset this capacitive discontinuity, implement an oval or merged
+anti-pad (clearance void) around the differential signal vias on any
+plane layers they pass through without connecting. The ground stitching
+vias should sit just outside the edge of this shared anti-pad. This
+configuration counterbalances the parasitic capacitance of the pads with
+the inductance of the via barrels, maintaining the targeted 100-ohm
+differential impedance through the entire vertical transition.</p>
+<h3 id="transitions-between-different-reference-potentials">Transitions
+Between Different Reference Potentials</h3>
+<p>HDMI differential pairs should always be routed between layers that
+reference the same ground planes. If a stackup forces a transition
+between a ground plane and a power plane, a stitching via cannot connect
+the two directly. In that scenario, a high-frequency ceramic decoupling
+capacitor (such as 0.1 µF or 10 nF in a 0402 or 0201 package) must be
+placed immediately next to the transition to connect the GND and power
+planes for AC return currents. However, this approach adds significant
+parasitic inductance and should be avoided in HDMI designs in favor of
+maintaining consistent ground reference planes.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI 5V Overcurrent Protection Circuit Design - hdmi</title>
+    <meta name="description" content="Hardware designers must protect the HDMI +5V power rail (Pin 18) from short circuits, miswired cables, and excessive current demands from connected sink devices. This article examines the standard current-limiting protection circuits used on HDMI source">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-5-v-overcurrent-protection-circuit-design">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI 5V Overcurrent Protection Circuit Design - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-5-v-overcurrent-protection-circuit-design" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Hardware designers must protect the HDMI +5V power rail (Pin 18) from short circuits, miswired cables, and excessive current demands from connected sink devices. This article examines the standard current-limiting protection circuits used on HDMI source" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-5v-overcurrent-protection-circuit-design">HDMI 5V
+Overcurrent Protection Circuit Design</h1>
+<p>Hardware designers must protect the HDMI +5V power rail (Pin 18) from
+short circuits, miswired cables, and excessive current demands from
+connected sink devices. This article examines the standard
+current-limiting protection circuits used on HDMI source ports,
+detailing the implementation, advantages, and trade-offs of Polymeric
+Positive Temperature Coefficient (PTC) devices, dedicated power
+distribution switches (load switches), integrated port protection ICs,
+and discrete current-limiting topologies.</p>
+<h3 id="the-hdmi-5v-rail-requirements">The HDMI 5V Rail
+Requirements</h3>
+<p>The HDMI specification mandates that a source device provide a +5V
+output on Pin 18 capable of supplying at least 55 mA to power the
+Display Data Channel (DDC) circuitry and High-Definition Content
+Protection (HDCP) EEPROM in the sink device. Modern applications—such as
+HDMI dongles, active optical cables (AOCs), and signal
+splitters—routinely draw closer to 200 mA to 500 mA. To comply with
+safety standards such as IEC/UL 62368-1 and prevent board damage during
+cable shorts, the source must implement overcurrent protection that
+typically caps output current between 0.5 A and 1.5 A.</p>
+<h3 id="ptc-resettable-fuses-polyfuses">PTC Resettable Fuses
+(Polyfuses)</h3>
+<p>A Polymeric Positive Temperature Coefficient (PTC) thermistor is the
+most basic and low-cost solution for HDMI 5V current limiting. Placed in
+series with the 5V power supply, the PTC exhibits low resistance under
+normal operating conditions. When an overcurrent or short-circuit event
+occurs, resistive self-heating forces the polymer matrix to expand,
+causing its resistance to increase sharply and limiting current to a
+safe trickle.</p>
+<ul>
+<li><strong>Advantages:</strong> Low component cost, minimal PCB
+footprint, and passive, autonomous reset capability once the fault and
+heat dissipate.</li>
+<li><strong>Disadvantages:</strong> Slow trip times (often milliseconds
+to seconds), significant voltage drop across the internal resistance
+(<span class="math inline">\(R_{ON}\)</span>) under heavy loads, and a
+high sensitivity to ambient operating temperature.</li>
+</ul>
+<h3 id="dedicated-power-distribution-switches-load-switches">Dedicated
+Power Distribution Switches (Load Switches)</h3>
+<p>Integrated power distribution switches, often referred to as eFuses
+or intelligent load switches, are the current industry standard for HDMI
+source design. Devices like the TI TPS20xx series or Diodes Inc. AP21xx
+series feature an internal high-side P-channel or N-channel MOSFET
+managed by integrated current-sensing and control circuitry.</p>
+<p>These ICs offer:</p>
+<ul>
+<li><strong>Accurate Current Clamping:</strong> The switch acts as a
+constant-current source during an overload, actively regulating the
+maximum delivered current to a fixed threshold (e.g., 500 mA or 1.0 A)
+or a threshold defined by an external resistor.</li>
+<li><strong>Fast Response Time:</strong> Current-limiting circuits
+engage within microseconds, protecting sensitive power management ICs
+(PMICs) and upstream voltage regulators from voltage dips.</li>
+<li><strong>Reverse Current Blocking:</strong> Prevents current from
+flowing back into the source system if an externally powered HDMI sink
+supplies an improper voltage onto Pin 18.</li>
+<li><strong>Fault Reporting:</strong> An active-low open-drain flag pin
+(<span class="math inline">\(\overline{\text{FAULT}}\)</span> or <span
+class="math inline">\(\overline{\text{OC}}\)</span>) alerts the host
+processor to take software-level protective actions.</li>
+<li><strong>Thermal Shutdown:</strong> If an extended short causes the
+internal junction temperature to exceed safety margins (typically around
+135°C to 150°C), the device shuts off entirely until it cools down.</li>
+</ul>
+<h3 id="integrated-hdmi-interface-protection-ics">Integrated HDMI
+Interface Protection ICs</h3>
+<p>For high-density boards, designers often utilize application-specific
+interface protection ICs (such as those from Nexperia,
+STMicroelectronics, or Semtech). These chips combine high-speed
+electrostatic discharge (ESD) protection diodes for Transition-Minimized
+Differential Signaling (TMDS) lanes, I²C level-shifting buffers for the
+DDC lines, and an integrated current-limited 5V power switch into a
+single package.</p>
+<p>Using an integrated solution simplifies routing around the dense HDMI
+connector, reduces parasitic inductance, and guarantees that the 5V
+current-limiting response aligns with HDMI compliance testing while
+satisfying space-constrained layout constraints.</p>
+<h3 id="discrete-transistor-current-limiters">Discrete Transistor
+Current Limiters</h3>
+<p>In specialized, cost-sensitive designs where standard load switches
+are unavailable, designers may implement a discrete current limiter
+using bipolar junction transistors (BJTs) or a combination of a BJT and
+a P-channel MOSFET.</p>
+<p>In a standard two-transistor limiter, a small current-sense resistor
+sits in series with the rail. When the current exceeds the designed
+limit, the voltage drop across the resistor reaches approximately 0.6 V
+to 0.7 V, turning on a sensing BJT. This transistor then pulls up the
+gate of the pass MOSFET (or steals base drive from the pass BJT),
+choking the conduction path and holding the output to a safe current
+limit. While inexpensive, this topology consumes more board space and
+exhibits wider current threshold tolerances due to temperature-induced
+variations in the BJT base-emitter forward voltage (<span
+class="math inline">\(V_{BE}\)</span>).</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

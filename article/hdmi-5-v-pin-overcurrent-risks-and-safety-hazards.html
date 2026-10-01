@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI 5V Pin Overcurrent Risks and Safety Hazards - hdmi</title>
+    <meta name="description" content="Drawing excessive current from an HDMI port's 5-volt power pin poses serious safety and operational hazards, ranging from permanent hardware destruction to catastrophic fire risks. The HDMI standard reserves Pin 18 to deliver a nominal 5V supply primaril">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-5-v-pin-overcurrent-risks-and-safety-hazards">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI 5V Pin Overcurrent Risks and Safety Hazards - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-5-v-pin-overcurrent-risks-and-safety-hazards" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Drawing excessive current from an HDMI port's 5-volt power pin poses serious safety and operational hazards, ranging from permanent hardware destruction to catastrophic fire risks. The HDMI standard reserves Pin 18 to deliver a nominal 5V supply primaril" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-5v-pin-overcurrent-risks-and-safety-hazards">HDMI 5V Pin
+Overcurrent Risks and Safety Hazards</h1>
+<p>Drawing excessive current from an HDMI port's 5-volt power pin poses
+serious safety and operational hazards, ranging from permanent hardware
+destruction to catastrophic fire risks. The HDMI standard reserves Pin
+18 to deliver a nominal 5V supply primarily for low-power handshaking
+and display identification tasks. When external accessories, active
+converters, or faulty sinks pull current beyond the design limits of
+this pin, the thin circuit traces and low-gauge cabling are forced to
+handle electrical loads they were never engineered to support, creating
+critical points of failure.</p>
+<h3 id="understanding-the-hdmi-5v-pin-limit">Understanding the HDMI 5V
+Pin Limit</h3>
+<p>The HDMI specification designates Pin 18 as the +5V Power line. By
+standard specifications, source devices (such as graphics cards, game
+consoles, or set-top boxes) are only required to supply a minimum of 55
+milliamperes (mA), with standard operational allowances often hovering
+around 50mA to 300mA. Although some modern source equipment can deliver
+up to 500mA, the pin is not an auxiliary power utility. When DIY
+projects, unpowered HDMI-to-analog splitters, or external dongles
+attempt to draw significant power from Pin 18 instead of using an
+independent power supply, severe electrical overstress occurs.</p>
+<h3 id="circuit-trace-overheating-and-fire-hazards">Circuit Trace
+Overheating and Fire Hazards</h3>
+<p>The most critical safety hazard associated with overcurrent is
+extreme thermal buildup. Printed circuit board (PCB) traces connecting
+to Pin 18 inside host devices are exceptionally narrow, typically sized
+only for milliamp-level signaling tasks. When subjected to continuous
+overcurrent:</p>
+<ul>
+<li><strong>Trace Vaporization:</strong> Excessive current generates
+intense resistive heat, leading to scorched PCB substrates,
+delamination, and outright burning of the circuit board.</li>
+<li><strong>Cable Melting:</strong> Standard HDMI cables feature
+high-gauge, thin internal wiring (often 28 to 32 AWG) for power and
+signaling. Drawing high current generates heat throughout the cable run,
+causing the internal plastic dielectric and outer jackets to melt,
+posing a direct fire ignition hazard in home and enterprise
+environments.</li>
+</ul>
+<h3 id="host-device-hardware-destruction">Host Device Hardware
+Destruction</h3>
+<p>Most consumer electronics implement varied, and sometimes
+substandard, protection on the HDMI power rail. Depending on the
+manufacturer's design, pulling excessive current leads to:</p>
+<ul>
+<li><strong>Blown Non-Resettable Fuses:</strong> In lower-cost
+equipment, a standard SMD fuse protects the 5V line. Drawing too much
+current permanently blows this component, rendering the entire HDMI port
+unusable until a microsoldering repair is performed.</li>
+<li><strong>Silicon and Controller Damage:</strong> If the source port
+lacks overcurrent protection (such as a PolySwitch or current-limiting
+power distribution switch), the 5V rail draws directly from the system's
+main power management IC or graphics card rail. Excessive load can burn
+out the power delivery controller, the display bridge chip, or the GPU's
+integrated display pipeline.</li>
+</ul>
+<h3 id="internal-short-circuits-to-high-speed-signal-lines">Internal
+Short Circuits to High-Speed Signal Lines</h3>
+<p>As extreme heat degrades the insulation inside the cable or at the
+connector termination, bare wires can contact adjacent pins. The HDMI
+pinout places Pin 18 directly adjacent to Pin 17 (Ground) and close to
+Pin 19 (Hot Plug Detect), alongside sensitive Transition-Minimized
+Differential Signaling (TMDS) or Fixed Rate Link (FRL) high-speed data
+pairs. If 5 volts shorts into the direct-to-die data lanes, the
+high-voltage spike will instantly destroy the display processor on the
+television, monitor, or host GPU.</p>
+<h3 id="electrical-rail-sags-and-system-instability">Electrical Rail
+Sags and System Instability</h3>
+<p>Sinking more current than the source can provide causes a localized
+voltage sag on the 5V line. This drop prevents the Display Data Channel
+(DDC) and Hot Plug Detection circuits from maintaining valid digital
+logic levels. Consequently, systems experience dropped signals,
+intermittent black screens, infinite handshake loops, and spontaneous
+hardware reboots caused by electrical noise leaking into adjacent
+low-voltage rails.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How an OS Queries HDMI Audio Channels - hdmi</title>
+    <meta name="description" content="When a display or AV receiver connects via HDMI, the operating system discovers the available audio channels by reading the sink device's Extended Display Identification Data (EDID) through the graphics driver. Specifically, the OS uses the I2C-based Dis">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-an-os-queries-hdmi-audio-channels">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How an OS Queries HDMI Audio Channels - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-an-os-queries-hdmi-audio-channels" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When a display or AV receiver connects via HDMI, the operating system discovers the available audio channels by reading the sink device's Extended Display Identification Data (EDID) through the graphics driver. Specifically, the OS uses the I2C-based Dis" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-an-os-queries-hdmi-audio-channels">How an OS Queries HDMI
+Audio Channels</h1>
+<p>When a display or AV receiver connects via HDMI, the operating system
+discovers the available audio channels by reading the sink device's
+Extended Display Identification Data (EDID) through the graphics driver.
+Specifically, the OS uses the I2C-based Display Data Channel (DDC) to
+read the CTA-861 extension block within the EDID, parsing the Audio Data
+Block (ADB) and Speaker Allocation Data Block (SADB). This handshake
+allows the audio subsystem to identify the maximum supported channel
+count, channel layouts, and audio formats, configuring the output device
+accordingly without requiring manual user intervention.</p>
+<h3 id="1-the-physical-handshake-and-ddc-bus">1. The Physical Handshake
+and DDC Bus</h3>
+<p>The discovery process begins the moment an HDMI cable is
+connected:</p>
+<ol type="1">
+<li><strong>Hot Plug Detect (HPD):</strong> The sink device (such as a
+TV, monitor, or AV receiver) raises the 5V Hot Plug Detect pin to signal
+its presence to the source device (the computer).</li>
+<li><strong>Reading EDID via I2C:</strong> The host computer’s GPU
+detects this voltage transition and initiates a read operation over the
+Display Data Channel (DDC), an I2C-based serial communication link
+running within the HDMI cable.</li>
+<li><strong>Fetching the Base EDID:</strong> The GPU queries the
+standard 128-byte base EDID block stored in the display's EEPROM, which
+contains fundamental information about the display's manufacturer,
+resolution limits, and timing capabilities.</li>
+</ol>
+<h3 id="2-inspecting-the-cta-861-extension-block">2. Inspecting the
+CTA-861 Extension Block</h3>
+<p>Base EDID alone only details video information. To determine audio
+capabilities, the operating system's display driver checks for the
+presence of extension blocks:</p>
+<ul>
+<li>The display provides one or more 128-byte <strong>CTA-861</strong>
+(formerly CEA-861) extension blocks designed specifically to describe
+consumer electronics features like HDMI digital audio.</li>
+<li>Within the CTA-861 extension, the driver locates the variable-length
+<strong>Data Block Collection</strong>, which contains categorized tags
+for video, audio, and vendor-specific data.</li>
+</ul>
+<h3 id="3-parsing-the-audio-data-block-adb">3. Parsing the Audio Data
+Block (ADB)</h3>
+<p>The driver searches the Data Block Collection for the <strong>Audio
+Data Block (ADB)</strong>, identified by the tag value <code>1</code>.
+Inside this block are one or more 3-byte structures called <strong>Short
+Audio Descriptors (SADs)</strong>:</p>
+<ul>
+<li><strong>Format Type:</strong> Each SAD defines a supported audio
+format, such as uncompressed Linear PCM (LPCM), AC-3 (Dolby Digital),
+DTS, or Dolby TrueHD.</li>
+<li><strong>Channel Capacity:</strong> Bits 0 to 2 of the first byte in
+an LPCM SAD encode the maximum number of audio channels supported for
+that format:
+<ul>
+<li><code>000b</code> = 1 channel (Mono)</li>
+<li><code>001b</code> = 2 channels (Stereo)</li>
+<li><code>010b</code> = 3 channels</li>
+<li><code>011b</code> = 4 channels (Quadraphonic)</li>
+<li><code>100b</code> = 5 channels</li>
+<li><code>101b</code> = 6 channels (5.1 surround)</li>
+<li><code>110b</code> = 7 channels</li>
+<li><code>111b</code> = 8 channels (7.1 surround)</li>
+</ul></li>
+<li><strong>Higher Channel Counts (HDMI 2.0+):</strong> Modern standards
+use 3D Audio and Multi-Stream Audio descriptors within CTA-861
+extensions to communicate support for setups exceeding 8 channels, such
+as 32-channel spatial audio.</li>
+</ul>
+<h3 id="4-reading-the-speaker-allocation-data-block-sadb">4. Reading the
+Speaker Allocation Data Block (SADB)</h3>
+<p>Knowing only the total channel count is insufficient; the operating
+system must also know the physical placement of those channels. For
+this, it parses the <strong>Speaker Allocation Data Block (tag
+4)</strong>:</p>
+<ul>
+<li>The SADB contains a 3-byte payload where individual bits map
+directly to physical speaker locations (e.g., Front Left/Right,
+Low-Frequency Effects/Subwoofer, Front Center, Rear Left/Right, Side
+Left/Right, and presence speakers).</li>
+<li>By cross-referencing the channel count from the SAD with the bitmask
+from the SADB, the operating system can map surround sound
+configurations precisely (such as differentiating between a 5.1 layout
+using surround rears versus surround sides).</li>
+</ul>
+<h3 id="5-passing-data-from-driver-to-os-audio-subsystem">5. Passing
+Data from Driver to OS Audio Subsystem</h3>
+<p>Once the graphics hardware and driver assemble these
+capabilities:</p>
+<ol type="1">
+<li><strong>GPU Audio Controller Binding:</strong> Most modern GPUs
+integrate an Intel High Definition Audio (HDA)-compliant controller. The
+GPU driver passes the parsed channel metadata to this internal audio
+controller.</li>
+<li><strong>Audio Subsystem Registration:</strong> The OS audio
+subsystem—such as Windows Audio Session API (WASAPI) and Core Audio on
+Windows, ALSA and PulseAudio/PipeWire on Linux, or CoreAudio on
+macOS—creates an audio endpoint representing the HDMI output.</li>
+<li><strong>Endpoint Configuration:</strong> The subsystem sets the
+default channel count and format based on the highest standard
+capability negotiated (typically multi-channel LPCM if supported, or
+falling back to 2-channel stereo).</li>
+</ol>
+<p>Applications querying the operating system for output capabilities
+can then retrieve the exact number of channels supported by the
+receiving HDMI hardware.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

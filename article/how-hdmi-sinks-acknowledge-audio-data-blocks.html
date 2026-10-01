@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Sinks Acknowledge Audio Data Blocks - hdmi</title>
+    <meta name="description" content="In HDMI transmission, an HDMI sink does not actively acknowledge the receipt of uncompressed multi-channel audio data blocks on a packet-by-packet basis. Unlike bidirectional networking protocols that use ACK/NACK signaling to confirm packet delivery, HD">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-sinks-acknowledge-audio-data-blocks">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Sinks Acknowledge Audio Data Blocks - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-sinks-acknowledge-audio-data-blocks" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In HDMI transmission, an HDMI sink does not actively acknowledge the receipt of uncompressed multi-channel audio data blocks on a packet-by-packet basis. Unlike bidirectional networking protocols that use ACK/NACK signaling to confirm packet delivery, HD" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-sinks-acknowledge-audio-data-blocks">How HDMI Sinks
+Acknowledge Audio Data Blocks</h1>
+<p>In HDMI transmission, an HDMI sink does not actively acknowledge the
+receipt of uncompressed multi-channel audio data blocks on a
+packet-by-packet basis. Unlike bidirectional networking protocols that
+use ACK/NACK signaling to confirm packet delivery, HDMI relies on a
+unidirectional, feed-forward architecture. The sink accepts continuous
+streams of data over Transition Minimized Differential Signaling (TMDS)
+or Fixed Rate Link (FRL) lines, relying on pre-negotiated capabilities,
+forward error correction, and clock regeneration rather than real-time
+return receipts.</p>
+<h3 id="the-feed-forward-architecture-of-hdmi-audio">The Feed-Forward
+Architecture of HDMI Audio</h3>
+<p>Uncompressed multi-channel audio (such as Linear PCM) is transmitted
+from the source (transmitter) to the sink (receiver) during horizontal
+and vertical blanking intervals within structures known as <strong>Data
+Island periods</strong>. These data blocks are formatted into Audio
+Sample Packets (ASP).</p>
+<p>Because the primary AV data path is strictly unidirectional, the sink
+has no physical back-channel within the main TMDS or FRL links to notify
+the source that an individual audio data block was successfully
+received. Transmission is continuous and real-time; the source assumes
+the sink is receiving and decoding the packets at the rate they are
+sent.</p>
+<h3 id="forward-error-correction-and-packet-verification">Forward Error
+Correction and Packet Verification</h3>
+<p>Instead of requesting retransmission upon packet loss or corruption,
+the sink detects and mitigates transmission errors locally:</p>
+<ul>
+<li><strong>BCH Error Correction:</strong> Every Data Island packet
+header and subpacket includes BCH error-correcting code parity bits. The
+sink uses this parity data to detect errors and correct single-bit
+errors in real time.</li>
+<li><strong>Error Concealment:</strong> If an audio data block is
+corrupted beyond what the BCH code can repair, the sink does not request
+a re-send. Instead, the sink discards the corrupted audio samples and
+conceals the drop-out (for instance, by interpolating adjacent audio
+samples, repeating the previous sample, or briefly muting the output) to
+prevent audible clicks or pops.</li>
+</ul>
+<h3 id="pre-transmission-capability-handshake-edid">Pre-Transmission
+Capability Handshake (EDID)</h3>
+<p>The only communication regarding the sink's ability to receive audio
+occurs prior to transmission across the Display Data Channel (DDC), an
+<span class="math inline">\(I^2C\)</span> bus:</p>
+<ol type="1">
+<li><strong>EDID Negotiation:</strong> When connected, the sink provides
+its Extended Display Identification Data (EDID) to the source.</li>
+<li><strong>Short Audio Descriptors (SADs):</strong> The EDID contains
+CEA/CTA-861 Extension blocks that specify the sink’s audio support,
+including maximum channel count (e.g., 6-channel or 8-channel LPCM),
+supported sampling frequencies (such as 44.1 kHz, 48 kHz, or 192 kHz),
+and bit depths (16, 20, or 24 bits).</li>
+<li><strong>Format Alignment:</strong> The source reads this profile and
+formats the uncompressed multi-channel audio data blocks to match
+parameters the sink is guaranteed to support.</li>
+</ol>
+<h3 id="clock-synchronization-via-audio-clock-regeneration-acr">Clock
+Synchronization via Audio Clock Regeneration (ACR)</h3>
+<p>To process audio packets correctly without flow-control
+acknowledgments, the sink must remain in precise timing alignment with
+the source:</p>
+<ul>
+<li>The source transmits <strong>Audio Clock Regeneration (ACR)</strong>
+packets containing two values: Cycle Time Stamp (<span
+class="math inline">\(CTS\)</span>) and a multiplier (<span
+class="math inline">\(N\)</span>).</li>
+<li>The sink uses these values alongside the incoming pixel clock to
+recreate the original audio master clock (<span
+class="math inline">\(128 \times f_s\)</span>) via an internal
+phase-locked loop (PLL).</li>
+<li>This continuous clock tracking ensures the sink’s audio buffer does
+not suffer from underflow or overflow, removing the need for receipt
+acknowledgments or transmission pacing.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

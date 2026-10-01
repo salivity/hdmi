@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI to USB Capture Cards Work as UVC Webcams - hdmi</title>
+    <meta name="description" content="An HDMI-to-USB video capture device transforms an external HDMI video feed into a standard webcam source by using dedicated hardware processing and the USB Video Class (UVC) standard. When connected to a computer, the device handles all necessary signal">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-to-usb-capture-cards-work-as-uvc-webcams">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI to USB Capture Cards Work as UVC Webcams - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-to-usb-capture-cards-work-as-uvc-webcams" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="An HDMI-to-USB video capture device transforms an external HDMI video feed into a standard webcam source by using dedicated hardware processing and the USB Video Class (UVC) standard. When connected to a computer, the device handles all necessary signal" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-to-usb-capture-cards-work-as-uvc-webcams">How HDMI to
+USB Capture Cards Work as UVC Webcams</h1>
+<p>An HDMI-to-USB video capture device transforms an external HDMI video
+feed into a standard webcam source by using dedicated hardware
+processing and the USB Video Class (UVC) standard. When connected to a
+computer, the device handles all necessary signal conversion, video
+decoding, and USB handshaking internally. This process allows modern
+operating systems to automatically identify the hardware as a generic
+camera and load native drivers, eliminating the need for third-party
+software while making high-definition cameras compatible with standard
+video conferencing and streaming tools.</p>
+<h3 id="the-role-of-the-usb-video-class-uvc-standard">The Role of the
+USB Video Class (UVC) Standard</h3>
+<p>The USB Video Class (UVC) is an open specification established by the
+USB Implementers Forum. It defines a standard communication protocol for
+video-streaming devices, such as webcams, digital camcorders, and
+capture interfaces.</p>
+<p>Because modern operating systems—including Windows, macOS, Linux,
+Android, and ChromeOS—include pre-installed, class-compliant UVC
+drivers, any hardware that adheres to this standard works out of the
+box. An HDMI-to-USB capture device leverages this architecture by
+masquerading as a basic USB camera, allowing the host system to
+communicate with it using native, universal commands.</p>
+<h3 id="internal-hardware-conversion">Internal Hardware Conversion</h3>
+<p>An HDMI signal carries uncompressed, high-bandwidth digital video and
+audio over Transition-Minimized Differential Signaling (TMDS) channels.
+A standard USB port cannot read this raw signal directly. The capture
+device bridges this gap through internal hardware stages:</p>
+<ol type="1">
+<li><strong>HDMI Receiver:</strong> An onboard chip decodes the incoming
+TMDS physical signals from the HDMI cable and extracts the raw video
+frames and digital audio.</li>
+<li><strong>Video Processing and Scaling:</strong> The internal
+microcontroller or specialized system-on-a-chip (SoC) processes the raw
+video. This often involves color space conversion (such as RGB to YUV),
+hardware scaling, and frame rate conversion to conform to supported USB
+streaming profiles.</li>
+<li><strong>Compression Engine:</strong> To fit high-definition video
+within USB bandwidth constraints (especially on USB 2.0 connections),
+the chip often encodes the raw video stream into compressed formats like
+MJPEG or H.264, or outputs uncompressed formats like YUY2 or NV12 on
+higher-bandwidth USB 3.0 interfaces.</li>
+<li><strong>USB Controller:</strong> The processed frames are packaged
+into standard USB packets for transmission across the bus.</li>
+</ol>
+<h3 id="the-enumeration-process-and-device-descriptors">The Enumeration
+Process and Device Descriptors</h3>
+<p>The illusion of a capture card appearing as a webcam happens during
+the USB enumeration phase, which begins the moment the device is plugged
+in:</p>
+<ul>
+<li><strong>VBUS Detection and Handshake:</strong> The host operating
+system detects voltage on the USB data lines and issues a reset to begin
+communication.</li>
+<li><strong>Reading Descriptors:</strong> The host requests a series of
+standardized data structures called descriptors.</li>
+<li><strong>Class Identification:</strong> The capture card's USB
+controller responds with a Device Descriptor that defines its
+functionality. Crucially, it advertises its base class code as
+<code>0x0E</code> (Video Class).</li>
+<li><strong>Interface Descriptors:</strong> The device presents two
+primary interfaces:
+<ul>
+<li><strong>Video Control (VC) Interface:</strong> Tells the host about
+the device's topology, such as camera controls (brightness, contrast)
+and input/output terminals.</li>
+<li><strong>Video Streaming (VS) Interface:</strong> Tells the host the
+supported video formats, frame rates, and resolutions (for example,
+1080p at 60fps in MJPEG or YUY2).</li>
+</ul></li>
+</ul>
+<h3 id="os-driver-binding-and-application-access">OS Driver Binding and
+Application Access</h3>
+<p>Once the operating system parses these descriptors, it determines
+that the device does not require custom vendor software. Instead, it
+binds its native UVC driver (such as <code>usbvideo.sys</code> on
+Windows or <code>uvcvideo</code> on Linux) to the device.</p>
+<p>The native driver translates standard system camera requests into
+UVC-compliant USB commands. Operating system media frameworks—such as
+DirectShow and Media Foundation on Windows, AVFoundation on macOS, and
+Video4Linux2 (V4L2) on Linux—expose the capture card to the software
+layer as a video capture source. Consequently, applications like Zoom,
+Microsoft Teams, Open Broadcaster Software (OBS), and web browsers treat
+the incoming HDMI stream identically to an integrated laptop camera or
+desktop USB webcam.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

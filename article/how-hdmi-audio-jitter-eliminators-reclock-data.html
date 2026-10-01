@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Audio Jitter Eliminators Reclock Data - hdmi</title>
+    <meta name="description" content="HDMI audio jitter eliminators isolate incoming digital audio from unstable video-derived clocks, store the audio samples in a temporary buffer, and release them using an ultra-precise, independent local clock before the signal reaches a digital-to-analog">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-audio-jitter-eliminators-reclock-data">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Audio Jitter Eliminators Reclock Data - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-audio-jitter-eliminators-reclock-data" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI audio jitter eliminators isolate incoming digital audio from unstable video-derived clocks, store the audio samples in a temporary buffer, and release them using an ultra-precise, independent local clock before the signal reaches a digital-to-analog" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-audio-jitter-eliminators-reclock-data">How HDMI Audio
+Jitter Eliminators Reclock Data</h1>
+<p>HDMI audio jitter eliminators isolate incoming digital audio from
+unstable video-derived clocks, store the audio samples in a temporary
+buffer, and release them using an ultra-precise, independent local clock
+before the signal reaches a digital-to-analog converter (DAC). This
+process, known as reclocking, completely severs the temporal link
+between the noisy source device and the sensitive conversion stage,
+ensuring that digital-to-analog conversion occurs at mathematically
+exact time intervals to prevent audible distortion.</p>
+<h2 id="the-cause-of-hdmi-audio-jitter">The Cause of HDMI Audio
+Jitter</h2>
+<p>HDMI was engineered primarily for video transmission. In the HDMI
+protocol, audio data packets are interleaved within the blanking
+intervals of the video stream. Because there is no dedicated audio clock
+line, the receiver must reconstruct the audio clock from the video pixel
+clock using Audio Clock Regeneration (ACR) parameters known as Cycle
+Time Stamp (CTS) and <span class="math inline">\(N\)</span> values.</p>
+<p>This indirect regeneration method introduces significant timing
+instability, known as phase jitter. When jittered data reaches a DAC,
+timing variations at the clock edges cause phase modulation and
+distortion in the reconstructed analog waveform, resulting in lost
+micro-detail, a collapsed soundstage, and harsh high frequencies.</p>
+<h2 id="step-1-packet-demultiplexing-and-extraction">Step 1: Packet
+Demultiplexing and Extraction</h2>
+<p>The jitter eliminator receives the high-speed Transition-Minimized
+Differential Signaling (TMDS) or Fixed Rate Link (FRL) HDMI stream. The
+device’s input processor strips away the video data, metadata, and
+copy-protection layers (HDCP), isolating the raw linear pulse-code
+modulation (LPCM) audio packets and their associated sampling frequency
+flags.</p>
+<h2 id="step-2-asynchronous-fifo-buffering">Step 2: Asynchronous FIFO
+Buffering</h2>
+<p>Once the audio stream is isolated, the device breaks the connection
+to the source clock domain using a First-In, First-Out (FIFO) digital
+memory buffer.</p>
+<ul>
+<li>The incoming audio data is written into the FIFO buffer using the
+recovered, jitter-prone clock derived from the HDMI input.</li>
+<li>The data sits momentarily in memory, stripped of its original timing
+characteristics.</li>
+<li>By temporarily storing samples in memory, the timing errors of the
+incoming HDMI transmission line no longer dictate when the samples will
+be processed downstream.</li>
+</ul>
+<h2 id="step-3-local-precision-clock-generation">Step 3: Local Precision
+Clock Generation</h2>
+<p>While data is held in the buffer, the eliminator activates an
+onboard, ultra-low-phase-noise oscillator system. High-end jitter
+eliminators generally use dual-frequency crystal oscillators—one
+dedicated to base frequencies of 44.1 kHz (and its multiples, such as
+88.2 kHz and 176.4 kHz) and one for base frequencies of 48 kHz (and its
+multiples, such as 96 kHz and 192 kHz).</p>
+<p>These oscillators (often Temperature Compensated Crystal Oscillators
+[TCXO] or Oven-Controlled Crystal Oscillators [OCXO]) generate an
+exceptionally stable Master Clock (MCLK) signal with phase noise
+measured in picoseconds or femtoseconds.</p>
+<h2 id="step-4-reclocking-and-readout">Step 4: Reclocking and
+Readout</h2>
+<p>The core reclocking action occurs as data exits the FIFO buffer:</p>
+<ol type="1">
+<li>The stable, local oscillator drives the read-control circuitry of
+the buffer.</li>
+<li>The samples are clocked out of the memory strictly according to the
+edges of the local clock signal, completely discarding the original HDMI
+timing.</li>
+<li>If slight drift occurs between the incoming stream rate and the
+local read rate, the buffer uses an adaptive phase-locked loop (PLL)
+with an extremely low loop bandwidth or asynchronous sample rate
+conversion (ASRC) to adjust tracking without passing input phase noise
+to the output.</li>
+</ol>
+<h2 id="step-5-formatting-for-dac-delivery">Step 5: Formatting for DAC
+Delivery</h2>
+<p>Once reclocked, the timing-corrected data is synthesized into
+standard digital audio formats—typically Inter-IC Sound (I2S) or S/PDIF.
+The I2S format carries separate physical lines for:</p>
+<ul>
+<li><strong>Bit Clock (BCLK):</strong> Defines individual data bit
+transitions.</li>
+<li><strong>Word Select (LRCLK):</strong> Identifies left and right
+channels.</li>
+<li><strong>Master Clock (MCLK):</strong> Provides the high-frequency
+reference for the DAC chips.</li>
+<li><strong>Serial Data (SDATA):</strong> The aligned audio
+payload.</li>
+</ul>
+<p>Because these lines are now synchronized to the pristine local
+oscillator, the DAC's internal switches trigger with microscopic
+precision. This uniform conversion eliminates jitter-induced sideband
+frequencies, delivering a lower noise floor and true-to-source analog
+output.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

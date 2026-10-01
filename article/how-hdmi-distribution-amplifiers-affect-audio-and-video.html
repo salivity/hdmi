@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Distribution Amplifiers Affect Audio and Video - hdmi</title>
+    <meta name="description" content="An HDMI distribution amplifier, commonly known as a powered HDMI splitter, accepts a single HDMI input and replicates it across multiple outputs simultaneously without degrading signal quality. When audio and video signals pass through this device, they">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-distribution-amplifiers-affect-audio-and-video">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Distribution Amplifiers Affect Audio and Video - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-distribution-amplifiers-affect-audio-and-video" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="An HDMI distribution amplifier, commonly known as a powered HDMI splitter, accepts a single HDMI input and replicates it across multiple outputs simultaneously without degrading signal quality. When audio and video signals pass through this device, they" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-distribution-amplifiers-affect-audio-and-video">How
+HDMI Distribution Amplifiers Affect Audio and Video</h1>
+<p>An HDMI distribution amplifier, commonly known as a powered HDMI
+splitter, accepts a single HDMI input and replicates it across multiple
+outputs simultaneously without degrading signal quality. When audio and
+video signals pass through this device, they undergo buffering,
+amplification, clock regeneration, and handshake management (EDID and
+HDCP) to ensure consistent transmission to every connected display.
+Rather than simply splitting the electrical current—which would cause
+severe signal loss—the amplifier actively reconstructs the digital data
+stream for each destination.</p>
+<h3 id="signal-buffering-and-clock-regeneration">Signal Buffering and
+Clock Regeneration</h3>
+<p>When a digital HDMI stream enters a distribution amplifier, the
+device isolates the input signal and terminates it properly to prevent
+reflections. The internal chipset reads the incoming
+Transition-Minimized Differential Signaling (TMDS) or Fixed Rate Link
+(FRL) data. It cleans up digital jitter, equalizes the signal to correct
+for high-frequency loss caused by the input cable, and re-clocks the
+data. This process creates fresh, fully powered duplicate copies of the
+original video and audio packets, preventing the attenuation and digital
+dropouts that occur with passive splitters.</p>
+<h3 id="edid-negotiation-and-resolution-matching">EDID Negotiation and
+Resolution Matching</h3>
+<p>Because the source device can only output one video resolution and
+one audio format at a time, the distribution amplifier must manage
+Extended Display Identification Data (EDID). The amplifier communicates
+with all connected displays to determine their individual capabilities.
+Most standard distribution amplifiers operate on a "lowest common
+denominator" rule: if one connected display is 4K and another is 1080p,
+the amplifier instructs the source to output 1080p so that all screens
+can display an image. Advanced distribution amplifiers feature internal
+scalers or custom EDID management switches, allowing 4K video to reach
+the 4K display while downscaling the signal to 1080p for older
+screens.</p>
+<h3 id="audio-format-handling">Audio Format Handling</h3>
+<p>Audio signals follow the same EDID constraints as video. Modern HDMI
+signals carry uncompressed multi-channel audio such as Dolby Atmos,
+DTS:X, or multi-channel LPCM. If all connected displays or AV receivers
+support these high-bitrate surround formats, the audio passes through
+untouched. However, if one display only supports two-channel stereo
+(PCM), the distribution amplifier's EDID handshake will typically force
+the source to downgrade its output to two-channel stereo to ensure
+audible playback across all devices, unless the amplifier features
+dedicated audio extraction or downmixing capabilities.</p>
+<h3 id="hdcp-compliance-and-handshake-management">HDCP Compliance and
+Handshake Management</h3>
+<p>High-bandwidth Digital Content Protection (HDCP) encrypts protected
+content to prevent unauthorized copying. A distribution amplifier acts
+as an HDCP "repeater." It authenticates with the source device on the
+input side and independently authenticates with each connected sink
+(display or receiver) on the output side. The video and audio remain
+encrypted throughout this process. If any connected display fails the
+HDCP handshake or lacks the required standard (such as HDCP 2.2 for 4K
+HDR content), the amplifier will block the protected signal from
+displaying on that specific screen, or in some cases, cut the feed
+entirely to protect compliance.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

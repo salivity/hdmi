@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Latency Thresholds for VR Motion Sickness - hdmi</title>
+    <meta name="description" content="To eliminate motion sickness in virtual reality (VR), the overall motion-to-photon (MTP) latency must not exceed 20 milliseconds, with leading standards targeting sub-10 millisecond response times. Within this tight temporal budget, the HDMI transport pi">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-latency-thresholds-for-vr-motion-sickness">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Latency Thresholds for VR Motion Sickness - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-latency-thresholds-for-vr-motion-sickness" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="To eliminate motion sickness in virtual reality (VR), the overall motion-to-photon (MTP) latency must not exceed 20 milliseconds, with leading standards targeting sub-10 millisecond response times. Within this tight temporal budget, the HDMI transport pi" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-latency-thresholds-for-vr-motion-sickness">HDMI Latency
+Thresholds for VR Motion Sickness</h1>
+<p>To eliminate motion sickness in virtual reality (VR), the overall
+motion-to-photon (MTP) latency must not exceed 20 milliseconds, with
+leading standards targeting sub-10 millisecond response times. Within
+this tight temporal budget, the HDMI transport pipeline—responsible for
+serializing, transmitting, and deserializing the video signal from the
+host graphics processor to the head-mounted display (HMD)—must strictly
+operate within a latency threshold of 1 to 5 milliseconds. Exceeding
+this budget causes vestibular-ocular mismatch, leading to nausea,
+disorientation, and simulation sickness.</p>
+<h3 id="the-20-millisecond-motion-to-photon-ceiling">The 20 Millisecond
+Motion-to-Photon Ceiling</h3>
+<p>Motion-to-photon latency measures the time elapsed between a user
+physically moving their head and the updated visual display reaching
+their eyes. The human vestibular system detects movement almost
+instantly via the inner ear. If the visual display lags behind this
+inner ear signal by more than 20 milliseconds, the sensory mismatch
+triggers cybersickness.</p>
+<p>The entire VR pipeline shares this 20-millisecond window across four
+primary phases:</p>
+<ol type="1">
+<li><strong>Tracking and Sensor Fusion:</strong> 1 to 2 ms</li>
+<li><strong>GPU Rendering and Application Processing:</strong> 8 to 12
+ms</li>
+<li><strong>HDMI Transmission and Interface Processing:</strong> 1 to 3
+ms</li>
+<li><strong>Display Scanout and Pixel Response:</strong> 2 to 4 ms</li>
+</ol>
+<p>Because tracking and rendering consume the bulk of the budget, the
+interface pipeline cannot afford traditional frame buffering or
+processing delays.</p>
+<h3 id="hdmi-pipeline-latency-requirements">HDMI Pipeline Latency
+Requirements</h3>
+<p>For a tethered VR headset utilizing an HDMI interface, the hardware
+must adhere to the following specific constraints:</p>
+<ul>
+<li><strong>Transmission Delay (Cable and Physical Layer):</strong>
+Under 0.05 milliseconds. At speed-of-light copper transmission rates,
+physical cable propagation across standard 2-to-5 meter VR cables is
+virtually instantaneous.</li>
+<li><strong>Serialization and Deserialization (SerDes):</strong> Under 1
+millisecond. The HDMI transmitter on the GPU and the receiver chip in
+the HMD must operate without introducing multi-line buffers.</li>
+<li><strong>Buffer Architecture:</strong> Strictly zero-frame buffer
+latency. The HDMI receiver on the HMD must utilize line-buffered "direct
+drive" scanout rather than whole-frame caching, ensuring incoming video
+streams immediately scan across the display panel as they arrive.</li>
+</ul>
+<h3 id="refresh-rate-and-bandwidth-implications">Refresh Rate and
+Bandwidth Implications</h3>
+<p>HDMI latency is fundamentally bound to the display refresh rate. The
+pipeline must push frames fast enough that pixel persistence and scanout
+times remain minimal:</p>
+<ul>
+<li><strong>90 Hz (11.11 ms frame time):</strong> The baseline standard
+for consumer VR. An HDMI 2.0 connection can carry uncompressed 90 Hz
+video up to certain resolutions, but leaves very little margin for error
+against the 20 ms MTP threshold.</li>
+<li><strong>120 Hz (8.33 ms frame time):</strong> Dramatically reduces
+scanout latency, providing sufficient headroom to keep total pipeline
+latency around 12 to 15 milliseconds.</li>
+<li><strong>144 Hz (6.94 ms frame time):</strong> The optimal target for
+eliminating perceptual jitter and ensuring absolute synchronization
+between tracking and visual feedback.</li>
+</ul>
+<h3 id="critical-hdmi-21-technologies-for-vr">Critical HDMI 2.1
+Technologies for VR</h3>
+<p>Standard consumer HDMI pipelines historically introduced display lag
+unacceptable for immersive computing. To consistently maintain the sub-5
+millisecond transport allocation, modern VR setups rely on
+specifications defined in HDMI 2.1:</p>
+<ul>
+<li><strong>Fixed Rate Link (FRL):</strong> Replaces legacy TMDS
+signaling to deliver up to 48 Gbps of uncompressed bandwidth, allowing
+ultra-high-resolution panels to run at 120 Hz or higher without display
+stream compression (DSC) decode latencies.</li>
+<li><strong>Quick Frame Transport (QFT):</strong> Delivers individual
+video frames across the HDMI link faster than the baseline display
+refresh rate requires. By transmitting the active visual data at a
+higher pixel clock rate, QFT reduces the interface transit time by
+several milliseconds, directly freeing up time for late-stage rendering
+techniques like asynchronous timewarp.</li>
+<li><strong>Auto Low Latency Mode (ALLM):</strong> Disables all
+post-processing, frame interpolation, and motion smoothing algorithms in
+the display hardware, preventing accidental multi-frame latency
+penalties.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

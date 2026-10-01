@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitstream vs LPCM Over HDMI: What's the Difference? - hdmi</title>
+    <meta name="description" content="When configuring home theater systems, gaming consoles, or media streamers via HDMI, users frequently encounter the choice between Bitstream and LPCM (Linear Pulse-Code Modulation) audio outputs. The fundamental difference lies in which device decodes th">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/bitstream-vs-lpcm-over-hdmi-what-s-the-difference">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Bitstream vs LPCM Over HDMI: What's the Difference? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/bitstream-vs-lpcm-over-hdmi-what-s-the-difference" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When configuring home theater systems, gaming consoles, or media streamers via HDMI, users frequently encounter the choice between Bitstream and LPCM (Linear Pulse-Code Modulation) audio outputs. The fundamental difference lies in which device decodes th" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="bitstream-vs-lpcm-over-hdmi-whats-the-difference">Bitstream vs
+LPCM Over HDMI: What's the Difference?</h1>
+<p>When configuring home theater systems, gaming consoles, or media
+streamers via HDMI, users frequently encounter the choice between
+Bitstream and LPCM (Linear Pulse-Code Modulation) audio outputs. The
+fundamental difference lies in which device decodes the audio track:
+Bitstream sends raw, compressed data across the HDMI cable to be decoded
+by the AV receiver or soundbar, whereas LPCM decodes the compressed
+audio at the source device first, sending raw, uncompressed audio
+channels to the sound system. While both methods can deliver identical
+fidelity, the choice impacts support for spatial audio formats, system
+sounds, and latency.</p>
+<h3 id="how-lpcm-works">How LPCM Works</h3>
+<p>Linear Pulse-Code Modulation (LPCM) is an uncompressed, digital
+representation of an analog audio signal. When an HDMI source—such as a
+PC, PlayStation 5, or Apple TV—is set to LPCM, the source decodes the
+original media format (such as Dolby Digital, Dolby TrueHD, or DTS-HD
+Master Audio) internally.</p>
+<p>Once unpacked, the source device transmits the individual,
+uncompressed audio channels directly over the HDMI cable to the
+receiver. Because the heavy lifting of audio decoding is finished before
+transmission, the receiver only needs to convert the digital PCM signal
+into analog power for the speakers.</p>
+<ul>
+<li><strong>Advantages:</strong> LPCM allows the source device to mix
+multiple audio streams simultaneously, such as in-game audio and voice
+chat or menu clicks over background video. It also minimizes processing
+latency, making it the preferred format for gaming and computing.</li>
+<li><strong>Limitations:</strong> Standard multi-channel LPCM cannot
+carry traditional proprietary spatial metadata, which means full Dolby
+Atmos or DTS:X playback may be disabled unless encapsulated inside
+specialized containers like Dolby MAT (Metadata-enhanced Audio
+Transmission).</li>
+</ul>
+<h3 id="how-bitstreaming-works">How Bitstreaming Works</h3>
+<p>Bitstreaming bypasses the source device's internal audio processor
+entirely. The source reads the compressed audio data straight from the
+disk, file, or stream and transmits the raw bitstream across the HDMI
+interface untouched.</p>
+<p>When the AV receiver or soundbar receives the bitstream, its internal
+digital signal processor (DSP) identifies the codec, unpacks the data,
+and maps the audio channels to the connected speaker setup.</p>
+<ul>
+<li><strong>Advantages:</strong> Bitstreaming is essential for passing
+object-based spatial audio metadata, including Dolby Atmos and DTS:X,
+directly to an external processor. It also allows the AV receiver's
+display to show the exact codec being processed (e.g., "Dolby TrueHD"),
+confirming that the audio is playing in its intended format.</li>
+<li><strong>Limitations:</strong> The source device cannot inject its
+own sounds (such as user interface effects or secondary audio
+commentary) into the stream without entirely re-encoding the signal on
+the fly, which can introduce audio lag.</li>
+</ul>
+<h3 id="audio-quality-comparison">Audio Quality Comparison</h3>
+<p>From a pure sound quality perspective, Bitstream and LPCM are
+functionally identical. A lossless audio track (such as Dolby TrueHD)
+contains the exact same acoustic data whether it is unpacked by a media
+player's processor or an AV receiver's processor. Neither approach
+inherently sounds "better" than the other, as decompression algorithms
+follow strictly standardized mathematical formulas.</p>
+<h3 id="which-setting-should-you-choose">Which Setting Should You
+Choose?</h3>
+<ul>
+<li><strong>Choose Bitstream</strong> when using dedicated Blu-ray
+players, streaming media players, or home theater software where the
+priority is passing lossless Dolby Atmos or DTS:X spatial audio directly
+to an AV receiver.</li>
+<li><strong>Choose LPCM</strong> for video game consoles and PCs
+connected directly via HDMI or eARC. This ensures minimal audio lag and
+allows the device to mix dynamic audio tracks, notifications, and game
+sounds together without compression artifacts.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

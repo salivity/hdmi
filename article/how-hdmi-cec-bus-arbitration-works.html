@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI CEC Bus Arbitration Works - hdmi</title>
+    <meta name="description" content="HDMI Consumer Electronics Control (CEC) is a single-wire, shared bidirectional bus that allows connected home theater devices to communicate using a single remote or unified command system. Because every connected device shares this single physical condu">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-cec-bus-arbitration-works">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI CEC Bus Arbitration Works - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-cec-bus-arbitration-works" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI Consumer Electronics Control (CEC) is a single-wire, shared bidirectional bus that allows connected home theater devices to communicate using a single remote or unified command system. Because every connected device shares this single physical condu" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-cec-bus-arbitration-works">How HDMI CEC Bus Arbitration
+Works</h1>
+<p>HDMI Consumer Electronics Control (CEC) is a single-wire, shared
+bidirectional bus that allows connected home theater devices to
+communicate using a single remote or unified command system. Because
+every connected device shares this single physical conductor, multiple
+devices can attempt to transmit data simultaneously. To handle these
+collisions without corrupting transmissions, HDMI CEC employs a
+hardware-level, non-destructive arbitration protocol based on Carrier
+Sense Multiple Access with Collision Detection (CSMA/CD), ensuring that
+the highest-priority message completes uninterrupted while losing
+devices yield immediately.</p>
+<h3 id="the-physical-bus-and-signal-states">The Physical Bus and Signal
+States</h3>
+<p>The HDMI CEC line operates as an open-drain (or open-collector) bus
+pulled up to approximately +3.3V through a resistor. In this setup,
+signal states are asymmetrical:</p>
+<ul>
+<li><strong>Passive / Recessive State (Logical 1):</strong> The bus
+floats high because no device actively drives the line.</li>
+<li><strong>Active / Dominant State (Logical 0):</strong> A device
+actively grounds the bus, pulling the voltage low.</li>
+</ul>
+<p>Because an active ground overrides a passive pull-up, a dominant '0'
+always overwrites a recessive '1' if both are transmitted
+simultaneously.</p>
+<h3 id="timing-and-collision-detection">Timing and Collision
+Detection</h3>
+<p>Every CEC communication block begins with a synchronized
+<strong>Start Bit</strong>, followed by a <strong>Header Block</strong>
+containing the 4-bit Initiator Logical Address and the 4-bit Destination
+Logical Address.</p>
+<p>CEC encodes bits using pulse-width modulation where each bit period
+begins with a falling edge (line pulled low):</p>
+<ul>
+<li>A logical '0' requires the bus to be held low for approximately 1.5
+ms.</li>
+<li>A logical '1' requires the bus to be held low for a shorter duration
+of roughly 0.6 ms before being released to float high.</li>
+</ul>
+<p>Because a logical '0' holds the line low longer than a logical '1',
+the '0' acts as the dominant state on the bus during the latter half of
+the bit period.</p>
+<h3 id="the-arbitration-process">The Arbitration Process</h3>
+<p>Arbitration takes place during the transmission of the Header Block,
+specifically while devices output their assigned logical addresses:</p>
+<ol type="1">
+<li><strong>Simultaneous Transmission:</strong> If two or more devices
+detect an idle bus and simultaneously begin transmitting, they
+synchronize to the same falling edge of the Start Bit.</li>
+<li><strong>Bit-by-Bit Comparison:</strong> As each device transmits its
+own logical address bit by bit, it simultaneously reads the actual
+voltage state of the CEC line.</li>
+<li><strong>Conflict Identification:</strong> If Device A attempts to
+transmit a recessive '1' (releasing the line early) while Device B
+transmits a dominant '0' (holding the line low), the bus remains pulled
+low by Device B.</li>
+<li><strong>Immediate Back-Off:</strong> Device A senses that the
+physical state of the bus (low) does not match the state it intended to
+transmit (high). Device A recognizes that it has lost arbitration,
+immediately shuts off its output driver, and switches to receiver
+mode.</li>
+<li><strong>Uninterrupted Delivery:</strong> Device B detects no
+discrepancy between its intended output and the bus state. It continues
+transmitting its message entirely unaware that a collision occurred,
+with zero data loss or packet corruption.</li>
+</ol>
+<h3 id="retransmission-and-address-priority">Retransmission and Address
+Priority</h3>
+<p>Because '0' dominates over '1', devices with lower numerical logical
+addresses inherently possess higher transmission priority during
+simultaneous attempts. For example, a TV (typically assigned Logical
+Address <code>0000</code>) will always win arbitration over a playback
+device (such as a Blu-ray player or streaming stick, typically assigned
+<code>0100</code>).</p>
+<p>Devices that lose arbitration must wait for the current message
+exchange to conclude. Once the bus returns to an idle state, the losing
+transmitter calculates a standardized Signal Free Time (a mandatory
+delay based on bit periods) before attempting to retransmit its
+frame.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

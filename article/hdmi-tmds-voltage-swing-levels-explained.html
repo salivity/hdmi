@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI TMDS Voltage Swing Levels Explained - hdmi</title>
+    <meta name="description" content="Transition Minimized Differential Signaling (TMDS) is the core physical layer technology used in HDMI to transmit high-speed digital audio and video data. To maintain signal integrity and ensure interoperability across various transmitters, cables, and s">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-tmds-voltage-swing-levels-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI TMDS Voltage Swing Levels Explained - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-tmds-voltage-swing-levels-explained" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transition Minimized Differential Signaling (TMDS) is the core physical layer technology used in HDMI to transmit high-speed digital audio and video data. To maintain signal integrity and ensure interoperability across various transmitters, cables, and s" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-tmds-voltage-swing-levels-explained">HDMI TMDS Voltage
+Swing Levels Explained</h1>
+<p>Transition Minimized Differential Signaling (TMDS) is the core
+physical layer technology used in HDMI to transmit high-speed digital
+audio and video data. To maintain signal integrity and ensure
+interoperability across various transmitters, cables, and sinks, the
+HDMI TMDS electrical specification sets strict Current Mode Logic (CML)
+amplitude boundaries. This article details the four discrete voltage
+swing thresholds defined within the HDMI TMDS electrical specification,
+covering both single-ended and differential domains.</p>
+<h3 id="the-four-discrete-voltage-swing-levels">The Four Discrete
+Voltage Swing Levels</h3>
+<p>The HDMI TMDS electrical specification defines the transmitter output
+requirements using four discrete voltage swing boundaries that govern
+single-ended and differential peak-to-peak amplitudes:</p>
+<ol type="1">
+<li><p><strong>400 mV (Minimum Single-Ended Output Swing, <span
+class="math inline">\(V_{SWING, min}\)</span>)</strong><br />
+This is the lowest allowable single-ended voltage transition on either
+individual line (<span class="math inline">\(D+\)</span> or <span
+class="math inline">\(D-\)</span>) of a differential pair. When a TMDS
+driver transitions from high to low, the signal must drop by at least
+400 mV below the high-level reference voltage (<span
+class="math inline">\(AV_{CC}\)</span>).</p></li>
+<li><p><strong>600 mV (Maximum Single-Ended Output Swing, <span
+class="math inline">\(V_{SWING, max}\)</span>)</strong><br />
+This represents the maximum permissible single-ended voltage drop on an
+individual line. Keeping the single-ended drop between 400 mV and 600 mV
+ensures a nominal single-ended swing of 500 mV, preventing excessive
+electromagnetic interference (EMI) and signal overshoot.</p></li>
+<li><p><strong>800 mV (Minimum Differential Peak-to-Peak Swing, <span
+class="math inline">\(V_{DIFF, min}\)</span>)</strong><br />
+Calculated as twice the minimum single-ended swing (<span
+class="math inline">\(2 \times 400\text{ mV}\)</span>), 800 mV
+peak-to-peak is the minimum differential amplitude required across the
+differential pair. This ensures that the HDMI sink receiver can reliably
+resolve logic states even after high-frequency cable
+attenuation.</p></li>
+<li><p><strong>1200 mV (Maximum Differential Peak-to-Peak Swing, <span
+class="math inline">\(V_{DIFF, max}\)</span>)</strong><br />
+Calculated as twice the maximum single-ended swing (<span
+class="math inline">\(2 \times 600\text{ mV}\)</span>), 1200 mV
+peak-to-peak is the upper limit for the differential voltage across the
+pair. With a nominal differential swing of 1000 mV, this ceiling
+prevents receiver saturation and cross-talk between adjacent TMDS
+channels.</p></li>
+</ol>
+<h3 id="corresponding-dc-voltage-rails">Corresponding DC Voltage
+Rails</h3>
+<p>These four swing limits operate around fixed DC voltage levels
+established by the 3.3V termination rail (<span
+class="math inline">\(AV_{CC}\)</span>):</p>
+<ul>
+<li><strong>Single-Ended High (<span
+class="math inline">\(V_{OH}\)</span>):</strong> Nominally <span
+class="math inline">\(3.3\text{ V}\)</span> (<span
+class="math inline">\(AV_{CC} \pm 10\text{ mV}\)</span>).</li>
+<li><strong>Single-Ended Low (<span
+class="math inline">\(V_{OL}\)</span>):</strong> Nominally <span
+class="math inline">\(2.8\text{ V}\)</span> (<span
+class="math inline">\(AV_{CC} - 500\text{ mV}\)</span>), bounded
+strictly between <span class="math inline">\(2.7\text{ V}\)</span>
+(<span class="math inline">\(AV_{CC} - 600\text{ mV}\)</span>) and <span
+class="math inline">\(2.9\text{ V}\)</span> (<span
+class="math inline">\(AV_{CC} - 400\text{ mV}\)</span>).</li>
+<li><strong>Differential Logic High:</strong> Driven when <span
+class="math inline">\(D+\)</span> is at <span
+class="math inline">\(V_{OH}\)</span> and <span
+class="math inline">\(D-\)</span> is at <span
+class="math inline">\(V_{OL}\)</span>, creating a positive differential
+voltage (<span class="math inline">\(+400\text{ mV}\)</span> to <span
+class="math inline">\(+600\text{ mV}\)</span>).</li>
+<li><strong>Differential Logic Low:</strong> Driven when <span
+class="math inline">\(D+\)</span> is at <span
+class="math inline">\(V_{OL}\)</span> and <span
+class="math inline">\(D-\)</span> is at <span
+class="math inline">\(V_{OH}\)</span>, creating an inverted differential
+voltage (<span class="math inline">\(-400\text{ mV}\)</span> to <span
+class="math inline">\(-600\text{ mV}\)</span>).</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

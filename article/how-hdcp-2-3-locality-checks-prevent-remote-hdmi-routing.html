@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDCP 2.3 Locality Checks Prevent Remote HDMI Routing - hdmi</title>
+    <meta name="description" content="High-bandwidth Digital Content Protection (HDCP) 2.3 incorporates strict verification protocols designed to prevent the unauthorized transmission of high-value audiovisual content across wide-area networks or cloud environments. This article explains the">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdcp-2-3-locality-checks-prevent-remote-hdmi-routing">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDCP 2.3 Locality Checks Prevent Remote HDMI Routing - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdcp-2-3-locality-checks-prevent-remote-hdmi-routing" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="High-bandwidth Digital Content Protection (HDCP) 2.3 incorporates strict verification protocols designed to prevent the unauthorized transmission of high-value audiovisual content across wide-area networks or cloud environments. This article explains the" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdcp-23-locality-checks-prevent-remote-hdmi-routing">How
+HDCP 2.3 Locality Checks Prevent Remote HDMI Routing</h1>
+<p>High-bandwidth Digital Content Protection (HDCP) 2.3 incorporates
+strict verification protocols designed to prevent the unauthorized
+transmission of high-value audiovisual content across wide-area networks
+or cloud environments. This article explains the technical mechanics of
+the HDCP 2.3 locality check, detailing how round-trip time measurements
+and cryptographic handshakes verify that connected devices are
+physically co-located, thereby blocking remote routing and unauthorized
+HDMI stream redistribution.</p>
+<h3 id="the-purpose-of-the-locality-check">The Purpose of the Locality
+Check</h3>
+<p>In digital transmission architectures like HDMI-over-IP and wireless
+display standards, an unconstrained stream could theoretically be
+captured, piped through a VPN or long-haul internet connection, and
+decrypted thousands of miles away. While HDCP 2.3 encrypts data payload
+transfers, standard encryption alone does not inherently dictate
+physical proximity. The locality check bridges this gap by validating
+that the downstream receiver (sink) resides on the same local network or
+physical perimeter as the upstream transmitter (source).</p>
+<h3 id="the-challenge-response-handshake">The Challenge-Response
+Handshake</h3>
+<p>The locality check occurs during the HDCP authentication protocol,
+typically right after the Authentication and Key Exchange (AKE) phase
+generates the master keying material.</p>
+<ol type="1">
+<li><strong>Nonce Generation:</strong> The transmitter generates a
+64-bit pseudo-random value known as <span
+class="math inline">\(r_{tx}\)</span> and transmits it to the
+receiver.</li>
+<li><strong>Cryptographic Computation:</strong> The receiver must
+compute a locality check value, designated as <span
+class="math inline">\(L&#39;\)</span> (or <span
+class="math inline">\(V&#39;\)</span> depending on phase/mode), using an
+HMAC-SHA256 algorithm. This computation takes the nonces (<span
+class="math inline">\(r_{tx}\)</span>, <span
+class="math inline">\(r_{rx}\)</span>) and binds them mathematically to
+the derived secret master key (<span class="math inline">\(K_D\)</span>)
+established during the initial pairing.</li>
+<li><strong>Response Verification:</strong> The receiver sends the
+computed response back to the transmitter. The transmitter independently
+computes the expected value (<span class="math inline">\(L\)</span>) and
+compares it to the receiver’s response.</li>
+</ol>
+<p>Because the response relies on the unique session key, an
+intermediate man-in-the-middle node cannot alter, forge, or relay fake
+responses without knowing the secret master keys stored in secure
+hardware.</p>
+<h3 id="round-trip-time-rtt-enforcement">Round-Trip Time (RTT)
+Enforcement</h3>
+<p>The core mechanism preventing remote relay attacks is a strict timing
+threshold applied to the challenge-response cycle.</p>
+<p>When the transmitter emits the <span
+class="math inline">\(r_{tx}\)</span> challenge, it starts a
+high-resolution hardware timer. The receiver must calculate the
+cryptographic digest and transmit the response back within a
+microsecond-level timing window:</p>
+<ul>
+<li><strong>Maximum Permissible Latency:</strong> The HDCP specification
+typically enforces a maximum round-trip limit of approximately 7 to 20
+milliseconds (standard network configurations target under 7 ms).</li>
+<li><strong>Speed-of-Light Limitation:</strong> While local network
+switches, certified repeaters, and direct physical cables process this
+exchange within 1 to 2 milliseconds, routing packets across standard
+internet infrastructure, proxies, or multi-hop wide-area networks
+introduces transit latency that far exceeds the millisecond
+threshold.</li>
+<li><strong>Pre-computation Prevention:</strong> Because the challenge
+relies on the random <span class="math inline">\(r_{tx}\)</span>
+generated in real time, a remote receiver cannot pre-calculate the
+result to compensate for network latency.</li>
+</ul>
+<h3 id="failure-handling-and-stream-termination">Failure Handling and
+Stream Termination</h3>
+<p>If the receiver fails to return the correct cryptographic response
+within the designated time limit, the locality check fails. The
+transmitter allows a small number of immediate retries (typically up to
+two attempts) to account for minor local packet collisions.</p>
+<p>If the check consistently fails or times out:</p>
+<ul>
+<li>The transmitter invalidates the cryptographic keys for that
+session.</li>
+<li>The HDMI stream's visual output is either muted entirely or replaced
+with a standard HDCP error screen.</li>
+<li>High-bandwidth payload encryption is disabled until a complete
+re-authentication cycle is executed from scratch.</li>
+</ul>
+<p>Through this combination of cryptographic verification and
+sub-millisecond round-trip time thresholds, HDCP 2.3 ensures that
+protected streams remain confined strictly to local displays and cannot
+be mirrored or piped over external wide-area networks.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDCP Authentication Works Over HDMI - hdmi</title>
+    <meta name="description" content="High-bandwidth Digital Content Protection (HDCP) prevents unauthorized duplication of copyrighted digital media as it travels between source devices and displays. Across a High-Definition Multimedia Interface (HDMI) connection, HDCP establishes security">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdcp-authentication-works-over-hdmi">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDCP Authentication Works Over HDMI - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdcp-authentication-works-over-hdmi" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="High-bandwidth Digital Content Protection (HDCP) prevents unauthorized duplication of copyrighted digital media as it travels between source devices and displays. Across a High-Definition Multimedia Interface (HDMI) connection, HDCP establishes security" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdcp-authentication-works-over-hdmi">How HDCP Authentication
+Works Over HDMI</h1>
+<p>High-bandwidth Digital Content Protection (HDCP) prevents
+unauthorized duplication of copyrighted digital media as it travels
+between source devices and displays. Across a High-Definition Multimedia
+Interface (HDMI) connection, HDCP establishes security through a
+multi-step cryptographic handshake known as authentication. This process
+verifies that the receiving display is authorized to handle the content,
+establishes shared encryption keys between the devices, and continuously
+monitors the connection to ensure the link remains secure before
+transmitting any protected video or audio data.</p>
+<h3 id="the-role-of-devices-in-the-link">The Role of Devices in the
+Link</h3>
+<p>An HDCP-protected HDMI link consists of at least two primary roles:
+the transmitter (source), such as a Blu-ray player, gaming console, or
+streaming box, and the receiver (sink), typically a television or
+monitor. If an audio-video (AV) receiver or splitter is in the chain, it
+acts as an HDCP repeater, which decrypts the content, processes audio or
+distributes the video, and re-encrypts the stream for the next
+downstream receiver.</p>
+<h3 id="step-1-the-initial-handshake-and-key-exchange">Step 1: The
+Initial Handshake and Key Exchange</h3>
+<p>Authentication begins immediately when an HDMI connection is made and
+protected content is requested. Communication for authentication occurs
+over the HDMI Display Data Channel (DDC), an I²C bus separate from the
+high-speed audiovisual lines.</p>
+<ol type="1">
+<li><strong>Initiation:</strong> The transmitter initiates
+authentication by generating a pseudo-random value and sending it to the
+receiver along with its own identifier.</li>
+<li><strong>Key Selection Vector (KSV) Exchange:</strong> In HDCP 1.x
+links, each authorized device is provisioned at manufacturing with a set
+of secret private keys and an associated Key Selection Vector (KSV). The
+receiver sends its KSV back to the transmitter. In modern HDCP 2.2 and
+newer versions (designed for 4K and 8K content), this mechanism is
+upgraded to use industry-standard public-key cryptography (RSA or ECDSA)
+and Diffie-Hellman key exchanges instead of the proprietary KSV
+matrix.</li>
+<li><strong>Revocation Check:</strong> The transmitter cross-references
+the receiver’s identifier or public certificate against a System
+Renewability Message (SRM) stored in its firmware. If the receiver’s key
+is identified as compromised, the source revokes access and halts
+transmission.</li>
+</ol>
+<h3 id="step-2-shared-secret-computation-and-link-verification">Step 2:
+Shared Secret Computation and Link Verification</h3>
+<p>Once both devices have exchanged public values, they independently
+calculate a shared secret value.</p>
+<p>In HDCP 1.x implementations, both devices mathematically combine
+their internal private keys with the counterpart’s KSV. Because of the
+mathematical properties of the HDCP key matrix, this process yields the
+exact same secret value on both sides without ever transmitting the
+secret across the wire. In HDCP 2.x, this shared master key is derived
+via Diffie-Hellman exchange.</p>
+<p>To confirm that both devices arrived at the same secret:</p>
+<ul>
+<li>Both devices use the secret to compute a verification hash.</li>
+<li>The receiver sends its calculated hash back to the transmitter
+within a strict time limit (typically 100 milliseconds).</li>
+<li>The transmitter compares the receiver's hash against its own.</li>
+</ul>
+<p>If the values match, the receiver is validated as an authentic,
+licensed HDCP device.</p>
+<h3 id="step-3-repeater-authentication-and-topology-mapping">Step 3:
+Repeater Authentication and Topology Mapping</h3>
+<p>If the connected device identifies itself as a repeater rather than
+an end-display sink, a second authentication phase occurs. The repeater
+queries all downstream devices connected to it, collects their
+identifiers, and forwards the entire downstream device list back to the
+source. The source verifies that the total number of connected devices
+does not exceed HDCP topology limits (up to 127 devices across 7 tiers)
+and checks all downstream identifiers against its revocation list.</p>
+<h3 id="step-4-stream-encryption-and-ongoing-integrity">Step 4: Stream
+Encryption and Ongoing Integrity</h3>
+<p>Once authentication is successful, the shared secret generates the
+running cipher keys used to encrypt the raw pixel and audio data. The
+encrypted data is transmitted across the HDMI Transition-Minimized
+Differential Signaling (TMDS) or Fixed Rate Link (FRL) data lines.</p>
+<p>To prevent an attacker from swapping out the authenticated display
+mid-stream, the devices perform continuous link integrity checks. In
+HDCP 1.x, a new verification hash is generated and verified every two
+seconds. In HDCP 2.x, the stream uses continuous counter-mode AES
+encryption, ensuring that any interruption, tampering, or severed
+connection immediately breaks decryption and causes the display to blank
+out.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

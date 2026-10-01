@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limited RGB on Full Range Monitor: Why Shadows Crush - hdmi</title>
+    <meta name="description" content="Crushed shadow details occur when an HDMI display and video source disagree on how digital color values are mapped, causing distinct dark gray gradations to collapse into flat, featureless black. When a Limited Range source interacts with a monitor expec">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/limited-rgb-on-full-range-monitor-why-shadows-crush">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Limited RGB on Full Range Monitor: Why Shadows Crush - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/limited-rgb-on-full-range-monitor-why-shadows-crush" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Crushed shadow details occur when an HDMI display and video source disagree on how digital color values are mapped, causing distinct dark gray gradations to collapse into flat, featureless black. When a Limited Range source interacts with a monitor expec" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="limited-rgb-on-full-range-monitor-why-shadows-crush">Limited RGB
+on Full Range Monitor: Why Shadows Crush</h1>
+<p>Crushed shadow details occur when an HDMI display and video source
+disagree on how digital color values are mapped, causing distinct dark
+gray gradations to collapse into flat, featureless black. When a Limited
+Range source interacts with a monitor expecting or processing a Full
+Range signal, misalignment in the digital black floor causes near-black
+luminance steps to truncate or compress beneath the displayable
+threshold. This article explains the technical mechanics of dynamic
+range quantization, how coordinate mismatches clip luminance data, and
+why shadow details disappear.</p>
+<h3 id="full-range-vs-limited-range-quantization">Full Range vs. Limited
+Range Quantization</h3>
+<p>Digital displays use quantization levels to define luminance steps
+from black to white. In standard 8-bit color depth, there are 256
+available integer values (0 to 255):</p>
+<ul>
+<li><strong>Full Range (0–255):</strong> Commonly used by PCs and
+computer monitors. Code <code>0</code> represents absolute reference
+black, while code <code>255</code> represents peak white. Every step in
+between represents an active, visible shade.</li>
+<li><strong>Limited Range (16–235):</strong> Historically developed for
+television broadcasting and consumer video equipment. Code
+<code>16</code> represents reference black, and code <code>235</code>
+represents reference white. The values from <code>0–15</code> (footroom)
+and <code>236–255</code> (headroom) are reserved for timing,
+synchronization, and overshoot data rather than active image
+detail.</li>
+</ul>
+<h3 id="the-mechanics-of-shadow-crushing">The Mechanics of Shadow
+Crushing</h3>
+<p>Crushed blacks occur when the display engine or GPU improperly remaps
+or clips the lower end of the luminance spectrum.</p>
+<p>When a monitor configured for Full Range receives an unscaled Limited
+Range signal, code <code>16</code> is displayed as dark gray instead of
+true black, resulting in washed-out contrast. However, severe shadow
+crushing occurs under two common misconfiguration scenarios between
+these standards:</p>
+<ol type="1">
+<li><strong>Improper Range Expansion (Double-Processing):</strong> If a
+source operating in Limited Range attempts to send signals to a Full
+Range display, software drivers or scalers often try to stretch the
+16–235 range across 0–255. If this mathematical remapping rounds down
+aggressively or misinterprets the black baseline, values near code
+<code>16</code> (such as codes <code>17</code> through <code>25</code>,
+which hold critical near-black details like fabric textures or dark
+environmental geometry) are pulled below code <code>0</code>. Any values
+calculated below <code>0</code> are clipped entirely, turning nuanced
+shadows into uniform black.</li>
+<li><strong>Display Clamping (Inverted HDMI Black Level
+Settings):</strong> Monitors and TVs often label range controls as "HDMI
+Black Level" (e.g., "Low" for Limited, "Normal/High" for Full). If the
+user sets the monitor's input interpreter to "Low" (Limited) to combat
+the washed-out look of an incoming Limited signal while the graphics
+pipeline attempts a Full Range output, the display enforces a hard
+cutoff at value <code>16</code>. Any data sent between <code>0</code>
+and <code>15</code> is discarded, and the dynamic curve steepens sharply
+above <code>16</code>, forcing near-black tones to render as zero
+luminance.</li>
+</ol>
+<h3 id="quantization-loss-and-gamma-shift">Quantization Loss and Gamma
+Shift</h3>
+<p>When digital levels are improperly mapped from Limited to Full:</p>
+<ul>
+<li><strong>Step Expansion:</strong> Spreading 220 discrete steps
+(16–235) over a 256-step space (0–255) requires interpolation.
+Non-linear rounding drops subtle gradations, turning smooth gradients
+into banding artifacts and pushing faint low-end steps directly into the
+noise floor.</li>
+<li><strong>Gamma Distortion:</strong> Because display gamma curves
+calculate luminance output exponentially based on the input code, an
+incorrect black point reference shifts the entire transfer function. The
+bottom portion of the gamma curve flattens completely against zero,
+eliminating the perceptual contrast necessary for the human eye to
+differentiate dark gray from pure black.</li>
+</ul>
+<h3 id="correcting-the-signal-path">Correcting the Signal Path</h3>
+<p>To resolve crushed shadows, the dynamic range must match across the
+entire video pipeline. Setting the source output range and the monitor's
+HDMI black level to the same standard—either Full-to-Full (0–255) for PC
+environments or Limited-to-Limited (16–235) for standard broadcast
+hardware—ensures that code <code>16</code> is recognized correctly
+without truncating shadow data.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

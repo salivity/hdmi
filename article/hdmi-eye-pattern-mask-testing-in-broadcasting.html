@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Eye-Pattern Mask Testing in Broadcasting - hdmi</title>
+    <meta name="description" content="This article provides an operational guide on how broadcast engineers validate the physical-layer signal integrity of HDMI transmission links using eye-pattern mask testing. It covers the required test equipment, fixture configuration, calibration, measu">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-eye-pattern-mask-testing-in-broadcasting">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Eye-Pattern Mask Testing in Broadcasting - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-eye-pattern-mask-testing-in-broadcasting" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides an operational guide on how broadcast engineers validate the physical-layer signal integrity of HDMI transmission links using eye-pattern mask testing. It covers the required test equipment, fixture configuration, calibration, measu" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-eye-pattern-mask-testing-in-broadcasting">HDMI Eye-Pattern
+Mask Testing in Broadcasting</h1>
+<p>This article provides an operational guide on how broadcast engineers
+validate the physical-layer signal integrity of HDMI transmission links
+using eye-pattern mask testing. It covers the required test equipment,
+fixture configuration, calibration, measurement execution, and the
+diagnostic analysis of mask violations to ensure robust video transport
+in critical production environments.</p>
+<h3 id="the-purpose-of-eye-pattern-testing-in-hdmi">The Purpose of
+Eye-Pattern Testing in HDMI</h3>
+<p>High-Definition Multimedia Interface (HDMI) relies on high-speed
+serial data transmission—Transition-Minimized Differential Signaling
+(TMDS) in HDMI 1.4/2.0 and Fixed Rate Link (FRL) in HDMI 2.1. In
+broadcast facilities, long cable runs, patch bays, distribution
+amplifiers, and electromagnetic interference can degrade high-frequency
+signals.</p>
+<p>An eye pattern overlays thousands of digital transitions (ones,
+zeros, rising edges, and falling edges) synchronized to a recovered
+clock. An eye mask defines a geometric "keep-out zone" within the
+center, top, and bottom of this aggregated waveform. If any part of the
+signal traces crosses into this mask, the transmission link violates
+physical-layer specifications, predicting bit errors, packet loss, or
+complete link drops.</p>
+<h3 id="required-test-equipment">Required Test Equipment</h3>
+<p>To conduct standardized HDMI eye-pattern testing, engineers use:</p>
+<ul>
+<li><strong>Real-Time Digital Storage Oscilloscope (DSO):</strong> A
+high-bandwidth oscilloscope is essential. Testing HDMI 2.0 (up to 6 Gbps
+per lane) typically requires at least a 12 GHz to 16 GHz oscilloscope.
+Testing HDMI 2.1 (up to 12 Gbps per lane) requires a 20 GHz or higher
+bandwidth scope.</li>
+<li><strong>HDMI Test Point Access (TPA) Adapters:</strong> Standard
+HDMI cables cannot directly interface with oscilloscope inputs.
+Engineers use impedance-matched TPAs to break out differential signals
+into SMA or SMP coaxial connections.</li>
+<li><strong>Phase-Matched Coaxial Cables:</strong> High-quality,
+low-loss cables ensure signal timing between the differential pairs
+remains strictly aligned.</li>
+<li><strong>HDMI Compliance Software:</strong> Oscilloscope-native
+software packages automate clock recovery, standard mask overlays, and
+automated pass/fail reporting.</li>
+</ul>
+<h3 id="test-setup-and-calibration">Test Setup and Calibration</h3>
+<ol type="1">
+<li><strong>De-Embedding the Fixture:</strong> Broadcast engineers
+calibrate the test setup to eliminate the electrical effects of the TPA
+adapter and connecting cables. Using S-parameter touchstone files, the
+oscilloscope mathematically de-embeds fixture loss, ensuring that only
+the HDMI transmitter's or link's true output is measured.</li>
+<li><strong>Connecting the Link:</strong> The HDMI source (such as a
+broadcast camera, switcher output, or media server) connects to the
+TPA-P (plug) adapter. The differential clock (for TMDS) or the
+high-speed data lanes (Data 0, 1, 2, and 3) connect to the
+oscilloscope's input channels.</li>
+<li><strong>Clock Recovery Configuration:</strong> HDMI TMDS transmits a
+separate sub-rate clock, whereas HDMI 2.1 FRL embeds the clock within
+the data stream. Engineers configure a software Phase-Locked Loop (PLL)
+within the oscilloscope compliance software to match the specific Golden
+PLL response defined by the HDMI specification. This filters out
+low-frequency transmitter jitter to isolate high-frequency jitter.</li>
+</ol>
+<h3 id="executing-the-eye-pattern-mask-test">Executing the Eye-Pattern
+Mask Test</h3>
+<ol type="1">
+<li><strong>Pattern Generation:</strong> The engineer sets the HDMI
+source to output a standardized compliance pattern. For TMDS, this is
+typically a high-transition pattern (such as PRBS or a defined
+pseudo-random sequence) or continuous video frames containing
+high-frequency transitions (e.g., checkerboard or alternate pixel
+patterns).</li>
+<li><strong>Acquisition:</strong> The oscilloscope acquires a
+high-sample-rate record containing hundreds of thousands of Unit
+Intervals (UIs).</li>
+<li><strong>Equalization Application:</strong> Modern HDMI standards
+allow or require receiver-side equalization (Continuous-Time Linear
+Equalization, or CTLE). The oscilloscope software applies reference CTLE
+models to the raw acquisition to simulate what an actual HDMI receiver's
+silicon would see.</li>
+<li><strong>Mask Application:</strong> The compliance software overlays
+the standard hexagonal or diamond-shaped keep-out mask directly over the
+recovered eye diagram.</li>
+</ol>
+<h3 id="interpreting-mask-violations">Interpreting Mask Violations</h3>
+<p>Engineers analyze the open area of the eye and any boundary
+violations to identify transmission faults:</p>
+<ul>
+<li><strong>Horizontal Eye Closure (Jitter Issues):</strong> If the
+signal violates the left or right boundaries of the central mask, the
+link suffers from high deterministic or random jitter. This often points
+to faulty clock generation, duty-cycle distortion, or power supply
+ripple on the transmitter.</li>
+<li><strong>Vertical Eye Closure (Attenuation &amp; Loss):</strong> If
+the top and bottom of the center mask are breached, the signal lacks
+sufficient differential voltage swing. This is typically caused by
+high-frequency attenuation over excessively long passive copper cables
+or damaged PCB traces.</li>
+<li><strong>Crossing Noise and Ringing:</strong> Traces that cut through
+the corners of the mask or show excessive thickness along the edges
+indicate impedance mismatches (standing waves/reflections) in
+connectors, poor cable shielding, or termination resistance errors.</li>
+</ul>
+<p>A link that clears the mask with significant margin ensures reliable,
+uncorrupted video transport across continuous broadcast operations.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

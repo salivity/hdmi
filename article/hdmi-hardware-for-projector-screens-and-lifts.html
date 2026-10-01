@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Hardware for Projector Screens and Lifts - hdmi</title>
+    <meta name="description" content="Integrating an HDMI source with motorized projection screens and projector lifts requires specific hardware interfaces that detect video signals, control data, or line voltage to trigger motor operations. While standard motorized screens and lifts rely o">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-hardware-for-projector-screens-and-lifts">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Hardware for Projector Screens and Lifts - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-hardware-for-projector-screens-and-lifts" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Integrating an HDMI source with motorized projection screens and projector lifts requires specific hardware interfaces that detect video signals, control data, or line voltage to trigger motor operations. While standard motorized screens and lifts rely o" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-hardware-for-projector-screens-and-lifts">HDMI Hardware for
+Projector Screens and Lifts</h1>
+<p>Integrating an HDMI source with motorized projection screens and
+projector lifts requires specific hardware interfaces that detect video
+signals, control data, or line voltage to trigger motor operations.
+While standard motorized screens and lifts rely on low-voltage triggers
+or dry contact relays, modern HDMI equipment can interface with these
+mechanisms using dedicated HDMI trigger adapters, CEC-enabled
+controllers, 5V power-sensing relays, and intermediate AV processors.
+This article outlines the primary hardware solutions that bridge the gap
+between HDMI media sources and motorized projection hardware.</p>
+<h3 id="hdmi-12-volt-trigger-adapters">HDMI 12-Volt Trigger
+Adapters</h3>
+<p>A standard motorized projection screen or lift operates via a 12-volt
+DC trigger interface, commonly using a 3.5mm jack. Because standard
+consumer HDMI sources (such as media players, streaming boxes, or
+computers) lack dedicated 3.5mm trigger outputs, inline HDMI 12V trigger
+adapters provide a direct hardware bridge.</p>
+<p>These devices sit between the HDMI source and the display. When the
+adapter detects an active HDMI Transition-Minimized Differential
+Signaling (TMDS) clock signal or active video data, it converts internal
+power into a steady 12-volt DC output sent directly to the screen or
+lift controller. When the source enters standby or ceases outputting
+video, the 12V signal drops to zero, signaling the screen or lift to
+retract.</p>
+<h3 id="hdmi-pin-18-5v-sensing-relays">HDMI Pin 18 (+5V) Sensing
+Relays</h3>
+<p>The HDMI specification reserves Pin 18 for a +5V DC power supply
+line, typically used for powering EDID chips and DDC communication.
+Specialized sensing relays tap into this pin to automate screen
+deployment.</p>
+<ul>
+<li><strong>Direct 5V Low-Voltage Relays:</strong> Certain low-voltage
+screen controllers can trigger directly from the 5V output of Pin 18,
+closing a relay when the source powers on.</li>
+<li><strong>Inline 5V Step-Up Triggers:</strong> These hardware dongles
+take the 5V signal from Pin 18, run it through an internal step-up
+converter, and supply a standard 12V trigger pulse without requiring an
+external AC power brick.</li>
+<li><strong>Optical/Current Detection Isolators:</strong> To avoid
+drawing too much current from the source’s HDMI port (which usually caps
+around 50mA), isolated sensing hardware monitors the voltage on Pin 18
+and triggers an externally powered relay circuit.</li>
+</ul>
+<h3 id="hdmi-cec-interface-controllers">HDMI CEC Interface
+Controllers</h3>
+<p>Consumer Electronics Control (CEC) is a single-wire bi-directional
+bus on Pin 13 of the HDMI connector used for device automation.
+Specialized CEC hardware interfaces listen to the HDMI bus for specific
+commands, such as "System Standby" or "One Touch Play."</p>
+<p>When a compatible HDMI CEC trigger device detects that a source has
+powered on and begun playback, the controller translates the digital CEC
+command into an electrical signal:</p>
+<ul>
+<li><strong>Dry Contact Closures:</strong> The CEC box closes an
+internal dry contact relay, completing the circuit on a motorized lift's
+up/down control board.</li>
+<li><strong>Configurable Voltage Outputs:</strong> High-end CEC trigger
+boxes output a 12V or 5V continuous signal based on whether the CEC bus
+reports active video states.</li>
+</ul>
+<h3 id="av-receivers-and-video-processors">AV Receivers and Video
+Processors</h3>
+<p>In professional home theater installations, the HDMI source
+frequently routes through an Audio/Video Receiver (AVR) or a dedicated
+video processor before reaching the projector. These components act as
+central hardware hubs:</p>
+<ul>
+<li><strong>Assignables 12V Triggers:</strong> Many AVRs feature
+programmable 12V trigger ports that monitor HDMI inputs. When the
+receiver detects an active signal on a specific HDMI port (e.g., HDMI
+1), it energizes the 12V port connected to the projector lift.</li>
+<li><strong>RS-232 and IP Gateways:</strong> Advanced matrix switchers
+can monitor HDMI handshake activity (HPD/Hot Plug Detect) and issue
+automated serial (RS-232) or IP network commands directly to motorized
+screen controllers, such as those made by Somfy, Draper, or Stewart
+Filmscreen.</li>
+</ul>
+<h3 id="smart-hdmi-splitters-with-contact-closures">Smart HDMI Splitters
+with Contact Closures</h3>
+<p>For installations requiring automated controls without smart home
+processors, hardware-level HDMI splitters and distribution amplifiers
+with integrated relay contacts are common. These splitters actively
+sample the HDMI Hot Plug Detect (Pin 19) line. When an HDMI source
+establishes an active handshake with the sink device, the hardware's
+internal relay engages, bridging the low-voltage wall-switch contacts on
+the motorized screen or projector lift mechanism.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

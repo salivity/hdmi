@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10-Bit to 8-Bit Dithering Techniques for HDMI Sources - hdmi</title>
+    <meta name="description" content="When an HDMI source processes 10-bit color content for display on an 8-bit panel, it relies on hardware-level bit-depth reduction techniques to prevent noticeable color banding. Modern graphics processing units (GPUs), media players, and consoles achieve">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/10-bit-to-8-bit-dithering-techniques-for-hdmi-sources">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="10-Bit to 8-Bit Dithering Techniques for HDMI Sources - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/10-bit-to-8-bit-dithering-techniques-for-hdmi-sources" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When an HDMI source processes 10-bit color content for display on an 8-bit panel, it relies on hardware-level bit-depth reduction techniques to prevent noticeable color banding. Modern graphics processing units (GPUs), media players, and consoles achieve" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="10-bit-to-8-bit-dithering-techniques-for-hdmi-sources">10-Bit to
+8-Bit Dithering Techniques for HDMI Sources</h1>
+<p>When an HDMI source processes 10-bit color content for display on an
+8-bit panel, it relies on hardware-level bit-depth reduction techniques
+to prevent noticeable color banding. Modern graphics processing units
+(GPUs), media players, and consoles achieve this transition primarily
+through spatial dithering, temporal dithering (Frame Rate Control), and
+hybrid spatiotemporal algorithms. These methods fool the human visual
+system into perceiving intermediate color values that an 8-bit pipeline
+cannot natively produce.</p>
+<h3 id="spatial-dithering">Spatial Dithering</h3>
+<p>Spatial dithering resolves quantization errors by distributing
+intermediate color shades across adjacent physical pixels within the
+same static frame. Instead of rounding a 10-bit value down to the
+nearest 8-bit step across an entire region, the source introduces
+controlled noise patterns:</p>
+<ul>
+<li><strong>Ordered Dithering:</strong> The source applies a
+precalculated threshold pattern, commonly a Bayer matrix, across pixel
+grids. If an intermediate 10-bit value falls between two 8-bit values,
+the matrix dictates the proportion and spatial pattern of higher versus
+lower 8-bit values assigned to adjacent subpixels. This algorithm
+requires minimal computational overhead and is easily mapped directly
+into hardware display controllers.</li>
+<li><strong>Error Diffusion:</strong> Advanced render engines or video
+scalers sometimes use error diffusion algorithms, such as
+Floyd-Steinberg or Sierra variations. When a 10-bit pixel is quantized
+to an 8-bit value, the difference (the quantization error) is pushed
+forward and added to neighboring, unprocessed pixels. While this yields
+superior gradients without repeating geometric patterns, standard
+real-time HDMI output pipelines rarely implement pure error diffusion
+due to bandwidth and serialization bottlenecks.</li>
+</ul>
+<h3 id="temporal-dithering-frame-rate-control">Temporal Dithering (Frame
+Rate Control)</h3>
+<p>Temporal dithering, frequently termed Frame Rate Control (FRC),
+leverages the display's refresh rate to generate intermediate colors
+over time rather than space:</p>
+<ul>
+<li><strong>Cycle-Based Switching:</strong> The source rapidly switches
+a single pixel between two adjacent 8-bit states over consecutive
+refresh cycles (for example, switching between values 120 and 121 at
+60Hz or 120Hz).</li>
+<li><strong>Visual Persistence:</strong> Because human persistence of
+vision blends light over approximately 20 to 50 milliseconds, the human
+eye averages the rapid flashes into a smooth, intermediate luminance
+level.</li>
+<li><strong>Modulation Patterns:</strong> Sources use 2-frame or 4-frame
+cycle modulations to approximate fractional bit steps (such as 0.25,
+0.5, or 0.75 increments between standard 8-bit integers).</li>
+</ul>
+<h3 id="spatiotemporal-dithering">Spatiotemporal Dithering</h3>
+<p>Modern HDMI display controllers (such as those in AMD, NVIDIA, and
+Intel graphics processors) predominantly use hybrid spatiotemporal
+dithering. Pure temporal dithering risks visible flicker in solid color
+fields, and pure spatial dithering creates noticeable cross-hatching or
+grain.</p>
+<p>Spatiotemporal dithering resolves these weaknesses by:</p>
+<ol type="1">
+<li>Applying an ordered spatial pattern across a 2x2 or 4x4 pixel
+block.</li>
+<li>Phase-shifting that matrix on every subsequent display refresh.</li>
+</ol>
+<p>By simultaneously moving the spatial coordinates and alternating the
+temporal cycles, pixel transitions are randomized across both axes,
+neutralizing perceptible flicker and eliminating static geometric
+patterns.</p>
+<h3 id="source-side-implementation-mechanics">Source-Side Implementation
+Mechanics</h3>
+<p>When an HDMI sink provides an Extended Display Identification Data
+(EDID) handshake that limits output to an 8-bit format (such as 8-bit
+RGB or YCbCr 4:4:4), the source's internal display pipeline steps down
+the 10-bit render buffer prior to serialization:</p>
+<ol type="1">
+<li><strong>Internal Precision:</strong> Games and HDR media are decoded
+or rendered internally at 10-bit (or higher floating-point)
+precision.</li>
+<li><strong>Display Engine Quantization:</strong> Just before encoding
+the signal into Transition Minimized Differential Signaling (TMDS) or
+Fixed Rate Link (FRL) packets, the display pipeline's output formatting
+block applies the hardware dither algorithm.</li>
+<li><strong>Transmission:</strong> The output data is packed and
+transmitted over the HDMI cable as standard 8-bit data words, leaving
+the receiving panel with a signal that closely emulates the gradient
+smoothness of a native 10-bit pipeline without exceeding 8-bit bandwidth
+constraints.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

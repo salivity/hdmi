@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4K 144Hz 10-Bit RGB HDMI 2.1 Bandwidth Requirements - hdmi</title>
+    <meta name="description" content="Transmitting uncompressed 4K video at 144Hz with 10-bit color depth in full RGB (4:4:4) format requires an active video bit-rate of 35.83 Gbps and a total transmission bandwidth between 39.2 Gbps and 42.8 Gbps when including blanking overhead. This techn">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/4-k-144-hz-10-bit-rgb-hdmi-2-1-bandwidth-requirements">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="4K 144Hz 10-Bit RGB HDMI 2.1 Bandwidth Requirements - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/4-k-144-hz-10-bit-rgb-hdmi-2-1-bandwidth-requirements" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transmitting uncompressed 4K video at 144Hz with 10-bit color depth in full RGB (4:4:4) format requires an active video bit-rate of 35.83 Gbps and a total transmission bandwidth between 39.2 Gbps and 42.8 Gbps when including blanking overhead. This techn" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="4k-144hz-10-bit-rgb-hdmi-21-bandwidth-requirements">4K 144Hz
+10-Bit RGB HDMI 2.1 Bandwidth Requirements</h1>
+<p>Transmitting uncompressed 4K video at 144Hz with 10-bit color depth
+in full RGB (4:4:4) format requires an active video bit-rate of 35.83
+Gbps and a total transmission bandwidth between 39.2 Gbps and 42.8 Gbps
+when including blanking overhead. This technical breakdown explains the
+exact mathematical calculation for both active and total bit-rates,
+analyzes timing blanking overhead, and details how the signal fits
+within the HDMI 2.1 specification.</p>
+<h3 id="active-video-bit-rate-calculation">Active Video Bit-Rate
+Calculation</h3>
+<p>The active video data rate represents the raw data required purely
+for rendering the visible pixels on the screen, excluding blanking
+intervals, audio, and metadata packets.</p>
+<ol type="1">
+<li><p><strong>Resolution:</strong> 4K Ultra HD consists of 3840
+horizontal pixels by 2160 vertical pixels: <span
+class="math display">\[\text{Total Active Pixels} = 3840 \times 2160 =
+8,294,400 \text{ pixels per frame}\]</span></p></li>
+<li><p><strong>Color Depth and Chroma Subsampling:</strong> A 10-bit RGB
+(4:4:4) signal assigns 10 bits per channel across three channels (Red,
+Green, and Blue): <span class="math display">\[\text{Bits Per Pixel
+(bpp)} = 10 \text{ bits} \times 3 \text{ channels} = 30 \text{ bits per
+pixel}\]</span></p></li>
+<li><p><strong>Frame Rate:</strong> The display refreshes 144 times per
+second (144 Hz).</p></li>
+</ol>
+<p>Multiplying these parameters yields the active payload requirement:
+<span class="math display">\[\text{Active Data Rate} = 8,294,400 \text{
+pixels} \times 30 \text{ bits} \times 144 \text{ frames/second} =
+35,831,808,000 \text{ bps}\]</span></p>
+<p>The active video payload is <strong>35.83 Gbps</strong>.</p>
+<h3 id="total-signal-bandwidth-including-blanking-overhead">Total Signal
+Bandwidth (Including Blanking Overhead)</h3>
+<p>Digital video protocols require blanking intervals (horizontal and
+vertical blanking) to synchronize displays, carry audio, and transmit
+packetized metadata. Because of this, the total transmission bandwidth
+is higher than the active data rate.</p>
+<ul>
+<li><strong>With VESA CVT-RB2 (Reduced Blanking v2):</strong> Gaming
+monitors and modern high-refresh-rate displays universally employ
+reduced blanking to minimize unnecessary overhead. Under CVT-RB2 timing,
+blanking adds approximately 8% to 10% overhead, resulting in an
+uncompressed stream requirement of roughly <strong>39.19
+Gbps</strong>.</li>
+<li><strong>With Standard CTA-861 Timing:</strong> Standard non-reduced
+timing increases total horizontal and vertical lines, adding around 20%
+overhead. Under standard timing parameters, the total link requirement
+reaches approximately <strong>42.77 Gbps</strong>.</li>
+</ul>
+<h3 id="hdmi-21-capability-and-frl">HDMI 2.1 Capability and FRL</h3>
+<p>HDMI 2.1 supports up to 48 Gbps of raw physical bandwidth across four
+lanes using Fixed Rate Link (FRL) architecture:</p>
+<ul>
+<li><strong>Link Rate (FRL6):</strong> 4 lanes running at 12 Gbps per
+lane provide a total raw bandwidth of 48 Gbps.</li>
+<li><strong>Effective Bandwidth:</strong> HDMI 2.1 employs a 16b/18b
+encoding scheme, which introduces an 11.11% encoding overhead: <span
+class="math display">\[\text{Maximum Effective Data Rate} = 48 \text{
+Gbps} \times \left(\frac{16}{18}\right) \approx 42.66 \text{
+Gbps}\]</span></li>
+</ul>
+<p>Because an uncompressed 4K 144Hz 10-bit RGB signal with reduced
+blanking requires ~39.2 Gbps, it sits strictly below the 42.66 Gbps
+ceiling. Therefore, HDMI 2.1 can carry an uncompressed 4K 144Hz 10-bit
+RGB signal natively over FRL6 without requiring Display Stream
+Compression (DSC). If standard CTA blanking is used instead of reduced
+blanking, the transmission slightly exceeds 42.66 Gbps, in which case
+DSC or chroma subsampling (4:2:2 or 4:2:0) becomes necessary.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

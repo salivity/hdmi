@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dielectric Loss Tangent Impact on HDMI 2.1 Signals - hdmi</title>
+    <meta name="description" content="The dielectric loss tangent—also known as the dissipation factor ($Df$ or $\tan \delta$)—is a fundamental material property that directly dictates signal attenuation and transmission quality in high-speed interconnects. With HDMI 2.1 operating at ban">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/dielectric-loss-tangent-impact-on-hdmi-2-1-signals">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Dielectric Loss Tangent Impact on HDMI 2.1 Signals - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/dielectric-loss-tangent-impact-on-hdmi-2-1-signals" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The dielectric loss tangent—also known as the dissipation factor ($Df$ or $\tan \delta$)—is a fundamental material property that directly dictates signal attenuation and transmission quality in high-speed interconnects. With HDMI 2.1 operating at ban" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="dielectric-loss-tangent-impact-on-hdmi-21-signals">Dielectric
+Loss Tangent Impact on HDMI 2.1 Signals</h1>
+<p>The dielectric loss tangent—also known as the dissipation factor
+(<span class="math inline">\(Df\)</span> or <span
+class="math inline">\(\tan \delta\)</span>)—is a fundamental material
+property that directly dictates signal attenuation and transmission
+quality in high-speed interconnects. With HDMI 2.1 operating at
+bandwidths up to 48 Gbps through Fixed Rate Link (FRL) architecture,
+individual signaling lanes must handle frequencies reaching up to 6 GHz
+at their fundamental Nyquist point, with significant harmonic content
+beyond 12 GHz. This article examines the physical mechanisms behind
+dielectric loss, how it affects signal integrity at multi-gigahertz HDMI
+2.1 frequencies, and the resulting engineering challenges such as eye
+closure, jitter, and bit error rate degradation.</p>
+<h3 id="understanding-dielectric-loss-tangent">Understanding Dielectric
+Loss Tangent</h3>
+<p>Dielectric loss tangent measures the inherent electrical energy
+absorbed by an insulating material (such as the PCB substrate or cable
+dielectric) and dissipated as heat when subjected to an alternating
+electromagnetic field. In high-speed signal propagation, total
+transmission line attenuation primarily consists of two components:
+conductor loss (resistive dissipation compounded by the skin effect) and
+dielectric loss.</p>
+<p>While conductor skin-effect losses scale proportionally to the square
+root of frequency (<span class="math inline">\(\sqrt{f}\)</span>),
+dielectric loss scales directly and linearly with frequency (<span
+class="math inline">\(f\)</span>):</p>
+<p><span class="math display">\[\alpha_d \propto f \cdot
+\sqrt{\varepsilon_r} \cdot \tan \delta\]</span></p>
+<p>Where <span class="math inline">\(\alpha_d\)</span> is dielectric
+attenuation, <span class="math inline">\(f\)</span> is frequency, <span
+class="math inline">\(\varepsilon_r\)</span> is the relative
+permittivity, and <span class="math inline">\(\tan \delta\)</span> is
+the loss tangent.</p>
+<h3 id="behavior-at-hdmi-21-frequencies">Behavior at HDMI 2.1
+Frequencies</h3>
+<p>HDMI 2.0 capped lane rates at 6 Gbps using Transition-Minimized
+Differential Signaling (TMDS), keeping Nyquist frequencies around 3 GHz.
+At those levels, standard FR-4 PCB substrates (with a typical <span
+class="math inline">\(\tan \delta\)</span> of 0.015 to 0.020) and
+conventional cable insulations were often sufficient.</p>
+<p>HDMI 2.1 introduces FRL, which supports up to 12 Gbps per lane across
+four lanes. At these multi-gigahertz frequencies, the linear scaling of
+dielectric loss causes it to overtake conductor loss as the dominant
+factor in overall signal attenuation. A high loss tangent results in
+steep insertion loss curves, disproportionately stripping the
+high-frequency harmonic components required to maintain crisp,
+fast-rising digital signal edges.</p>
+<h3 id="consequences-on-signal-transmission">Consequences on Signal
+Transmission</h3>
+<ol type="1">
+<li><strong>Severe Insertion Loss:</strong> High dielectric absorption
+causes excessive amplitude reduction across the cable and board traces.
+By the time a 12 Gbps stream reaches the sink (display), the signal
+amplitude can be degraded well below the receiver sensitivity
+threshold.</li>
+<li><strong>Rise-Time Degradation and Dispersion:</strong> Dielectric
+loss varies across the frequency spectrum, causing high-frequency
+components of the square wave to attenuate much faster than
+lower-frequency components. This dulls edge transitions, leading to
+dispersion where pulse widths spread into adjacent time slots.</li>
+<li><strong>Inter-Symbol Interference (ISI) and Jitter:</strong> Pulse
+spreading directly triggers inter-symbol interference. Previous data
+bits bleed into subsequent ones, creating data-dependent deterministic
+jitter that impairs the receiver's clock and data recovery (CDR)
+circuitry.</li>
+<li><strong>Eye-Diagram Collapse:</strong> The combined effects of
+reduced amplitude, edge degradation, and timing jitter collapse the
+receiving "eye" both vertically (voltage margin) and horizontally
+(timing margin). If the eye closes beyond the corrective capability of
+HDMI 2.1 Continuous-Time Linear Equalization (CTLE) and Decision
+Feedback Equalization (DFE), uncorrectable bit errors occur.</li>
+</ol>
+<h3 id="engineering-mitigations">Engineering Mitigations</h3>
+<p>To maintain compliant eye diagrams and ensure reliable HDMI 2.1
+transmission, hardware designers must minimize <span
+class="math inline">\(\tan \delta\)</span>:</p>
+<ul>
+<li><strong>PCB Substrate Selection:</strong> Upgrading from standard
+FR-4 to mid-to-ultra-low-loss laminates (such as Megtron 6, Rogers, or
+specialized modified epoxies) reduces the loss tangent to 0.002–0.005,
+significantly flattening the high-frequency attenuation curve.</li>
+<li><strong>Cable Construction:</strong> Cable manufacturers utilize
+low-loss foamed polyethylene (PE) or fluorinated ethylene propylene
+(FEP) dielectrics with low dissipation factors to preserve edge rates
+over lengths greater than 1 to 2 meters.</li>
+<li><strong>Trace Geometry and Routing:</strong> Minimizing trace
+lengths, removing stubs, avoiding tight bends, and employing wider trace
+geometries on outer microstrip layers reduce the effective
+electromagnetic field interaction with higher-loss bulk
+dielectrics.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

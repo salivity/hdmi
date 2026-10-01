@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Splitters Handle HDCP Handshakes - hdmi</title>
+    <meta name="description" content="When an HDMI splitter distributes a single encrypted video signal to two different display sinks, it must negotiate High-bandwidth Digital Content Protection (HDCP) to ensure the content remains secure. Because the source device cannot establish two sepa">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-splitters-handle-hdcp-handshakes">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Splitters Handle HDCP Handshakes - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-splitters-handle-hdcp-handshakes" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When an HDMI splitter distributes a single encrypted video signal to two different display sinks, it must negotiate High-bandwidth Digital Content Protection (HDCP) to ensure the content remains secure. Because the source device cannot establish two sepa" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-splitters-handle-hdcp-handshakes">How HDMI Splitters
+Handle HDCP Handshakes</h1>
+<p>When an HDMI splitter distributes a single encrypted video signal to
+two different display sinks, it must negotiate High-bandwidth Digital
+Content Protection (HDCP) to ensure the content remains secure. Because
+the source device cannot establish two separate cryptographic handshakes
+over a single port, the HDMI splitter acts as an active intermediary
+(technically classified as an HDCP repeater). This article explains how
+splitters process HDCP handshakes between mismatched displays, the
+methods they use to resolve capability differences, and the common
+results of these negotiations.</p>
+<h3 id="the-splitter-as-an-hdcp-repeater">The Splitter as an HDCP
+Repeater</h3>
+<p>Under the HDCP specification, an HDMI splitter operates as a
+"repeater" rather than a passive wire tap. When connected:</p>
+<ol type="1">
+<li><strong>Upstream Handshake:</strong> The splitter authenticates
+itself to the content source (such as a media player or gaming console)
+as an authorized HDCP receiver.</li>
+<li><strong>Downstream Handshake:</strong> The splitter independently
+negotiates authentication and key exchange with each connected display
+sink (Display A and Display B).</li>
+<li><strong>Topology Verification:</strong> The splitter gathers the
+downstream device count and Key Selection Vectors (KSVs) and reports
+them back to the source to confirm that repeater limits (depth and
+device count) are not exceeded.</li>
+</ol>
+<p>Because two different monitors or TVs often support different HDCP
+revisions (such as HDCP 2.2 for 4K UHD content versus HDCP 1.4 for
+1080p), the splitter must resolve the discrepancy using one of three
+standard strategies.</p>
+<h3 id="1-the-lowest-common-denominator-method">1. The Lowest Common
+Denominator Method</h3>
+<p>The most standard approach used by consumer splitters is enforcing
+the lowest common denominator across all connected displays.</p>
+<ul>
+<li><strong>The Process:</strong> If Display A supports HDCP 2.2 and
+Display B only supports HDCP 1.4, the splitter advertises HDCP 1.4
+compliance back to the source.</li>
+<li><strong>The Result:</strong> The source restricts the transmission
+to whatever is allowable under HDCP 1.4. In streaming environments, this
+typically causes the source to throttle resolution from 4K down to
+1080p, ensuring both displays receive an active picture simultaneously
+without violating content restrictions.</li>
+</ul>
+<h3 id="2-primary-port-delegation-port-1-priority">2. Primary Port
+Delegation (Port 1 Priority)</h3>
+<p>Some splitters bypass negotiation arbitration by assigning authority
+to a primary port (typically labeled "Output 1" or "Main").</p>
+<ul>
+<li><strong>The Process:</strong> The splitter copies the Extended
+Display Identification Data (EDID) and HDCP specifications strictly from
+the display on Output 1 and mirrors those exact capabilities to the
+source.</li>
+<li><strong>The Result:</strong> If Output 1 is connected to an HDCP 2.2
+display, the source transmits an HDCP 2.2-encrypted 4K stream. Output 1
+will display the picture correctly. However, if Output 2 is connected to
+an HDCP 1.4 display that cannot decrypt the stream, Output 2 will show a
+black screen, an HDCP unauthorized error, or static noise.</li>
+</ul>
+<h3 id="3-active-protocol-conversion-and-downscaling">3. Active Protocol
+Conversion and Downscaling</h3>
+<p>Advanced, powered splitters contain internal processing chips capable
+of active decryption, downscaling, and re-encryption.</p>
+<ul>
+<li><strong>The Process:</strong> The splitter completes an HDCP 2.2
+handshake with the source, receives the fully encrypted high-bandwidth
+stream, and decrypts it internally. It then performs two independent
+downstream handshakes: sending the native HDCP 2.2 4K signal to Display
+A, while simultaneously downscaling the video to 1080p and re-encrypting
+it under HDCP 1.4 for Display B.</li>
+<li><strong>The Result:</strong> Both displays operate at their highest
+native capability without forcing the source device to downgrade the
+stream for the more capable display.</li>
+</ul>
+<h3 id="failure-modes-during-the-handshake">Failure Modes During the
+Handshake</h3>
+<p>If the downstream authentication fails on either branch—due to an
+incompatible cable, an unsupported display, or an uncompliant
+splitter—the HDCP state machine aborts transmission. The source will
+cease sending video data and instead transmit a continuous stream of
+unencrypted visual noise (snow), display a static "HDCP Error" message,
+or shut off the HDMI TMDS/FRL clock, resulting in "No Signal" on the
+receiving screens.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

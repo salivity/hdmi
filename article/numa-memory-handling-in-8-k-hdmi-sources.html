@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NUMA Memory Handling in 8K HDMI Sources - hdmi</title>
+    <meta name="description" content="Processing uncompressed or visually lossless 8K video output through an HDMI 2.1 interface requires sustained data transfers of up to 48 Gbps, placing extreme demands on system memory subsystems. In multi-socket or multi-chip-module platforms governed by">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/numa-memory-handling-in-8-k-hdmi-sources">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="NUMA Memory Handling in 8K HDMI Sources - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/numa-memory-handling-in-8-k-hdmi-sources" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Processing uncompressed or visually lossless 8K video output through an HDMI 2.1 interface requires sustained data transfers of up to 48 Gbps, placing extreme demands on system memory subsystems. In multi-socket or multi-chip-module platforms governed by" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="numa-memory-handling-in-8k-hdmi-sources">NUMA Memory Handling in
+8K HDMI Sources</h1>
+<p>Processing uncompressed or visually lossless 8K video output through
+an HDMI 2.1 interface requires sustained data transfers of up to 48
+Gbps, placing extreme demands on system memory subsystems. In
+multi-socket or multi-chip-module platforms governed by Non-Uniform
+Memory Access (NUMA), an HDMI source must actively coordinate frame
+buffer placement, PCIe transaction routing, and memory controller
+arbitration. Failing to account for NUMA topology results in
+high-latency cross-node interconnect traffic, causing buffer underruns,
+synchronization jitter, and dropped frames. This article outlines the
+architectural mechanics and memory management strategies HDMI sources
+use to deliver 8K frame buffers efficiently across NUMA systems.</p>
+<h3 id="the-numa-bottleneck-in-8k-pipelines">The NUMA Bottleneck in 8K
+Pipelines</h3>
+<p>An uncompressed 8K frame (7680 × 4320 pixels) at 10-bit color depth
+(4:4:4 or RGB) requires roughly 133 megabytes per single frame. At 60
+frames per second, the pipeline must read and transmit approximately 8
+gigabytes of raw pixel data per second, excluding intermediate compute
+or compositing operations.</p>
+<p>In a NUMA architecture, system memory is partitioned across multiple
+nodes, each tied directly to a specific processor socket or PCIe root
+complex. When the display controller or GPU transmitting the HDMI signal
+accesses memory assigned to a remote node, transactions must traverse
+inter-socket interconnects (such as Intel Ultra Path Interconnect or AMD
+Infinity Fabric). These remote transactions incur substantially higher
+latency, reduced effective bandwidth, and interconnect congestion. For
+HDMI sources, which rely on rigid real-time scanout timing to maintain
+Fixed Rate Link (FRL) synchronization, this unpredictable latency leads
+directly to pixel pipeline starvation.</p>
+<h3 id="numa-local-buffer-allocation">NUMA-Local Buffer Allocation</h3>
+<p>To maintain continuous 8K scanout, the operating system and graphics
+drivers enforce strict node-local allocations for all active display
+buffers.</p>
+<ol type="1">
+<li><strong>Topology Discovery:</strong> The display driver queries the
+platform topology (via ACPI SLIT/SRAT tables or PCIe device trees) to
+identify the specific NUMA node directly attached to the PCIe root
+complex hosting the HDMI display controller.</li>
+<li><strong>Affinity Pinning:</strong> Buffer allocation APIs (such as
+<code>libnuma</code> in Linux or NUMA-aware DirectX/Vulkan extensions)
+allocate physical frame buffers exclusively on memory channels local to
+that identified node.</li>
+<li><strong>Hugepage Integration:</strong> HDMI pipelines routinely
+utilize Contiguous Memory Allocators (CMA) or transparent huge pages (2
+MB or 1 GB pages). This minimizes Translation Lookaside Buffer (TLB)
+misses during Direct Memory Access (DMA) cycles across massive 8K pixel
+arrays.</li>
+</ol>
+<h3 id="direct-memory-access-and-peer-to-peer-transfers">Direct Memory
+Access and Peer-to-Peer Transfers</h3>
+<p>HDMI display controllers rely on scatter-gather Direct Memory Access
+(DMA) engines to fetch frame data from RAM into display FIFOs without
+CPU intervention.</p>
+<p>In modern architectures, HDMI sources handle NUMA constraints through
+specialized bus routing:</p>
+<ul>
+<li><strong>Host-to-Display DMA:</strong> When frame buffers reside in
+host system memory, the DMA controller reads strictly through the local
+PCIe root port, preventing display traffic from touching the
+inter-socket bus.</li>
+<li><strong>Peer-to-Peer (P2P) PCIe DMA:</strong> In systems where video
+decoding or 3D rendering happens on a secondary accelerator, P2P DMA
+transfers the finished 8K buffer directly between devices over a shared
+PCIe switch or through the shortest NUMA hop, bypassing system RAM
+altogether.</li>
+<li><strong>VRAM Dedicated Controllers:</strong> In discrete GPU
+architectures, the display engine reads directly from on-card VRAM
+(e.g., GDDR6 or HBM), bypassing system NUMA entirely. However, if
+system-level NUMA transfers are required to load assets into VRAM,
+asynchronous copy engines schedule the transfers well in advance of the
+HDMI v-sync interval.</li>
+</ul>
+<h3 id="asynchronous-prefetching-and-fifo-management">Asynchronous
+Prefetching and FIFO Management</h3>
+<p>Because even local NUMA access can encounter momentary bus contention
+from heavy CPU workloads, HDMI display engines implement deep hardware
+FIFOs.</p>
+<p>The display controller initiates asynchronous burst reads during the
+horizontal and vertical blanking intervals (HBLANK and VBLANK), pulling
+raster lines into local SRAM buffers before the HDMI serializer requires
+them. By combining NUMA-node locality with aggressive hardware
+prefetching, the HDMI source insulates the physical link layer from
+transient memory delays, ensuring that the 8K rasterizer outputs a
+steady, unbroken stream of HDMI FRL packets.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

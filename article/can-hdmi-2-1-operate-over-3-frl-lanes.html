@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Can HDMI 2.1 Operate Over 3 FRL Lanes? - hdmi</title>
+    <meta name="description" content="An HDMI 2.1 connection can officially operate over three Fixed Rate Link (FRL) lanes instead of four on certain hardware. The HDMI 2.1 specification explicitly defines both 3-lane and 4-lane operational modes to provide scalable bandwidth, lower power co">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/can-hdmi-2-1-operate-over-3-frl-lanes">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Can HDMI 2.1 Operate Over 3 FRL Lanes? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/can-hdmi-2-1-operate-over-3-frl-lanes" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="An HDMI 2.1 connection can officially operate over three Fixed Rate Link (FRL) lanes instead of four on certain hardware. The HDMI 2.1 specification explicitly defines both 3-lane and 4-lane operational modes to provide scalable bandwidth, lower power co" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="can-hdmi-21-operate-over-3-frl-lanes">Can HDMI 2.1 Operate Over
+3 FRL Lanes?</h1>
+<p>An HDMI 2.1 connection can officially operate over three Fixed Rate
+Link (FRL) lanes instead of four on certain hardware. The HDMI 2.1
+specification explicitly defines both 3-lane and 4-lane operational
+modes to provide scalable bandwidth, lower power consumption, and
+broader hardware compatibility. While higher-bandwidth configurations
+require all four data lanes to reach speeds up to 48 Gbps, devices
+running at lower FRL tiers use a 3-lane architecture while still
+benefiting from modern HDMI 2.1 protocol features such as Forward Error
+Correction (FEC).</p>
+<h3 id="how-frl-replaces-tmds">How FRL Replaces TMDS</h3>
+<p>Legacy HDMI standards rely on Transition-Minimized Differential
+Signaling (TMDS), which utilizes three dedicated data channels and one
+dedicated clock channel. HDMI 2.1 introduces FRL, which replaces this
+architecture with packetized data transmission and embeds the clock
+signal directly into the data stream.</p>
+<p>Because the clock is embedded, all physical differential pairs on an
+HDMI cable can be repurposed as high-speed data lanes. While the highest
+speeds repurpose all four pairs (the three legacy data lines plus the
+legacy clock line) for data, the specification retains a 3-lane fallback
+mode.</p>
+<h3 id="the-3-lane-frl-architecture">The 3-Lane FRL Architecture</h3>
+<p>The HDMI 2.1 standard breaks down FRL operation into six distinct
+bandwidth tiers. The first two tiers operate strictly across three
+lanes:</p>
+<ul>
+<li><strong>FRL1:</strong> 3 Gbps per lane across 3 lanes, providing a
+total aggregate bandwidth of 9 Gbps.</li>
+<li><strong>FRL2:</strong> 6 Gbps per lane across 3 lanes, providing a
+total aggregate bandwidth of 18 Gbps.</li>
+</ul>
+<p>In these 3-lane modes, the fourth physical channel remains unused for
+data. Even though FRL2 offers the same 18 Gbps raw bandwidth as HDMI
+2.0's maximum TMDS rate, it operates under the FRL protocol. This means
+the connection gains modern link-training mechanisms and Forward Error
+Correction (FEC), reducing transmission errors and improving signal
+integrity over longer or lower-quality cables.</p>
+<h3 id="the-4-lane-frl-architecture">The 4-Lane FRL Architecture</h3>
+<p>To achieve higher resolutions and refresh rates—such as uncompressed
+4K at 120Hz or 8K at 60Hz—the link must transition to a 4-lane
+configuration. The 4-lane tiers include:</p>
+<ul>
+<li><strong>FRL3:</strong> 6 Gbps per lane across 4 lanes (24 Gbps
+aggregate)</li>
+<li><strong>FRL4:</strong> 8 Gbps per lane across 4 lanes (32 Gbps
+aggregate)</li>
+<li><strong>FRL5:</strong> 10 Gbps per lane across 4 lanes (40 Gbps
+aggregate)</li>
+<li><strong>FRL6:</strong> 12 Gbps per lane across 4 lanes (48 Gbps
+aggregate)</li>
+</ul>
+<h3 id="why-hardware-manufacturers-use-3-lanes">Why Hardware
+Manufacturers Use 3 Lanes</h3>
+<p>Hardware manufacturers often design sources (such as media streamers,
+set-top boxes, and entry-level graphics chips) or sinks (budget displays
+and monitors) to support only 3-lane FRL for several reasons:</p>
+<ol type="1">
+<li><strong>Power and Thermal Constraints:</strong> Driving four
+high-speed lanes requires more power and generates more heat. Devices
+with compact form factors or passive cooling benefit from limiting
+operation to three lanes.</li>
+<li><strong>Silicon Cost:</strong> Processing silicon that only needs to
+support up to 18 Gbps FRL can be designed with smaller, cheaper physical
+layer (PHY) transceiver blocks.</li>
+<li><strong>HDMI Licensing Flexibility:</strong> Under HDMI Forum
+guidelines, manufacturers can label a port as HDMI 2.1 as long as it
+supports at least one HDMI 2.1 feature. A device does not need to
+support the maximum 48 Gbps 4-lane rate to be marketed as an HDMI 2.1
+device.</li>
+</ol>
+<p>During the initial connection handshake, the source and sink
+negotiate through the Link Training Status and Control (LTS&amp;C)
+process. If either the transmitting or receiving hardware only supports
+3-lane operation, or if signal integrity issues prevent a stable 4-lane
+link, the connection will negotiate down to a 3-lane FRL mode.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

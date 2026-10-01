@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Consoles Optimize HDR Output on HDMI TVs - hdmi</title>
+    <meta name="description" content="Modern video game consoles optimize High Dynamic Range (HDR) for HDMI-connected televisions through automated hardware handshakes, source-side tone mapping, and system-level calibration. By communicating directly with the display’s Extended Display Ide">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-consoles-optimize-hdr-output-on-hdmi-t-vs">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Consoles Optimize HDR Output on HDMI TVs - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-consoles-optimize-hdr-output-on-hdmi-t-vs" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Modern video game consoles optimize High Dynamic Range (HDR) for HDMI-connected televisions through automated hardware handshakes, source-side tone mapping, and system-level calibration. By communicating directly with the display’s Extended Display Ide" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-consoles-optimize-hdr-output-on-hdmi-tvs">How Consoles
+Optimize HDR Output on HDMI TVs</h1>
+<p>Modern video game consoles optimize High Dynamic Range (HDR) for
+HDMI-connected televisions through automated hardware handshakes,
+source-side tone mapping, and system-level calibration. By communicating
+directly with the display’s Extended Display Identification Data (EDID)
+over HDMI, systems like the PlayStation 5 and Xbox Series X determine
+the exact peak brightness, black levels, and color capabilities of the
+screen. This allows the console to render lighting and color dynamically
+within the television's specific physical limits, preventing visual
+artifacts such as clipped highlights, crushed blacks, or increased input
+latency.</p>
+<h3 id="hdmi-handshaking-and-edid-negotiation">HDMI Handshaking and EDID
+Negotiation</h3>
+<p>When a console connects to a TV via HDMI, it performs an initial
+handshake that queries the display’s EDID and DisplayID blocks. This
+metadata informs the console whether the television supports HDR
+standards such as HDR10, Dolby Vision, or HLG. It also conveys the TV's
+native color gamut coverage (typically DCI-P3 within a Rec. 2020
+container) and signal limits. Modern HDMI 2.0 and HDMI 2.1 connections
+use this data exchange to negotiate color depth (10-bit or 12-bit) and
+pixel format (full RGB 4:4:4 vs. chroma-subsampled 4:2:2), ensuring the
+visual pipeline avoids color banding while staying within interface
+bandwidth limits.</p>
+<h3 id="source-based-tone-mapping-sbtm-and-hgig">Source-Based Tone
+Mapping (SBTM) and HGiG</h3>
+<p>Traditional HDR implementation in movies relies on the television to
+adapt the incoming signal to its own brightness capabilities, a process
+called display tone mapping. For video games, display-side tone mapping
+can introduce input lag and inaccurate clipping because the TV cannot
+predict the dynamic range of an interactive 3D scene.</p>
+<p>To solve this, consoles utilize standards established by the HDR
+Gaming Interest Group (HGiG) alongside HDMI 2.1’s Source-Based Tone
+Mapping (SBTM):</p>
+<ul>
+<li><strong>HGiG Mode:</strong> When enabled on both the TV and console,
+the television disables its internal dynamic tone mapping. The TV
+reports its raw minimum, maximum, and full-frame luminance capabilities
+directly to the console.</li>
+<li><strong>Console-Side Mapping:</strong> The console's GPU performs
+all luminance adjustments natively during the rendering pass. Because
+the game engine handles the compression of brightness curves before
+sending the frame through the HDMI cable, specular highlights and shadow
+details are preserved without double-processing.</li>
+</ul>
+<h3 id="system-level-calibration-profiles">System-Level Calibration
+Profiles</h3>
+<p>Both PlayStation and Xbox operating systems feature built-in HDR
+setup wizards that create a global profile applied across all compatible
+games:</p>
+<ol type="1">
+<li><strong>Black Level (Minimum Luminance):</strong> Sets the absolute
+black floor, allowing the console to account for the difference between
+self-emissive displays (OLEDs with near-zero nits) and backlit LCDs
+(which have elevated black levels).</li>
+<li><strong>Peak White (Maximum Luminance):</strong> Identifies the
+highest nit value the TV can produce on a small highlight window before
+hard-clipping white detail.</li>
+<li><strong>Full-Field White:</strong> Defines the maximum brightness
+the TV can sustain across the entire panel, accounting for Automatic
+Brightness Limiters (ABL) found in modern displays.</li>
+</ol>
+<p>Game engines query these system-level profile values to dynamically
+position the dynamic range of in-game exposure, sun glare, and dark
+environments to match the TV screen.</p>
+<h3 id="latency-optimization-with-allm">Latency Optimization with
+ALLM</h3>
+<p>HDR image processing historically added significant processing
+overhead on modern TVs. Modern consoles mitigate this via HDMI Auto Low
+Latency Mode (ALLM). Upon detecting an active gaming load, the console
+sends an InfoFrame over HDMI that commands the TV to switch to its
+dedicated Game Mode. This turns off post-processing filters that cause
+latency while keeping the wide color gamut and high-contrast HDR
+processing paths fully active.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Source Clock Phase Noise Affects HDMI Audio - hdmi</title>
+    <meta name="description" content="Severe phase noise in an HDMI source device clock fundamentally degrades digital audio transmission, leading to audible distortion, timing errors, and potential signal loss. Because HDMI transmits audio packets embedded within the video blanking interval">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-source-clock-phase-noise-affects-hdmi-audio">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Source Clock Phase Noise Affects HDMI Audio - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-source-clock-phase-noise-affects-hdmi-audio" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Severe phase noise in an HDMI source device clock fundamentally degrades digital audio transmission, leading to audible distortion, timing errors, and potential signal loss. Because HDMI transmits audio packets embedded within the video blanking interval" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-source-clock-phase-noise-affects-hdmi-audio">How Source
+Clock Phase Noise Affects HDMI Audio</h1>
+<p>Severe phase noise in an HDMI source device clock fundamentally
+degrades digital audio transmission, leading to audible distortion,
+timing errors, and potential signal loss. Because HDMI transmits audio
+packets embedded within the video blanking interval rather than sending
+a dedicated physical audio clock line, the receiving device must
+reconstruct the audio clock using an Audio Clock Regeneration (ACR)
+mechanism. When the source clock has high phase noise—meaning rapid,
+random fluctuations in the timing phase—the downstream receiver
+struggles to recover a stable clock, resulting in elevated jitter,
+buffer underflow or overflow, and analog conversion artifacts.</p>
+<h3 id="the-hdmi-audio-clock-regeneration-acr-bottleneck">The HDMI Audio
+Clock Regeneration (ACR) Bottleneck</h3>
+<p>HDMI relies on the video Transition-Minimized Differential Signaling
+(TMDS) clock to convey audio timing. The source generates Cycle Time
+Stamp (CTS) and numeric multiplier (N) values that describe the
+relationship between the audio master clock and the video pixel
+clock.</p>
+<p>When a source device exhibits severe phase noise on its reference or
+TMDS clock, the timing of the transmitted packets and the stability of
+the CTS values fluctuate erratically. The sink device (such as an AV
+receiver, soundbar, or DAC) uses these values in a Phase-Locked Loop
+(PLL) to synthesize the original master audio clock (MCLK). If the
+incoming signal has high phase noise, the sink's PLL either tracks the
+noise or fails to smooth it out adequately, propagating timing
+instability into the audio processing chain.</p>
+<h3 id="audible-jitter-and-sound-degradation">Audible Jitter and Sound
+Degradation</h3>
+<p>Phase noise in the frequency domain translates directly to jitter in
+the time domain. When this phase noise passes through to the
+Digital-to-Analog Converter (DAC) in the sink device:</p>
+<ul>
+<li><strong>Elevated Noise Floor:</strong> Jitter randomizes the sample
+conversion intervals, producing broadband phase modulation that raises
+the overall noise floor, reducing the effective dynamic range and
+Signal-to-Noise Ratio (SNR).</li>
+<li><strong>Harmonic and Non-Harmonic Sidebands:</strong> High-frequency
+phase noise mixes with the audio frequencies, generating unwanted
+sidebands around pure tones. This introduces harshness, graininess, and
+a loss of clarity, particularly in high-frequency transients and
+micro-dynamics.</li>
+<li><strong>Imaging and Spatial Distortion:</strong> In multichannel
+audio setups, inconsistent clock phase across decoded channels
+compromises stereo imaging and surround-sound spatial accuracy.</li>
+</ul>
+<h3 id="buffer-errors-pops-clicks-and-dropouts">Buffer Errors: Pops,
+Clicks, and Dropouts</h3>
+<p>To tolerate small clock drift, HDMI receivers employ First-In,
+First-Out (FIFO) elastic buffers. However, severe phase noise can cause
+rapid frequency deviations beyond the tracking speed of the sink’s clock
+recovery loop.</p>
+<p>When this occurs, the rate at which audio packets arrive deviates
+significantly from the rate at which the DAC consumes samples. This
+discrepancy leads to:</p>
+<ul>
+<li><strong>Buffer Underflow:</strong> The DAC requests a sample before
+one is available, resulting in micro-silences, clicks, or popping
+noises.</li>
+<li><strong>Buffer Overflow:</strong> Samples arrive faster than the
+buffer can discharge, forcing the receiver to discard audio frames,
+causing audible stuttering or skipped playback.</li>
+</ul>
+<h3 id="complete-loss-of-pll-lock">Complete Loss of PLL Lock</h3>
+<p>If the phase noise exceeds the capture or lock range of the
+receiver’s clock recovery circuit, the PLL will completely lose
+synchronization. Modern HDMI receivers typically respond to a lost clock
+lock by temporarily muting the analog output to prevent damaging
+high-amplitude digital noise from reaching the speakers. The listener
+experiences intermittent audio dropouts, extended silence, or continuous
+toggling between audio formats as the receiver repeatedly attempts to
+re-lock onto the stream.</p>
+<h3 id="mitigation-in-downstream-hardware">Mitigation in Downstream
+Hardware</h3>
+<p>The severity of these symptoms depends heavily on the architecture of
+the sink device. High-end AV processors employ advanced jitter
+attenuation, such as Asynchronous Sample Rate Conversion (ASRC),
+multi-stage PLLs, or FIFO re-clocking systems with local crystal
+oscillators to isolate the DAC from the noisy source. Lower-cost sinks
+that use basic PLL circuits with wide loop bandwidths will pass the
+source's phase noise directly to the audio output, maximizing
+performance degradation.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

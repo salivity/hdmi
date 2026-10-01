@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI ALLM Disables TV Post-Processing Filters - hdmi</title>
+    <meta name="description" content="HDMI Auto Low Latency Mode (ALLM) is an HDMI 2.1 feature that instructs a television to automatically switch to its fastest, lowest-latency display preset—commonly referred to as Game Mode—whenever a compatible console or graphics card sends an activ">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-allm-disables-tv-post-processing-filters">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI ALLM Disables TV Post-Processing Filters - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-allm-disables-tv-post-processing-filters" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI Auto Low Latency Mode (ALLM) is an HDMI 2.1 feature that instructs a television to automatically switch to its fastest, lowest-latency display preset—commonly referred to as Game Mode—whenever a compatible console or graphics card sends an activ" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-allm-disables-tv-post-processing-filters">How HDMI ALLM
+Disables TV Post-Processing Filters</h1>
+<p>HDMI Auto Low Latency Mode (ALLM) is an HDMI 2.1 feature that
+instructs a television to automatically switch to its fastest,
+lowest-latency display preset—commonly referred to as Game Mode—whenever
+a compatible console or graphics card sends an active gaming signal. By
+transmitting specific signaling metadata within the digital video
+stream, ALLM bypasses latency-heavy post-processing filters such as
+frame interpolation, dynamic noise reduction, and motion smoothing
+without requiring the user to navigate the television’s settings menus.
+This article breaks down the underlying communication protocol, the data
+packets responsible for the trigger, and how the television’s internal
+processor physically disengages these filters.</p>
+<h3 id="1-capability-discovery-via-edid">1. Capability Discovery via
+EDID</h3>
+<p>Before ALLM can send any commands, the source device (such as a
+PlayStation 5, Xbox Series X, or PC) must confirm that the display
+supports the feature. This initial handshake occurs via the television’s
+Extended Display Identification Data (EDID).</p>
+<p>Within the EDID, the television hosts an HDMI Forum Vendor-Specific
+Data Block (HF-VSDB). If the television supports low-latency switching,
+it sets a specific ALLM support bit inside this block to active. Once
+read by the source device during the initial HDMI handshake, the source
+knows it has permission to issue latency commands.</p>
+<h3 id="2-the-command-packet-hdmi-forum-vsif">2. The Command Packet:
+HDMI Forum VSIF</h3>
+<p>When a user launches a game, the source device modifies the video
+stream metadata by transmitting an HDMI Forum Vendor-Specific InfoFrame
+(HF-VSIF). InfoFrames are secondary data packets injected into the
+vertical and horizontal blanking intervals between individual video
+frames.</p>
+<p>Within the HF-VSIF payload, there is a dedicated field containing the
+<code>ALLM_Mode</code> bit:</p>
+<ul>
+<li>Setting the bit to <code>1</code> commands the television to engage
+Auto Low Latency Mode.</li>
+<li>Setting the bit to <code>0</code> commands the television to return
+to standard picture processing.</li>
+</ul>
+<p>Because this packet travels directly within the active HDMI auxiliary
+data stream, the signal arrives synchronously with the video data,
+ensuring instantaneous detection by the television's HDMI receiver
+chip.</p>
+<h3 id="3-display-processor-reaction-and-filter-disengagement">3.
+Display Processor Reaction and Filter Disengagement</h3>
+<p>Once the television's HDMI receiver decodes the
+<code>ALLM_Mode = 1</code> state from the HF-VSIF, it triggers an
+interrupt in the television’s System on Chip (SoC) or primary video
+scalar.</p>
+<p>Under normal viewing conditions (such as watching movies), the video
+scalar routes the incoming pixel stream through multiple internal frame
+buffers to apply intensive post-processing algorithms. These filters
+include:</p>
+<ul>
+<li><strong>Motion Estimation, Motion Compensation (MEMC):</strong>
+Synthesizes artificial intermediate frames to reduce perceived judder,
+requiring several frames of buffering and adding 40–100 milliseconds of
+input lag.</li>
+<li><strong>Spatial and Temporal Noise Reduction:</strong> Analyzes
+sequential frames to identify and scrub film grain or compression
+artifacts.</li>
+<li><strong>Edge Enhancement and Dynamic Contrast:</strong> Enhances
+sharpness and local illumination using multi-pass computational
+filters.</li>
+</ul>
+<p>When the ALLM command is acknowledged, the television firmware
+directly modifies the video processing pipeline. It reconfigures the
+internal register states of the video scalar to bypass these frame
+buffers entirely. The signal is redirected along a "fast path" that
+strips out computationally expensive algorithms and routes the digital
+pixel data straight to the timing controller (T-CON), which directly
+drives the display panel.</p>
+<h3 id="4-reversion-to-standard-latency">4. Reversion to Standard
+Latency</h3>
+<p>When the user exits the game or switches to a media playback
+application (such as Netflix or a Blu-ray player), the source device
+immediately updates the HF-VSIF, flipping the <code>ALLM_Mode</code> bit
+back to <code>0</code>. The television's SoC registers the removal of
+the flag, rebuilds the full processing pipeline, and safely restores the
+user’s preferred cinematic picture modes and image enhancement filters
+without interrupting the core video display signal.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why HDMI QMS Requires Constant Video Resolution - hdmi</title>
+    <meta name="description" content="Quick Media Switching (QMS) eliminates the brief black screen—often called the HDMI "bonk"—that occurs when a display shifts between different playback frame rates, but it strictly requires the underlying video resolution to remain unchanged. This ar">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/why-hdmi-qms-requires-constant-video-resolution">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why HDMI QMS Requires Constant Video Resolution - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/why-hdmi-qms-requires-constant-video-resolution" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Quick Media Switching (QMS) eliminates the brief black screen—often called the HDMI "bonk"—that occurs when a display shifts between different playback frame rates, but it strictly requires the underlying video resolution to remain unchanged. This ar" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-hdmi-qms-requires-constant-video-resolution">Why HDMI QMS
+Requires Constant Video Resolution</h1>
+<p>Quick Media Switching (QMS) eliminates the brief black screen—often
+called the HDMI "bonk"—that occurs when a display shifts between
+different playback frame rates, but it strictly requires the underlying
+video resolution to remain unchanged. This article explains how QMS uses
+Variable Refresh Rate (VRR) mechanics to switch frame rates seamlessly,
+why altering the display resolution breaks this mechanism by forcing a
+hardware-level clock renegotiation, and why maintaining a consistent
+pixel raster is mandatory for uninterrupted playback.</p>
+<h3 id="the-foundation-of-qms-hdmi-vrr">The Foundation of QMS: HDMI
+VRR</h3>
+<p>Quick Media Switching is built directly on top of HDMI 2.1’s Variable
+Refresh Rate (VRR) technology. In standard HDMI transmission, a fixed
+number of frames are sent per second using rigid timing parameters. When
+a source device switches from a 24 Hz film to a 60 Hz user interface,
+conventional HDMI requires the source and sink (display) to tear down
+the video link and establish a new clock frequency.</p>
+<p>QMS avoids this interruption by keeping the underlying video clock
+and transmission link active. Instead of changing the fundamental link
+speed, it dynamically adjusts the vertical blanking interval
+(VBLANK)—the period of time between the end of one frame and the
+beginning of the next. By extending or shortening this interval, the
+source device can change how frequently active video frames are
+delivered without ever dropping the connection.</p>
+<h3 id="why-changing-resolution-breaks-the-process">Why Changing
+Resolution Breaks the Process</h3>
+<p>While frame rates can be modulated by manipulating timing intervals
+between frames, video resolution dictates the physical structure of each
+individual frame.</p>
+<ol type="1">
+<li><strong>Pixel Clock and Bandwidth Allocation:</strong> Changing the
+resolution (for example, from 1080p to 4K) alters the total number of
+active pixels transmitted per line and per frame. This shift demands an
+immediate change in the pixel clock rate and the bandwidth configuration
+across the HDMI Fixed Rate Link (FRL) or TMDS lanes.</li>
+<li><strong>Link Training and Resynchronization:</strong> When the
+bandwidth and data structures change, the display's timing controller
+cannot simply stretch an interval to adapt. The source and the display
+must undergo a full hardware handshake, known as link training, to lock
+onto the new data rate. During this handshake, video output must be
+suppressed, inevitably causing the screen to go black.</li>
+<li><strong>Display Scaler Reconfiguration:</strong> Altering resolution
+requires the display's internal scalar and image processing pipeline to
+reset its frame buffers to accommodate the new raster dimensions, which
+inherently interrupts active display rendering.</li>
+</ol>
+<h3 id="the-requirement-for-a-fixed-raster">The Requirement for a Fixed
+Raster</h3>
+<p>Because QMS utilizes VRR exclusively to manipulate time rather than
+space, the transport raster—comprising the horizontal resolution,
+vertical resolution, color space, and bit depth—must stay constant.</p>
+<p>For QMS to function, the source device (such as an Apple TV or modern
+media player) must upscale or downscale all media to a uniform output
+resolution (typically 4K). By handling all resolution scaling internally
+on the source side, the HDMI connection remains locked to a single,
+stable format. QMS can then freely vary the vertical blanking intervals
+to transition instantly between 23.976 Hz, 24 Hz, 50 Hz, and 60 Hz
+content without causing the display to lose sync.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

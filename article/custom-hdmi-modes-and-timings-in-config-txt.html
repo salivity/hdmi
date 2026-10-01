@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom HDMI Modes and Timings in config.txt - hdmi</title>
+    <meta name="description" content="Configuring custom HDMI modes on a Raspberry Pi allows you to drive non-standard displays, ultra-wide panels, and specialized LCD or CRT hardware that standard EDID handshakes fail to detect. By modifying the config.txt file located in the boot partition">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/custom-hdmi-modes-and-timings-in-config-txt">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Custom HDMI Modes and Timings in config.txt - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/custom-hdmi-modes-and-timings-in-config-txt" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Configuring custom HDMI modes on a Raspberry Pi allows you to drive non-standard displays, ultra-wide panels, and specialized LCD or CRT hardware that standard EDID handshakes fail to detect. By modifying the config.txt file located in the boot partition" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="custom-hdmi-modes-and-timings-in-configtxt">Custom HDMI Modes
+and Timings in config.txt</h1>
+<p>Configuring custom HDMI modes on a Raspberry Pi allows you to drive
+non-standard displays, ultra-wide panels, and specialized LCD or CRT
+hardware that standard EDID handshakes fail to detect. By modifying the
+<code>config.txt</code> file located in the boot partition, you can
+bypass automatic resolution negotiation and force the GPU to output
+explicit display parameters. This guide details the primary parameters
+required to enable custom resolutions, use Coordinated Video Timings
+(CVT), and define raw, micro-adjusted video timings.</p>
+<h3 id="essential-base-settings">Essential Base Settings</h3>
+<p>To enable any custom video mode, two foundational parameters must be
+set in <code>config.txt</code>:</p>
+<ul>
+<li><strong><code>hdmi_group=2</code></strong>: Sets the display mode
+group to DMT (Display Monitor Timings), the standard computer monitor
+format, which is required for custom resolutions.</li>
+<li><strong><code>hdmi_mode=87</code></strong>: Indicates a custom HDMI
+mode defined either by <code>hdmi_cvt</code> or raw
+<code>hdmi_timings</code>. Without setting this value, custom parameters
+are ignored.</li>
+</ul>
+<h3 id="automated-timings-with-hdmi_cvt">Automated Timings with
+hdmi_cvt</h3>
+<p>The <code>hdmi_cvt</code> directive uses the VESA Coordinated Video
+Timings standard to calculate blanking intervals and pixel clocks
+automatically based on your desired resolution.</p>
+<p>The syntax is:</p>
+<pre class="text"><code>hdmi_cvt=&lt;width&gt; &lt;height&gt; &lt;framerate&gt; &lt;aspect&gt; &lt;margins&gt; &lt;interlace&gt; &lt;rb&gt;</code></pre>
+<p>The parameters include:</p>
+<ul>
+<li><strong><code>width</code></strong>: Horizontal resolution in pixels
+(e.g., <code>1024</code>).</li>
+<li><strong><code>height</code></strong>: Vertical resolution in lines
+(e.g., <code>600</code>).</li>
+<li><strong><code>framerate</code></strong>: Target refresh rate in Hz
+(e.g., <code>60</code>).</li>
+<li><strong><code>aspect</code></strong>: Aspect ratio selection:
+<code>1</code> for 4:3, <code>2</code> for 14:9, <code>3</code> for
+16:9, <code>4</code> for 5:4, <code>5</code> for 16:10, or
+<code>6</code> for non-standard.</li>
+<li><strong><code>margins</code></strong>: Overscan margins:
+<code>0</code> (disabled) or <code>1</code> (enabled).</li>
+<li><strong><code>interlace</code></strong>: Scan mode: <code>0</code>
+(progressive) or <code>1</code> (interlaced).</li>
+<li><strong><code>rb</code></strong>: Reduced blanking: <code>0</code>
+(standard blanking, typical for CRTs) or <code>1</code> (reduced
+blanking, typical for modern LCDs to save bandwidth).</li>
+</ul>
+<h3 id="precise-hardware-control-with-hdmi_timings">Precise Hardware
+Control with hdmi_timings</h3>
+<p>When driving raw panels, arcade monitors, or display controllers with
+fixed, non-standard blanking windows, <code>hdmi_timings</code> replaces
+<code>hdmi_cvt</code> to give you complete control over the video
+signal.</p>
+<p>The syntax requires 17 values separated by spaces:</p>
+<pre class="text"><code>hdmi_timings=&lt;h_active_pixels&gt; &lt;h_sync_polarity&gt; &lt;h_front_porch&gt; &lt;h_sync_pulse&gt; &lt;h_back_porch&gt; &lt;v_active_lines&gt; &lt;v_sync_polarity&gt; &lt;v_front_porch&gt; &lt;v_sync_pulse&gt; &lt;v_back_porch&gt; &lt;v_sync_offset_a&gt; &lt;v_sync_offset_b&gt; &lt;pixel_rep&gt; &lt;frame_rate&gt; &lt;interlaced&gt; &lt;pixel_freq&gt; &lt;aspect_ratio&gt;</code></pre>
+<p>The 17 positional arguments correspond to:</p>
+<ol type="1">
+<li><strong><code>h_active_pixels</code></strong>: Horizontal visible
+resolution.</li>
+<li><strong><code>h_sync_polarity</code></strong>: Invert horizontal
+sync (<code>0</code> for active low, <code>1</code> for active
+high).</li>
+<li><strong><code>h_front_porch</code></strong>: Horizontal front porch
+in pixel clocks.</li>
+<li><strong><code>h_sync_pulse</code></strong>: Horizontal sync pulse
+width in pixel clocks.</li>
+<li><strong><code>h_back_porch</code></strong>: Horizontal back porch in
+pixel clocks.</li>
+<li><strong><code>v_active_lines</code></strong>: Vertical visible
+resolution.</li>
+<li><strong><code>v_sync_polarity</code></strong>: Invert vertical sync
+(<code>0</code> for active low, <code>1</code> for active high).</li>
+<li><strong><code>v_front_porch</code></strong>: Vertical front porch in
+lines.</li>
+<li><strong><code>v_sync_pulse</code></strong>: Vertical sync pulse
+width in lines.</li>
+<li><strong><code>v_back_porch</code></strong>: Vertical back porch in
+lines.</li>
+<li><strong><code>v_sync_offset_a</code></strong>: Vertical sync offset
+A (normally set to <code>0</code>).</li>
+<li><strong><code>v_sync_offset_b</code></strong>: Vertical sync offset
+B (normally set to <code>0</code>).</li>
+<li><strong><code>pixel_rep</code></strong>: Pixel repetition count
+(normally <code>0</code>).</li>
+<li><strong><code>frame_rate</code></strong>: Refresh rate in Hz (used
+as metadata; actual refresh rate depends on the pixel clock).</li>
+<li><strong><code>interlaced</code></strong>: Scan format
+(<code>0</code> for progressive, <code>1</code> for interlaced).</li>
+<li><strong><code>pixel_freq</code></strong>: Pixel clock frequency in
+Hertz (e.g., <code>32000000</code> for 32 MHz).</li>
+<li><strong><code>aspect_ratio</code></strong>: Display aspect ratio
+index (<code>1</code> = 4:3, <code>2</code> = 14:9, <code>3</code> =
+16:9, <code>4</code> = 5:4, <code>5</code> = 16:10, <code>6</code> =
+15:9, <code>7</code> = 21:9, <code>8</code> = 64:27).</li>
+</ol>
+<h3 id="supporting-configuration-parameters">Supporting Configuration
+Parameters</h3>
+<p>Custom modes often require additional flags to prevent the Raspberry
+Pi from falling back to default safe modes:</p>
+<ul>
+<li><strong><code>hdmi_force_hotplug=1</code></strong>: Forces the HDMI
+output to remain active even if no display handshake (hotplug detect) is
+present.</li>
+<li><strong><code>hdmi_drive=2</code></strong>: Forces standard HDMI
+output mode (with audio), whereas <code>1</code> forces pure DVI output
+(no audio transmission).</li>
+<li><strong><code>hdmi_ignore_edid=0xa5000080</code></strong>:
+Completely ignores the monitor's built-in EDID data to prevent
+conflicting timing requests.</li>
+<li><strong><code>disable_overscan=1</code></strong>: Prevents the GPU
+from scaling or applying black borders around the custom-defined frame
+boundaries.</li>
+<li><strong><code>config_hdmi_boost</code></strong>: Increases the drive
+strength of the HDMI signal (values range from <code>0</code> to
+<code>11</code>, where default is usually <code>5</code>), helpful for
+signal degradation across long cables or passive converters.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

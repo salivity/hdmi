@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why TVs Transcode DTS to Stereo PCM via HDMI - hdmi</title>
+    <meta name="description" content="Many home theater users discover that high-definition DTS surround sound tracks are unexpectedly downmixed to two-channel stereo PCM when routed from a source device through a television to a soundbar or AV receiver. This behavior typically stems from a">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/why-t-vs-transcode-dts-to-stereo-pcm-via-hdmi">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why TVs Transcode DTS to Stereo PCM via HDMI - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/why-t-vs-transcode-dts-to-stereo-pcm-via-hdmi" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Many home theater users discover that high-definition DTS surround sound tracks are unexpectedly downmixed to two-channel stereo PCM when routed from a source device through a television to a soundbar or AV receiver. This behavior typically stems from a" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-tvs-transcode-dts-to-stereo-pcm-via-hdmi">Why TVs Transcode
+DTS to Stereo PCM via HDMI</h1>
+<p>Many home theater users discover that high-definition DTS surround
+sound tracks are unexpectedly downmixed to two-channel stereo PCM when
+routed from a source device through a television to a soundbar or AV
+receiver. This behavior typically stems from a combination of omitted
+audio licensing, HDMI handshake limitations, and fallback protocols
+designed to prevent silent playback. Understanding why televisions alter
+this audio signal helps identify the right settings or hardware
+adjustments needed to restore full surround sound.</p>
+<h3 id="lack-of-dts-licensing-and-codec-support">Lack of DTS Licensing
+and Codec Support</h3>
+<p>The most common reason a television downmixes DTS (Digital Theater
+Systems) to stereo PCM is that the manufacturer chose not to license DTS
+decoding or passthrough capabilities. Audio licensing incurs royalty
+fees for every unit sold. Because mainstream streaming services (such as
+Netflix, Disney+, and Amazon Prime Video) almost exclusively use Dolby
+audio formats (Dolby Digital Plus and Dolby Atmos), many TV
+manufacturers—including Samsung and certain generations of LG—dropped
+native DTS support entirely to cut production costs.</p>
+<p>When a TV lacks a DTS license, its internal hardware cannot decode,
+process, or bitstream the raw DTS data. Rather than producing complete
+silence or digital noise, the TV automatically falls back to
+uncompressed two-channel PCM, which is the baseline audio standard that
+all HDMI-compliant devices can decode.</p>
+<h3 id="the-hdmi-edid-handshake">The HDMI EDID Handshake</h3>
+<p>Audio capabilities across an HDMI chain are determined by an Extended
+Display Identification Data (EDID) handshake. When a media player or
+gaming console connects directly to a television, the TV sends its EDID
+profile to the source device, listing the audio formats it supports.</p>
+<p>If the TV does not support DTS, the EDID communicates that it cannot
+accept multi-channel DTS streams. Depending on how the source device and
+TV are configured:</p>
+<ul>
+<li>The source device may be forced to downmix the audio to stereo
+before sending it to the TV.</li>
+<li>The TV may accept a multi-channel stream it cannot output, stripping
+the surround metadata and outputting a basic stereo PCM stream over HDMI
+ARC or eARC.</li>
+</ul>
+<h3 id="hdmi-arc-vs-hdmi-earc-bandwidth-constraints">HDMI ARC vs. HDMI
+eARC Bandwidth Constraints</h3>
+<p>Standard HDMI ARC (Audio Return Channel) has limited bandwidth. While
+it can carry compressed 5.1 bitstream audio (such as standard Dolby
+Digital or legacy DTS) and uncompressed 2.0 PCM, it lacks the bandwidth
+to transmit uncompressed multi-channel LPCM (5.1 or 7.1).</p>
+<p>If a TV receives a DTS signal, lacks the ability to pass the raw
+bitstream through ARC, and attempts to convert it to PCM, the bandwidth
+limit of standard ARC forces that PCM signal down to two channels. HDMI
+eARC (Enhanced Audio Return Channel) solves the bandwidth issue and
+supports multi-channel PCM, but only if both the TV and the sound system
+support eARC and the TV's firmware permits multi-channel PCM
+passthrough.</p>
+<h3 id="incorrect-tv-audio-output-settings">Incorrect TV Audio Output
+Settings</h3>
+<p>Even on televisions that technically support DTS passthrough,
+incorrect software settings can cause transcoding to stereo PCM. Modern
+TVs typically offer three main audio output settings:</p>
+<ul>
+<li><strong>Auto:</strong> The TV determines the format automatically,
+which frequently defaults to stereo PCM for maximum compatibility.</li>
+<li><strong>PCM:</strong> Forces the TV to decode all incoming audio
+internally and output it as uncompressed PCM. Without a DTS decoder,
+this results in two-channel stereo.</li>
+<li><strong>Passthrough / Bitstream:</strong> Instructs the TV to ignore
+the audio encoding entirely and pass the untouched digital bitstream
+directly to the receiver or soundbar.</li>
+</ul>
+<p>If a TV supports DTS pass-through but is set to "PCM" or "Auto," it
+will actively transcode the multi-channel signal into stereo.</p>
+<h3 id="how-to-bypass-the-stereo-transcoding-issue">How to Bypass the
+Stereo Transcoding Issue</h3>
+<p>To avoid having DTS audio downmixed into stereo PCM, users have three
+primary solutions:</p>
+<ol type="1">
+<li><strong>Direct Connection:</strong> Connect the source device
+(Blu-ray player, media streamer, or console) directly into an HDMI input
+on the AV receiver or soundbar, routing only the video out to the TV.
+This bypasses the TV's audio limitations completely.</li>
+<li><strong>Source-Level LPCM Decoding:</strong> If using an HDMI eARC
+setup, configure the playback device to decode the DTS track internally
+into multi-channel LPCM before sending it to the TV. The TV can pass
+multi-channel LPCM over eARC without needing a dedicated DTS
+license.</li>
+<li><strong>HDMI Audio Extractor:</strong> Use an external HDMI audio
+splitter to separate the audio and video signals at the source, sending
+high-resolution audio directly to the sound system and video directly to
+the display.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

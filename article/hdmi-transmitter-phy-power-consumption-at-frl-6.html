@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Transmitter PHY Power Consumption at FRL6 - hdmi</title>
+    <meta name="description" content="This article examines the power consumption profile of an HDMI 2.1 transmitter physical layer (PHY) operating at Fixed Rate Link mode 6 (FRL6), which represents the maximum standard throughput of 48 Gbps across four 12 Gbps lanes. It details the primary">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-transmitter-phy-power-consumption-at-frl-6">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Transmitter PHY Power Consumption at FRL6 - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-transmitter-phy-power-consumption-at-frl-6" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article examines the power consumption profile of an HDMI 2.1 transmitter physical layer (PHY) operating at Fixed Rate Link mode 6 (FRL6), which represents the maximum standard throughput of 48 Gbps across four 12 Gbps lanes. It details the primary" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-transmitter-phy-power-consumption-at-frl6">HDMI Transmitter
+PHY Power Consumption at FRL6</h1>
+<p>This article examines the power consumption profile of an HDMI 2.1
+transmitter physical layer (PHY) operating at Fixed Rate Link mode 6
+(FRL6), which represents the maximum standard throughput of 48 Gbps
+across four 12 Gbps lanes. It details the primary analog and digital
+contributors to energy dissipation, quantifies expected power metrics
+across contemporary semiconductor process nodes, and highlights the
+architectural trade-offs that impact thermal and electrical efficiency
+in high-speed display sources.</p>
+<h3 id="frl6-physical-layer-overview">FRL6 Physical Layer Overview</h3>
+<p>HDMI 2.1 introduces Fixed Rate Link (FRL) to supersede the legacy
+Transition-Minimized Differential Signaling (TMDS) architecture. Under
+FRL6, the transmitter PHY operates over four differential data lanes at
+a raw symbol rate of 12 Gbps per lane, delivering a cumulative 48 Gbps.
+Unlike TMDS, which dedicated one differential pair to a continuous
+clock, FRL embeds the clock within the data stream using 16b/18b
+encoding. This fundamental architectural shift requires continuous
+high-frequency digital signal processing, integrated forward error
+correction (FEC), and higher-bandwidth analog drivers, all of which
+directly influence total power consumption.</p>
+<h3 id="primary-drivers-of-phy-power-dissipation">Primary Drivers of PHY
+Power Dissipation</h3>
+<p>The power consumption of an HDMI transmitter PHY at FRL6 is split
+between dynamic switching power, analog biasing, and static leakage. The
+primary contributors include:</p>
+<ul>
+<li><strong>Line Drivers and Output Stages:</strong> Driving a 12 Gbps
+signal across standard HDMI interconnects requires significant drive
+current and equalization. High-speed output drivers typically utilize
+Current-Mode Logic (CML) or power-efficient Voltage-Mode (VM)
+topologies. Output drivers must supply sufficient current across
+internal and external 50-ohm termination loads, with power scaling
+upward when applying finite impulse response (FIR) filtering for
+de-emphasis and pre-shoot to counteract high-frequency channel
+attenuation.</li>
+<li><strong>Clock Generation and Distribution:</strong> Generating
+clean, low-jitter clocks at multi-gigahertz frequencies requires
+high-performance Phase-Locked Loops (PLLs), typically featuring LC-tank
+voltage-controlled oscillators (VCOs) to meet HDMI phase-noise
+specifications. The distribution network delivering the high-speed clock
+across all four physical lanes constitutes a significant baseline
+dynamic load that does not scale with data content.</li>
+<li><strong>Physical Coding Sublayer (PCS) Logic:</strong> The digital
+core of the PHY handles 16b/18b encoding, link training patterns, data
+scrambling, and Reed-Solomon (RS) FEC generation. At 12 Gbps per lane,
+these blocks operate at high internal parallel bus frequencies, driving
+dynamic power consumption directly proportional to operational frequency
+and switching activity.</li>
+<li><strong>Serializer Trees:</strong> Parallel data from the link layer
+must be serialized down to high-speed serial bitstreams. The final
+stages of the multi-stage multiplexers operate at the full 12 GHz symbol
+rate and consume substantial dynamic current.</li>
+</ul>
+<h3 id="typical-power-consumption-metrics">Typical Power Consumption
+Metrics</h3>
+<p>Total PHY power at full FRL6 capability depends heavily on the
+silicon fabrication node, circuit architecture (Voltage-Mode vs. CML),
+and channel compensation requirements.</p>
+<ul>
+<li><strong>Advanced Nodes (7nm / 6nm / 5nm / 4nm):</strong> Modern
+graphics processing units (GPUs) and system-on-chips (SoCs) utilize
+advanced FinFET or nanosheet nodes. In these processes, an optimized
+HDMI 2.1 transmitter PHY operating at FRL6 typically consumes between
+<strong>350 mW and 600 mW</strong> in total. The per-lane consumption
+ranges from approximately <strong>80 mW to 140 mW</strong>, with the
+shared PLL, bias networks, and global PCS logic accounting for the
+remainder.</li>
+<li><strong>Mature Nodes (16nm / 12nm FinFET):</strong> In slightly more
+mature nodes often used for mid-range media processors and display
+interface bridges, total FRL6 transmitter PHY power ranges from
+<strong>600 mW to 950 mW</strong> (approximately <strong>130 mW to 200
+mW per lane</strong> plus shared circuitry).</li>
+<li><strong>Planar Nodes (28nm):</strong> While less common for 48 Gbps
+interfaces due to thermal and parasitic limitations, 28nm
+implementations can exceed <strong>1.2 W to 1.5 W</strong> for the
+entire PHY, primarily driven by higher parasitic capacitance and the
+need for higher drive currents to achieve necessary slew rates.</li>
+</ul>
+<h3 id="dynamic-vs-static-power-behavior">Dynamic vs. Static Power
+Behavior</h3>
+<p>Dynamic power dominates the FRL6 power profile. Because FRL relies on
+a continuous bit stream with embedded clocking and continuous
+scrambling, the transition density remains near 50% regardless of the
+transmitted video content. Consequently, unlike TMDS—where black screens
+or static images significantly lower switching activity—FRL6 exhibits
+relatively constant dynamic power consumption during active
+transmission.</p>
+<p>Static power (transistor leakage) is determined by die temperature
+and process node. In sub-7nm designs, leakage can represent 15% to 25%
+of the PHY's total power budget under elevated junction temperatures
+(e.g., 85°C to 105°C), necessitating robust thermal management in
+compact source devices such as streaming sticks, game consoles, and
+ultra-thin laptops.</p>
+<h3 id="influence-of-equalization-and-link-margin">Influence of
+Equalization and Link Margin</h3>
+<p>The HDMI 2.1 specification defines Link Training Status and Control
+Protocol (LTS-CP), enabling the receiver to request specific
+pre-emphasis and swing levels from the transmitter. If the PHY drives a
+high-loss, passive cable, the receiver may request maximum pre-shoot,
+de-emphasis, and peak-to-peak voltage swings. Operating the output
+stages at maximum voltage swing and aggressive equalization levels
+increases transmitter analog driver power by up to 20% to 30% compared
+to baseline configurations driving short, low-loss interconnects.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

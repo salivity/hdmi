@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Does the TMDS Clock Channel Do in HDMI? - hdmi</title>
+    <meta name="description" content="Transition-Minimized Differential Signaling (TMDS) architectures in legacy HDMI versions (HDMI 1.0 through HDMI 2.0) rely on a dedicated physical clock channel alongside three serialized data channels. This article explains how the dedicated TMDS clock c">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/what-does-the-tmds-clock-channel-do-in-hdmi">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Does the TMDS Clock Channel Do in HDMI? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/what-does-the-tmds-clock-channel-do-in-hdmi" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transition-Minimized Differential Signaling (TMDS) architectures in legacy HDMI versions (HDMI 1.0 through HDMI 2.0) rely on a dedicated physical clock channel alongside three serialized data channels. This article explains how the dedicated TMDS clock c" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="what-does-the-tmds-clock-channel-do-in-hdmi">What Does the TMDS
+Clock Channel Do in HDMI?</h1>
+<p>Transition-Minimized Differential Signaling (TMDS) architectures in
+legacy HDMI versions (HDMI 1.0 through HDMI 2.0) rely on a dedicated
+physical clock channel alongside three serialized data channels. This
+article explains how the dedicated TMDS clock channel functions as the
+master synchronization reference for video, audio, and auxiliary data
+transmission. It details how the clock operates at the pixel character
+rate, how receiving displays reconstruct bit-level timing via internal
+phase-locked loops, and why newer standards eventually phased out this
+dedicated channel.</p>
+<h2 id="tmds-architecture-overview">TMDS Architecture Overview</h2>
+<p>Legacy HDMI architectures transmit high-bandwidth digital streams
+across four differential pairs:</p>
+<ul>
+<li><strong>Channel 0:</strong> Carries serialized Blue pixel data,
+horizontal/vertical synchronization signals (HSYNC/VSYNC), and packet
+headers.</li>
+<li><strong>Channel 1:</strong> Carries serialized Green pixel data and
+guard bands/packet data.</li>
+<li><strong>Channel 2:</strong> Carries serialized Red pixel data and
+guard bands/packet data.</li>
+<li><strong>Clock Channel:</strong> Carries a continuous reference
+square wave synchronized to the transmitter's pixel clock.</li>
+</ul>
+<p>Each TMDS data line encodes 8-bit digital bytes into 10-bit
+transition-minimized, DC-balanced symbols. To reconstruct these
+high-speed streams at the receiver, the display requires an accurate
+timing baseline, which is supplied exclusively by the dedicated TMDS
+clock channel.</p>
+<h2 id="character-rate-vs-bit-rate">Character Rate vs. Bit Rate</h2>
+<p>The TMDS clock signal does not oscillate at the actual transmission
+bit rate. Instead, it operates at the character rate (often referred to
+as the pixel clock rate in standard 24-bit RGB/YCbCr formats).</p>
+<p>Because each byte is encoded into a 10-bit character for
+transmission:</p>
+<ul>
+<li>In standard <strong>8-bit color depth (24-bit True Color)</strong>,
+the clock frequency equals the pixel rate (<span
+class="math inline">\(1\times\)</span>). Each cycle of the TMDS clock
+corresponds directly to one 10-bit symbol on each of the three data
+channels. The serial bit rate on each data lane is therefore exactly 10
+times the clock frequency.</li>
+<li>In <strong>Deep Color modes (10-bit, 12-bit, or 16-bit per
+component)</strong>, the character rate scales up proportionally (<span
+class="math inline">\(1.25\times\)</span>, <span
+class="math inline">\(1.5\times\)</span>, or <span
+class="math inline">\(2\times\)</span> the pixel clock rate) to account
+for the larger payload.</li>
+<li>In <strong>HDMI 2.0 (operating above 3.4 Gbps per lane)</strong>, a
+1:40 clock divider mode is introduced. In this mode, the physical clock
+line runs at one-fourth of the character rate to conserve electrical
+bandwidth across the cable, requiring the receiver to multiply the clock
+by 40 rather than 10.</li>
+</ul>
+<h2
+id="receiver-side-clock-multiplication-and-pll-locking">Receiver-Side
+Clock Multiplication and PLL Locking</h2>
+<p>The display's TMDS receiver uses the incoming clock reference to
+drive an onboard Phase-Locked Loop (PLL). This system performs two
+primary tasks:</p>
+<ol type="1">
+<li><strong>Frequency Multiplication:</strong> The PLL multiplies the
+incoming character clock (typically by a factor of 10, or 40 in HDMI 2.0
+high-speed modes) to generate the high-frequency bit clock necessary to
+sample individual bits on the data lines.</li>
+<li><strong>Phase Alignment and Deserialization:</strong> The
+reconstructed bit clock feeds into serial-to-parallel shift registers
+(deserializers). By sampling the incoming differential data lanes in
+precise phase alignment with the reference clock, the receiver reliably
+reconstructs the original 10-bit characters without bit-slip
+errors.</li>
+</ol>
+<p>Once deserialized, the 10-bit characters are decoded back into their
+original 8-bit video data, audio samples, or auxiliary control
+packets.</p>
+<h2 id="why-legacy-hdmi-used-a-dedicated-clock">Why Legacy HDMI Used a
+Dedicated Clock</h2>
+<p>When HDMI and DVI were developed, silicon fabrication processes made
+standalone clock-and-data recovery (CDR) circuits on every data channel
+complex, power-hungry, and expensive for consumer television receivers.
+Routing a dedicated, lower-frequency clock channel reduced receiver
+complexity significantly. Display receivers could implement a single,
+straightforward PLL circuit locked to an external clean reference rather
+than recovering timing directly from high-speed, noisy data streams.</p>
+<h2 id="transition-to-embedded-clocks-in-hdmi-21">Transition to Embedded
+Clocks in HDMI 2.1</h2>
+<p>While effective for bandwidths up to 18 Gbps (HDMI 2.0), a dedicated
+clock channel presents limitations at higher data rates:</p>
+<ul>
+<li><strong>Inter-Pair Skew:</strong> At ultra-high frequencies,
+microscopic differences in wire lengths inside the cable cause the clock
+signal and data signals to drift out of phase, leading to transmission
+errors.</li>
+<li><strong>Wasted Physical Bandwidth:</strong> Dedicating an entire
+physical differential pair purely to clock signals consumes 25% of the
+cable's high-speed wiring capacity without carrying video data.</li>
+</ul>
+<p>Beginning with HDMI 2.1, the interface introduced Fixed Rate Link
+(FRL). FRL eliminated the dedicated TMDS clock channel, repurposing the
+fourth differential pair into a fourth active data lane. Under FRL,
+clock information is embedded directly into the data streams using
+16b/18b encoding and extracted at the receiver using Clock-Data Recovery
+(CDR) architectures.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

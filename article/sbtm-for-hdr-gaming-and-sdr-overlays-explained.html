@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SBTM for HDR Gaming and SDR Overlays Explained - hdmi</title>
+    <meta name="description" content="Source-Based Tone Mapping (SBTM) is an HDMI 2.1a feature that allows a source device, such as a PC or gaming console, to handle tone mapping instead of relying entirely on the display. When mixing High Dynamic Range (HDR) gaming graphics with Standard Dy">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/sbtm-for-hdr-gaming-and-sdr-overlays-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SBTM for HDR Gaming and SDR Overlays Explained - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/sbtm-for-hdr-gaming-and-sdr-overlays-explained" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Source-Based Tone Mapping (SBTM) is an HDMI 2.1a feature that allows a source device, such as a PC or gaming console, to handle tone mapping instead of relying entirely on the display. When mixing High Dynamic Range (HDR) gaming graphics with Standard Dy" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="sbtm-for-hdr-gaming-and-sdr-overlays-explained">SBTM for HDR
+Gaming and SDR Overlays Explained</h1>
+<p>Source-Based Tone Mapping (SBTM) is an HDMI 2.1a feature that allows
+a source device, such as a PC or gaming console, to handle tone mapping
+instead of relying entirely on the display. When mixing High Dynamic
+Range (HDR) gaming graphics with Standard Dynamic Range (SDR) chat
+overlays, SBTM ensures that both types of content are rendered
+accurately without clipping, color distortion, or unnatural brightness
+shifts. This article explains how SBTM works and why it resolves the
+long-standing visual issues associated with combining HDR gameplay and
+SDR user interfaces.</p>
+<h3 id="the-problem-with-mixed-hdr-and-sdr-content">The Problem with
+Mixed HDR and SDR Content</h3>
+<p>In standard HDR setups, the display handles tone mapping based on the
+overall signal it receives. When a system blends an SDR element—such as
+a Discord overlay, Twitch stream chat, or system notification—on top of
+an HDR game, the display cannot easily differentiate between the
+two.</p>
+<p>Without SBTM, the display applies a single tone mapping curve across
+the entire frame. This typically leads to two major issues:</p>
+<ul>
+<li><strong>Blown-out SDR overlays:</strong> SDR text and icons,
+normally designed for a peak luminance of 100 to 200 nits, can be
+boosted to blinding HDR brightness levels, causing them to clip, lose
+detail, or distract the player.</li>
+<li><strong>Washed-out HDR graphics:</strong> If the source device
+artificially compresses the entire signal to accommodate the SDR
+overlay, the HDR game content can lose its dynamic range, resulting in
+dull highlights and muddy shadow details.</li>
+</ul>
+<h3 id="how-sbtm-solves-the-issue">How SBTM Solves the Issue</h3>
+<p>SBTM shifts the tone mapping responsibility from the display back to
+the source device (the GPU or console). The display communicates its
+exact luminance and color volume capabilities to the source via HDMI
+metadata. With this information, the source device performs tone mapping
+directly before outputting the final video stream.</p>
+<p>When rendering mixed content, the source device can process each
+visual layer independently:</p>
+<ol type="1">
+<li><strong>Targeted Luminance for Overlays:</strong> The GPU maps the
+SDR chat overlay strictly within standard SDR color and luminance
+targets. Text remains crisp, readable, and comfortable to view.</li>
+<li><strong>Preserved Dynamic Range for Games:</strong> The GPU
+simultaneously maps the HDR game world to match the display’s maximum
+peak brightness and color gamut. Highlights like explosions and sunlight
+retain their intended impact without being muted.</li>
+<li><strong>Unified Composition:</strong> The source combines these
+distinctly mapped elements into a single, fully optimized HDMI frame
+tailored specifically for that exact display.</li>
+</ol>
+<h3 id="eliminating-display-side-guesswork">Eliminating Display-Side
+Guesswork</h3>
+<p>Traditional tone mapping algorithms inside TVs and monitors rely on
+dynamic contrast adjustments that react to scene changes. A bright SDR
+chat window popping up on screen could trigger the display to dim the
+entire picture, including the HDR game underneath.</p>
+<p>SBTM eliminates this display-side guesswork. Because the image
+arriving at the display is already fully tone-mapped to the panel's
+physical limits, the display does not need to apply aggressive,
+unpredictable dynamic tone mapping. The result is a stable, consistent
+viewing experience where chat overlays remain legible without
+compromising the immersion and visual fidelity of HDR gaming.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

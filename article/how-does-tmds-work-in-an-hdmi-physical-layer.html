@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Does TMDS Work in an HDMI Physical Layer? - hdmi</title>
+    <meta name="description" content="Transition-Minimized Differential Signaling (TMDS) is the core physical-layer technology responsible for transmitting uncompressed digital video and audio over HDMI connections. It combines two foundational electrical and signaling concepts: an 8b/10b en">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-does-tmds-work-in-an-hdmi-physical-layer">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Does TMDS Work in an HDMI Physical Layer? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-does-tmds-work-in-an-hdmi-physical-layer" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Transition-Minimized Differential Signaling (TMDS) is the core physical-layer technology responsible for transmitting uncompressed digital video and audio over HDMI connections. It combines two foundational electrical and signaling concepts: an 8b/10b en" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-does-tmds-work-in-an-hdmi-physical-layer">How Does TMDS Work
+in an HDMI Physical Layer?</h1>
+<p>Transition-Minimized Differential Signaling (TMDS) is the core
+physical-layer technology responsible for transmitting uncompressed
+digital video and audio over HDMI connections. It combines two
+foundational electrical and signaling concepts: an 8b/10b encoding stage
+that minimizes voltage transitions while maintaining DC balance, and
+differential signaling over twisted wire pairs to eliminate
+electromagnetic interference. Together, these techniques allow HDMI
+cables to deliver gigabits of uncorrupted multimedia data per second
+over standard copper wiring.</p>
+<h3 id="the-two-stage-encoding-architecture">The Two-Stage Encoding
+Architecture</h3>
+<p>At the heart of TMDS is an encoding mechanism that converts standard
+8-bit digital bytes into 10-bit symbols. This conversion solves two
+primary physical transmission challenges: electromagnetic radiation
+caused by high-frequency switching and signal drift caused by DC
+bias.</p>
+<p>The first stage minimizes transitions. High-speed switching between
+binary logic high and logic low generates electromagnetic interference
+(EMI) and degrades signal edges over copper lines. The TMDS encoder
+evaluates the incoming 8-bit byte and selects either an exclusive-OR
+(XOR) or exclusive-NOR (XNOR) boolean operation to derive the new byte,
+picking whichever operation yields fewer logic transitions (0-to-1 or
+1-to-0). A ninth bit is appended to indicate whether XOR or XNOR was
+used, allowing the receiver to reverse the operation accurately.</p>
+<p>The second stage enforces DC balance. If a transmission stream
+contains significantly more 1s than 0s over time, a direct-current
+offset accumulates across the transmission medium, drifting the
+reference voltage and distorting bit recognition at high frequencies.
+The encoder tracks the running discrepancy between transmitted ones and
+zeros. If an imbalance develops, the tenth bit is asserted, and the
+encoded bits are inverted. This ensures an approximately equal number of
+high and low states across the link, stabilizing the baseline voltage
+across capacitive coupling and long traces.</p>
+<h3 id="differential-physical-transport">Differential Physical
+Transport</h3>
+<p>Once the 10-bit symbols are constructed, they enter the physical
+electrical domain via differential signaling. Instead of sending a
+single-ended voltage signal referenced to ground, each TMDS channel uses
+a twisted pair of conductors labeled positive and negative (<span
+class="math inline">\(+\)</span> and <span
+class="math inline">\(-\)</span>).</p>
+<p>The transmitter drives two complementary current-mode logic signals
+down the pair simultaneously. When the true line swings positive, the
+complementary line swings negative by an identical voltage magnitude. At
+the receiving end, a differential amplifier reads the voltage difference
+between the two wires rather than measuring either wire against a common
+ground reference.</p>
+<p>This differential design provides exceptional common-mode noise
+rejection. Any external electromagnetic field intersecting the tightly
+twisted pair induces an identical voltage offset in both conductors
+simultaneously. Because the receiver evaluates <span
+class="math inline">\((V_+ - V_-)\)</span>, the identical induced noise
+on both wires cancels out completely. Furthermore, the opposing magnetic
+fields generated by the pair's complementary currents largely cancel
+each other out, sharply reducing outward radio-frequency emissions.</p>
+<h3 id="tmds-channel-topology-in-hdmi">TMDS Channel Topology in
+HDMI</h3>
+<p>A standard single-link HDMI interface deploys four discrete TMDS
+differential pairs:</p>
+<ul>
+<li><strong>TMDS Data Channels 0, 1, and 2:</strong> These three pairs
+carry the primary multimedia payload. During the active video period,
+each channel carries serialized color components (such as Red, Green,
+and Blue, or Y, Cb, and Cr). During blanking intervals, these lines
+shift to transmit audio sample packets, auxiliary control data, and
+synchronization signals using specialized TMDS error-reduction coding
+modes.</li>
+<li><strong>TMDS Clock Channel:</strong> The fourth pair carries a
+continuous reference clock synchronized with the pixel stream. For
+standard HDMI implementations up to HDMI 1.4 and 2.0, this channel
+provides the timing base that receiver Phase-Locked Loops (PLLs)
+multiply by 10 to sample individual bits within the 10-bit symbol
+boundaries on the three data lines.</li>
+</ul>
+<p>Through the synchronized cooperation of these four physical channels,
+TMDS achieves high signal integrity, precise clock alignment, and robust
+noise immunity across commodity high-definition video connections.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Closed Captioning and Teletext in HDMI Signals - hdmi</title>
+    <meta name="description" content="This article provides an overview of how High-Definition Multimedia Interface (HDMI) signals transport closed captioning and teletext data. While consumer HDMI sources commonly decode and overlay caption text directly onto the video raster, the HDMI spec">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/closed-captioning-and-teletext-in-hdmi-signals">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Closed Captioning and Teletext in HDMI Signals - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/closed-captioning-and-teletext-in-hdmi-signals" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides an overview of how High-Definition Multimedia Interface (HDMI) signals transport closed captioning and teletext data. While consumer HDMI sources commonly decode and overlay caption text directly onto the video raster, the HDMI spec" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="closed-captioning-and-teletext-in-hdmi-signals">Closed
+Captioning and Teletext in HDMI Signals</h1>
+<p>This article provides an overview of how High-Definition Multimedia
+Interface (HDMI) signals transport closed captioning and teletext data.
+While consumer HDMI sources commonly decode and overlay caption text
+directly onto the video raster, the HDMI specification also supports
+carrying raw caption and teletext data within auxiliary data structures
+known as Data Island periods. Below is a detailed look at the signal
+architecture, packet structures, and CTA-861 standards that make this
+transmission possible.</p>
+<h3 id="hdmi-transmission-modes-and-the-data-island">HDMI Transmission
+Modes and the Data Island</h3>
+<p>An HDMI link operates across transition-minimized differential
+signaling (TMDS) channels or Fixed Rate Link (FRL) lanes using three
+primary transmission periods:</p>
+<ol type="1">
+<li><strong>Video Data Period:</strong> Transmits the active
+uncompressed video pixels.</li>
+<li><strong>Control Period:</strong> Used for synchronization signals
+(such as HSync and VSync) and preamble patterns.</li>
+<li><strong>Data Island Period:</strong> Occurs during the horizontal
+and vertical blanking intervals when active video pixels are not being
+transmitted.</li>
+</ol>
+<p>Auxiliary data, including multi-channel audio, InfoFrames, and
+ancillary vertical blanking data, is strictly transported during the
+Data Island period.</p>
+<h3 id="auxiliary-packet-structure">Auxiliary Packet Structure</h3>
+<p>Data sent during the Data Island period is organized into discrete
+32-byte units called Data Island Packets. Each packet consists of:</p>
+<ul>
+<li><strong>Header (4 bytes):</strong> Contains packet type
+identification and payload-specific flags, protected by a BCH(32, 24)
+error-correcting code.</li>
+<li><strong>Payload (28 bytes):</strong> Divided into four subpackets of
+7 bytes each, protected by parity bits and a BCH(64, 56) code.</li>
+</ul>
+<p>To survive transmission across high-frequency TMDS lines, these
+packets use specialized error reduction coding (TERC4), ensuring robust
+delivery of non-video data.</p>
+<h3 id="encapsulating-closed-captioning-and-teletext">Encapsulating
+Closed Captioning and Teletext</h3>
+<p>When raw closed captioning (such as CEA-608 or CEA-708) or teletext
+(World Standard Teletext / WST) is preserved as data rather than
+rendered into pixels, it is encapsulated using the CTA-861 standard
+extensions referenced by the HDMI specification:</p>
+<ul>
+<li><strong>VBI Data Packets:</strong> The Consumer Technology
+Association (CTA-861) defines methods to carry digitized Vertical
+Blanking Interval (VBI) services. Line 21 data (CEA-608 closed captions)
+and teletext waveforms can be digitized into byte representations and
+placed into dedicated VBI Data InfoFrames or Ancillary Data
+Packets.</li>
+<li><strong>SMPTE 291M / VANC Mapping:</strong> In broadcast and
+professional AV workflows, HDMI transmitters encapsulate Vertical
+Ancillary (VANC) data packets. Caption structures (such as SMPTE 334M
+carrying CEA-708) are placed directly into HDMI auxiliary packets,
+allowing downstream devices (like professional monitors or recording
+units) to parse the raw metadata.</li>
+</ul>
+<h3 id="passthrough-vs-video-rendering">Passthrough vs. Video
+Rendering</h3>
+<p>In practice, HDMI handles closed captions and teletext through two
+distinct methods depending on the hardware implementation:</p>
+<ul>
+<li><strong>Source-Rendered Bitmaps (Consumer Standard):</strong> In
+typical consumer configurations (streaming devices, Blu-ray players,
+set-top boxes), the source hardware decodes the closed captioning or
+teletext stream internally. It renders the characters into the active
+pixel raster before the HDMI output stage. In this case, the captions
+are part of the Video Data Period rather than auxiliary structures.</li>
+<li><strong>Auxiliary Passthrough (Sink Decoding):</strong> When the
+source acts strictly as a transport pipeline, the raw text bytes are
+packaged into Data Island packets during the blanking intervals. The
+receiving display (sink device) parses the auxiliary packets, extracts
+the CEA-608/708 or teletext payload, and uses its internal character
+generator to render the captions on screen.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

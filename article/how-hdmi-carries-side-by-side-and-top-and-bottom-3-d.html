@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Carries Side-by-Side and Top-and-Bottom 3D - hdmi</title>
+    <meta name="description" content="This article provides an overview of how High-Definition Multimedia Interface (HDMI) delivers stereoscopic 3D content using Side-by-Side (SbS) and Top-and-Bottom (TaB) multiplexing techniques. It explores how these layouts fit two distinct visual perspec">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-carries-side-by-side-and-top-and-bottom-3-d">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Carries Side-by-Side and Top-and-Bottom 3D - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-carries-side-by-side-and-top-and-bottom-3-d" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides an overview of how High-Definition Multimedia Interface (HDMI) delivers stereoscopic 3D content using Side-by-Side (SbS) and Top-and-Bottom (TaB) multiplexing techniques. It explores how these layouts fit two distinct visual perspec" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-carries-side-by-side-and-top-and-bottom-3d">How HDMI
+Carries Side-by-Side and Top-and-Bottom 3D</h1>
+<p>This article provides an overview of how High-Definition Multimedia
+Interface (HDMI) delivers stereoscopic 3D content using Side-by-Side
+(SbS) and Top-and-Bottom (TaB) multiplexing techniques. It explores how
+these layouts fit two distinct visual perspectives into standard 2D
+video frames, how HDMI signaling informs the display of the formatting,
+and the technical trade-offs between horizontal and vertical compression
+over the transmission link.</p>
+<h2 id="the-principles-of-3d-transmission-over-hdmi">The Principles of
+3D Transmission Over HDMI</h2>
+<p>Stereoscopic 3D requires two separate video feeds: one for the left
+eye and one for the right eye. While the HDMI specification (introduced
+formally in HDMI 1.4) supports "Frame Packing"—a method that transmits
+both full-resolution frames sequentially with an active blanking space
+between them—bandwidth constraints in broadcasting and legacy playback
+hardware popularized sub-sampled multiplexing formats.</p>
+<p>Side-by-Side and Top-and-Bottom formats solve the bandwidth problem
+by squeezing both the left and right perspectives into the physical
+payload of a single conventional 2D video frame (such as 1080p, 1080i,
+or 720p). To standard HDMI transmitter and receiver hardware, the signal
+behaves electrically as a normal 2D frame buffer over the
+Transition-Minimized Differential Signaling (TMDS) channels.</p>
+<h2 id="side-by-side-sbs-3d-architecture">Side-by-Side (SbS) 3D
+Architecture</h2>
+<p>In a Side-by-Side layout, the source device takes two full-resolution
+frames and reduces their horizontal resolution by half using an
+anamorphic squeeze.</p>
+<ul>
+<li><strong>Pixel Geometry:</strong> In a standard 1080p frame
+(1920×1080 pixels), the left-eye view is compressed into a 960×1080 box
+on the left half of the raster, and the right-eye view is compressed
+into a 960×1080 box on the right half.</li>
+<li><strong>Scan Order:</strong> The HDMI transmission serializes pixels
+row by row from top to bottom. Because the images are placed
+horizontally next to each other, a single scanline carries pixel data
+for the left eye first, immediately followed by the pixel data for the
+right eye across the horizontal axis.</li>
+<li><strong>Resolution Trade-off:</strong> Horizontal spatial resolution
+is halved, but full vertical resolution (1080 lines) is maintained. This
+makes SbS particularly suitable for content with fine horizontal details
+or for broadcast over interlaced signals (1080i), where vertical
+resolution cannot afford further decimation.</li>
+</ul>
+<h2 id="top-and-bottom-tab-3d-architecture">Top-and-Bottom (TaB) 3D
+Architecture</h2>
+<p>In a Top-and-Bottom layout (often referred to as Over-Under), the
+source compresses the two stereoscopic images vertically rather than
+horizontally.</p>
+<ul>
+<li><strong>Pixel Geometry:</strong> Within a 1920×1080 frame, the top
+half (1920×540 pixels) contains the complete horizontally intact image
+for the left eye. The bottom half (1920×540 pixels) contains the image
+for the right eye.</li>
+<li><strong>Scan Order:</strong> During HDMI transmission, the source
+clocks out the entire left-eye image line by line across the top 540
+active scanlines. Once the midpoint of the frame is reached, the
+subsequent 540 active scanlines deliver the right-eye image.</li>
+<li><strong>Resolution Trade-off:</strong> Full horizontal resolution
+(1920 pixels) is preserved, while vertical resolution is cut by 50%. TaB
+is preferred for progressive video feeds, such as 720p at 50Hz or 60Hz,
+where vertical lines are stable and maintaining full horizontal
+sharpness is prioritized for motion clarity.</li>
+</ul>
+<h2 id="hdmi-signaling-and-metadata-delivery">HDMI Signaling and
+Metadata Delivery</h2>
+<p>Because both SbS and TaB fit completely inside a standard video
+raster, an HDMI cable transfers the raw pixel data without needing
+higher clock frequencies or modified physical pinouts. However, the
+display device must be informed that the frame contains two multiplexed
+views rather than a normal 2D picture.</p>
+<ol type="1">
+<li><strong>HDMI Vendor-Specific InfoFrame (VSIF):</strong> The source
+device embeds a dedicated 3D metadata packet inside the data island
+periods of the HDMI signal (the blanking intervals between active video
+lines).</li>
+<li><strong><code>3D_Structure</code> Field:</strong> Within the VSIF
+defined by the HDMI 1.4a specification, a specific byte designated as
+<code>3D_Structure</code> tells the display how to parse the payload:
+<ul>
+<li>A value indicating <code>Side-by-Side (Half)</code> instructs the
+sink (display) to split each horizontal line in half.</li>
+<li>A value indicating <code>Top-and-Bottom</code> instructs the sink to
+split the vertical frame at the halfway point.</li>
+</ul></li>
+<li><strong>Display Reconstruction:</strong> Upon reading the InfoFrame,
+the display’s video processor demultiplexes the incoming frame into two
+individual buffers, scales each sub-frame back to the native panel
+resolution (stretching horizontally for SbS or vertically for TaB), and
+syncs the output to active shutter glasses, a polarized screen filter,
+or an autostereoscopic panel.</li>
+</ol>
+<p>If the source device fails to send the HDMI 3D InfoFrame, the display
+receives the feed as a standard 2D image, requiring the user to manually
+activate the display's internal SbS or TaB 3D decoding modes via the
+menu interface.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

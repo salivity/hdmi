@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Clean HDMI with External ProRes Recorders - hdmi</title>
+    <meta name="description" content="This article explains how cinema and mirrorless cameras utilize clean HDMI outputs to deliver pristine video signals to external recorders like the Atomos Ninja. You will learn what a clean HDMI feed is, how uncompressed video data travels from the camer">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/using-clean-hdmi-with-external-pro-res-recorders">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Using Clean HDMI with External ProRes Recorders - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/using-clean-hdmi-with-external-pro-res-recorders" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how cinema and mirrorless cameras utilize clean HDMI outputs to deliver pristine video signals to external recorders like the Atomos Ninja. You will learn what a clean HDMI feed is, how uncompressed video data travels from the camer" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="using-clean-hdmi-with-external-prores-recorders">Using Clean
+HDMI with External ProRes Recorders</h1>
+<p>This article explains how cinema and mirrorless cameras utilize clean
+HDMI outputs to deliver pristine video signals to external recorders
+like the Atomos Ninja. You will learn what a clean HDMI feed is, how
+uncompressed video data travels from the camera sensor to an external
+unit, how recorders encode that data into Apple ProRes, and the workflow
+benefits of bypassing internal camera compression.</p>
+<h3 id="understanding-clean-hdmi-output">Understanding Clean HDMI
+Output</h3>
+<p>A clean HDMI output refers to an uncluttered video signal sent
+through a camera’s HDMI port that contains purely the visual data
+captured by the sensor, free of any on-screen display (OSD) elements. In
+standard operation, a camera displays diagnostic overlays such as
+battery levels, shutter speed, aperture, focus peaking, and histogram
+indicators on its screen. When clean HDMI is enabled in the camera's
+system settings, these graphical overlays are stripped from the output
+pipeline, ensuring the external recorder receives only raw video frames
+without burned-in telemetry.</p>
+<h3 id="the-signal-path-sensor-to-hdmi">The Signal Path: Sensor to
+HDMI</h3>
+<p>To understand how an external recorder receives this feed, it helps
+to track the camera's internal processing pipeline:</p>
+<ol type="1">
+<li><strong>Sensor Readout:</strong> The camera sensor captures incoming
+light, and the internal image processor debayers the raw photosite
+data.</li>
+<li><strong>Signal Routing:</strong> Before the internal processor
+compresses the image into high-efficiency, lossy formats (such as H.264
+or H.265) and writes it to internal SD or CFexpress cards, a tap of the
+signal is routed to the HDMI transmitter.</li>
+<li><strong>Transmission:</strong> The uncompressed digital video
+data—often structured as a 10-bit 4:2:2 or 8-bit 4:2:2 YCbCr signal, or
+in select setups, 12-bit RAW data—is sent across high-speed HDMI 2.0 or
+2.1 lanes to the receiving device.</li>
+</ol>
+<h3 id="how-external-recorders-capture-prores">How External Recorders
+Capture ProRes</h3>
+<p>External recorders, such as the Atomos Ninja series, serve as
+dedicated encoding computers mounted directly to the camera rig.</p>
+<p>Once the clean video signal enters the recorder's HDMI input:</p>
+<ul>
+<li><strong>Hardware Ingestion:</strong> The recorder’s internal
+processing chip accepts the digital video stream.</li>
+<li><strong>ProRes Encoding:</strong> Rather than relying on the
+camera's internal processor, the recorder uses dedicated hardware to
+compress the incoming frame data in real-time into intermediate
+production codecs, typically Apple ProRes 422, ProRes HQ, or ProRes LT.
+Because ProRes uses intra-frame compression (where every frame is
+compressed independently rather than across a group of pictures), it
+places significantly less demand on editing workstations later.</li>
+<li><strong>Storage Offload:</strong> The encoded ProRes stream is
+written directly to high-capacity, removable 2.5-inch SATA SSDs or
+custom compact drives housed within the recorder.</li>
+</ul>
+<h3 id="timecode-and-camera-triggering">Timecode and Camera
+Triggering</h3>
+<p>A seamless workflow requires the camera and external recorder to
+operate in sync. Clean HDMI carries more than just image data; it also
+transmits auxiliary data packets defined by consumer electronics and
+broadcast standards.</p>
+<p>Modern cameras embed <strong>timecode</strong> and <strong>record
+trigger flags</strong> into the HDMI data stream. When the operator
+presses the camera's physical record button, a trigger packet signals
+the Atomos Ninja to begin recording simultaneously. The external file is
+saved with the exact timecode generated by the camera, ensuring
+synchronized audio and video in multi-camera workflows.</p>
+<h3 id="key-advantages-of-clean-hdmi-external-recording">Key Advantages
+of Clean HDMI External Recording</h3>
+<ul>
+<li><strong>Higher Bit Depths and Color Sampling:</strong> Cameras that
+only record 8-bit 4:2:0 internally often output 10-bit 4:2:2 through
+HDMI, allowing for better color grading flexibility and reduced banding
+in gradients.</li>
+<li><strong>Thermal Management:</strong> Encoding highly compressed
+codecs internally generates significant heat. Offloading encoding to an
+external recorder reduces camera sensor temperatures, eliminating
+recording time limits and thermal shutdowns.</li>
+<li><strong>Cost-Effective Media:</strong> Standard SATA SSDs used in
+external recorders generally provide a lower cost-per-gigabyte compared
+to proprietary camera memory cards.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

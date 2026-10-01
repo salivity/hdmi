@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Velocity of Propagation and Signal Arrival Times - hdmi</title>
+    <meta name="description" content="Velocity of propagation (VoP) measures how fast an electrical signal moves through a transmission medium relative to the speed of light in a vacuum. Inside an HDMI copper cable, VoP directly governs signal arrival times across all data and clock channels">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-velocity-of-propagation-and-signal-arrival-times">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Velocity of Propagation and Signal Arrival Times - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-velocity-of-propagation-and-signal-arrival-times" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Velocity of propagation (VoP) measures how fast an electrical signal moves through a transmission medium relative to the speed of light in a vacuum. Inside an HDMI copper cable, VoP directly governs signal arrival times across all data and clock channels" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-velocity-of-propagation-and-signal-arrival-times">HDMI
+Velocity of Propagation and Signal Arrival Times</h1>
+<p>Velocity of propagation (VoP) measures how fast an electrical signal
+moves through a transmission medium relative to the speed of light in a
+vacuum. Inside an HDMI copper cable, VoP directly governs signal arrival
+times across all data and clock channels. Variations in VoP—caused
+primarily by differences in the cable's dielectric insulation and
+manufacturing tolerances—cause signal delay, intra-pair skew, and
+inter-pair skew. When arrival times drift beyond the strict tolerance
+limits of HDMI specifications, the receiving display experiences bit
+errors, audio-video desynchronization, or complete signal loss.</p>
+<h2 id="what-determines-velocity-of-propagation-in-hdmi">What Determines
+Velocity of Propagation in HDMI</h2>
+<p>Electrical signals do not travel at the theoretical speed of light
+(<span class="math inline">\(c\)</span>) through a copper wire; instead,
+their speed is constrained by the electromagnetic properties of the
+surrounding insulation material, known as the dielectric.</p>
+<p>The relationship between the velocity of propagation and the
+material's dielectric constant (<span
+class="math inline">\(\epsilon_r\)</span>) is expressed by:</p>
+<p><span class="math display">\[\text{VoP} =
+\frac{1}{\sqrt{\epsilon_r}}\]</span></p>
+<p>In standard HDMI cables using solid or foamed polyethylene (PE) or
+polypropylene (PP) insulation, the VoP typically ranges between
+<strong>65% and 75% of the speed of light</strong> (roughly <span
+class="math inline">\(1.95 \times 10^8\)</span> to <span
+class="math inline">\(2.25 \times 10^8\)</span> meters per second). A
+higher dielectric constant slows the signal down, whereas a lower
+dielectric constant allows the signal to travel faster.</p>
+<h2 id="signal-arrival-time-and-latency">Signal Arrival Time and
+Latency</h2>
+<p>The absolute arrival time (<span class="math inline">\(t\)</span>) of
+a data packet at the display receiver is simply the physical length of
+the cable (<span class="math inline">\(d\)</span>) divided by the
+effective speed of the signal (<span
+class="math inline">\(v\)</span>):</p>
+<p><span class="math display">\[t = \frac{d}{\text{VoP} \times
+c}\]</span></p>
+<p>Over a short 1-meter cable, propagation delay is roughly 4.5 to 5
+nanoseconds, which is negligible for human perception. However, across
+longer cable runs of 5 to 15 meters, total propagation delay increases
+proportionately. While absolute latency rarely affects passive viewing,
+predictable signal timing is vital for the digital processing engines
+within modern displays.</p>
+<h2 id="differential-signal-arrival-intra-pair-skew">Differential Signal
+Arrival: Intra-Pair Skew</h2>
+<p>HDMI uses Transition-Minimized Differential Signaling (TMDS) in HDMI
+1.4/2.0 and Fixed Rate Link (FRL) in HDMI 2.1. These architectures rely
+on differential pairs: two matched conductors carrying inverted copies
+of the same high-frequency signal (<span
+class="math inline">\(+\)</span> and <span
+class="math inline">\(-\)</span>).</p>
+<p>The receiver reconstructs the digital data by measuring the
+difference in voltage between the two lines:</p>
+<ul>
+<li>If the dielectric material is non-uniform or the twist rate causes
+slight length discrepancies between the two wires, the VoP or physical
+path length differs.</li>
+<li>This discrepancy causes <strong>intra-pair skew</strong>, where one
+half of the differential signal arrives fractions of a picosecond
+earlier than the other.</li>
+<li>As intra-pair skew increases, the differential signal becomes
+distorted, leading to phase cancellation, reduced eye height in the eye
+diagram, jitter, and unrecoverable bit errors.</li>
+</ul>
+<h2 id="multi-lane-synchronization-inter-pair-skew">Multi-Lane
+Synchronization: Inter-Pair Skew</h2>
+<p>An HDMI cable contains multiple high-speed lanes: three data lanes
+and one clock lane in TMDS mode, or four data lanes in FRL mode.</p>
+<p><strong>Inter-pair skew</strong> occurs when signals travel at
+different speeds down separate conductor pairs within the same cable
+jacket:</p>
+<ul>
+<li>Physical variations in the dielectric foamer, insulation thickness,
+or twisting tension among separate pairs produce minor VoP variations
+between lanes.</li>
+<li>High-definition video requires that pixel data distributed across
+multiple lanes arrives synchronously or within an acceptable deskew
+window.</li>
+<li>HDMI receivers use FIFO (First-In, First-Out) buffers to realign
+mismatched arrival times across lanes. If the VoP discrepancy causes an
+arrival delay that exceeds the receiver's deskew buffer capacity, the
+link drops synchronization, manifesting as digital noise ("sparkles"),
+line drops, or a black screen.</li>
+</ul>
+<h2 id="managing-vop-in-high-bandwidth-standards">Managing VoP in
+High-Bandwidth Standards</h2>
+<p>As standards advance to HDMI 2.1 delivering up to 48 Gbps (12 Gbps
+per lane), timing tolerances shrink to mere tens of picoseconds. To
+maintain uniform VoP and stable signal arrival times, manufacturers
+employ cellular-foamed dielectrics injected with inert gas (like
+nitrogen) to lower the dielectric constant toward 1.0, paired with
+precision back-twisting machinery to ensure structural and temporal
+symmetry across all twisted pairs.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

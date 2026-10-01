@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How USB-C to HDMI Adapters Convert DisplayPort Signals - hdmi</title>
+    <meta name="description" content="Modern USB-C to HDMI adapters bridge two fundamentally incompatible display standards by using active protocol converter chipsets. When a host device connects to a display via USB-C, it transmits video using DisplayPort Alternate Mode (DP Alt Mode), send">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-usb-c-to-hdmi-adapters-convert-display-port-signals">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How USB-C to HDMI Adapters Convert DisplayPort Signals - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-usb-c-to-hdmi-adapters-convert-display-port-signals" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Modern USB-C to HDMI adapters bridge two fundamentally incompatible display standards by using active protocol converter chipsets. When a host device connects to a display via USB-C, it transmits video using DisplayPort Alternate Mode (DP Alt Mode), send" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-usb-c-to-hdmi-adapters-convert-displayport-signals">How
+USB-C to HDMI Adapters Convert DisplayPort Signals</h1>
+<p>Modern USB-C to HDMI adapters bridge two fundamentally incompatible
+display standards by using active protocol converter chipsets. When a
+host device connects to a display via USB-C, it transmits video using
+DisplayPort Alternate Mode (DP Alt Mode), sending packetized video,
+audio, and control data across high-speed differential lanes. Because
+HDMI uses a continuous, raster-based transmission scheme with different
+electrical characteristics, an internal converter chip inside the
+adapter decodes the DisplayPort packets, extracts the raw pixel data,
+retimes the signal, and encodes it into HDMI-compliant
+Transition-Minimized Differential Signaling (TMDS) or Fixed Rate Link
+(FRL) signals.</p>
+<h3 id="displayport-alternate-mode-negotiation">DisplayPort Alternate
+Mode Negotiation</h3>
+<p>The conversion process begins at the physical USB-C port. Through the
+Configuration Channel (CC) pins, the host device (such as a laptop or
+smartphone) and the adapter negotiate a connection using the USB Power
+Delivery (USB-PD) protocol. The adapter advertises itself as a video
+sink capable of accepting DisplayPort signals.</p>
+<p>Once recognized, the host switches its high-speed data lanes into
+DisplayPort Alternate Mode. The USB-C connector allocates either two or
+four of its high-speed differential pairs to carry native DisplayPort
+signals directly from the host's Graphics Processing Unit (GPU),
+bypassing the standard USB data controller.</p>
+<h3 id="the-incompatibility-between-displayport-and-hdmi">The
+Incompatibility Between DisplayPort and HDMI</h3>
+<p>DisplayPort and HDMI were engineered with completely different
+architectures:</p>
+<ul>
+<li><strong>Data Transmission:</strong> DisplayPort operates like a
+network protocol, breaking video, audio, and metadata into discrete
+micro-packets over an embedded-clock link using 8b/10b or 128b/132b
+encoding. HDMI (prior to HDMI 2.1) transmits video as an unpacketized,
+continuous raster stream with a separate, dedicated physical clock lane
+using TMDS.</li>
+<li><strong>Electrical Signaling:</strong> DisplayPort uses low-voltage,
+AC-coupled differential signaling with variable voltage swing and
+pre-emphasis levels. Legacy HDMI uses 3.3V DC-coupled Current Mode Logic
+(CML).</li>
+<li><strong>Control Channels:</strong> DisplayPort manages display
+identification and status via a bi-directional, packetized Auxiliary
+(AUX) channel. HDMI relies on the I2C-based Display Data Channel
+(DDC).</li>
+</ul>
+<p>Because passive wiring cannot resolve these structural and electrical
+mismatches, active processing is required.</p>
+<h3 id="the-role-of-the-protocol-converter-chip">The Role of the
+Protocol Converter Chip</h3>
+<p>Inside the USB-C to HDMI adapter sits a dedicated protocol converter
+integrated circuit (from manufacturers such as Realtek, Parade
+Technologies, or Synaptics). The chip functions as a complete
+receiver-transmitter pipeline:</p>
+<ol type="1">
+<li><strong>Physical Layer Deserialization:</strong> The chip’s DP
+receiver captures the incoming differential signals, applies
+equalization to eliminate cable-induced signal degradation, and recovers
+the embedded clock using a Phase-Locked Loop (PLL).</li>
+<li><strong>De-packetization:</strong> The processor strips away
+DisplayPort packet framing, error-checking data, and link headers,
+unpacking the raw stream of uncompressed pixel data (RGB or YCbCr) and
+digital audio streams.</li>
+<li><strong>Line and Frame Buffering:</strong> Because DisplayPort
+packet bursts do not align perfectly with HDMI's continuous timing
+requirements, the chip temporarily stores pixel data in a small internal
+FIFO (First-In, First-Out) memory buffer to synchronize the timing.</li>
+<li><strong>HDMI Encoding:</strong> The chip reads the pixel data out of
+the buffer and feeds it into an HDMI transmitter engine. For HDMI 2.0
+and earlier, it applies TMDS 8b/10b encoding across three data lanes and
+synthesizes a synchronous fourth clock lane. For HDMI 2.1 (4K at 120Hz
+or 8K), it encodes the data into Fixed Rate Link (FRL) packets without a
+separate physical clock lane.</li>
+<li><strong>Level Shifting:</strong> The synthesized digital signals are
+passed through high-speed drivers that adjust the electrical voltages to
+HDMI’s CML standards.</li>
+</ol>
+<h3 id="sideband-and-control-signal-translation">Sideband and Control
+Signal Translation</h3>
+<p>Beyond the primary video and audio data, the adapter constantly
+translates metadata in real time:</p>
+<ul>
+<li><strong>EDID Translation:</strong> The adapter translates HDMI I2C
+DDC transactions into DisplayPort AUX channel commands. This enables the
+host GPU to read the display's Extended Display Identification Data
+(EDID), learning its supported resolutions, refresh rates, and color
+formats.</li>
+<li><strong>HDCP Conversion:</strong> If protected content is streaming,
+the adapter performs High-bandwidth Digital Content Protection (HDCP)
+conversion, acting as an authorized repeater. It decrypts HDCP 1.3 or
+2.2/2.3 streams originating from the DisplayPort host and immediately
+re-encrypts them into the corresponding HDMI HDCP standard before
+transmission to the screen.</li>
+<li><strong>Hot-Plug Detect (HPD):</strong> The adapter monitors the
+physical HDMI HPD pin. When an HDMI display is plugged or unplugged, the
+adapter signals an interrupt on the DisplayPort AUX channel to alert the
+host system instantly.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

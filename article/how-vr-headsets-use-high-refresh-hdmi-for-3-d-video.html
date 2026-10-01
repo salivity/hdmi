@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How VR Headsets Use High-Refresh HDMI for 3D Video - hdmi</title>
+    <meta name="description" content="Virtual reality (VR) head-mounted displays rely on high-bandwidth physical connections to immerse users in seamless, three-dimensional worlds. To achieve this, tethered headsets use high-refresh-rate HDMI links to carry massive amounts of uncompressed st">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-vr-headsets-use-high-refresh-hdmi-for-3-d-video">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How VR Headsets Use High-Refresh HDMI for 3D Video - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-vr-headsets-use-high-refresh-hdmi-for-3-d-video" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Virtual reality (VR) head-mounted displays rely on high-bandwidth physical connections to immerse users in seamless, three-dimensional worlds. To achieve this, tethered headsets use high-refresh-rate HDMI links to carry massive amounts of uncompressed st" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-vr-headsets-use-high-refresh-hdmi-for-3d-video">How VR
+Headsets Use High-Refresh HDMI for 3D Video</h1>
+<p>Virtual reality (VR) head-mounted displays rely on high-bandwidth
+physical connections to immerse users in seamless, three-dimensional
+worlds. To achieve this, tethered headsets use high-refresh-rate HDMI
+links to carry massive amounts of uncompressed stereoscopic video data
+from a host PC to dual display panels. By utilizing advanced
+transmission protocols, precise frame-packing techniques, and
+specialized receiver hardware, these devices deliver simultaneous left-
+and right-eye perspectives at speeds high enough to eliminate
+perceptible latency and motion sickness.</p>
+<h3 id="the-mechanics-of-stereoscopic-video-over-hdmi">The Mechanics of
+Stereoscopic Video Over HDMI</h3>
+<p>Stereoscopic vision in VR requires transmitting two distinct
+viewpoints—one for the left eye and one for the right—offset by the
+user’s interpupillary distance. Instead of requiring two separate
+physical cables, VR systems use HDMI's native bandwidth to deliver both
+views simultaneously through a single link.</p>
+<p>This is typically achieved through specific transmission methods:</p>
+<ul>
+<li><strong>Frame Packing:</strong> The host graphics processing unit
+(GPU) packages the left and right video frames into a single, oversized
+vertical frame separated by a blanking interval. The headset's internal
+controller then demultiplexes this combined image into separate feeds
+for each eye.</li>
+<li><strong>Side-by-Side (SBS) or Top-and-Bottom (TaB):</strong> Left
+and right images are combined horizontally or vertically into a single
+standard resolution frame. This method halves the horizontal or vertical
+resolution per eye unless paired with higher base resolutions.</li>
+<li><strong>Single Ultra-Wide Frame:</strong> Modern headsets often
+treat dual panels (or a single large panel split across both eyes) as
+one continuous ultra-wide display, feeding the left half of the
+horizontal raster to the left eye and the right half to the right
+eye.</li>
+</ul>
+<h3 id="why-high-refresh-rates-are-essential">Why High Refresh Rates Are
+Essential</h3>
+<p>Standard video displays typically operate at 60 Hz, but VR demands a
+minimum of 90 Hz, with high-end displays pushing 120 Hz or 144 Hz. High
+refresh rates are necessary for two primary reasons:</p>
+<ol type="1">
+<li><strong>Motion-to-Photon Latency Reduction:</strong> The total time
+between a user moving their head and the display updating must remain
+under 20 milliseconds to prevent vestibular disorientation
+(cybersickness). Higher refresh rates shorten the frame presentation
+window (e.g., an 8.33 ms frame time at 120 Hz compared to 16.67 ms at 60
+Hz), leaving more time for tracking calculations and rendering.</li>
+<li><strong>Display Persistence and Motion Blur:</strong> VR displays
+use low-persistence illumination, strobing the backlight or OLED pixels
+for only a fraction of a frame to eliminate motion blur. Higher refresh
+rates ensure that this rapid strobing does not manifest as noticeable
+flicker to the human eye.</li>
+</ol>
+<h3 id="hdmi-bandwidth-and-modern-standards">HDMI Bandwidth and Modern
+Standards</h3>
+<p>Delivering stereoscopic high-resolution images at elevated refresh
+rates pushes video interfaces to their limits.</p>
+<ul>
+<li><strong>HDMI 2.0:</strong> With an effective bandwidth of 14.4 Gbps
+(using Transition-Minimized Differential Signaling, or TMDS), HDMI 2.0
+can support a combined resolution near 2880×1600 at 90 Hz using 8-bit
+color. This was standard for first- and second-generation tethered VR
+headsets.</li>
+<li><strong>HDMI 2.1:</strong> Modern VR hardware leverages HDMI 2.1's
+Fixed Rate Link (FRL) architecture, expanding total bandwidth up to 42.6
+Gbps. This allows headsets to drive dual 4K panels at 120 Hz natively.
+Furthermore, HDMI 2.1 supports Display Stream Compression (DSC), a
+visually lossless compression algorithm that multiplies data throughput
+without introducing processing latency.</li>
+</ul>
+<h3 id="on-device-processing-from-hdmi-to-the-displays">On-Device
+Processing: From HDMI to the Displays</h3>
+<p>Once the high-speed HDMI signal arrives at the headset, it passes
+through specialized bridge hardware:</p>
+<ol type="1">
+<li><strong>Receiver and Deserialization:</strong> An onboard HDMI
+receiver chip (such as an HDMI-to-MIPI bridge) captures the
+high-frequency differential signals, performs clock recovery, and
+deserializes the incoming data stream.</li>
+<li><strong>Signal Splitting:</strong> The controller splits the
+stereoscopic frame into two synchronized data streams.</li>
+<li><strong>Display Driving:</strong> The separated video feeds are
+routed across internal mobile industry processor interfaces (MIPI DSI)
+directly to the left and right microdisplays, ensuring microsecond-level
+synchronization between both eyes to preserve binocular depth
+perception.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

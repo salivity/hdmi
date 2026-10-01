@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Gamut Boundary Description Packets Explained - hdmi</title>
+    <meta name="description" content="HDMI Gamut Boundary Description (GBD) data packets are specialized metadata structures transmitted across HDMI links to communicate the exact color boundaries of extended-gamut video content. This article explores what GBD packets are, why they are neces">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-gamut-boundary-description-packets-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Gamut Boundary Description Packets Explained - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-gamut-boundary-description-packets-explained" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI Gamut Boundary Description (GBD) data packets are specialized metadata structures transmitted across HDMI links to communicate the exact color boundaries of extended-gamut video content. This article explores what GBD packets are, why they are neces" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-gamut-boundary-description-packets-explained">HDMI Gamut
+Boundary Description Packets Explained</h1>
+<p>HDMI Gamut Boundary Description (GBD) data packets are specialized
+metadata structures transmitted across HDMI links to communicate the
+exact color boundaries of extended-gamut video content. This article
+explores what GBD packets are, why they are necessary for modern
+wide-gamut displays, the data they carry, and the precise timing and
+conditions under which an HDMI source transmits them to a display.</p>
+<h2 id="what-are-gamut-boundary-description-packets">What Are Gamut
+Boundary Description Packets?</h2>
+<p>Introduced in the HDMI 1.3 specification to support extended color
+spaces like xvYCC (Extended-gamut YCC), Gamut Boundary Description
+packets allow a source device (such as an Ultra HD Blu-ray player,
+gaming console, or media streamer) to describe the precise color gamut
+of the incoming video signal.</p>
+<p>Traditional standard-gamut signals (like standard BT.709 or sRGB)
+have rigid, predefined color boundaries that displays map automatically.
+However, extended color spaces can represent colors outside standard
+limits. Because not all displays can reproduce the full range of
+wide-gamut colors natively, the display needs to know the exact
+boundaries used by the source material.</p>
+<p>GBD packets provide this boundary data. Using this information, the
+display's color management system can accurately remap (gamut-map) the
+colors to match the display panel's physical capabilities without
+causing distortion, clipping, or unnatural saturation.</p>
+<h2 id="content-and-structure-of-gbd-packets">Content and Structure of
+GBD Packets</h2>
+<p>GBD packets are transmitted as part of HDMI Data Island packets. A
+GBD structure typically includes:</p>
+<ul>
+<li><strong>Format Flags:</strong> Indicate whether the description uses
+a simple range format (specifying minimum and maximum coordinates) or a
+complex polygonal/faceted boundary format (specifying exact color
+vertices).</li>
+<li><strong>Color Space Identification:</strong> Defines the reference
+color standard being modified or described (e.g., xvYCC601,
+xvYCC709).</li>
+<li><strong>Gamut Boundary Vertices:</strong> Numerical values
+representing the limits of the color space in terms of luminance and
+chromaticity coordinates.</li>
+</ul>
+<p>Depending on the complexity of the boundary, a complete GBD profile
+may span across multiple transmission packets.</p>
+<h2 id="when-are-gbd-packets-transmitted">When Are GBD Packets
+Transmitted?</h2>
+<p>GBD packets are transmitted under specific operational conditions and
+during designated intervals of the HDMI stream:</p>
+<ul>
+<li><strong>During Extended Gamut Transmission:</strong> GBD packets are
+only sent when the active video content uses a wide or extended color
+gamut that requires external mapping information (such as when xvYCC is
+enabled). If standard BT.601 or BT.709 color is being transmitted, GBD
+packets are unnecessary and not transmitted.</li>
+<li><strong>During the Vertical Blanking Interval (VBI):</strong> Like
+other HDMI InfoFrames and metadata packets, GBD packets are transmitted
+inside the Data Island periods, which occur primarily within the
+vertical and horizontal blanking intervals between active video
+frames.</li>
+<li><strong>Repetition Rate:</strong> To ensure proper synchronization
+and recovery from transmission errors or hot-plug events, GBD packets
+are typically transmitted at least once per video field or frame. They
+are also retransmitted immediately whenever the source content changes
+its color space or gamut boundary profile.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

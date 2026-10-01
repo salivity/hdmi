@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Source-Based Tone Mapping: HDMI Hardware Offloading - hdmi</title>
+    <meta name="description" content="Source-Based Tone Mapping (SBTM) is a feature defined in the HDMI 2.1a specification that allows a source device—such as a PC, gaming console, or set-top box—to perform tone mapping adaptations directly instead of relying solely on the display. By ha">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/source-based-tone-mapping-hdmi-hardware-offloading">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Source-Based Tone Mapping: HDMI Hardware Offloading - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/source-based-tone-mapping-hdmi-hardware-offloading" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Source-Based Tone Mapping (SBTM) is a feature defined in the HDMI 2.1a specification that allows a source device—such as a PC, gaming console, or set-top box—to perform tone mapping adaptations directly instead of relying solely on the display. By ha" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="source-based-tone-mapping-hdmi-hardware-offloading">Source-Based
+Tone Mapping: HDMI Hardware Offloading</h1>
+<p>Source-Based Tone Mapping (SBTM) is a feature defined in the HDMI
+2.1a specification that allows a source device—such as a PC, gaming
+console, or set-top box—to perform tone mapping adaptations directly
+instead of relying solely on the display. By handling HDR and color
+space adjustments at the source level, SBTM significantly relieves the
+playback hardware (the sink display or television) of heavy
+computational burdens. This article examines the exact rendering and
+image-processing workloads that SBTM offloads from display hardware,
+reducing processing latency, eliminating visual artifacts, and improving
+system efficiency.</p>
+<h2 id="relieving-the-display-soc-of-tone-curve-calculations">Relieving
+the Display SoC of Tone-Curve Calculations</h2>
+<p>Standard HDR processing requires the sink hardware (the television or
+monitor's display processing engine) to analyze incoming video signals
+frame-by-frame and compress the high dynamic range data into the panel's
+physical luminance and color capabilities. This requires real-time
+algorithmic calculations—specifically electro-optical transfer function
+(EOTF) conversions, peak brightness clipping, and roll-off curve
+computations.</p>
+<p>With SBTM, the display communicates its specific color gamut, peak
+luminance, and black-level limits to the source via extended display
+identification data (EDID). The source device calculates and applies the
+necessary tone curves directly to the video frames before transmission.
+This offloads the mathematical heavy lifting of dynamic range
+compression entirely from the display's system-on-chip (SoC) or video
+scalar.</p>
+<h2 id="eliminating-mixed-format-composition-overhead">Eliminating
+Mixed-Format Composition Overhead</h2>
+<p>In modern computing and gaming environments, screens frequently
+display mixed content formats simultaneously, such as:</p>
+<ul>
+<li>An HDR video game running in a window alongside an SDR chat
+interface.</li>
+<li>An HDR movie playback bordered by SDR system menus and
+subtitles.</li>
+</ul>
+<p>Without SBTM, a display processor must attempt to interpret and
+tone-map an uncoordinated stream containing multiple dynamic ranges,
+which frequently leads to blown-out SDR UI elements or requires complex
+multi-zone processing on the television.</p>
+<p>SBTM shifts the entire compositing workload to the source’s powerful
+GPU or media processor. The source maps each individual graphical layer
+to match the display’s defined capabilities and blends them into a
+single, perfectly unified video output. The playback display is freed
+from running multi-plane color management and localized dynamic range
+adaptation.</p>
+<h2 id="preventing-redundant-double-tone-mapping">Preventing Redundant
+"Double Tone Mapping"</h2>
+<p>A major computational and visual challenge in HDMI playback is double
+tone mapping, where a source maps content to a generic HDR profile, and
+the display processes that already-mapped image a second time.</p>
+<p>Double tone mapping wastes display processing cycles by forcing the
+sink hardware to execute color-grading algorithms on data that has
+already been altered. SBTM eliminates this redundancy by establishing a
+direct communication pipeline. The display bypasses its internal dynamic
+tone mapping routines entirely, acting simply as an accurate
+presentation layer.</p>
+<h2
+id="latency-thermal-and-resource-benefits-for-playback-hardware">Latency,
+Thermal, and Resource Benefits for Playback Hardware</h2>
+<p>Shifting tone mapping upstream yields clear operational benefits for
+the playback device:</p>
+<ul>
+<li><strong>Lower Input Lag:</strong> Display processors add latency
+when running complex dynamic tone-mapping passes. By receiving an
+already-optimized signal, the display can execute a faster image
+pipeline, which is critical for competitive gaming.</li>
+<li><strong>Reduced Thermal and Power Constraints:</strong> Television
+and monitor SoCs are often passively cooled and resource-constrained.
+Eliminating tone-mapping computation lowers processor heat, reduces
+power draw, and minimizes thermal throttling within the display.</li>
+<li><strong>Resource Reallocation:</strong> Display manufacturers can
+allocate the freed-up SoC cycles to other panel-level optimizations,
+such as local dimming algorithms, motion handling, or panel degradation
+compensation.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

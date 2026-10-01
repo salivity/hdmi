@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Can HDMI Audio Extractors Decrypt HDCP Audio? - hdmi</title>
+    <meta name="description" content="HDMI audio extractors can decrypt HDCP-protected audio without transmitting protected video downstream, depending on the extractor’s design and the audio output used. While High-bandwidth Digital Content Protection (HDCP) is designed to prevent unautho">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/can-hdmi-audio-extractors-decrypt-hdcp-audio">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Can HDMI Audio Extractors Decrypt HDCP Audio? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/can-hdmi-audio-extractors-decrypt-hdcp-audio" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI audio extractors can decrypt HDCP-protected audio without transmitting protected video downstream, depending on the extractor’s design and the audio output used. While High-bandwidth Digital Content Protection (HDCP) is designed to prevent unautho" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="can-hdmi-audio-extractors-decrypt-hdcp-audio">Can HDMI Audio
+Extractors Decrypt HDCP Audio?</h1>
+<p>HDMI audio extractors can decrypt HDCP-protected audio without
+transmitting protected video downstream, depending on the extractor’s
+design and the audio output used. While High-bandwidth Digital Content
+Protection (HDCP) is designed to prevent unauthorized copying across
+digital interfaces, licensed extractors function as authorized endpoints
+or repeaters. This allows them to complete the cryptographic handshake
+with the source, decrypt the audiovisual stream, and output audio
+independently to optical, analog, or secondary HDMI connections without
+an active downstream display.</p>
+<h3 id="the-role-of-hdcp-handshakes">The Role of HDCP Handshakes</h3>
+<p>For any audio extraction to occur, the source device (such as a media
+streamer, game console, or Blu-ray player) must confirm that the
+connected receiving device is HDCP-compliant. An HDMI audio extractor
+acts as either an HDCP "Sink" (endpoint) or an HDCP "Repeater."</p>
+<p>During the initial handshake, the extractor provides its own
+encryption keys to the source. Once validated, the source sends the
+encrypted stream. The extractor decrypts the content internally using
+its authorized hardware keys. At this point, the extractor has access to
+the raw unencrypted audio data, regardless of whether a television or
+monitor is plugged into its HDMI video output port.</p>
+<h3 id="legacy-audio-outputs-spdif-and-analog">Legacy Audio Outputs:
+S/PDIF and Analog</h3>
+<p>When routing audio to legacy ports—such as S/PDIF (TOSLINK optical or
+digital coaxial) or 3.5mm/RCA analog—the extractor does not need to send
+video anywhere.</p>
+<ol type="1">
+<li><strong>Optical and Coaxial (S/PDIF):</strong> HDCP licensing rules
+allow devices to convert decrypted audio to standard consumer digital
+formats, such as stereo PCM or compressed bitstream (Dolby Digital 5.1
+and DTS). Because S/PDIF has no video capability, the audio plays freely
+while the HDMI video output remains unused or disconnected.</li>
+<li><strong>Analog Stereo:</strong> The extractor converts the decrypted
+digital audio into an analog signal using an internal Digital-to-Analog
+Converter (DAC). HDCP rules do not govern analog audio signals in the
+same manner as high-speed digital video, allowing continuous playback
+without a downstream display.</li>
+</ol>
+<h3 id="extracting-audio-via-a-secondary-hdmi-port">Extracting Audio via
+a Secondary HDMI Port</h3>
+<p>Extracting uncompressed, high-resolution audio (such as Dolby TrueHD,
+Dolby Atmos, or multi-channel LPCM) requires an HDMI connection, as
+legacy optical cables lack the necessary bandwidth. In this scenario,
+technical requirements dictate how video is handled:</p>
+<ul>
+<li><strong>The HDMI Clock Requirement:</strong> HDMI architecture does
+not allow audio transmission without an accompanying video stream; audio
+packets are multiplexed into the blanking intervals of a video
+signal.</li>
+<li><strong>Blank or "Dummy" Video:</strong> To transmit high-resolution
+audio to a secondary HDMI device (such as an older AV receiver) without
+forwarding the original video, the extractor generates a static,
+low-bandwidth 720p or 1080p blank screen. This "dummy" video carries the
+audio packets and maintains an HDCP-encrypted link to the audio
+receiver, even if the primary display port is left disconnected.</li>
+</ul>
+<h3 id="compliance-and-standalone-operation">Compliance and Standalone
+Operation</h3>
+<p>Most commercial audio extractors feature built-in EDID (Extended
+Display Identification Data) management switches. Setting the
+extractor's EDID switch to a predefined audio mode (e.g., 2.0 channel or
+5.1 channel) forces the extractor to spoof a connected display. This
+ensures the source device outputs the requested audio format and keeps
+the HDCP session alive, enabling seamless audio playback without
+requiring protected video to pass downstream.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

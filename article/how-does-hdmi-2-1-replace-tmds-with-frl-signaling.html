@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Does HDMI 2.1 Replace TMDS With FRL Signaling? - hdmi</title>
+    <meta name="description" content="HDMI 2.1 replaces legacy Transition Minimized Differential Signaling (TMDS) with Fixed Rate Link (FRL) signaling to increase maximum uncompressed bandwidth from 18 Gbps to 48 Gbps. While TMDS relied on three dedicated data lanes alongside an independent">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-does-hdmi-2-1-replace-tmds-with-frl-signaling">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Does HDMI 2.1 Replace TMDS With FRL Signaling? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-does-hdmi-2-1-replace-tmds-with-frl-signaling" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI 2.1 replaces legacy Transition Minimized Differential Signaling (TMDS) with Fixed Rate Link (FRL) signaling to increase maximum uncompressed bandwidth from 18 Gbps to 48 Gbps. While TMDS relied on three dedicated data lanes alongside an independent" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-does-hdmi-21-replace-tmds-with-frl-signaling">How Does HDMI
+2.1 Replace TMDS With FRL Signaling?</h1>
+<p>HDMI 2.1 replaces legacy Transition Minimized Differential Signaling
+(TMDS) with Fixed Rate Link (FRL) signaling to increase maximum
+uncompressed bandwidth from 18 Gbps to 48 Gbps. While TMDS relied on
+three dedicated data lanes alongside an independent physical clock
+channel, FRL repurposes that clock line into a fourth data stream,
+embeds the clock directly into the signal, implements efficient 16b/18b
+line coding, and uses active Link Training to dynamically adapt
+transmission parameters to cable conditions.</p>
+<h2 id="the-limitations-of-legacy-tmds-architecture">The Limitations of
+Legacy TMDS Architecture</h2>
+<p>For over a decade, HDMI specifications relied on TMDS across standard
+Type-A physical connectors. Under this standard, nineteen physical pins
+housed four primary differential pairs: three high-speed channels
+reserved for audio and video payloads, and one dedicated physical
+channel carrying the pixel clock.</p>
+<p>TMDS utilizes an 8b/10b line-coding algorithm designed to balance DC
+characteristics and minimize electromagnetic interference. This encoding
+incurs a 20% overhead penalty, meaning two transition-control bits are
+added to every eight data bits. Under the HDMI 2.0 standard, the maximum
+character rate hit a physical limit of 600 MHz, capping gross data
+throughput at 6 Gbps per lane across three active lanes, resulting in an
+18 Gbps ceiling (or 14.4 Gbps of net usable payload).</p>
+<p>As display standards advanced to 4K at 120 Hz, 8K at 60 Hz, dynamic
+HDR, and 10-bit or 12-bit uncompressed color depths, the 18 Gbps limit
+forced compromises like heavy 4:2:0 chroma subsampling or reduced
+refresh rates. Pushing TMDS further was impractical due to high
+high-frequency transmission losses, lane-to-lane skew, and the high
+overhead of an external clock channel.</p>
+<h2 id="architectural-changes-in-fixed-rate-link-frl">Architectural
+Changes in Fixed Rate Link (FRL)</h2>
+<p>Fixed Rate Link addresses TMDS physical bottlenecks by fundamentally
+restructuring how existing connector pins transmit bits. Rather than
+introducing an entirely new physical plug, HDMI 2.1 maintains backward
+compatibility with legacy 19-pin Type-A cables while remapping pin
+assignments.</p>
+<h3
+id="repurposing-the-clock-channel-into-a-fourth-data-lane">Repurposing
+the Clock Channel Into a Fourth Data Lane</h3>
+<p>Under FRL, the dedicated physical TMDS clock channel is eliminated.
+Instead, FRL embeds the clock signal directly into the data payload
+using an internal phase-locked loop (PLL) mechanism at the sink device
+(display).</p>
+<p>By discarding the standalone clock pair, the transmitter frees up
+physical pins 10, 11, and 12, transforming the former clock channel into
+a fourth active differential data stream. Operating across four active
+data pairs rather than three immediately yields a 33% increase in data
+transmission paths using identical physical wiring.</p>
+<h3 id="frl-lane-modes-and-configurations">FRL Lane Modes and
+Configurations</h3>
+<p>HDMI 2.1 accommodates two distinct lane modes:</p>
+<ul>
+<li><strong>3-Lane Mode (FRL3):</strong> Operates at fixed lane rates of
+3 Gbps or 6 Gbps per lane, primarily used for interoperability or
+lower-tier device profiles.</li>
+<li><strong>4-Lane Mode (FRL4):</strong> Uses all four high-speed pairs,
+scaling through rates of 6 Gbps, 8 Gbps, 10 Gbps, and 12 Gbps per
+lane.</li>
+</ul>
+<p>At the maximum rate of 12 Gbps per lane across four lanes, HDMI 2.1
+achieves its full 48 Gbps aggregated physical transmission rate.</p>
+<table>
+<thead>
+<tr>
+<th>Signaling Standard</th>
+<th>Active Data Lanes</th>
+<th>Max Rate per Lane</th>
+<th>Aggregate Bandwidth</th>
+<th>Clock Configuration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>HDMI 2.0 (TMDS)</strong></td>
+<td>3 Lanes</td>
+<td>6 Gbps</td>
+<td>18 Gbps</td>
+<td>Separate Physical Pair</td>
+</tr>
+<tr>
+<td><strong>HDMI 2.1 (FRL3)</strong></td>
+<td>3 Lanes</td>
+<td>6 Gbps</td>
+<td>18 Gbps</td>
+<td>Embedded Clock</td>
+</tr>
+<tr>
+<td><strong>HDMI 2.1 (FRL4 - Low)</strong></td>
+<td>4 Lanes</td>
+<td>6 Gbps</td>
+<td>24 Gbps</td>
+<td>Embedded Clock</td>
+</tr>
+<tr>
+<td><strong>HDMI 2.1 (FRL4 - Mid)</strong></td>
+<td>4 Lanes</td>
+<td>8 / 10 Gbps</td>
+<td>32 / 40 Gbps</td>
+<td>Embedded Clock</td>
+</tr>
+<tr>
+<td><strong>HDMI 2.1 (FRL4 - Max)</strong></td>
+<td>4 Lanes</td>
+<td>12 Gbps</td>
+<td>48 Gbps</td>
+<td>Embedded Clock</td>
+</tr>
+</tbody>
+</table>
+<h2 id="line-coding-upgrading-from-8b10b-to-16b18b">Line Coding:
+Upgrading From 8b/10b to 16b/18b</h2>
+<p>Another key technical upgrade in FRL is the move to a 16b/18b line
+coding scheme.</p>
+<p>In legacy 8b/10b systems, 20% of every transmitted frame consists of
+overhead bits. FRL's 16b/18b scheme encodes 16-bit data words into
+18-bit transmission characters. This transition reduces physical-layer
+overhead down to approximately 11.11%:</p>
+<p><span class="math display">\[\text{Overhead} = \frac{18 - 16}{18}
+\times 100\% \approx 11.11\%\]</span></p>
+<p>By reclaiming nearly 9% of raw transmission efficiency, FRL allows
+far more usable pixel data to traverse the connection before saturating
+the link. The 16b/18b encoding also provides sufficient transition
+density to ensure reliable clock recovery on the receiver side without
+DC drift.</p>
+<h2 id="dynamic-link-training-and-forward-error-correction">Dynamic Link
+Training and Forward Error Correction</h2>
+<p>TMDS operates as an open-loop broadcast protocol: the source device
+outputs a specific frequency dictated by the active video mode, and the
+sink device must synchronize without bidirectional channel
+optimization.</p>
+<p>FRL changes this by operating as a closed-loop link with automated
+negotiation steps.</p>
+<h3 id="closed-loop-link-training">Closed-Loop Link Training</h3>
+<p>Before full-rate video transmission begins, source and sink hardware
+conduct an active Link Training protocol over the Display Data Channel
+(DDC) using the Status and Control Data Channel (SCDC) registers.</p>
+<ol type="1">
+<li><strong>Capability Interrogation:</strong> The source reads the
+Extended Display Identification Data (EDID) and SCDC registers on the
+sink to verify supported FRL rates.</li>
+<li><strong>Pattern Transmission:</strong> The source transmits
+predetermined FRL training patterns across the differential pairs.</li>
+<li><strong>Equalization Adjustment:</strong> The sink inspects the
+received signal quality and passes feedback via the SCDC back to the
+source, adjusting transmitter pre-emphasis and receiver equalization
+parameters.</li>
+<li><strong>Rate Fallback:</strong> If high bit error rates indicate
+cable or connector degradation, the devices renegotiate to the highest
+stable fixed rate (e.g., dropping from 48 Gbps to 40 Gbps or 32 Gbps)
+rather than suffering signal drops or blackouts.</li>
+</ol>
+<h3 id="forward-error-correction-fec">Forward Error Correction
+(FEC)</h3>
+<p>To ensure reliable data integrity at frequencies up to 12 GHz per
+lane, HDMI 2.1 implements Reed-Solomon Forward Error
+Correction—specifically RS(255, 251) or RS(510, 502) block coding
+depending on the active configuration. The source appends parity bytes
+into structured FRL Character Blocks. When the sink encounters minor bit
+flips caused by electromagnetic interference or attenuation, it detects
+and corrects those errors locally without requesting frame
+retransmissions.</p>
+<h2 id="packet-based-transport-and-vesa-dsc-integration">Packet-Based
+Transport and VESA DSC Integration</h2>
+<p>Legacy TMDS tied its transmission clock directly to the video timing:
+if pixel resolution or frame rate increased, the clock frequency rose
+accordingly. Active video and blanking intervals had to be transmitted
+in strict synchrony with the display scanning cycle.</p>
+<p>FRL decouples the physical transmission rate from display pixel
+timing by switching to a packet-based transport architecture. Video
+data, audio streams, and metadata are encapsulated into uniform FRL
+packets, sliced, and distributed across all active lanes. Blanking
+periods are filled with empty or lower-priority control packets rather
+than idling the physical link.</p>
+<p>This packetized architecture enables VESA Display Stream Compression
+(DSC) 1.2a integration. Because data is no longer pinned to rigid
+analog-style pixel clocks, compressed visual payloads can be packetized
+and sent at variable data densities, enabling resolutions up to 10K at
+120 Hz while remaining well within physical FRL limits.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

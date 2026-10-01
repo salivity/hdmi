@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI 2.1 4K 120Hz on Linux Open-Source Drivers - hdmi</title>
+    <meta name="description" content="Users attempting to run 4K displays at 120Hz via open-source graphics drivers on Linux frequently find their refresh rate capped at 60Hz. While modern graphics cards and displays physically possess the required hardware capabilities, a combination of leg">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-2-1-4-k-120-hz-on-linux-open-source-drivers">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI 2.1 4K 120Hz on Linux Open-Source Drivers - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-2-1-4-k-120-hz-on-linux-open-source-drivers" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Users attempting to run 4K displays at 120Hz via open-source graphics drivers on Linux frequently find their refresh rate capped at 60Hz. While modern graphics cards and displays physically possess the required hardware capabilities, a combination of leg" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-21-4k-120hz-on-linux-open-source-drivers">HDMI 2.1 4K 120Hz
+on Linux Open-Source Drivers</h1>
+<p>Users attempting to run 4K displays at 120Hz via open-source graphics
+drivers on Linux frequently find their refresh rate capped at 60Hz.
+While modern graphics cards and displays physically possess the required
+hardware capabilities, a combination of legal restrictions, intellectual
+property governance, and technical protocol shifts established by the
+HDMI Forum fundamentally prevents open-source drivers from implementing
+HDMI 2.1's high-bandwidth capabilities.</p>
+<h3 id="the-shift-from-tmds-to-fixed-rate-link-frl">The Shift from TMDS
+to Fixed Rate Link (FRL)</h3>
+<p>Displaying uncompressed 4K content at 120Hz with full 8-bit or 10-bit
+color requires a data throughput between 32 and 40 Gbps. Under the
+legacy HDMI 2.0 specification, signaling relied on Transition Minimized
+Differential Signaling (TMDS), which capped total bandwidth at 18
+Gbps—enough for 4K at 60Hz, but insufficient for higher refresh
+rates.</p>
+<p>To bridge this bandwidth gap, the HDMI 2.1 specification introduced
+Fixed Rate Link (FRL). FRL replaces TMDS by using up to four lanes
+operating at configurable data rates up to 12 Gbps per lane, enabling
+aggregate bandwidths of up to 48 Gbps. FRL also mandates complex link
+training algorithms, advanced forward error correction (FEC), and
+packet-based transport protocols to maintain signal integrity over
+physical cables.</p>
+<h3 id="the-hdmi-forums-nda-and-open-source-licensing-conflict">The HDMI
+Forum's NDA and Open-Source Licensing Conflict</h3>
+<p>The primary barrier preventing open-source drivers (such as AMD's
+open-source <code>amdgpu</code> driver and the Mesa graphics stack) from
+supporting FRL is legal rather than computational.</p>
+<p>The HDMI Forum, which governs the HDMI standard, strictly controls
+the HDMI 2.1 specification under rigorous Non-Disclosure Agreements
+(NDAs). Manufacturers and software vendors must sign these NDAs to
+access the technical documentation detailing FRL link training, register
+configurations, and signaling parameters. Crucially, the terms of the
+HDMI Forum's licensing forbid making the implementation details,
+registers, and protocols public.</p>
+<p>Linux kernel drivers are licensed under the GNU General Public
+License version 2 (GPLv2). GPLv2 requires that all source code, logic,
+and hardware manipulation routines be fully auditable and publicly
+visible. Exposing the exact sequences and timing algorithms required to
+establish an FRL connection within an open-source codebase directly
+breaches the HDMI Forum's confidentiality agreements.</p>
+<h3 id="failed-negotiations-and-closed-firmware-limitations">Failed
+Negotiations and Closed-Firmware Limitations</h3>
+<p>In an effort to resolve this standoff, AMD spent months negotiating
+with the HDMI Forum to find a viable technical middle ground. The goal
+was to determine if portions of the HDMI 2.1 FRL logic could be
+integrated into the open-source driver or offloaded safely. In early
+2024, the HDMI Forum officially rejected AMD's proposal, stating that no
+open-source implementation of HDMI 2.1 features could be approved.</p>
+<p>Offloading the entire FRL link-training logic to closed GPU firmware
+(such as the AMD Display Core Engine firmware) is technically
+problematic. Link training requires dynamic, low-latency interaction
+between the display driver, the display hardware, and the Linux kernel's
+Direct Rendering Manager (DRM) subsystem. Encapsulating this behavior
+entirely inside hardware firmware would require significant
+architectural redesigns that are neither practical nor supported by
+current GPU hardware designs.</p>
+<h3 id="why-proprietary-drivers-and-displayport-are-unaffected">Why
+Proprietary Drivers and DisplayPort Are Unaffected</h3>
+<p>Proprietary, closed-source drivers—such as Nvidia’s proprietary Linux
+driver—do not face this obstacle. Because Nvidia distributes its core
+driver as compiled binary blobs, it can sign the HDMI Forum's NDA and
+implement FRL without exposing the protected technical specifications to
+the public.</p>
+<p>By contrast, the VESA DisplayPort standard is an open specification.
+DisplayPort 1.4 (via Display Stream Compression) and DisplayPort 2.1
+provide equal or superior bandwidth to HDMI 2.1 without requiring
+non-disclosure restrictions on driver implementation. Consequently,
+open-source Linux drivers fully support 4K at 120Hz and beyond over
+DisplayPort connections, leaving HDMI 2.1 as an isolated exception
+restricted by closed-spec governance.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

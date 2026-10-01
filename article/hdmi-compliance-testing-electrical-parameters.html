@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Compliance Testing Electrical Parameters - hdmi</title>
+    <meta name="description" content="HDMI compliance testing at an Authorized Test Center (ATC) verifies that devices meet the strict physical-layer and signal-integrity standards defined in the HDMI Compliance Test Specification (CTS). This article outlines the specific electrical paramete">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-compliance-testing-electrical-parameters">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Compliance Testing Electrical Parameters - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-compliance-testing-electrical-parameters" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI compliance testing at an Authorized Test Center (ATC) verifies that devices meet the strict physical-layer and signal-integrity standards defined in the HDMI Compliance Test Specification (CTS). This article outlines the specific electrical paramete" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-compliance-testing-electrical-parameters">HDMI Compliance
+Testing Electrical Parameters</h1>
+<p>HDMI compliance testing at an Authorized Test Center (ATC) verifies
+that devices meet the strict physical-layer and signal-integrity
+standards defined in the HDMI Compliance Test Specification (CTS). This
+article outlines the specific electrical parameters measured across HDMI
+sources, sinks, and cables—focusing on high-speed signaling, impedance,
+jitter, and low-speed interface characteristics required for official
+certification.</p>
+<h3 id="tmds-and-frl-differential-voltage-levels">TMDS and FRL
+Differential Voltage Levels</h3>
+<p>HDMI relies on Transition Minimized Differential Signaling (TMDS) for
+legacy modes and Fixed Rate Link (FRL) for higher bandwidths like HDMI
+2.1. ATCs evaluate the differential voltage swings to ensure
+transmitters do not overdrive or underdrive the transmission line:</p>
+<ul>
+<li><strong>Differential Output Voltage (<span
+class="math inline">\(V_{swing}\)</span>):</strong> Measures the
+peak-to-peak amplitude of the differential signal lines (Clock, D0, D1,
+D2, and additional FRL lanes).</li>
+<li><strong>Single-Ended Output High/Low Levels (<span
+class="math inline">\(V_H, V_L\)</span>):</strong> Validates the
+absolute DC levels relative to the <span
+class="math inline">\(3.3\text{V}\)</span> nominal termination voltage
+(<span class="math inline">\(V_{term}\)</span>).</li>
+<li><strong>Overshoot and Undershoot:</strong> Evaluates signal ringing
+beyond steady-state levels to prevent long-term component degradation
+and electromagnetic interference (EMI).</li>
+</ul>
+<h3 id="rise-and-fall-times">Rise and Fall Times</h3>
+<p>Edge rates must be fast enough to support target data rates while
+maintaining control over high-frequency radiation. Testing centers
+measure:</p>
+<ul>
+<li><strong>20% to 80% Transition Durations:</strong> Evaluates the
+transition times between the 20% and 80% voltage thresholds on rising
+and falling edges.</li>
+<li><strong>Edge Rate Matching:</strong> Ensures symmetric transitions
+between rising and falling edges to prevent duty cycle distortion.</li>
+</ul>
+<h3 id="eye-diagram-and-jitter-analysis">Eye Diagram and Jitter
+Analysis</h3>
+<p>Eye diagram compliance tests evaluate overall signal integrity under
+dynamic operating conditions:</p>
+<ul>
+<li><strong>Eye Mask Margins:</strong> Transmitted signals are sampled
+using high-bandwidth oscilloscopes to ensure the waveform does not
+breach standard eye mask boundaries at specific reference points (e.g.,
+TP1 or through cable emulation filters at TP2).</li>
+<li><strong>Total Jitter (<span
+class="math inline">\(TJ\)</span>):</strong> Evaluated at a defined Bit
+Error Ratio (BER), typically <span
+class="math inline">\(10^{-9}\)</span> or <span
+class="math inline">\(10^{-12}\)</span>.</li>
+<li><strong>Deterministic Jitter (<span
+class="math inline">\(DJ\)</span>) and Random Jitter (<span
+class="math inline">\(RJ\)</span>):</strong> Separates data-dependent
+jitter (DDJ) and duty cycle distortion from unbounded Gaussian
+noise.</li>
+<li><strong>Clock Jitter:</strong> For TMDS modes, clock channel period
+jitter and cycle-to-cycle jitter are measured.</li>
+</ul>
+<h3 id="skew-measurements">Skew Measurements</h3>
+<p>Timing synchronization between differential lines and channels is
+critical for proper clock recovery and symbol decoding:</p>
+<ul>
+<li><strong>Intra-Pair Skew:</strong> The time delay difference between
+the positive and negative traces of a single differential pair (e.g.,
+<span class="math inline">\(D0+\)</span> and <span
+class="math inline">\(D0-\)</span>).</li>
+<li><strong>Inter-Pair Skew:</strong> The propagation delay variance
+across different data pairs and between data pairs and the clock
+pair.</li>
+</ul>
+<h3 id="impedance-and-return-loss-tdrena">Impedance and Return Loss
+(TDR/ENA)</h3>
+<p>ATCs employ Time Domain Reflectometry (TDR) and Vector Network
+Analyzers (VNA/ENA) to assess the passive transmission path:</p>
+<ul>
+<li><strong>Differential Characteristic Impedance:</strong> The target
+nominal impedance is <span class="math inline">\(100\,\Omega \pm
+15\%\)</span>, with allowable limits widening across connector
+interfaces for brief durations.</li>
+<li><strong>Single-Ended Impedance:</strong> Nominal <span
+class="math inline">\(50\,\Omega\)</span> characteristic impedance per
+line.</li>
+<li><strong>Differential Return Loss (<span class="math inline">\(SDD11
+/ SDD22\)</span>):</strong> Measures the reflected signal power caused
+by impedance discontinuities.</li>
+<li><strong>Far-End Crosstalk (FEXT):</strong> Evaluates noise coupling
+between adjacent differential pairs inside cables and connector
+assemblies.</li>
+</ul>
+<h3 id="receiver-sink-sensitivity-and-tolerance">Receiver (Sink)
+Sensitivity and Tolerance</h3>
+<p>Sink testing evaluates how well an HDMI receiver detects degraded
+signals:</p>
+<ul>
+<li><strong>Minimum Differential Sensitivity:</strong> Tests the
+receiver’s ability to decode signals with minimum allowable voltage
+amplitudes.</li>
+<li><strong>Jitter Tolerance:</strong> Injects controlled amounts of
+random, sinusoidal, and deterministic jitter into the data stream to
+ensure the receiver maintains the specified BER.</li>
+</ul>
+<h3 id="auxiliary-lines-and-dc-power-verification">Auxiliary Lines and
+DC Power Verification</h3>
+<p>In addition to high-speed lines, control and power circuits are
+verified:</p>
+<ul>
+<li><strong>+5V Power Line:</strong> Measures voltage output under load
+(typically <span class="math inline">\(4.8\text{V}\)</span> to <span
+class="math inline">\(5.3\text{V}\)</span> delivering at least <span
+class="math inline">\(55\text{mA}\)</span>) and verifies overcurrent
+protection limits.</li>
+<li><strong>Hot Plug Detect (HPD):</strong> Assesses high and low
+voltage thresholds and input impedance.</li>
+<li><strong>DDC and CEC Electrical Characteristics:</strong> Tests
+I2C-based Display Data Channel (DDC) and Consumer Electronics Control
+(CEC) lines for bus capacitance, pull-up resistance values, output drive
+capability, and voltage rise/fall times.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

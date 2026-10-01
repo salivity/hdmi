@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hardware Chips for HDMI 2.1 DSC in TVs - hdmi</title>
+    <meta name="description" content="Display Stream Compression (DSC) over HDMI 2.1 enables televisions to receive visually lossless, ultra-high-resolution, and high-refresh-rate video signals—such as 4K at 144Hz or 8K at 60Hz—without exceeding interface bandwidth limits. This article e">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hardware-chips-for-hdmi-2-1-dsc-in-t-vs">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Hardware Chips for HDMI 2.1 DSC in TVs - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hardware-chips-for-hdmi-2-1-dsc-in-t-vs" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Display Stream Compression (DSC) over HDMI 2.1 enables televisions to receive visually lossless, ultra-high-resolution, and high-refresh-rate video signals—such as 4K at 144Hz or 8K at 60Hz—without exceeding interface bandwidth limits. This article e" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hardware-chips-for-hdmi-21-dsc-in-tvs">Hardware Chips for HDMI
+2.1 DSC in TVs</h1>
+<p>Display Stream Compression (DSC) over HDMI 2.1 enables televisions to
+receive visually lossless, ultra-high-resolution, and high-refresh-rate
+video signals—such as 4K at 144Hz or 8K at 60Hz—without exceeding
+interface bandwidth limits. This article examines the internal silicon
+architecture required to decode DSC on modern televisions, outlining the
+specific roles of the HDMI 2.1 receiver physical layer (PHY), integrated
+System-on-Chips (SoCs), proprietary custom silicon, and dedicated
+hardware decompression engines.</p>
+<h3 id="integrated-tv-socs-vs-dedicated-bridges">Integrated TV SoCs vs.
+Dedicated Bridges</h3>
+<p>In modern television architecture, DSC 1.2a decoding is rarely
+handled by a single, standalone microchip. Instead, it is integrated
+directly into the television's primary video processing System-on-Chip
+(SoC) or managed via a dedicated HDMI 2.1 receiver bridge before passing
+uncompressed pixel data to the panel timing controller (T-Con).</p>
+<p>To process DSC over HDMI 2.1, the internal silicon must feature a
+dedicated hardware-based VESA DSC decompression engine paired with a
+Fixed Rate Link (FRL) physical interface. Software-based decoding cannot
+be used because DSC must be decompressed in real time with virtually
+zero latency (often less than a single scan line) to prevent display lag
+and audio-video desynchronization.</p>
+<h3 id="leading-commercial-tv-socs-with-native-dsc-support">Leading
+Commercial TV SoCs with Native DSC Support</h3>
+<p>Most smart TV manufacturers license or purchase commercial SoCs that
+combine the HDMI 2.1 physical receiver, the DSC hardware decompression
+pipeline, and central image processing onto a single die:</p>
+<ul>
+<li><strong>MediaTek Pentonic Series (Pentonic 700, 1000, and
+2000):</strong> These are the most common commercial chips handling DSC
+in modern TVs. Found in high-end displays from brands like Sony, TCL,
+Hisense, and Philips, these SoCs feature native hardware DSC 1.2a
+engines alongside full 48Gbps HDMI 2.1 FRL receivers capable of
+decompressing 4K 120Hz/144Hz and 8K 60Hz video streams.</li>
+<li><strong>Novatek (NT72690 series):</strong> Widely used by tier-one
+and tier-two manufacturers, these chips provide integrated HDMI 2.1
+receiver capabilities with built-in multi-slice DSC decompression blocks
+for 4K high-frame-rate gaming and video.</li>
+<li><strong>Realtek (RTD2885 / RTD2173 series):</strong> Realtek
+produces both full TV SoCs and dedicated display bridge ICs. Their
+hardware includes dedicated logic pipelines for decompressing VESA DSC
+streams up to 48Gbps input rates.</li>
+</ul>
+<h3 id="proprietary-custom-silicon">Proprietary Custom Silicon</h3>
+<p>Leading television manufacturers often design in-house processors to
+handle HDMI 2.1 inputs and DSC decompression:</p>
+<ul>
+<li><strong>LG Electronics (Alpha 9 and Alpha 11 Processors):</strong>
+LG uses custom silicon integrating proprietary front-end HDMI 2.1
+controllers and hardware DSC decoders directly into the Alpha series
+application processors, allowing 4K 120Hz/144Hz 4:4:4 10-bit
+decompression across all full-bandwidth HDMI ports.</li>
+<li><strong>Samsung (NQ8 AI and Neural Quantum Processors):</strong>
+Samsung integrates multi-lane HDMI 2.1 FRL receivers and DSC
+decompression engines into their custom display processors, commonly
+found either on the main board or inside the external One Connect
+Box.</li>
+</ul>
+<h3 id="critical-hardware-blocks-inside-the-silicon">Critical Hardware
+Blocks Inside the Silicon</h3>
+<p>Regardless of whether a TV uses a commercial MediaTek chip or custom
+silicon, the silicon itself must contain the following specific hardware
+sub-blocks:</p>
+<ol type="1">
+<li><strong>HDMI 2.1 FRL Physical Layer (PHY):</strong> Handles the
+electrical signaling and clock recovery for Fixed Rate Link transmission
+at speeds up to 12Gbps per lane across 4 lanes (48Gbps aggregate).</li>
+<li><strong>Link Layer &amp; Protocol Engine:</strong> Demultiplexes
+packets, identifies the DSC picture parameter set (PPS), and routes
+compressed video stream slices to the decoder.</li>
+<li><strong>VESA DSC 1.2a Hardware Decompression Core:</strong> A
+parallel array of entropy decoders and sub-stream processors. This block
+typically relies on licensed silicon IP—such as the Synopsys DesignWare
+HDMI 2.1 with DSC IP or Rambus/Hardent DSC IP cores—fabricated directly
+onto the SoC silicon.</li>
+<li><strong>Line Buffers and Memory Interfaces:</strong> High-speed
+internal SRAM buffers that store line-by-line data during pixel
+reconstruction before pushing the raw pixel data over V-by-One or
+internal DisplayPort (eDP) interfaces to the display panel's timing
+controller.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

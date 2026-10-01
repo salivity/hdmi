@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why HDMI to DVI Adapters Do Not Need Converters - hdmi</title>
+    <meta name="description" content="HDMI-to-DVI adapters seamlessly transmit video signals without an active conversion chip because both interfaces share the exact same underlying digital signaling standard: Transition Minimized Differential Signaling (TMDS). Because the video streams are">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/why-hdmi-to-dvi-adapters-do-not-need-converters">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why HDMI to DVI Adapters Do Not Need Converters - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/why-hdmi-to-dvi-adapters-do-not-need-converters" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI-to-DVI adapters seamlessly transmit video signals without an active conversion chip because both interfaces share the exact same underlying digital signaling standard: Transition Minimized Differential Signaling (TMDS). Because the video streams are" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-hdmi-to-dvi-adapters-do-not-need-converters">Why HDMI to DVI
+Adapters Do Not Need Converters</h1>
+<p>HDMI-to-DVI adapters seamlessly transmit video signals without an
+active conversion chip because both interfaces share the exact same
+underlying digital signaling standard: Transition Minimized Differential
+Signaling (TMDS). Because the video streams are electrically and
+logically identical, an adapter only needs to physically reroute the
+copper pins from one connector shape to the other.</p>
+<h3 id="shared-tmds-architecture">Shared TMDS Architecture</h3>
+<p>The core reason for this compatibility is that HDMI was developed
+using DVI as its baseline video architecture. Both single-link DVI and
+standard HDMI transmit uncompressed digital video using four pairs of
+twisted copper wires:</p>
+<ul>
+<li>One pair carries the TMDS clock signal to synchronize data.</li>
+<li>Three separate pairs carry the red, green, and blue (RGB) color
+channels.</li>
+</ul>
+<p>Because the voltage levels, bit rates, and signal timing parameters
+are identical, a display receiving video through a DVI port interprets
+the raw TMDS data sent from an HDMI port natively, without requiring any
+processing or translation.</p>
+<h3 id="passive-pin-to-pin-mapping">Passive Pin-to-Pin Mapping</h3>
+<p>An active adapter contains an integrated circuit (chip) to decode one
+protocol, convert the digital packets, and encode them into an entirely
+different standard, such as converting DisplayPort to HDMI or digital
+HDMI to analog VGA.</p>
+<p>In contrast, an HDMI-to-DVI adapter is completely passive. Inside the
+adapter, copper traces or wires simply route the corresponding TMDS
+channels from the HDMI connector directly to the matching pins on the
+DVI-D connector. Auxiliary lines, such as the Display Data Channel
+(DDC)—which displays use to communicate supported resolutions (EDID) and
+HDCP copy protection—are also electrically compatible and are mapped
+directly across the pins.</p>
+<h3 id="color-space-and-resolution-compatibility">Color Space and
+Resolution Compatibility</h3>
+<p>Single-link DVI supports digital resolutions up to 1920×1200 at 60
+Hz, natively utilizing the RGB color model. HDMI supports this exact
+same color format and resolution standard, ensuring that modern HDMI
+sources automatically fall back to an RGB format compatible with legacy
+DVI monitors.</p>
+<h3 id="what-gets-left-behind">What Gets Left Behind</h3>
+<p>While the video signal passes transparently, the two standards do
+have functional differences that a passive adapter cannot resolve:</p>
+<ul>
+<li><strong>Audio:</strong> Standard DVI specifications do not support
+audio transmission. While some modern graphics cards can output
+non-standard audio over DVI pins, traditional DVI setups drop the audio
+payload carried in the HDMI signal.</li>
+<li><strong>HDMI-Specific Data:</strong> HDMI auxiliary features, such
+as Consumer Electronics Control (CEC) commands and Ethernet channel
+data, have no counterpart pins on a standard DVI port and are simply
+left unconnected.</li>
+</ul>
+<p>Because the video data itself requires zero algorithmic translation,
+a passive pin adapter is all that is required for flawless video
+transmission.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

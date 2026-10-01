@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Handles IMAX Enhanced and Auro-3D Metadata - hdmi</title>
+    <meta name="description" content="This article examines how the High-Definition Multimedia Interface (HDMI) transmits spatial audio metadata for specialized formats like IMAX Enhanced and Auro-3D. While HDMI serves as the physical and logical pipeline for modern home theater setups, it d">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-handles-imax-enhanced-and-auro-3-d-metadata">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Handles IMAX Enhanced and Auro-3D Metadata - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-handles-imax-enhanced-and-auro-3-d-metadata" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article examines how the High-Definition Multimedia Interface (HDMI) transmits spatial audio metadata for specialized formats like IMAX Enhanced and Auro-3D. While HDMI serves as the physical and logical pipeline for modern home theater setups, it d" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-handles-imax-enhanced-and-auro-3d-metadata">How HDMI
+Handles IMAX Enhanced and Auro-3D Metadata</h1>
+<p>This article examines how the High-Definition Multimedia Interface
+(HDMI) transmits spatial audio metadata for specialized formats like
+IMAX Enhanced and Auro-3D. While HDMI serves as the physical and logical
+pipeline for modern home theater setups, it does not decode spatial
+audio internally. Instead, it relies on Audio InfoFrames, packetized
+bitstream tunneling via IEC 61937 standards, and uncompressed pulse-code
+modulation (PCM) data streams. By understanding the underlying
+transmission methods, you can see how proprietary metadata for object
+placement, height channels, and bass management reaches compatible
+audio/video receivers (AVRs) and processors intact.</p>
+<h3 id="hdmi-audio-architecture-and-data-islands">HDMI Audio
+Architecture and Data Islands</h3>
+<p>HDMI transmits digital audio across transition-minimized differential
+signaling (TMDS) or Fixed Rate Link (FRL) lines during the video
+blanking intervals. These periods carry "Data Island" packets, which
+include the audio stream itself alongside Audio InfoFrames.</p>
+<p>HDMI does not interpret, decode, or alter spatial audio metadata.
+Instead, the interface acts as a transparent digital conduit. It uses
+two primary methods for audio transport:</p>
+<ol type="1">
+<li><strong>Linear PCM (LPCM):</strong> Uncompressed multi-channel audio
+data transmitted directly across defined channel maps.</li>
+<li><strong>IEC 61937 Bitstream Tunneling:</strong> A standard protocol
+that encapsulates compressed, high-bitrate data—including spatial audio
+codecs and their nested metadata—into standard digital audio
+frames.</li>
+</ol>
+<p>Before any audio is transmitted, the source device (such as an Ultra
+HD Blu-ray player or media streamer) and the sink device (an AVR or
+soundbar) perform an Extended Display Identification Data (EDID)
+handshake. The sink informs the source which codec containers and
+channel counts it can accept, dictating whether spatial audio bitstreams
+can be transferred.</p>
+<h3 id="imax-enhanced-metadata-via-dtsx-bitstreams">IMAX Enhanced
+Metadata via DTS:X Bitstreams</h3>
+<p>IMAX Enhanced audio relies on a specialized implementation of the
+DTS:X codec. Unlike standalone object formats, IMAX Enhanced uses
+proprietary metadata layered inside a standard DTS-HD Master Audio
+bitstream container.</p>
+<ul>
+<li><strong>Encapsulation:</strong> The spatial metadata—which includes
+speaker layout data, dynamic range parameters, and custom crossover
+curves tailored to mimic IMAX theater sound systems—is multiplexed
+directly into the DTS-HD Master Audio extension stream.</li>
+<li><strong>Transmission via HDMI:</strong> HDMI transports this data
+via IEC 61937 burst payloads over standard HDMI 2.0/2.1 connections or
+the enhanced Audio Return Channel (eARC). HDMI treats the entire package
+simply as high-bitrate DTS-HD audio.</li>
+<li><strong>Extraction:</strong> When the signal reaches an IMAX
+Enhanced-certified processor, the decoder recognizes the specific IMAX
+flag within the DTS:X metadata. The processor automatically disables
+standard room correction curves (if calibrated to do so), adjusts
+sub-bass routing according to IMAX theatrical specifications, and
+redistributes spatial elements across the available speakers.</li>
+</ul>
+<p>If the downstream receiver is not IMAX Enhanced-certified, it simply
+ignores the IMAX-specific metadata flags and decodes the signal as a
+standard DTS:X or DTS-HD Master Audio mix without errors.</p>
+<h3 id="auro-3d-metadata-via-the-auro-codec">Auro-3D Metadata via the
+Auro-Codec</h3>
+<p>Auro-3D takes a distinctly different path from object-based formats
+like Dolby Atmos and DTS:X. Instead of transmitting individual audio
+objects with discrete positional coordinates, Auro-3D is channel-based,
+utilizing height layers (such as 9.1, 10.1, or 11.1 configurations).</p>
+<ul>
+<li><strong>PCM Bit-Hiding Technology:</strong> The Auro-Codec does not
+require dedicated bitstream metadata wrappers like DTS or Dolby.
+Instead, it embeds height channel information inside the least
+significant bits (LSBs) of a conventional 5.1 or 7.1 uncompressed LPCM
+carrier track (or within a lossless DTS-HD MA container).</li>
+<li><strong>Transmission via HDMI:</strong> When delivered as
+multi-channel LPCM, HDMI handles Auro-3D audio as standard, uncompressed
+24-bit/96kHz or 24-bit/48kHz surround audio. HDMI requires no special
+spatial flags, licensing, or modifications to pass this signal because
+the metadata is structurally embedded within the sample data
+itself.</li>
+<li><strong>Decoding:</strong> An Auro-3D-capable AVR reads the
+lower-order bits of the audio channels to detect the proprietary
+"Octopus" data watermark. When detected, the processor extracts the
+hidden height channel audio and distributes it to the upper speaker
+layer.</li>
+</ul>
+<p>If the receiver lacks an Auro-3D decoder, the embedded height
+metadata remains benignly masked as undetectable low-level dither noise,
+and the system plays back the audio as standard 5.1 or 7.1 surround
+sound.</p>
+<h3 id="bandwidth-and-earc-considerations">Bandwidth and eARC
+Considerations</h3>
+<p>Both formats demand substantial data integrity, requiring either
+high-speed HDMI inputs or eARC functionality over HDMI 2.1:</p>
+<ul>
+<li><strong>Legacy ARC Limitations:</strong> The original Audio Return
+Channel (ARC) lacks the bandwidth necessary for lossless multi-channel
+formats, restricting delivery to compressed 5.1 data. As a result,
+full-fidelity IMAX Enhanced (lossless DTS:X) and Auro-3D cannot pass
+over standard ARC.</li>
+<li><strong>eARC Capabilities:</strong> eARC provides up to 37 Mbps of
+bandwidth, accommodating multi-channel uncompressed LPCM (necessary for
+Auro-3D) and full lossless bitstreams (necessary for IMAX Enhanced over
+DTS-HD MA) directly from a television to an external audio system with
+complete metadata preservation.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

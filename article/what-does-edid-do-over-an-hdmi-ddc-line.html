@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Does EDID Do Over an HDMI DDC Line? - hdmi</title>
+    <meta name="description" content="Extended Display Identification Data (EDID) transmitted over the Display Data Channel (DDC) enables an HDMI source and a display to communicate operational capabilities before video transmission begins. Through this exchange, the display advertises param">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/what-does-edid-do-over-an-hdmi-ddc-line">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Does EDID Do Over an HDMI DDC Line? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/what-does-edid-do-over-an-hdmi-ddc-line" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Extended Display Identification Data (EDID) transmitted over the Display Data Channel (DDC) enables an HDMI source and a display to communicate operational capabilities before video transmission begins. Through this exchange, the display advertises param" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="what-does-edid-do-over-an-hdmi-ddc-line">What Does EDID Do Over
+an HDMI DDC Line?</h1>
+<p>Extended Display Identification Data (EDID) transmitted over the
+Display Data Channel (DDC) enables an HDMI source and a display to
+communicate operational capabilities before video transmission begins.
+Through this exchange, the display advertises parameters such as native
+resolution, refresh rates, color space profiles, and audio capabilities
+directly to the source device. By querying this data across the
+low-speed DDC interface, the source can automatically configure its
+output to match what the receiving display physically supports,
+preventing signal mismatch, black screens, or unsupported display
+modes.</p>
+<h3 id="the-role-of-the-display-data-channel-ddc">The Role of the
+Display Data Channel (DDC)</h3>
+<p>The HDMI connection carries several distinct communication pathways
+alongside high-speed audiovisual streams. Among these is the DDC, an
+auxiliary bus implemented using the I2C serial communication protocol.
+It operates independently of the primary Transition Minimized
+Differential Signaling (TMDS) or Fixed Rate Link (FRL) lines used for
+raw video and audio.</p>
+<p>The DDC operates as a low-voltage, low-speed link between the source
+(such as a graphics card, game console, or media player) and the sink (a
+monitor, television, or projector). The source acts as the I2C bus
+master, while the display functions as an I2C slave device. The DDC
+provides the bidirectional transport medium necessary to read the sink
+device's configuration memory.</p>
+<h3 id="structure-and-contents-of-edid">Structure and Contents of
+EDID</h3>
+<p>EDID is a standardized data structure defined by the Video
+Electronics Standards Association (VESA). In modern displays, it is
+stored in a dedicated EEPROM chip on the display controller and
+formatted in 128-byte blocks. Base EDID 1.3/1.4 is frequently
+accompanied by Consumer Electronics Association (CTA-861) extension
+blocks, which expand the specification for modern consumer electronics
+and HDMI standards.</p>
+<p>The dataset contains comprehensive technical profiles of the display,
+including:</p>
+<ul>
+<li><strong>Manufacturer and Hardware ID:</strong> Vendor code, product
+ID, serial number, and week/year of manufacture.</li>
+<li><strong>Physical Dimensions and Aspect Ratio:</strong> Screen width,
+height, and display pixel aspect ratio.</li>
+<li><strong>Basic Display Parameters:</strong> Video input definition,
+gamma response curves, and power management features.</li>
+<li><strong>Colorimetry Data:</strong> CIE 1931 xy coordinates for
+primary colors and white point, color bit depths, and High Dynamic Range
+(HDR) static metadata support.</li>
+<li><strong>Detailed Timing Descriptors (DTDs):</strong> Precise timings
+for the display's native and preferred resolutions, including pixel
+clock frequency, active pixel areas, and blanking intervals.</li>
+<li><strong>Standard and Established Timings:</strong>
+Backward-compatible resolutions and refresh rates (such as standard VESA
+timings).</li>
+<li><strong>Audio Format Capabilities:</strong> Supported multichannel
+audio formats (e.g., LPCM, Dolby Atmos, DTS), sample rates, and bit
+depths.</li>
+</ul>
+<h3 id="the-handshake-sequence">The Handshake Sequence</h3>
+<p>The transmission of EDID over the DDC occurs during the initial
+connection sequence via the following process:</p>
+<ol type="1">
+<li><strong>Hot Plug Detect (HPD) Assertion:</strong> When an HDMI cable
+is plugged in, pin 18 supplies +5V power from the source to the
+display's DDC EEPROM. Once powered and ready, the display asserts the
+Hot Plug Detect line (pin 19) high.</li>
+<li><strong>Read Request Initiation:</strong> Detecting the high HPD
+signal, the source initiates an I2C transaction over the DDC bus (pins
+15 for SCL and 16 for SDA).</li>
+<li><strong>Data Transfer:</strong> The source addresses the display's
+memory address (typically <code>0x50</code>) to read block 0 (base EDID)
+and any subsequent extension blocks using Enhanced DDC (E-DDC) protocol
+addressing.</li>
+<li><strong>Validation and Parsing:</strong> The source computes
+checksum bytes for each 128-byte block to ensure data integrity. Once
+validated, the source's graphics driver parses the supported modes.</li>
+<li><strong>Output Configuration:</strong> The source cross-references
+its own rendering capabilities against the display's preferred timing
+descriptor and establishes the appropriate TMDS/FRL output signal.</li>
+</ol>
+<h3 id="practical-impact-on-audiovisual-reliability">Practical Impact on
+Audiovisual Reliability</h3>
+<p>Without the DDC and EDID pipeline, digital display configurations
+would require manual resolution, timing, and audio selection by the end
+user, with a high risk of out-of-range signals damaging hardware or
+rendering displays unusable.</p>
+<p>In professional and home theater environments, EDID transmission over
+DDC becomes critical when intermediaries such as AV receivers,
+splitters, or KVM switches are introduced. These devices often
+synthesize, emulate, or pass through EDID blocks to ensure that upstream
+media sources maintain stable video output even when displays switch
+inputs or power states.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

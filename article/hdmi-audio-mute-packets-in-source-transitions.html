@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Audio Mute Packets in Source Transitions - hdmi</title>
+    <meta name="description" content="High-Definition Multimedia Interface (HDMI) relies on Audio/Video Mute (AVMUTE) commands carried within General Control Packets (GCP) to suppress audio output during signal disruptions. When a source changes video resolutions, refresh rates, or audio for">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-audio-mute-packets-in-source-transitions">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Audio Mute Packets in Source Transitions - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-audio-mute-packets-in-source-transitions" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="High-Definition Multimedia Interface (HDMI) relies on Audio/Video Mute (AVMUTE) commands carried within General Control Packets (GCP) to suppress audio output during signal disruptions. When a source changes video resolutions, refresh rates, or audio for" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-audio-mute-packets-in-source-transitions">HDMI Audio Mute
+Packets in Source Transitions</h1>
+<p>High-Definition Multimedia Interface (HDMI) relies on Audio/Video
+Mute (AVMUTE) commands carried within General Control Packets (GCP) to
+suppress audio output during signal disruptions. When a source changes
+video resolutions, refresh rates, or audio formats, the clock
+frequencies and data structures must reconfigure. This article explains
+the technical function of the HDMI mute packet, detailing how it
+protects audio hardware, eliminates acoustic artifacts, and coordinates
+the synchronization process between source and sink devices.</p>
+<h3 id="the-purpose-of-the-avmute-function">The Purpose of the AVMUTE
+Function</h3>
+<p>The primary function of the HDMI mute packet during transitions is to
+prevent audible anomalies such as loud pops, clicks, static, and
+screeching. In an HDMI pipeline, digital audio is embedded within the
+video blanking intervals using Audio Clock Regeneration (ACR)
+architecture, governed by Cycle Time Stamp (CTS) and frequency
+multiplier (N) values.</p>
+<p>When a resolution change or source switch occurs:</p>
+<ul>
+<li>The Transition-Minimized Differential Signaling (TMDS) or Fixed Rate
+Link (FRL) clock must unlock, change frequency, and re-lock.</li>
+<li>The video pixel clock changes, which directly alters the baseline
+timing used to derive the audio clock.</li>
+<li>Packets in transit become discontinuous or corrupt as the
+transmitter switches modes.</li>
+</ul>
+<p>Without an explicit muting instruction, the sink device's (such as an
+AV receiver, soundbar, or television) digital-to-analog converter (DAC)
+and digital signal processors (DSP) attempt to decode unstable, corrupt
+bitstreams. This results in harsh acoustic transients that can degrade
+the listening experience and potentially damage downstream speaker
+drivers.</p>
+<h3 id="how-the-mute-packet-operates-during-transitions">How the Mute
+Packet Operates During Transitions</h3>
+<p>The AVMUTE function operates as a control flag within the HDMI
+General Control Packet (GCP). Rather than abruptly cutting the physical
+transmission link, the source manages the transition through a
+standardized sequence:</p>
+<ol type="1">
+<li><strong>Assertion of AVMUTE</strong>: Prior to altering the stream
+parameters, the source device transmits a GCP with the AVMUTE bit set to
+active (<code>1</code>). The video and audio data continue flowing
+momentarily, but the receiving sink immediately mutes its analog audio
+outputs and blanks video rendering.</li>
+<li><strong>Clock and Stream Reconfiguration</strong>: With the sink's
+outputs safely muted, the source alters the video timing, changes the
+pixel clock, and modifies audio parameters (such as switching from
+stereo PCM to multi-channel bitstream).</li>
+<li><strong>Link Re-Locking</strong>: The sink detects the loss of
+synchronization, re-locks its phase-locked loops (PLLs) to the new clock
+rate, and reads the incoming stream descriptors (Audio InfoFrames and
+AVI InfoFrames).</li>
+<li><strong>Stabilization</strong>: The source begins transmitting the
+stable video frames and proper Audio Clock Regeneration packets. The
+sink’s DSP aligns with the new incoming sample rate and verifies the
+integrity of the data stream.</li>
+<li><strong>Clearing AVMUTE</strong>: Once the transmission has
+stabilized—typically after several consistent frames and valid audio
+packets have passed—the source transmits a GCP with the AVMUTE bit
+cleared (<code>0</code>). The sink then ramps audio volume back up
+smoothly without introducing noise.</li>
+</ol>
+<h3 id="hardware-and-protocol-importance">Hardware and Protocol
+Importance</h3>
+<p>The HDMI mute packet decouples stream instability from audio
+playback. Because HDMI does not feature a separate, dedicated physical
+clock line for audio, the audio subsystem is fundamentally tethered to
+the video transmission clock. By using the AVMUTE command, the HDMI
+protocol ensures that physical layer reconfigurations, High-bandwidth
+Digital Content Protection (HDCP) re-authentications, and Display Data
+Channel (DDC) handshakes occur seamlessly in the background without
+exposing the listener to intermediate hardware noise.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

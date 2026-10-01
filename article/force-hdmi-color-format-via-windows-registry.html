@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Force HDMI Color Format via Windows Registry - hdmi</title>
+    <meta name="description" content="Display drivers in Windows occasionally miscommunicate with external HDMI monitors and televisions, defaulting to restricted pixel formats or limited dynamic ranges (16–235) instead of full RGB (0–255). While control panels from GPU manufacturers pro">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/force-hdmi-color-format-via-windows-registry">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Force HDMI Color Format via Windows Registry - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/force-hdmi-color-format-via-windows-registry" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Display drivers in Windows occasionally miscommunicate with external HDMI monitors and televisions, defaulting to restricted pixel formats or limited dynamic ranges (16–235) instead of full RGB (0–255). While control panels from GPU manufacturers pro" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="force-hdmi-color-format-via-windows-registry">Force HDMI Color
+Format via Windows Registry</h1>
+<p>Display drivers in Windows occasionally miscommunicate with external
+HDMI monitors and televisions, defaulting to restricted pixel formats or
+limited dynamic ranges (16–235) instead of full RGB (0–255). While
+control panels from GPU manufacturers provide graphical interfaces for
+these settings, persistent handshake errors, automated multi-user
+deployments, and driver updates can revert them. Modifying specific keys
+within the Windows Registry enforces persistent HDMI color format and
+quantization range overrides directly at the driver and operating system
+level.</p>
+<h3 id="locating-the-graphics-driver-subkey">Locating the Graphics
+Driver Subkey</h3>
+<p>All display adapter overrides exist under the Windows device class
+GUID for display adapters.</p>
+<ol type="1">
+<li>Press <code>Win + R</code>, type <code>regedit</code>, and hit
+Enter.</li>
+<li>Navigate to:<br />
+<code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}</code></li>
+<li>Locate the subkey corresponding to your active GPU, typically
+labeled <code>0000</code>, <code>0001</code>, or <code>0002</code>.
+Verify the correct adapter by checking the <code>DriverDesc</code> value
+within the folder.</li>
+</ol>
+<h3 id="intel-integrated-graphics-overrides">Intel Integrated Graphics
+Overrides</h3>
+<p>Intel graphics drivers use specific DWORD entries to dictate pixel
+formats and quantization ranges over HDMI connections. Inside the
+relevant adapter subkey (<code>0000</code> or similar), configure the
+following values:</p>
+<ul>
+<li><strong>OverrideEdidColorSpace</strong>
+<ul>
+<li>Type: <code>DWORD (32-bit) Value</code></li>
+<li>Data:
+<ul>
+<li><code>0</code> – Default/EDID defined</li>
+<li><code>1</code> – Force RGB</li>
+<li><code>2</code> – Force YCbCr 4:2:2</li>
+<li><code>3</code> – Force YCbCr 4:4:4</li>
+</ul></li>
+</ul></li>
+<li><strong>DedicatedSegmentRange</strong> or
+<strong>EnableRGBFullRange</strong>
+<ul>
+<li>Type: <code>DWORD (32-bit) Value</code></li>
+<li>Data:
+<ul>
+<li><code>0</code> – Limited Range (16–235)</li>
+<li><code>1</code> – Full Range (0–255)</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>If these keys do not exist in the active GPU folder, right-click the
+empty space, select <strong>New &gt; DWORD (32-bit) Value</strong>, name
+the key accordingly, and assign the desired value.</p>
+<h3 id="amd-radeon-driver-overrides">AMD Radeon Driver Overrides</h3>
+<p>AMD graphics cards store display output configurations within the
+same class GUID structure, under proprietary driver flags:</p>
+<ol type="1">
+<li>In the target adapter subkey, locate or create the following
+values:</li>
+</ol>
+<ul>
+<li><strong>DalPixelFormatOverride</strong>
+<ul>
+<li>Type: <code>DWORD (32-bit) Value</code></li>
+<li>Data:
+<ul>
+<li><code>0</code> – RGB 4:4:4 Standard (Full RGB)</li>
+<li><code>1</code> – YCbCr 4:4:4</li>
+<li><code>2</code> – YCbCr 4:2:2</li>
+<li><code>3</code> – RGB 4:4:4 Studio (Limited RGB)</li>
+</ul></li>
+</ul></li>
+<li><strong>KMD_EnableFullRange</strong>
+<ul>
+<li>Type: <code>DWORD (32-bit) Value</code></li>
+<li>Data:
+<ul>
+<li><code>1</code> – Enforces full dynamic range across all digital
+video outputs.</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="nvidia-driver-registry-overrides">NVIDIA Driver Registry
+Overrides</h3>
+<p>NVIDIA primarily controls display parameters through its service keys
+rather than the general class folder.</p>
+<ol type="1">
+<li>Navigate to:<br />
+<code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\nvlddmkm\DisplayDatabase</code></li>
+<li>Locate the specific subkey for the connected monitor (identified by
+manufacturer prefix and EDID identifier).</li>
+<li>Create or modify the following:</li>
+</ol>
+<ul>
+<li><strong>ColorFormatOverride</strong>
+<ul>
+<li>Type: <code>DWORD (32-bit) Value</code></li>
+<li>Data:
+<ul>
+<li><code>0</code> – Automatic</li>
+<li><code>1</code> – Force RGB</li>
+<li><code>2</code> – Force YCbCr 4:2:2</li>
+<li><code>3</code> – Force YCbCr 4:4:4</li>
+</ul></li>
+</ul></li>
+<li><strong>QuantizationRangeOverride</strong>
+<ul>
+<li>Type: <code>DWORD (32-bit) Value</code></li>
+<li>Data:
+<ul>
+<li><code>1</code> – Force Full Range (0–255)</li>
+<li><code>2</code> – Force Limited Range (16–235)</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="system-level-edid-hardware-overrides">System-Level EDID Hardware
+Overrides</h3>
+<p>If driver-specific keys fail to persist through driver updates, you
+can force the operating system to interpret the monitor capabilities
+differently by injecting a modified EDID block:</p>
+<ol type="1">
+<li>Navigate to:<br />
+<code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Enum\DISPLAY</code></li>
+<li>Expand the monitor hardware ID matching your display, expand the
+instance subkey beneath it, and open the <code>Device Parameters</code>
+key.</li>
+<li>Right-click, select <strong>New &gt; Binary Value</strong>, and name
+it <code>EDID_OVERRIDE</code>.</li>
+<li>Enter a patched 128-byte or 256-byte EDID binary block where Byte 20
+(Video Input Definition) is explicitly set to indicate digital RGB
+support, or modify the CEA-861 extension block to remove YCbCr
+capability bits.</li>
+</ol>
+<h3 id="applying-changes">Applying Changes</h3>
+<p>After modifying the Windows Registry:</p>
+<ol type="1">
+<li>Restart the graphics driver using the shortcut
+<code>Win + Ctrl + Shift + B</code>, or restart the computer
+entirely.</li>
+<li>Confirm the override by checking black levels and color fidelity
+against standard test patterns (such as shadow detail boxes 0–16 to
+verify Full RGB operation).</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

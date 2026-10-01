@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>100-Ohm Differential Impedance in HDMI Cable Design - hdmi</title>
+    <meta name="description" content="The 100-ohm differential impedance specification is a foundational standard in HDMI cable engineering that ensures reliable, high-speed digital audio and video transmission. Maintaining this exact impedance prevents signal reflections, preserves waveform">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/100-ohm-differential-impedance-in-hdmi-cable-design">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="100-Ohm Differential Impedance in HDMI Cable Design - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/100-ohm-differential-impedance-in-hdmi-cable-design" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The 100-ohm differential impedance specification is a foundational standard in HDMI cable engineering that ensures reliable, high-speed digital audio and video transmission. Maintaining this exact impedance prevents signal reflections, preserves waveform" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="100-ohm-differential-impedance-in-hdmi-cable-design">100-Ohm
+Differential Impedance in HDMI Cable Design</h1>
+<p>The 100-ohm differential impedance specification is a foundational
+standard in HDMI cable engineering that ensures reliable, high-speed
+digital audio and video transmission. Maintaining this exact impedance
+prevents signal reflections, preserves waveform integrity, minimizes
+electromagnetic interference (EMI), and guarantees cross-compatibility
+across all certified HDMI sources and displays. Without strict adherence
+to this standard, modern display resolutions such as 4K and 8K would
+suffer from severe data corruption, jitter, and display dropouts.</p>
+<h3 id="the-physics-of-differential-signaling-in-hdmi">The Physics of
+Differential Signaling in HDMI</h3>
+<p>HDMI relies on Transition-Minimized Differential Signaling (TMDS) and
+Fixed Rate Link (FRL) architectures to transmit gigabits of data per
+second. Instead of sending a single signal down one wire referenced to
+ground, differential signaling sends two equal and opposite signals down
+a twisted pair of conductors.</p>
+<p>Differential impedance refers to the total impedance measured between
+these two paired signal conductors. While each individual line typically
+exhibits a 50-ohm single-ended characteristic impedance relative to the
+reference plane, the pair together forms a balanced 100-ohm transmission
+line.</p>
+<h3 id="preventing-signal-reflections-via-impedance-matching">Preventing
+Signal Reflections via Impedance Matching</h3>
+<p>In high-frequency transmission lines, any deviation in impedance
+along the signal path creates an impedance mismatch. When electrical
+signals encounter an impedance boundary, a portion of the signal energy
+reflects back toward the source rather than continuing cleanly to the
+receiver.</p>
+<p>The HDMI transmitter (source) and receiver (sink) are both designed
+with internal terminations calibrated to 100 ohms differential. If the
+interconnecting cable deviates from this 100-ohm standard:</p>
+<ul>
+<li><strong>Signal Reflections Occur:</strong> Echoed energy bounces
+between the display and the source, interfering with subsequent data
+bits.</li>
+<li><strong>Eye Diagram Degradation:</strong> The signal "eye
+diagram"—the visual representation of digital signal clarity—collapses,
+leading to timing jitter and inter-symbol interference (ISI).</li>
+<li><strong>Transmission Errors:</strong> At the consumer level, this
+manifests as visual artifacts ("sparkles"), audio dropouts, or complete
+loss of handshake (a black screen).</li>
+</ul>
+<h3 id="balancing-attenuation-geometry-and-manufacturing">Balancing
+Attenuation, Geometry, and Manufacturing</h3>
+<p>The 100-ohm value is an optimized compromise between electrical
+performance and physical manufacturing constraints:</p>
+<ol type="1">
+<li><strong>Lower Impedances (&lt;100 Ohms):</strong> Would require
+thicker conductors or extremely thin dielectric layers between wires.
+This increases capacitance and conductive losses, significantly limiting
+the maximum functional length of the cable.</li>
+<li><strong>Higher Impedances (&gt;100 Ohms):</strong> Would require
+widely spaced conductors, increasing the overall thickness of the cable
+and making it vulnerable to external noise while degrading differential
+coupling.</li>
+</ol>
+<p>The 100-ohm standard provides the optimal balance of low attenuation,
+manageable parasitic capacitance, and a physically flexible form factor
+suitable for consumer electronics.</p>
+<h3 id="noise-immunity-and-electromagnetic-compatibility-emc">Noise
+Immunity and Electromagnetic Compatibility (EMC)</h3>
+<p>For differential signaling to reject external noise, the two
+conductors must be tightly coupled. External electromagnetic noise
+impacts both conductors equally; because the receiver only reads the
+<em>difference</em> between the two lines, this common-mode noise is
+cancelled out.</p>
+<p>Holding a strict 100-ohm differential impedance requires precise
+control over the dielectric material, wire gauge, and twist rate along
+every millimeter of the cable. This physical precision ensures high
+Common-Mode Rejection Ratio (CMRR) and prevents the cable from radiating
+high-frequency energy that could interfere with nearby wireless signals
+like Wi-Fi and Bluetooth.</p>
+<h3 id="interoperability-across-devices">Interoperability Across
+Devices</h3>
+<p>The HDMI Compliance Test Specification (CTS) mandates that cables
+maintain 100 ohms differential impedance within a narrow tolerance
+(typically ±15%, or ±10% for ultra-high-speed standards). By enforcing
+this electrical parameter, the standard guarantees that any compliant
+HDMI cable will seamlessly bridge any compliant source device with any
+compliant display, regardless of manufacturer.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

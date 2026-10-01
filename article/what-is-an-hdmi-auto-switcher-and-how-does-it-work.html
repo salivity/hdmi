@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is an HDMI Auto-Switcher and How Does It Work? - hdmi</title>
+    <meta name="description" content="An HDMI auto-switcher is a hardware device that connects multiple video source devices to a single display and automatically changes the active input without requiring manual intervention. This article explains how these devices function, focusing specif">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/what-is-an-hdmi-auto-switcher-and-how-does-it-work">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Is an HDMI Auto-Switcher and How Does It Work? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/what-is-an-hdmi-auto-switcher-and-how-does-it-work" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="An HDMI auto-switcher is a hardware device that connects multiple video source devices to a single display and automatically changes the active input without requiring manual intervention. This article explains how these devices function, focusing specif" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="what-is-an-hdmi-auto-switcher-and-how-does-it-work">What Is an
+HDMI Auto-Switcher and How Does It Work?</h1>
+<p>An HDMI auto-switcher is a hardware device that connects multiple
+video source devices to a single display and automatically changes the
+active input without requiring manual intervention. This article
+explains how these devices function, focusing specifically on how
+switchers monitor electrical signals—primarily the +5V power rail and
+active video carriers—to determine when a laptop or other source is
+powered on, awake, and transmitting video.</p>
+<h3 id="what-is-an-hdmi-auto-switcher">What Is an HDMI
+Auto-Switcher?</h3>
+<p>An HDMI auto-switcher acts as an intelligent traffic controller
+between multiple HDMI source devices (such as laptops, gaming consoles,
+and streaming boxes) and a single sink device (such as a TV, monitor, or
+projector). Instead of forcing the user to press a physical button on
+the unit or use an infrared remote, the switcher constantly monitors its
+input ports. When a user connects a new device or wakes a laptop from
+sleep, the switcher identifies the change and immediately routes that
+new signal to the output display.</p>
+<h3 id="the-role-of-the-hdmi-pin-18-5v-power-line">The Role of the HDMI
+Pin 18 (+5V Power Line)</h3>
+<p>The primary mechanism most auto-switchers use to detect a live source
+relies on Pin 18 of the standard 19-pin HDMI connector. According to the
+HDMI specification, a source device must supply a nominal +5V DC power
+signal on Pin 18.</p>
+<p>When a laptop is connected:</p>
+<ul>
+<li><strong>Off/Deep Sleep:</strong> The graphics hardware keeps the
+internal power rails shut down, leaving Pin 18 at 0 volts.</li>
+<li><strong>Powered On/Awake:</strong> The laptop’s graphics processor
+or HDMI transmitter energizes Pin 18 with a voltage typically between
+4.7V and 5.3V.</li>
+</ul>
+<p>The auto-switcher contains simple sensing circuitry—often a voltage
+comparator or an analog input connected to a low-power
+microcontroller—tied to Pin 18 on each input port. When the voltage on a
+given port crosses a predetermined threshold (usually around 4.5V), the
+switcher registers that a device has come online.</p>
+<h3 id="carrier-detection-and-tmds-signaling">Carrier Detection and TMDS
+Signaling</h3>
+<p>While monitoring the +5V rail is the most common method, it has
+limitations. Many modern laptops and docking stations maintain a
+constant 5V presence on Pin 18 even when in low-power standby mode or
+when the screen is turned off. Basic switchers can become confused by
+this behavior, failing to switch or switching at inappropriate
+times.</p>
+<p>To solve this, advanced auto-switchers implement active video carrier
+detection:</p>
+<ol type="1">
+<li><strong>TMDS Clock Monitoring:</strong> HDMI video and audio are
+transmitted across differential data lanes using Transition-Minimized
+Differential Signaling (TMDS). More sophisticated switchers monitor the
+dedicated TMDS Clock channel (Pins 10, 11, and 12). If the +5V rail is
+present, the switcher then checks for a live high-frequency clock
+signal. If the clock is missing, the switcher knows the laptop is merely
+sleeping, preventing a false switch.</li>
+<li><strong>Hot Plug Detect (HPD) Handshake:</strong> Switchers also
+actively manage Pin 19, the Hot Plug Detect line. When the switcher
+senses the 5V line and TMDS activity, it asserts the HPD line high,
+signaling the laptop to read the display's Extended Display
+Identification Data (EDID) and begin pushing full resolution
+frames.</li>
+</ol>
+<h3 id="switching-priority-and-logic">Switching Priority and Logic</h3>
+<p>Auto-switchers typically employ one of two logic rules to decide
+which device gets priority:</p>
+<ul>
+<li><strong>Last In, First Out (LIFO):</strong> The most common consumer
+setup. The device that <em>most recently</em> woke up or was plugged in
+takes control of the display. If that device shuts down (losing its 5V
+or clock signal), the switcher reverts to the previously active
+port.</li>
+<li><strong>Fixed Port Priority:</strong> Often found in commercial
+installations, the switcher assigns priority by port number (e.g., Port
+1 overrides Port 2). If a laptop plugs into the primary port, it
+instantly overrides lower-tier sources, regardless of when they were
+powered on.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

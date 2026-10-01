@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inter-Pair vs Intra-Pair Skew in High-Speed HDMI - hdmi</title>
+    <meta name="description" content="High-speed HDMI interfaces rely on differential signaling to transmit billions of bits per second across multiple data channels. In this environment, signal timing precision is vital to prevent data corruption. This article explains the concepts of intra">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/inter-pair-vs-intra-pair-skew-in-high-speed-hdmi">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Inter-Pair vs Intra-Pair Skew in High-Speed HDMI - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/inter-pair-vs-intra-pair-skew-in-high-speed-hdmi" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="High-speed HDMI interfaces rely on differential signaling to transmit billions of bits per second across multiple data channels. In this environment, signal timing precision is vital to prevent data corruption. This article explains the concepts of intra" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="inter-pair-vs-intra-pair-skew-in-high-speed-hdmi">Inter-Pair vs
+Intra-Pair Skew in High-Speed HDMI</h1>
+<p>High-speed HDMI interfaces rely on differential signaling to transmit
+billions of bits per second across multiple data channels. In this
+environment, signal timing precision is vital to prevent data
+corruption. This article explains the concepts of intra-pair and
+inter-pair skew, analyzes their causes and impact on signal integrity in
+HDMI differential pairs, and details how hardware designers manage these
+timing mismatches.</p>
+<h3 id="differential-signaling-in-hdmi">Differential Signaling in
+HDMI</h3>
+<p>HDMI uses Transition-Minimized Differential Signaling (TMDS) or Fixed
+Rate Link (FRL) architecture. In standard TMDS setups, transmission
+relies on four high-speed pairs: three data lanes (red, green, and blue
+channels) and one dedicated clock lane. Each differential pair consists
+of two complementary traces carrying equal and opposite voltage
+waveforms (positive and negative). The receiver measures the difference
+in voltage between these two conductors rather than referencing a single
+conductor to ground, rejecting common-mode noise and preserving signal
+integrity.</p>
+<h3 id="intra-pair-skew">Intra-Pair Skew</h3>
+<p>Intra-pair skew is the time difference or phase mismatch between the
+positive (+) and negative (-) lines within the <em>same</em>
+differential pair.</p>
+<p>When both traces are identical in physical length and electrical
+delay, the signals arrive at the receiver simultaneously, inverting
+perfectly around a common-mode center. If one trace is physically longer
+or experiences a different dielectric environment—such as traversing
+around a corner or over a fiber-weave gap in the PCB—one signal arrives
+slightly later than the other.</p>
+<p>Consequences of intra-pair skew include:</p>
+<ul>
+<li><strong>Reduced Differential Amplitude:</strong> The receiver sees a
+degraded differential voltage swing, closing the eye diagram
+horizontally and vertically.</li>
+<li><strong>Increased Jitter:</strong> Crossing points shift, making it
+harder for the receiver to recover clean transitions.</li>
+<li><strong>Elevated Electromagnetic Interference (EMI):</strong> The
+complementary signals no longer cancel each other out, converting
+differential energy into unwanted common-mode radiation.</li>
+</ul>
+<p>Because intra-pair skew directly impacts the shape and timing of the
+individual bit transition, tolerance budgets are extremely tight, often
+measured in mere picoseconds (or fractions of a millimeter in physical
+trace routing).</p>
+<h3 id="inter-pair-skew">Inter-Pair Skew</h3>
+<p>Inter-pair skew is the time difference between <em>different</em>
+differential pairs in the same link. For example, it represents the
+timing offset between Data Lane 0 and Data Lane 1, or between a Data
+Lane and the Clock Lane.</p>
+<p>In parallel transmission architectures like HDMI, data words are
+distributed across the multiple data lanes and synchronized by the clock
+(or embedded clock in FRL mode). If one differential pair is physically
+longer than another, the data symbols on that lane arrive late relative
+to the other lanes.</p>
+<p>Consequences of inter-pair skew include:</p>
+<ul>
+<li><strong>Symbol Misalignment:</strong> The receiver may sample bits
+from different symbol periods if the delay is large enough to exceed the
+receiver's deskew window.</li>
+<li><strong>Phase Alignment Errors:</strong> Skew between data lanes and
+the clock lane can shift data transitions directly into the receiver's
+sampling point.</li>
+</ul>
+<p>Inter-pair skew tolerances are generally more relaxed than intra-pair
+skew limits. Modern HDMI receivers incorporate internal deskew circuitry
+and elastic buffers that can compensate for hundreds of picoseconds or
+even several nanoseconds of delay mismatch across channels.</p>
+<h3 id="summary-of-differences">Summary of Differences</h3>
+<ul>
+<li><strong>Scope:</strong> Intra-pair skew occurs <em>within</em> a
+single differential pair (between positive and negative traces).
+Inter-pair skew occurs <em>between</em> separate differential pairs
+(lane-to-lane or lane-to-clock).</li>
+<li><strong>Tolerance:</strong> Intra-pair skew allows virtually zero
+margin (often less than 5 to 10 ps for high-speed rates), whereas
+inter-pair skew budgets typically permit larger timing variances due to
+active receiver deskew mechanisms.</li>
+<li><strong>Design Focus:</strong> To resolve intra-pair skew, routing
+serpentine compensation must be placed immediately where the asymmetry
+occurs (such as directly after a bend). To resolve inter-pair skew,
+broad length-matching across entire signal buses is applied anywhere
+along the transmission line.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

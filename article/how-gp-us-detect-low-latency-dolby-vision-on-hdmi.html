@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How GPUs Detect Low-Latency Dolby Vision on HDMI - hdmi</title>
+    <meta name="description" content="When an HDMI sink is connected, a GPU driver determines whether it supports Low-Latency Dolby Vision (LLDV)—also known as Player-Led Dolby Vision—by querying and parsing the display’s Extended Display Identification Data (EDID). Specifically, the d">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-gp-us-detect-low-latency-dolby-vision-on-hdmi">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How GPUs Detect Low-Latency Dolby Vision on HDMI - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-gp-us-detect-low-latency-dolby-vision-on-hdmi" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When an HDMI sink is connected, a GPU driver determines whether it supports Low-Latency Dolby Vision (LLDV)—also known as Player-Led Dolby Vision—by querying and parsing the display’s Extended Display Identification Data (EDID). Specifically, the d" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-gpus-detect-low-latency-dolby-vision-on-hdmi">How GPUs
+Detect Low-Latency Dolby Vision on HDMI</h1>
+<p>When an HDMI sink is connected, a GPU driver determines whether it
+supports Low-Latency Dolby Vision (LLDV)—also known as Player-Led Dolby
+Vision—by querying and parsing the display’s Extended Display
+Identification Data (EDID). Specifically, the driver reads the CTA-861
+extension blocks over the Display Data Channel (DDC) and inspects the
+Dolby Vendor-Specific Data Block (VSDB) for designated capability flags
+that indicate support for player-side tone mapping and 12-bit YUV 4:2:2
+transport.</p>
+<h3 id="1-edid-retrieval-via-the-display-data-channel-ddc">1. EDID
+Retrieval via the Display Data Channel (DDC)</h3>
+<p>Upon an HDMI Hot Plug Detect (HPD) interrupt, the GPU driver
+initiates an I2C communication over the DDC lines to read the sink
+device’s EDID. A standard 128-byte base EDID does not contain
+HDR-specific capabilities. Therefore, the driver searches for additional
+128-byte CTA-861 (formerly CEA-861) extension blocks, which house
+advanced video, audio, and vendor-specific configuration data.</p>
+<h3 id="2-locating-the-dolby-vendor-specific-data-block-vsdb">2.
+Locating the Dolby Vendor-Specific Data Block (VSDB)</h3>
+<p>Within the CTA-861 extension block, the driver traverses the Data
+Block Collection looking for a Vendor-Specific Data Block (Tag 3). A
+Dolby block is positively identified by reading the 24-bit IEEE
+Organizationally Unique Identifier (OUI):</p>
+<ul>
+<li><strong>Dolby IEEE OUI:</strong> <code>0x00, 0xD0, 0x46</code>
+(stored in little-endian format as <code>46-D0-00</code>).</li>
+</ul>
+<p>Once the driver matches this OUI, it knows the remaining bytes define
+Dolby Vision profiles, timing, and processing parameters supported by
+the sink.</p>
+<h3 id="3-parsing-the-dolby-vsdb-version">3. Parsing the Dolby VSDB
+Version</h3>
+<p>Dolby VSDBs generally come in different payload structures,
+designated by version formats:</p>
+<ul>
+<li><strong>Version 1 (V1):</strong> Primarily used for early
+Display-Led implementations (RGB 8-bit tunneling).</li>
+<li><strong>Version 2 (V2):</strong> Introduces configurable flags to
+support both standard Display-Led and Low-Latency (Player-Led)
+modes.</li>
+</ul>
+<p>The driver checks the length and internal version byte of the
+payload. If the block matches the Version 2 structure (typically 12 to
+15 bytes in total length), the driver proceeds to decode low-latency
+capabilities.</p>
+<h3 id="4-reading-low-latency-flags-and-color-formats">4. Reading
+Low-Latency Flags and Color Formats</h3>
+<p>Inside the Version 2 Dolby VSDB, specific bitfields declare
+low-latency support:</p>
+<ul>
+<li><strong>Interface / Low-Latency Bit:</strong> The driver inspects
+the profile capability byte (often Byte 5 in standard V2
+implementations). A designated bit within this byte explicitly signals
+support for Low-Latency Mode. If set to <code>1</code>, the sink device
+can accept pre-tone-mapped Dolby Vision content.</li>
+<li><strong>Supported Color Spaces:</strong> The driver reads
+accompanying bits that specify compatible pixel formats for the
+low-latency stream. Unlike standard Dolby Vision, which packages 12-bit
+data into an RGB 4:4:4 8-bit container via proprietary tunneling, LLDV
+transmits uncompressed 10-bit or 12-bit YUV 4:2:2 or YUV 4:4:4
+signals.</li>
+<li><strong>Target Luminance and Colorimetry:</strong> The driver reads
+minimum/maximum luminance values and primary color coordinates embedded
+in the block. These parameters are essential for the GPU's internal
+composition engine to perform tone mapping accurately before sending the
+signal.</li>
+</ul>
+<h3 id="5-driver-configuration-and-handshake">5. Driver Configuration
+and Handshake</h3>
+<p>If the bitfield flags confirm LLDV support:</p>
+<ol type="1">
+<li>The driver registers the display as an LLDV-capable sink with the
+operating system's color and display management stack.</li>
+<li>When Dolby Vision content playback begins, the GPU performs the
+tone-mapping calculations locally using the sink's advertised luminance
+parameters.</li>
+<li>The GPU switches the HDMI output to the negotiated pixel format
+(typically 12-bit YUV 4:2:2) and begins embedding Dolby Vision Dynamic
+Range and Mastering InfoFrames (or vendor-specific InfoFrames) into the
+HDMI blanking interval, signaling the TV to bypass its internal tone
+mapper and apply only picture calibration.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

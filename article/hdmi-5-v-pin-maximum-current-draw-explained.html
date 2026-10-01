@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI 5V Pin Maximum Current Draw Explained - hdmi</title>
+    <meta name="description" content="This article examines the power delivery specifications of the HDMI interface, focusing specifically on the Pin 18 (+5V Power) line. It details the exact current limits established by the HDMI specification for both source and sink devices, outlines the">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-5-v-pin-maximum-current-draw-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI 5V Pin Maximum Current Draw Explained - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-5-v-pin-maximum-current-draw-explained" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article examines the power delivery specifications of the HDMI interface, focusing specifically on the Pin 18 (+5V Power) line. It details the exact current limits established by the HDMI specification for both source and sink devices, outlines the" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-5v-pin-maximum-current-draw-explained">HDMI 5V Pin Maximum
+Current Draw Explained</h1>
+<p>This article examines the power delivery specifications of the HDMI
+interface, focusing specifically on the Pin 18 (+5V Power) line. It
+details the exact current limits established by the HDMI specification
+for both source and sink devices, outlines the mandatory overcurrent
+protection thresholds, and explains the operational risks associated
+with powering active accessories directly through an HDMI port.</p>
+<h2 id="the-standard-specification-55-ma">The Standard Specification: 55
+mA</h2>
+<p>According to the official HDMI specification, a source device (such
+as a PC, Blu-ray player, or game console) must supply a nominal +5V on
+Pin 18 with an output voltage between 4.7V and 5.3V. The specification
+explicitly states that a source must deliver a minimum of 55 mA to the
+bus.</p>
+<p>Consequently, standard sink devices (such as monitors, televisions,
+and projectors) are permitted to draw a maximum of 55 mA during normal
+operation. This current is specifically allocated to power the Display
+Data Channel (DDC) circuitry and read the Extended Display
+Identification Data (EDID) EEPROM inside the display, allowing the
+source to detect display capabilities even when the display is unplugged
+from AC mains or in standby mode.</p>
+<h2 id="overcurrent-protection-limit-500-ma-05-a">Overcurrent Protection
+Limit: 500 mA (0.5 A)</h2>
+<p>While the baseline requirement allows sink devices to draw up to 55
+mA, the HDMI specification also mandates that source devices incorporate
+overcurrent protection to guard against short circuits and excessive
+load.</p>
+<p>Under the specification, this protection mechanism must limit the
+maximum allowable current draw to no more than 0.5 A (500 mA).
+Therefore, 500 mA represents the absolute ceiling of current that can
+physically be extracted from an HDMI port before an internal fuse,
+positive temperature coefficient (PTC) thermistor, or active current
+limiter disconnects or throttles the power line.</p>
+<h2 id="practical-considerations-for-active-accessories">Practical
+Considerations for Active Accessories</h2>
+<p>Many modern peripherals—such as HDMI-to-VGA converters, active
+optical cables, and wireless display dongles—attempt to draw operational
+power entirely from Pin 18 to avoid requiring an external power
+brick.</p>
+<p>Relying on Pin 18 for high-power devices presents several risks:</p>
+<ul>
+<li><strong>Voltage Drop:</strong> Drawing more than the guaranteed 55
+mA frequently causes the voltage on Pin 18 to fall below the minimum
+required 4.7V, leading to intermittent handshake failures, black
+screens, or total signal loss.</li>
+<li><strong>Inconsistent Source Designs:</strong> While some desktop
+graphics cards can supply up to the 500 mA limit, many laptops, set-top
+boxes, and energy-efficient media players strictly cap current output at
+or near 55 mA to preserve battery life and component longevity.</li>
+<li><strong>Component Damage:</strong> Sustained current draws
+approaching or exceeding 500 mA can permanently damage passive
+protection fuses on cheaper motherboards and source equipment.</li>
+</ul>
+<p>Any accessory requiring more than 55 mA should utilize an external
+USB or dedicated DC power connection rather than drawing power
+exclusively through the HDMI interface.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

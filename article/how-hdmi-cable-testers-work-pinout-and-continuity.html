@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Cable Testers Work: Pinout and Continuity - hdmi</title>
+    <meta name="description" content="An HDMI cable tester evaluates the physical and electrical integrity of an HDMI cable by transmitting low-voltage electrical signals through each of the cable's 19 individual pins. By connecting a main transmitter unit to one end of the cable and a remot">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-cable-testers-work-pinout-and-continuity">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Cable Testers Work: Pinout and Continuity - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-cable-testers-work-pinout-and-continuity" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="An HDMI cable tester evaluates the physical and electrical integrity of an HDMI cable by transmitting low-voltage electrical signals through each of the cable's 19 individual pins. By connecting a main transmitter unit to one end of the cable and a remot" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-cable-testers-work-pinout-and-continuity">How HDMI
+Cable Testers Work: Pinout and Continuity</h1>
+<p>An HDMI cable tester evaluates the physical and electrical integrity
+of an HDMI cable by transmitting low-voltage electrical signals through
+each of the cable's 19 individual pins. By connecting a main transmitter
+unit to one end of the cable and a remote receiver unit to the other,
+the device systematically tests for open circuits (continuity), bridging
+between conductors (shorts), and proper pin-to-pin alignment (wire pair
+mapping). This diagnostic process ensures all audio, video, control, and
+power pathways are intact and free of manufacturing defects or physical
+damage.</p>
+<h3 id="checking-for-pin-continuity">Checking for Pin Continuity</h3>
+<p>Continuity testing confirms that an unbroken electrical path exists
+from the connector on one end of the cable to the connector on the
+other. HDMI connectors feature 19 distinct pins, plus an outer ground
+shield.</p>
+<ol type="1">
+<li><strong>Sequential Stepping:</strong> The tester's transmitter
+utilizes a microcontroller to send a sequential direct current (DC)
+pulse down each pin one at a time, starting from Pin 1 through Pin 19
+(and the chassis shield).</li>
+<li><strong>Signal Verification:</strong> As the pulse is sent down a
+specific line, the remote receiver module listens on the corresponding
+pin.</li>
+<li><strong>Fault Detection:</strong> If the receiver registers the
+expected voltage on the matching pin, continuity is confirmed. If no
+voltage is detected, the tester flags that specific pin as "Open,"
+indicating a severed wire, broken solder joint, or corroded contact.
+Basic testers display this via an advancing sequence of LEDs, while
+digital testers show an open pin error on an LCD screen.</li>
+</ol>
+<h3 id="detecting-electrical-shorts">Detecting Electrical Shorts</h3>
+<p>A short circuit occurs when two or more conductors make unintended
+physical or electrical contact, which can corrupt high-speed data or
+damage connected hardware (such as shorting the +5V power pin to a data
+line).</p>
+<ol type="1">
+<li><strong>Isolation Monitoring:</strong> When the tester energizes Pin
+1 with a test voltage, the receiver scans all other pins (Pins 2 through
+19 and the shield) to verify they remain completely inactive.</li>
+<li><strong>Current Leakage Detection:</strong> If voltage registers
+simultaneously on Pin 1 and Pin 4, for example, the tester detects that
+these two conductors are bridged.</li>
+<li><strong>Reporting:</strong> Advanced testers can pinpoint the exact
+conductors involved in the short, allowing technicians to determine
+whether an internal cable twist has compressed and stripped internal
+insulation or if solder bridged two adjacent pins inside the connector
+head.</li>
+</ol>
+<h3 id="wire-pair-mapping-and-polarity-verification">Wire Pair Mapping
+and Polarity Verification</h3>
+<p>HDMI relies on Transition-Minimized Differential Signaling (TMDS) or
+Fixed Rate Link (FRL) to transmit ultra-high-definition video and audio.
+This architecture uses four shielded twisted pairs: TMDS Data 0, Data 1,
+Data 2, and the Clock channel (in HDMI 1.4/2.0). Each channel requires
+three distinct lines: a positive pin (+), a negative pin (-), and a
+dedicated ground shield.</p>
+<ul>
+<li><strong>Miswire and Reversal Detection:</strong> Wire pair mapping
+verifies that the individual lines within each twisted pair have not
+been reversed or swapped. For instance, in TMDS Data 0 (Pins 7, 8, and
+9), Pin 7 (Data 0+) must route exclusively to Pin 7, Pin 8 (Shield) to
+Pin 8, and Pin 9 (Data 0-) to Pin 9. If Pin 7 routes to Pin 9, the pair
+is inverted, which will break differential signaling.</li>
+<li><strong>Crossed Pairs (Split Pairs):</strong> If an installer or
+manufacturer accidentally pairs a conductor from Data 0 with a conductor
+from Data 1, the tester identifies the cross-connection. While simple
+continuity might pass, the tester recognizes that the physical mapping
+does not follow standard HDMI pin configurations.</li>
+<li><strong>Auxiliary Line Verification:</strong> Beyond the high-speed
+data pairs, mapping ensures that individual functional lines—such as Pin
+13 (CEC), Pin 14 (Utility/HEAC), Pin 15 (SCL), Pin 16 (SDA), Pin 18 (+5V
+Power), and Pin 19 (Hot Plug Detect)—are routed to their exact
+specifications without interference.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

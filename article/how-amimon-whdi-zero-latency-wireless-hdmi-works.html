@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Amimon WHDI Zero-Latency Wireless HDMI Works - hdmi</title>
+    <meta name="description" content="Wireless HDMI video transmitters using Amimon’s Wireless Home Digital Interface (WHDI) technology deliver real-time, uncompressed high-definition video with latency under one millisecond. Unlike standard Wi-Fi-based video transmission systems that buff">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-amimon-whdi-zero-latency-wireless-hdmi-works">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Amimon WHDI Zero-Latency Wireless HDMI Works - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-amimon-whdi-zero-latency-wireless-hdmi-works" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Wireless HDMI video transmitters using Amimon’s Wireless Home Digital Interface (WHDI) technology deliver real-time, uncompressed high-definition video with latency under one millisecond. Unlike standard Wi-Fi-based video transmission systems that buff" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-amimon-whdi-zero-latency-wireless-hdmi-works">How Amimon
+WHDI Zero-Latency Wireless HDMI Works</h1>
+<p>Wireless HDMI video transmitters using Amimon’s Wireless Home Digital
+Interface (WHDI) technology deliver real-time, uncompressed
+high-definition video with latency under one millisecond. Unlike
+standard Wi-Fi-based video transmission systems that buffer, compress,
+and packetize data using codecs like H.264 or H.265, WHDI utilizes
+specialized Joint Source-Channel Coding (JSCC) and Multiple-Input
+Multiple-Output (MIMO) radio frequencies in the 5 GHz band. This direct
+mapping of raw video data to radio waves eliminates traditional encoding
+and decoding bottlenecks, enabling instant visual feedback critical for
+professional video production, medical imaging, and gaming.</p>
+<h3 id="the-problem-with-traditional-wireless-video">The Problem with
+Traditional Wireless Video</h3>
+<p>Conventional wireless video streaming solutions rely on standard
+Wi-Fi networks (IEEE 802.11). In a standard system, the HDMI transmitter
+accepts an uncompressed digital signal, feeds it into an encoder chip
+(such as an AVC/H.264 or HEVC/H.265 hardware encoder), compresses the
+frames into data packets, and sends them via standard TCP/IP or UDP
+network layers.</p>
+<p>This process introduces substantial latency, typically ranging from
+30 to over 200 milliseconds. Frame buffering is required at both the
+transmission and reception ends to reassemble lost packets and smooth
+out jitter. While acceptable for passive consumer media streaming, this
+delay makes real-time focus pulling, camera tracking, and interactive
+control impossible.</p>
+<h3 id="how-whdi-eliminates-latency">How WHDI Eliminates Latency</h3>
+<p>Amimon bypassed the traditional compression pipeline entirely by
+developing WHDI, an architecture that treats video transmission
+fundamentally differently from typical computer data networks.</p>
+<h4 id="1-joint-source-channel-coding-jscc">1. Joint Source-Channel
+Coding (JSCC)</h4>
+<p>The core technological breakthrough of WHDI is Joint Source-Channel
+Coding. Instead of viewing video as generic digital bits that must be
+encoded into binary packets, WHDI breaks video pixels down into
+different levels of visual significance:</p>
+<ul>
+<li><strong>Most Significant Bits (MSBs):</strong> These represent the
+essential structure, luminance, and basic color of the image. The human
+eye easily detects errors in these bits.</li>
+<li><strong>Least Significant Bits (LSBs):</strong> These represent
+subtle fine details, micro-gradients, and fine noise. Visual perception
+is far less sensitive to minor variations here.</li>
+</ul>
+<p>WHDI does not wait to assemble full frame buffers. Instead, it
+processes pixels as they arrive from the HDMI source, applying robust,
+high-protection digital modulation to the MSBs while simultaneously
+mapping the LSBs to more direct, analog-like radio channel
+modulations.</p>
+<h4 id="2-graceful-degradation-instead-of-frame-dropping">2. Graceful
+Degradation Instead of Frame Dropping</h4>
+<p>Because of JSCC, when the radio frequency (RF) environment
+experiences interference or the transmitter moves farther away, the
+system does not pause to retransmit lost packets or drop entire frames.
+Instead, only the least significant data suffers from noise, resulting
+in a slight, momentary loss of fine detail or minor visual grain—much
+like analog transmission—while maintaining continuous
+60-frame-per-second video synchronization with zero perceptible
+delay.</p>
+<h4 id="3-high-bandwidth-mimo-and-5-ghz-operation">3. High-Bandwidth
+MIMO and 5 GHz Operation</h4>
+<p>Uncompressed 1080p60 video requires roughly 3 Gbps of bandwidth. To
+handle this high throughput without full-frame compression, WHDI
+transmitters operate in the 5 GHz unlicensed band (typically between 4.9
+GHz and 5.9 GHz) utilizing 20 MHz or 40 MHz channel widths.</p>
+<p>WHDI utilizes advanced 4x5 or 4x1 MIMO (Multiple-Input
+Multiple-Output) antenna configurations along with Orthogonal
+Frequency-Division Multiplexing (OFDM). By transmitting multiple spatial
+streams simultaneously across several antennas, the system maximizes
+data throughput and exploits non-line-of-sight signal reflections to
+maintain a rock-solid link through obstacles and moving obstacles on
+set.</p>
+<h4 id="4-hardware-level-video-handshaking">4. Hardware-Level Video
+Handshaking</h4>
+<p>An HDMI transmitter equipped with WHDI also incorporates dedicated
+hardware chips for handling High-Definition Multimedia Interface (HDMI)
+handshakes, EDID (Extended Display Identification Data), and HDCP
+(High-bandwidth Digital Content Protection) encryption in real time.
+Rather than running a software operating system that processes
+connections sequentially, dedicated ASICs (Application-Specific
+Integrated Circuits) process audio, video, and control signals
+concurrently at the hardware clock level.</p>
+<h3 id="practical-impact">Practical Impact</h3>
+<p>By combining Joint Source-Channel Coding, direct RF modulation, and 5
+GHz MIMO technology, an Amimon WHDI-based HDMI transmitter delivers true
+zero-latency performance (measured at less than 1 millisecond). This
+ensures that the monitor receives the frame simultaneously with the
+camera sensor, providing real-time accuracy for professional directors,
+focus pullers, drone operators, and live broadcasters.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

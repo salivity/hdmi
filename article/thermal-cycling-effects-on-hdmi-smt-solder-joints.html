@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thermal Cycling Effects on HDMI SMT Solder Joints - hdmi</title>
+    <meta name="description" content="Temperature cycling significantly degrades the mechanical solder joints of surface-mount technology (SMT) HDMI ports by inducing repetitive thermomechanical stress. As an electronic assembly heats up during operation and cools down when powered off, adja">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/thermal-cycling-effects-on-hdmi-smt-solder-joints">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Thermal Cycling Effects on HDMI SMT Solder Joints - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/thermal-cycling-effects-on-hdmi-smt-solder-joints" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Temperature cycling significantly degrades the mechanical solder joints of surface-mount technology (SMT) HDMI ports by inducing repetitive thermomechanical stress. As an electronic assembly heats up during operation and cools down when powered off, adja" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="thermal-cycling-effects-on-hdmi-smt-solder-joints">Thermal
+Cycling Effects on HDMI SMT Solder Joints</h1>
+<p>Temperature cycling significantly degrades the mechanical solder
+joints of surface-mount technology (SMT) HDMI ports by inducing
+repetitive thermomechanical stress. As an electronic assembly heats up
+during operation and cools down when powered off, adjacent materials
+expand and contract at unequal rates. Over time, this cyclic strain
+causes fatigue, microcracking, and structural degradation in the solder
+alloy. This article details the physical mechanisms behind thermal
+fatigue in SMT HDMI solder connections, the progression toward
+mechanical and electrical failure, and common design mitigations.</p>
+<h3 id="coefficient-of-thermal-expansion-cte-mismatch">Coefficient of
+Thermal Expansion (CTE) Mismatch</h3>
+<p>The primary driver of stress during thermal cycling is the
+discrepancy in the Coefficient of Thermal Expansion (CTE) among the
+participating materials. An SMT HDMI port assembly consists of:</p>
+<ul>
+<li>The Printed Circuit Board (PCB), typically FR-4 (in-plane CTE ~14–17
+ppm/°C).</li>
+<li>The connector housing, composed of engineering plastics like LCP
+(CTE varies widely, often 10–30 ppm/°C).</li>
+<li>The metal shielding and contact leads, usually copper alloy or brass
+(CTE ~17–20 ppm/°C).</li>
+<li>The solder alloy, typically SAC305 (Sn-Ag-Cu) or lead-free
+alternatives (CTE ~20–22 ppm/°C).</li>
+</ul>
+<p>Because these components are rigidly bonded, any temperature delta
+(<span class="math inline">\(\Delta T\)</span>) forces the solder joints
+to absorb differential shear strain. The solder acts as the mechanical
+buffer, bearing the brunt of the displacement forces between the
+connector body and the underlying PCB pads.</p>
+<h3 id="creep-and-microstructural-fatigue">Creep and Microstructural
+Fatigue</h3>
+<p>Under repeated thermal cycles, solder operates at a high homologous
+temperature (<span class="math inline">\(T / T_m &gt; 0.5\)</span> in
+Kelvin), meaning creep deformation occurs even at standard operating
+room temperatures. As stress alternates direction:</p>
+<ol type="1">
+<li><strong>Elastic to Plastic Deformation:</strong> The initial thermal
+stress causes elastic deformation, which rapidly transitions into
+inelastic plastic strain and creep over the dwell periods of the
+cycle.</li>
+<li><strong>Grain Coarsening:</strong> The repetitive strain alters the
+microcrystalline structure of the solder. The fine intermetallic
+compounds (<span class="math inline">\(Ag_3Sn\)</span>, <span
+class="math inline">\(Cu_6Sn_5\)</span>) within the tin matrix coarsen
+and reorganize.</li>
+<li><strong>Voiding and Microcracking:</strong> Microvoids coalesce
+along grain boundaries and high-stress interfaces, particularly at the
+intermetallic compound (IMC) boundary between the solder and the copper
+pad.</li>
+</ol>
+<h3 id="progression-to-mechanical-failure">Progression to Mechanical
+Failure</h3>
+<p>HDMI connectors possess a relatively large physical footprint and
+experience external mechanical loads from cable insertion and
+extraction. Thermal cycling compromises the structural integrity
+required to withstand these external forces:</p>
+<ul>
+<li><strong>Crack Initiation and Propagation:</strong> Cracks typically
+originate at the toe or heel of the SMT leads, where geometric stress
+concentrations are highest. In fully surface-mounted shield tabs, cracks
+begin at the perimeter of the solder fillet and propagate inward toward
+the center of the joint.</li>
+<li><strong>Intermittent Signal Loss:</strong> As cracks propagate
+through signal pin joints, the effective cross-sectional conductive area
+diminishes. This increases contact resistance, causing signal integrity
+degradation, high-frequency signal attenuation, or intermittent
+blackouts under thermal drift.</li>
+<li><strong>Complete Joint Shearing:</strong> Once microcracks coalesce
+across the entire solder fillet, the joint separates. In the case of
+surface-mount ground/retention tabs, the loss of joint integrity
+transfers all mechanical insertion forces directly to the delicate
+signal leads, resulting in rapid catastrophic failure of the port.</li>
+</ul>
+<h3 id="design-and-assembly-mitigations">Design and Assembly
+Mitigations</h3>
+<p>To combat thermal fatigue in SMT HDMI connections, engineers
+implement several design considerations:</p>
+<ul>
+<li><strong>Hybrid Mounting:</strong> While signal pins often remain
+surface-mount for impedance control and high-speed routing, the
+mechanical shell tabs are frequently converted to through-hole (THT) or
+through-hole reflow (THR). Through-hole joints distribute shear stress
+through the depth of the PCB rather than concentrating it entirely on
+the surface copper foil.</li>
+<li><strong>Solder Alloy Selection:</strong> Incorporating micro-alloyed
+solders (such as those doped with bismuth, nickel, or antimony) enhances
+creep resistance and retards grain coarsening during thermal
+exposure.</li>
+<li><strong>Fillet Geometry and Stencil Optimization:</strong> Ensuring
+proper solder volume and balanced fillet shapes on all mechanical pads
+helps distribute strain symmetrically, preventing localized premature
+crack initiation.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

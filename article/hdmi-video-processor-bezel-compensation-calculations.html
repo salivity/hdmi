@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Video Processor Bezel Compensation Calculations - hdmi</title>
+    <meta name="description" content="This article provides an overview of the bezel compensation calculations performed by an HDMI multi-display video processor. When multiple screens form a video wall, the physical frames (bezels) break image continuity. Bezel compensation mathematically a">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-video-processor-bezel-compensation-calculations">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Video Processor Bezel Compensation Calculations - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-video-processor-bezel-compensation-calculations" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides an overview of the bezel compensation calculations performed by an HDMI multi-display video processor. When multiple screens form a video wall, the physical frames (bezels) break image continuity. Bezel compensation mathematically a" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-video-processor-bezel-compensation-calculations">HDMI Video
+Processor Bezel Compensation Calculations</h1>
+<p>This article provides an overview of the bezel compensation
+calculations performed by an HDMI multi-display video processor. When
+multiple screens form a video wall, the physical frames (bezels) break
+image continuity. Bezel compensation mathematically accounts for this
+physical gap by calculating virtual, hidden pixels between monitors,
+ensuring diagonal lines and continuous graphics appear straight and
+correctly proportioned across the entire display array.</p>
+<h3 id="1-determining-pixel-density-pixels-per-dimension">1. Determining
+Pixel Density (Pixels Per Dimension)</h3>
+<p>Before an HDMI processor can map pixels across gaps, it must
+translate the physical bezel measurements into a pixel equivalent. The
+processor requires the active display dimensions and its native pixel
+resolution to find the pixel density:</p>
+<ul>
+<li><strong>Horizontal Pixel Pitch (<span
+class="math inline">\(P_h\)</span>):</strong> Active Width (mm) / Native
+Horizontal Resolution</li>
+<li><strong>Vertical Pixel Pitch (<span
+class="math inline">\(P_v\)</span>):</strong> Active Height (mm) /
+Native Vertical Resolution</li>
+</ul>
+<p>Alternatively, the processor computes Pixels Per Millimeter
+(PPM):</p>
+<ul>
+<li><span class="math inline">\(\text{PPM}_h = \text{Native Horizontal
+Resolution} / \text{Active Width (mm)}\)</span></li>
+<li><span class="math inline">\(\text{PPM}_v = \text{Native Vertical
+Resolution} / \text{Active Height (mm)}\)</span></li>
+</ul>
+<h3 id="2-calculating-virtual-gap-pixels">2. Calculating Virtual Gap
+Pixels</h3>
+<p>Once pixel density is established, the processor calculates how many
+pixels are physically missing between two adjacent viewable areas. The
+physical gap (<span class="math inline">\(G\)</span>) is the sum of the
+adjacent bezels (e.g., Right Bezel of Display A + Left Bezel of Display
+B):</p>
+<ul>
+<li><strong>Horizontal Gap Pixels (<span
+class="math inline">\(V_{\text{gap\_h}}\)</span>):</strong> <span
+class="math inline">\(G_h \times \text{PPM}_h\)</span></li>
+<li><strong>Vertical Gap Pixels (<span
+class="math inline">\(V_{\text{gap\_v}}\)</span>):</strong> <span
+class="math inline">\(G_v \times \text{PPM}_v\)</span></li>
+</ul>
+<p>These calculated values represent the "concealed" pixels that the
+viewer would see if the screens had no bezels.</p>
+<h3 id="3-establishing-the-virtual-canvas-resolution">3. Establishing
+the Virtual Canvas Resolution</h3>
+<p>The processor then constructs an expanded internal coordinate canvas
+that encompasses both the active screen regions and the calculated
+virtual gaps. For an <span class="math inline">\(M \times N\)</span>
+display grid:</p>
+<ul>
+<li><strong>Total Virtual Width:</strong><br />
+<span class="math display">\[\text{Canvas}_W = (M \times
+\text{Native}_X) + ((M - 1) \times V_{\text{gap\_h}})\]</span></li>
+<li><strong>Total Virtual Height:</strong><br />
+<span class="math display">\[\text{Canvas}_H = (N \times
+\text{Native}_Y) + ((N - 1) \times V_{\text{gap\_v}})\]</span></li>
+</ul>
+<h3 id="4-input-scaling-and-aspect-ratio-preservation">4. Input Scaling
+and Aspect Ratio Preservation</h3>
+<p>The incoming HDMI video stream is mapped onto this enlarged virtual
+canvas. The processor calculates scaling factors (<span
+class="math inline">\(S_x\)</span> and <span
+class="math inline">\(S_y\)</span>) to stretch or fit the input
+resolution to the canvas dimensions:</p>
+<ul>
+<li><span class="math inline">\(S_x = \text{Canvas}_W /
+\text{Input}_W\)</span></li>
+<li><span class="math inline">\(S_y = \text{Canvas}_H /
+\text{Input}_H\)</span></li>
+</ul>
+<p>By scaling the image across the total virtual area rather than just
+the visible screen pixels, geometry is preserved, preventing the image
+from appearing horizontally or vertically compressed behind the
+frames.</p>
+<h3 id="5-viewport-coordinate-mapping-and-cropping">5. Viewport
+Coordinate Mapping and Cropping</h3>
+<p>Finally, the video processor extracts the distinct video signals for
+each physical HDMI output port. It computes the active sub-frame
+bounding box for a display located at column <span
+class="math inline">\(c\)</span> and row <span
+class="math inline">\(r\)</span> (using zero-based indexing):</p>
+<ul>
+<li><strong><span
+class="math inline">\(X_{\text{start}}\)</span>:</strong> <span
+class="math inline">\(c \times (\text{Native}_X +
+V_{\text{gap\_h}})\)</span></li>
+<li><strong><span
+class="math inline">\(X_{\text{end}}\)</span>:</strong> <span
+class="math inline">\(X_{\text{start}} + \text{Native}_X\)</span></li>
+<li><strong><span
+class="math inline">\(Y_{\text{start}}\)</span>:</strong> <span
+class="math inline">\(r \times (\text{Native}_Y +
+V_{\text{gap\_v}})\)</span></li>
+<li><strong><span
+class="math inline">\(Y_{\text{end}}\)</span>:</strong> <span
+class="math inline">\(Y_{\text{start}} + \text{Native}_Y\)</span></li>
+</ul>
+<p>The processor crops the region bounded by <span
+class="math inline">\([X_{\text{start}}, Y_{\text{start}}]\)</span> to
+<span class="math inline">\([X_{\text{end}}, Y_{\text{end}}]\)</span>
+and outputs it to the respective display. The calculated <span
+class="math inline">\(V_{\text{gap\_h}}\)</span> and <span
+class="math inline">\(V_{\text{gap\_v}}\)</span> pixel regions are
+masked out, creating the natural illusion that the image is continuing
+seamlessly behind the display bezels.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

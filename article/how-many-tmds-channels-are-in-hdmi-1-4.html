@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Many TMDS Channels Are in HDMI 1.4? - hdmi</title>
+    <meta name="description" content="An HDMI 1.4 connection uses four Transition-Minimized Differential Signaling (TMDS) channels in total to transmit signals between a source and a display. Three of these channels are dedicated data channels responsible for carrying uncompressed video, aud">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-many-tmds-channels-are-in-hdmi-1-4">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Many TMDS Channels Are in HDMI 1.4? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-many-tmds-channels-are-in-hdmi-1-4" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="An HDMI 1.4 connection uses four Transition-Minimized Differential Signaling (TMDS) channels in total to transmit signals between a source and a display. Three of these channels are dedicated data channels responsible for carrying uncompressed video, aud" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-many-tmds-channels-are-in-hdmi-14">How Many TMDS Channels
+Are in HDMI 1.4?</h1>
+<p>An HDMI 1.4 connection uses four Transition-Minimized Differential
+Signaling (TMDS) channels in total to transmit signals between a source
+and a display. Three of these channels are dedicated data channels
+responsible for carrying uncompressed video, audio, and auxiliary
+information, while the fourth channel serves as a dedicated differential
+clock line. Together, this four-channel architecture provides the 10.2
+Gbps aggregate bandwidth that allows HDMI 1.4 to support 1080p high
+refresh rates, 3D content, and 4K resolution at 30 Hz.</p>
+<h2 id="the-architecture-of-hdmi-14-transmission">The Architecture of
+HDMI 1.4 Transmission</h2>
+<p>HDMI relies on TMDS technology to convert parallel digital data into
+a high-speed, serial differential stream resistant to electromagnetic
+interference. In an HDMI 1.4 physical interface, these signals run
+across four shielded twisted pairs:</p>
+<ul>
+<li><strong>TMDS Data Channel 0:</strong> Primarily carries the Blue
+color component, along with horizontal and vertical synchronization
+signals (HSYNC and VSYNC) and packetized audio/auxiliary data during
+blanking intervals.</li>
+<li><strong>TMDS Data Channel 1:</strong> Primarily carries the Green
+color component alongside audio and auxiliary control packets.</li>
+<li><strong>TMDS Data Channel 2:</strong> Primarily carries the Red
+color component alongside audio and auxiliary control packets.</li>
+<li><strong>TMDS Clock Channel:</strong> Carries a dedicated
+differential clock signal that runs at the character rate, allowing the
+receiving device to synchronize and reconstruct the incoming data on
+Channels 0 through 2.</li>
+</ul>
+<h2 id="how-audiovisual-data-shares-the-channels">How Audiovisual Data
+Shares the Channels</h2>
+<p>Unlike older analog connections where video and audio ran on
+completely isolated physical lines, HDMI multiplexes audio and auxiliary
+metadata directly into the video data stream.</p>
+<p>During the active video periods of each frame, Data Channels 0, 1,
+and 2 transmit pixel data corresponding to RGB or YCbCr color spaces.
+During the horizontal and vertical blanking intervals—periods when the
+display is not actively drawing pixels—the interface switches into Data
+Island Mode. In this mode, multi-channel digital audio (such as
+uncompressed LPCM, Dolby TrueHD, or DTS-HD Master Audio) and auxiliary
+metadata packets are interleaved across those same three data
+channels.</p>
+<h2 id="bandwidth-and-throughput-limits">Bandwidth and Throughput
+Limits</h2>
+<p>In HDMI 1.4, each of the three TMDS data channels operates at a
+maximum single-link character rate of 340 MHz. Because TMDS utilizes
+10-bit encoding per 8-bit character, each data channel supports a
+throughput of up to 3.4 Gbps.</p>
+<p>Combining the three data channels yields a total theoretical
+transmission rate of 10.2 Gbps. Factoring out encoding overhead, the
+effective maximum data rate for payload delivery across the connection
+is 8.16 Gbps. The clock channel does not carry payload data, meaning the
+entirety of the audio and visual throughput relies exclusively on the
+three active TMDS data links.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

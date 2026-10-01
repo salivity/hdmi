@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Transmitter Eye Diagram Compliance Mask - hdmi</title>
+    <meta name="description" content="The HDMI transmitter eye-diagram compliance mask defines the geometric boundary that Transition-Minimized Differential Signaling (TMDS) or Fixed Rate Link (FRL) signals must avoid during physical-layer compliance testing. This mask guarantees that the tr">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-transmitter-eye-diagram-compliance-mask">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Transmitter Eye Diagram Compliance Mask - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-transmitter-eye-diagram-compliance-mask" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The HDMI transmitter eye-diagram compliance mask defines the geometric boundary that Transition-Minimized Differential Signaling (TMDS) or Fixed Rate Link (FRL) signals must avoid during physical-layer compliance testing. This mask guarantees that the tr" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-transmitter-eye-diagram-compliance-mask">HDMI Transmitter
+Eye Diagram Compliance Mask</h1>
+<p>The HDMI transmitter eye-diagram compliance mask defines the
+geometric boundary that Transition-Minimized Differential Signaling
+(TMDS) or Fixed Rate Link (FRL) signals must avoid during physical-layer
+compliance testing. This mask guarantees that the transmitter delivers
+adequate differential voltage levels and maintains minimal timing jitter
+across high-speed data lines before sending the signal across an HDMI
+cable to a receiver.</p>
+<h3 id="purpose-of-the-compliance-mask">Purpose of the Compliance
+Mask</h3>
+<p>In high-speed digital transmission, the eye diagram overlays hundreds
+or thousands of signal transitions across single-bit periods (Unit
+Intervals, or UIs). The transmitter compliance mask represents a
+"keep-out" zone positioned within the center of the open eye. If any
+measured differential waveform trace crosses into this inner mask
+boundary, the transmitter fails compliance because the transmitted
+signal lacks the necessary amplitude, rise/fall performance, or jitter
+margin required for error-free recovery by a sink device.</p>
+<h3 id="differential-voltage-limits-and-mask-geometry">Differential
+Voltage Limits and Mask Geometry</h3>
+<p>Transmitter compliance testing is conducted at Test Point 1 (TP1),
+representing the output pins of the HDMI connector terminated into an
+ideal reference load (typically 50-ohm pull-up resistors to a 3.3 V
+termination voltage, <span class="math inline">\(AV_{CC}\)</span>).</p>
+<p>The compliance mask features a diamond or hexagonal profile centered
+on the Unit Interval, defining limits on both the vertical (voltage) and
+horizontal (time) axes:</p>
+<ul>
+<li><strong>Differential Voltage Swing (<span
+class="math inline">\(V_{swing}\)</span>):</strong> For standard HDMI
+TMDS transmitters, the typical differential peak-to-peak output voltage
+swing ranges between 800 mV and 1200 mV. The nominal single-ended
+voltage swing on each differential leg ranges between 400 mV and 600
+mV.</li>
+<li><strong>Minimum Eye Opening (Vertical Height):</strong> The mask
+specifies a minimum eye-opening height at the center of the UI. For
+legacy TMDS testing up to 3.4 Gbps, the inner mask height guarantees a
+minimum differential voltage amplitude—typically requiring an inner
+boundary clearance of at least 150 mV to 200 mV differential (depending
+on the exact HDMI specification revision and data rate) to prevent
+signal degradation over distance.</li>
+<li><strong>Maximum Allowable Jitter (Horizontal Width):</strong> The
+horizontal boundaries establish the maximum permissible total jitter
+(<span class="math inline">\(T_J\)</span>). In standard HDMI
+specifications, the allowable transmitter jitter generally restricts
+edge transitions so that the inner mask maintains a clear width
+typically equivalent to 0.70 UI to 0.75 UI, allowing no more than 0.25
+UI to 0.30 UI of aggregate jitter.</li>
+</ul>
+<h3 id="hdmi-20-and-hdmi-21-considerations">HDMI 2.0 and HDMI 2.1
+Considerations</h3>
+<p>As data rates scale to 6 Gbps per channel under HDMI 2.0 and up to 12
+Gbps per lane under HDMI 2.1 FRL, transmission line attenuation and skin
+effect close the physical eye directly at the transmitter pins.</p>
+<p>To address this, modern specifications alter the compliance
+approach:</p>
+<ul>
+<li><strong>HDMI 2.0 (TMDS at 6 Gbps):</strong> The compliance mask is
+evaluated after applying a standardized reference equalizer model
+(defined in the specification) to the captured signal to reconstruct the
+eye diagram.</li>
+<li><strong>HDMI 2.1 (FRL):</strong> The architecture transitions to
+embedded clock schemes and multi-level signaling modes. FRL transmitter
+testing replaces static optical-style masks with post-equalization masks
+that account for programmable transmitter de-emphasis, pre-shoot, and
+reference receiver continuous-time linear equalization (CTLE).</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

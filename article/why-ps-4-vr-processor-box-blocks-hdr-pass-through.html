@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why PS4 VR Processor Box Blocks HDR Pass-Through - hdmi</title>
+    <meta name="description" content="When Sony released the original PlayStation VR (model CUH-ZVR1), players discovered that routing their console through the required external processor unit completely disabled High Dynamic Range (HDR) on their televisions. This article breaks down the te">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/why-ps-4-vr-processor-box-blocks-hdr-pass-through">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why PS4 VR Processor Box Blocks HDR Pass-Through - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/why-ps-4-vr-processor-box-blocks-hdr-pass-through" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When Sony released the original PlayStation VR (model CUH-ZVR1), players discovered that routing their console through the required external processor unit completely disabled High Dynamic Range (HDR) on their televisions. This article breaks down the te" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-ps4-vr-processor-box-blocks-hdr-pass-through">Why PS4 VR
+Processor Box Blocks HDR Pass-Through</h1>
+<p>When Sony released the original PlayStation VR (model CUH-ZVR1),
+players discovered that routing their console through the required
+external processor unit completely disabled High Dynamic Range (HDR) on
+their televisions. This article breaks down the technical limitations
+responsible for this restriction, focusing on the processor unit's
+internal HDMI chipset, the missing metadata protocols, and how Sony
+ultimately addressed the issue in later hardware revisions.</p>
+<p>The fundamental reason the original PSVR processor box blocks HDR is
+a hardware limitation within its internal HDMI pass-through circuitry.
+The first-generation breakout unit (CUH-ZVR1) was developed before the
+HDMI 2.0a standard became the established baseline for consumer 4K HDR
+displays. While the processor unit can pass a 4K resolution signal at
+60Hz using a YUV 4:2:0 color format, its internal interface lacks the
+hardware capability to transmit the static metadata required by
+HDR10.</p>
+<p>HDR content requires more than raw bandwidth; it depends on specific
+metadata packets defined under the HDMI 2.0a specification (specifically
+the CTA-861.3 standard). These packets inform the television how to
+adjust brightness, contrast, and color mapping on a frame-by-frame or
+scene-by-scene basis. Because the chipset inside the original processor
+unit is only rated for base-level HDMI 2.0 specifications without the
+"a" revision's metadata pipeline, it cannot recognize or forward this
+HDR information. Consequently, the console detects that the receiving
+device in the chain cannot handle HDR, prompting the PS4 or PS4 Pro to
+disable the feature and output a standard dynamic range (SDR) signal
+instead.</p>
+<p>This limitation is exacerbated by the active role the processor unit
+plays in the setup. The breakout box is not a simple passive switch or
+HDMI splitter. It actively deconstructs and manages video and audio
+signals to generate the "Social Screen" output for the television while
+simultaneously feeding the VR headset and processing object-based 3D
+audio. Because all video passing to the TV must route through this
+active internal pipeline, any data standard unsupported by the box’s
+silicon is stripped out before the signal reaches the display.</p>
+<p>Sony acknowledged this limitation and resolved it with the release of
+the revised PlayStation VR model (CUH-ZVR2) in late 2017. The updated
+version features a redesigned processor box equipped with an upgraded
+HDMI pass-through controller capable of forwarding HDR10 metadata
+directly to compatible displays, allowing users to play traditional HDR
+games without manually swapping HDMI cables.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

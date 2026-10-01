@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI CEC One Touch Play Powers on AV Receivers - hdmi</title>
+    <meta name="description" content="HDMI Consumer Electronics Control (CEC) features a core automation capability called One Touch Play, which allows a single playback device to power on and configure an entire home theater setup with one command. Acting as the central switching hub, the A">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-cec-one-touch-play-powers-on-av-receivers">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI CEC One Touch Play Powers on AV Receivers - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-cec-one-touch-play-powers-on-av-receivers" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI Consumer Electronics Control (CEC) features a core automation capability called One Touch Play, which allows a single playback device to power on and configure an entire home theater setup with one command. Acting as the central switching hub, the A" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-cec-one-touch-play-powers-on-av-receivers">How HDMI CEC
+One Touch Play Powers on AV Receivers</h1>
+<p>HDMI Consumer Electronics Control (CEC) features a core automation
+capability called One Touch Play, which allows a single playback device
+to power on and configure an entire home theater setup with one command.
+Acting as the central switching hub, the Audio/Video (AV) receiver
+intercepts these control signals, awakens itself from standby, sets the
+appropriate audio and video inputs, and passes the power commands
+downstream to the display. This article explains the underlying
+mechanism, signal flow, and device coordination that enable an AV
+receiver to automate the power state of an entire media stack.</p>
+<h3 id="the-cec-physical-layer-and-standby-communication">The CEC
+Physical Layer and Standby Communication</h3>
+<p>HDMI cables contain a dedicated electrical conductor on Pin 13
+designated for CEC signaling. This single-wire, bidirectional serial bus
+operates independently of the high-speed audio and video data
+channels.</p>
+<p>Even when your media devices appear off, they maintain a low-power
+standby state that keeps their internal HDMI CEC microcontrollers
+active. Because the Pin 13 bus remains powered and receptive to serial
+data, devices can send and receive control packets without needing the
+full video processing pipeline active.</p>
+<h3 id="initiation-the-source-device-signal">Initiation: The Source
+Device Signal</h3>
+<p>The sequence begins at the source device—such as a streaming box,
+Blu-ray player, or gaming console. When you press the power or home
+button on the source's remote:</p>
+<ol type="1">
+<li>The source generates a standardized CEC opcode known as
+<code>&lt;Image View On&gt;</code> (or
+<code>&lt;Text View On&gt;</code>).</li>
+<li>The source broadcasts an <code>&lt;Active Source&gt;</code> message
+containing its unique physical HDMI address (for example,
+<code>1.1.0.0</code>).</li>
+<li>These messages travel down the HDMI cable toward the AV
+receiver.</li>
+</ol>
+<h3 id="the-av-receiver-as-the-central-coordinator">The AV Receiver as
+the Central Coordinator</h3>
+<p>Because modern AV receivers sit inline between source components and
+the display, the receiver functions as a signal router and
+interpreter:</p>
+<ul>
+<li><strong>Signal Interception:</strong> The AV receiver detects the
+incoming <code>&lt;Active Source&gt;</code> message on its designated
+input port.</li>
+<li><strong>Power State Transition:</strong> The receiver’s internal
+microcontroller triggers the main power relay, waking the unit from
+standby.</li>
+<li><strong>Input Switching:</strong> By reading the physical address
+attached to the packet, the receiver automatically routes internal video
+switching to the corresponding HDMI port and activates its internal
+digital signal processors (DSP) and amplifiers.</li>
+<li><strong>System Audio Routing:</strong> If configured, the receiver
+issues a <code>&lt;System Audio Mode Request&gt;</code> across the bus,
+notifying the ecosystem that the AVR will handle all audio decoding,
+which prompts connected televisions to mute internal speakers.</li>
+</ul>
+<h3 id="passing-the-signal-to-the-display">Passing the Signal to the
+Display</h3>
+<p>Once the receiver processes the message, it repeats the
+<code>&lt;Image View On&gt;</code> and
+<code>&lt;Active Source&gt;</code> commands through its HDMI output
+(eARC/ARC port) to the television or projector.</p>
+<p>Upon receiving <code>&lt;Image View On&gt;</code>, the display powers
+on from standby. When it detects the <code>&lt;Active Source&gt;</code>
+payload indicating the AV receiver's output port, the display
+immediately switches its active input to match the AVR, bypassing manual
+source selection entirely.</p>
+<h3 id="resulting-automated-chain-reaction">Resulting Automated Chain
+Reaction</h3>
+<p>Through this structured cascade of commands over Pin 13, a single
+button press on a streaming remote initiates a three-step chain: the
+source boots up, the AV receiver powers on and locks onto the correct
+audio/video stream, and the display turns on to present the image. The
+entire media stack synchronizes into an active state in a matter of
+seconds without requiring infrared line-of-sight or complex universal
+remotes.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

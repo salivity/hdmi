@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Displays Automatically Switch HDMI Inputs - hdmi</title>
+    <meta name="description" content="Modern conference room displays automatically switch to a newly connected HDMI source using a coordinated combination of physical electrical signals, digital handshake protocols, and internal display logic. When a user connects a laptop or presentation d">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-displays-automatically-switch-hdmi-inputs">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Displays Automatically Switch HDMI Inputs - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-displays-automatically-switch-hdmi-inputs" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Modern conference room displays automatically switch to a newly connected HDMI source using a coordinated combination of physical electrical signals, digital handshake protocols, and internal display logic. When a user connects a laptop or presentation d" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-displays-automatically-switch-hdmi-inputs">How Displays
+Automatically Switch HDMI Inputs</h1>
+<p>Modern conference room displays automatically switch to a newly
+connected HDMI source using a coordinated combination of physical
+electrical signals, digital handshake protocols, and internal display
+logic. When a user connects a laptop or presentation device, hardware
+triggers such as the 5V power line and Hot Plug Detection immediately
+notify the display of a physical connection. The display then confirms
+an active video stream, processes control signals like HDMI-CEC, and
+activates firmware-level priority switching to route the new video
+source directly to the screen.</p>
+<h3 id="1-physical-detection-5v-power-and-hot-plug-detect-hpd">1.
+Physical Detection: 5V Power and Hot Plug Detect (HPD)</h3>
+<p>The switching process begins at the physical layer of the HDMI
+connection:</p>
+<ul>
+<li><strong>The +5V Power Pin (Pin 18):</strong> When a source device
+powers on and connects to the cable, it sends a low-current +5V
+electrical signal through Pin 18 to the display.</li>
+<li><strong>Hot Plug Detect (Pin 19):</strong> Upon receiving the 5V
+signal, the display asserts a signal back to the source on Pin 19 (Hot
+Plug Detect). This completes the initial physical connection circuit and
+informs both devices that a link is physically established.</li>
+</ul>
+<h3 id="2-the-edid-handshake">2. The EDID Handshake</h3>
+<p>Once physical contact is verified, the devices communicate digitally
+over the Display Data Channel (DDC):</p>
+<ul>
+<li>The display transmits its Extended Display Identification Data
+(EDID) to the source device.</li>
+<li>EDID contains technical specifications, including supported
+resolutions, refresh rates, and audio formats.</li>
+<li>The laptop or source processes this data to format its video output
+properly, preparing to transmit an active video signal.</li>
+</ul>
+<h3 id="3-active-tmds-signal-sensing">3. Active TMDS Signal Sensing</h3>
+<p>Plugging in a cable is not always enough to trigger an input switch,
+as an idle or sleeping computer may not output an image. Smart displays
+monitor the Transition-Minimized Differential Signaling (TMDS) clock
+line:</p>
+<ul>
+<li>The display checks for an active clock and pixel data stream.</li>
+<li>If a cable is plugged in but the source sends no active signal, the
+display remains on its current input.</li>
+<li>As soon as active video packets are detected, the display treats the
+port as ready for display.</li>
+</ul>
+<h3 id="4-hdmi-cec-commands">4. HDMI-CEC Commands</h3>
+<p>Many commercial and consumer displays rely on HDMI Consumer
+Electronics Control (CEC) via Pin 13:</p>
+<ul>
+<li>When an active source initializes, it can broadcast standard CEC
+commands such as <code>&lt;Active Source&gt;</code> or
+<code>&lt;One Touch Play&gt;</code>.</li>
+<li>These commands instruct the display to wake from standby mode and
+immediately switch its active viewing channel to the port sending the
+command.</li>
+</ul>
+<h3 id="5-firmware-level-switching-logic">5. Firmware-Level Switching
+Logic</h3>
+<p>The display’s internal firmware governs how it reacts once an active
+signal is confirmed. Enterprise and conference room systems typically
+employ one of two logic modes:</p>
+<ul>
+<li><strong>Last-In, First-Out (LIFO):</strong> The most common
+conference setup. The display automatically routes to whichever port
+detected a newly activated signal, allowing arriving presenters to plug
+in and immediately take over the screen.</li>
+<li><strong>Priority Routing:</strong> The administrator designates
+specific inputs (such as an in-room dedicated PC) with higher priority.
+In this mode, secondary inputs only take over when explicitly prompted
+or when the primary input is absent. When the guest unplugs, the system
+automatically reverts to the default input.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

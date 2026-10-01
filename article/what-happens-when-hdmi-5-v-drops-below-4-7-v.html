@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Happens When HDMI 5V Drops Below 4.7V? - hdmi</title>
+    <meta name="description" content="The HDMI specification defines a dedicated +5V power rail on Pin 18, requiring source devices to maintain a voltage between 4.7V and 5.3V to guarantee reliable communication with connected displays. When the voltage on this line drops below the 4.7-volt">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/what-happens-when-hdmi-5-v-drops-below-4-7-v">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Happens When HDMI 5V Drops Below 4.7V? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/what-happens-when-hdmi-5-v-drops-below-4-7-v" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The HDMI specification defines a dedicated +5V power rail on Pin 18, requiring source devices to maintain a voltage between 4.7V and 5.3V to guarantee reliable communication with connected displays. When the voltage on this line drops below the 4.7-volt" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="what-happens-when-hdmi-5v-drops-below-47v">What Happens When
+HDMI 5V Drops Below 4.7V?</h1>
+<p>The HDMI specification defines a dedicated +5V power rail on Pin 18,
+requiring source devices to maintain a voltage between 4.7V and 5.3V to
+guarantee reliable communication with connected displays. When the
+voltage on this line drops below the 4.7-volt minimum threshold, it
+disrupts fundamental negotiation mechanisms, including Hot Plug Detect
+(HPD), EDID data retrieval, and HDCP authentication. This article
+details the specific hardware and functional failures that occur when an
+HDMI source fails to meet the 4.7-volt standard.</p>
+<h3 id="failure-to-read-edid-and-display-recognition-issues">Failure to
+Read EDID and Display Recognition Issues</h3>
+<p>The 5V line primarily powers the display's internal EEPROM
+(Electrically Erasable Programmable Read-Only Memory) via the Display
+Data Channel (DDC), an I²C-based communication bus. This ensures the
+source can read the display's Extended Display Identification Data
+(EDID)—which specifies native resolutions, refresh rates, and audio
+capabilities—even if the display is turned off or in standby.</p>
+<p>If the voltage drops below 4.7V, the EEPROM often browns out or fails
+to receive sufficient power to drive logic-level responses over the DDC.
+Consequently, the source cannot read the EDID, leading to:</p>
+<ul>
+<li>The source defaulting to basic fallback resolutions (such as 640x480
+or 1024x768).</li>
+<li>Inability to negotiate advanced features such as HDR, variable
+refresh rates (VRR), or specific color spaces.</li>
+<li>Total failure of the source operating system to recognize that a
+display is connected.</li>
+</ul>
+<h3 id="hot-plug-detect-hpd-disruption">Hot Plug Detect (HPD)
+Disruption</h3>
+<p>Pin 19 of an HDMI connection serves as the Hot Plug Detect line. When
+a display is plugged in, it asserts a high logic level (typically 2.4V
+to 5.3V) back to the source, signaling that it is ready to receive a
+video stream. Most displays generate this HPD signal by pulling up the
+voltage provided directly by the source's 5V rail on Pin 18.</p>
+<p>A voltage drop below 4.7V can pull the HPD line below the logic-high
+threshold required by the source’s transmitter chipset. If the source
+does not register the HPD signal as stable and high:</p>
+<ul>
+<li>The source will shut off the Transition-Minimized Differential
+Signaling (TMDS) or Fixed Rate Link (FRL) lines.</li>
+<li>The display will show a "No Signal" or "Cable Disconnected"
+error.</li>
+<li>Marginal voltages cause the HPD circuit to float near the threshold,
+triggering rapid connect/disconnect loops where the screen continuously
+blinks on and off.</li>
+</ul>
+<h3 id="malfunction-of-active-accessories-and-converters">Malfunction of
+Active Accessories and Converters</h3>
+<p>Passive HDMI cables rely on the 5V line only for signaling, but
+active accessories draw operational current directly from Pin 18.
+Devices such as active optical cables (AOC), HDMI-to-VGA/DVI converters,
+inline signal boosters, and passive-powered HDMI switches require the
+full 4.7V to 5.3V range to power their internal chips.</p>
+<p>When the rail sags below 4.7V:</p>
+<ul>
+<li><strong>Active Optical Cables (AOC):</strong> The internal
+electrical-to-optical transceivers fail to initialize or transmit data,
+resulting in total link failure over long runs.</li>
+<li><strong>Format Converters:</strong> Digital-to-analog converters
+(such as HDMI to VGA) crash, produce distorted output, or fail
+entirely.</li>
+<li><strong>Switches and Splitters:</strong> Inline unpowered switches
+fail to switch inputs or experience unstable power resets.</li>
+</ul>
+<h3 id="hdcp-handshake-failures">HDCP Handshake Failures</h3>
+<p>High-bandwidth Digital Content Protection (HDCP) requires continuous,
+bidirectional cryptographic communication between the source and the
+sink over the DDC lines. Because HDCP relies on the same power-dependent
+bus as EDID, voltage drops create communication timeouts and corrupted
+key exchanges. This leads to HDCP handshake failures, manifesting as
+snow/static on the display, blank screens when launching protected
+content (such as streaming apps or Blu-rays), or explicit HDCP error
+codes.</p>
+<h3 id="common-causes-and-mitigation">Common Causes and Mitigation</h3>
+<p>A voltage drop below 4.7V is usually caused by:</p>
+<ul>
+<li>Long, thin copper HDMI cables exhibiting excessive resistive loss
+(IR drop).</li>
+<li>High-draw active accessories pulling more current than the source's
+nominal 55mA specification allows.</li>
+<li>Weak, degrading, or out-of-spec power supplies inside compact
+streaming devices, laptops, or graphics cards.</li>
+</ul>
+<p>To resolve a sub-4.7V condition, install an inline 5V power injector
+(also known as an HDMI voltage inserter) near the source, use a
+port-powered HDMI splitter with an external DC adapter, or replace long
+passive cables with externally powered active solutions.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

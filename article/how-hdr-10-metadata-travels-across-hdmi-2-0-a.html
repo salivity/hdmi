@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDR10 Metadata Travels Across HDMI 2.0a - hdmi</title>
+    <meta name="description" content="This article explores how static HDR10 metadata is transmitted across an HDMI 2.0a connection, bridging the gap between media sources and display hardware. It covers the introduction of the CTA-861.3 standard, details how metadata is packaged into Dynami">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdr-10-metadata-travels-across-hdmi-2-0-a">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDR10 Metadata Travels Across HDMI 2.0a - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdr-10-metadata-travels-across-hdmi-2-0-a" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explores how static HDR10 metadata is transmitted across an HDMI 2.0a connection, bridging the gap between media sources and display hardware. It covers the introduction of the CTA-861.3 standard, details how metadata is packaged into Dynami" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdr10-metadata-travels-across-hdmi-20a">How HDR10 Metadata
+Travels Across HDMI 2.0a</h1>
+<p>This article explores how static HDR10 metadata is transmitted across
+an HDMI 2.0a connection, bridging the gap between media sources and
+display hardware. It covers the introduction of the CTA-861.3 standard,
+details how metadata is packaged into Dynamic Range and Mastering (DRM)
+InfoFrames, and explains how this data rides within the HDMI blanking
+interval to enable proper display tone mapping.</p>
+<h3 id="the-role-of-hdmi-20a-and-cta-8613">The Role of HDMI 2.0a and
+CTA-861.3</h3>
+<p>The baseline HDMI 2.0 standard possessed sufficient bandwidth (18
+Gbps) to carry 4K video at 60 frames per second with 10-bit color depth,
+but it lacked a signaling mechanism to tell displays how to interpret
+High Dynamic Range (HDR) content. Released in early 2015, the HDMI 2.0a
+update resolved this by adopting the CTA-861.3 (formerly CEA-861.3)
+specification.</p>
+<p>CTA-861.3 defined an electronic signaling architecture that allows a
+source device (such as an Ultra HD Blu-ray player, gaming console, or
+streaming box) to transmit static HDR metadata over the HDMI link to an
+HDR-capable television or monitor (the sink device).</p>
+<h3 id="the-packaging-dynamic-range-and-mastering-drm-infoframes">The
+Packaging: Dynamic Range and Mastering (DRM) InfoFrames</h3>
+<p>HDMI transports video, audio, and auxiliary data using
+Transition-Minimized Differential Signaling (TMDS) clock and data
+channels. Auxiliary data is not mixed directly into the active video
+pixels; instead, it is transmitted during the vertical and horizontal
+blanking intervals—periods between lines and frames where no active
+pixel data is being drawn. Within these intervals lies the <strong>Data
+Island</strong> period.</p>
+<p>HDMI 2.0a utilizes this Data Island period to transmit a specific
+auxiliary packet called the <strong>Dynamic Range and Mastering (DRM)
+InfoFrame</strong>.</p>
+<p>The DRM InfoFrame carries the essential static metadata defined by
+SMPTE ST 2086, which includes:</p>
+<ul>
+<li><strong>Electro-Optical Transfer Function (EOTF):</strong>
+Identifies the gamma curve used, typically SMPTE ST 2084 (Perceptual
+Quantizer, or PQ) for HDR10.</li>
+<li><strong>Color Primaries and White Point:</strong> The x and y
+chromaticity coordinates of the mastering display (usually targeting the
+DCI-P3 color space within a BT.2020 container).</li>
+<li><strong>Luminance Range:</strong> The minimum and maximum mastering
+display luminance (e.g., 0.005 nits to 1,000 or 4,000 nits).</li>
+<li><strong>Content Light Levels (CTA-861.3 extensions):</strong>
+<ul>
+<li><strong>MaxCLL (Maximum Content Light Level):</strong> The brightest
+single pixel in the entire program.</li>
+<li><strong>MaxFALL (Maximum Frame Average Light Level):</strong> The
+highest average brightness of any single frame in the program.</li>
+</ul></li>
+</ul>
+<h3 id="transmission-and-display-processing">Transmission and Display
+Processing</h3>
+<p>Because HDR10 metadata is "static," the values representing MaxCLL,
+MaxFALL, and mastering display limits remain constant throughout the
+entire runtime of the video. However, the HDMI transmitter does not send
+the DRM InfoFrame only once.</p>
+<p>To ensure that the display consistently maintains its HDR state—and
+to account for mid-stream events such as source switching, resolution
+renegotiation, or hot-plugging—the source repeatedly transmits the DRM
+InfoFrame at least once per video field or frame during the Data Island
+period.</p>
+<p>When the HDMI receiver (the display) decodes the incoming TMDS
+stream, it separates the active video payload from the Data Island
+packets:</p>
+<ol type="1">
+<li><strong>Extraction:</strong> The display’s HDMI controller extracts
+the DRM InfoFrame from the blanking interval.</li>
+<li><strong>Configuration:</strong> The display switches into its HDR
+mode, engaging the ST 2084 PQ curve and expanding its color pipeline to
+BT.2020.</li>
+<li><strong>Tone Mapping:</strong> Using the static parameters from the
+DRM InfoFrame (primarily MaxCLL and mastering luminance), the display’s
+internal image processor applies a static tone-mapping curve. This
+compresses highlights and adjusts color tracking to match the physical
+capabilities of its panel without clipping detail.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

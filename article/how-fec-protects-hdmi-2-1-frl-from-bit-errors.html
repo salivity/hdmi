@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How FEC Protects HDMI 2.1 FRL From Bit Errors - hdmi</title>
+    <meta name="description" content="HDMI 2.1 introduces Fixed Rate Link (FRL) technology to achieve transmission speeds up to 48 Gbps, allowing the delivery of uncompressed 4K at 120Hz and 8K at 60Hz. However, transmitting high-frequency signals over standard copper cables introduces signi">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-fec-protects-hdmi-2-1-frl-from-bit-errors">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How FEC Protects HDMI 2.1 FRL From Bit Errors - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-fec-protects-hdmi-2-1-frl-from-bit-errors" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI 2.1 introduces Fixed Rate Link (FRL) technology to achieve transmission speeds up to 48 Gbps, allowing the delivery of uncompressed 4K at 120Hz and 8K at 60Hz. However, transmitting high-frequency signals over standard copper cables introduces signi" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-fec-protects-hdmi-21-frl-from-bit-errors">How FEC Protects
+HDMI 2.1 FRL From Bit Errors</h1>
+<p>HDMI 2.1 introduces Fixed Rate Link (FRL) technology to achieve
+transmission speeds up to 48 Gbps, allowing the delivery of uncompressed
+4K at 120Hz and 8K at 60Hz. However, transmitting high-frequency signals
+over standard copper cables introduces significant attenuation,
+electromagnetic interference, and jitter, leading to digital bit errors.
+Forward Error Correction (FEC) is a critical error-control mechanism
+integrated into the HDMI 2.1 FRL architecture that enables the receiving
+display to detect and correct bit errors in real time without requesting
+data retransmission, thereby preserving image integrity and link
+stability.</p>
+<h3 id="the-shift-from-tmds-to-frl">The Shift from TMDS to FRL</h3>
+<p>Previous HDMI standards relied on Transition-Minimized Differential
+Signaling (TMDS), which capped bandwidth at 18 Gbps over three data
+channels and a dedicated clock channel. HDMI 2.1 replaces TMDS with FRL,
+which repurposes the clock line into a fourth data lane and adopts
+16b/18b encoding. FRL operates at discrete, fixed data rates per lane
+(3, 6, 8, 10, or 12 Gbps), utilizing either three or four lanes.</p>
+<p>At these elevated frequencies, physical limits of copper wiring cause
+high-frequency signals to degrade rapidly over distance. In a purely
+digital stream, degraded signals result in flipped bits (a logical 0
+reading as a 1, or vice versa). Without protection, these bit errors
+manifest visually as "sparkles," pixel discoloration, audio dropouts, or
+complete signal loss.</p>
+<h3 id="what-is-forward-error-correction">What Is Forward Error
+Correction?</h3>
+<p>Forward Error Correction is an algorithmic technique used in digital
+communications where the sender adds redundant error-correcting code
+(parity data) to the transmitted payload.</p>
+<p>In computer networks, corrupted packets are typically handled via
+Automatic Repeat reQuest (ARQ), where the receiver requests a
+retransmission. This approach is unfeasible for real-time uncompressed
+audio/video streams, as the latency introduced by retransmissions would
+cause massive buffer delays and break synchronization. FEC solves this
+by allowing the receiver (the sink, such as a television or monitor) to
+identify and mathematically reconstruct corrupted bits locally on the
+fly.</p>
+<h3 id="how-fec-operates-in-hdmi-21-frl">How FEC Operates in HDMI 2.1
+FRL</h3>
+<p>HDMI 2.1 implements a block-based error-correcting algorithm known as
+Reed-Solomon (RS) coding. The protection process follows a strict
+pipeline:</p>
+<ol type="1">
+<li><strong>Parity Generation:</strong> The source device (such as a
+gaming console or graphics card) segments the 16b/18b encoded data
+stream into fixed-size blocks. Using polynomial mathematics, the
+transmitter calculates parity symbols for each block and appends them to
+the transmission packet.</li>
+<li><strong>Transmission:</strong> The data, along with its redundant
+parity symbols, traverses the HDMI cable across the active FRL
+lanes.</li>
+<li><strong>Syndrome Calculation:</strong> Upon receipt, the display's
+HDMI receiver recalculates the polynomial equations across the incoming
+data block. If the calculated result (the "syndrome") is zero, the block
+arrived without error.</li>
+<li><strong>Error Localization and Correction:</strong> If the syndrome
+is non-zero, the receiver uses the mathematical properties of the
+Reed-Solomon code to locate the exact position of the corrupted bits
+within the block and flips them back to their correct values.</li>
+</ol>
+<h3 id="mitigating-bit-error-rates-ber">Mitigating Bit Error Rates
+(BER)</h3>
+<p>The physical transmission of 48 Gbps data often yields a pre-FEC Bit
+Error Rate (BER) around <span class="math inline">\(10^{-7}\)</span> to
+<span class="math inline">\(10^{-9}\)</span> on typical consumer-grade
+cables. While this error rate appears low, billions of bits transfer
+every second, meaning hundreds of pixel errors would appear on screen
+every minute.</p>
+<p>By applying Reed-Solomon FEC, HDMI 2.1 transforms an imperfect
+physical link with a marginal raw BER into an effective post-FEC BER of
+<span class="math inline">\(10^{-15}\)</span> or better. This
+effectively eliminates visible artifacts, ensuring that high-bandwidth
+features like uncompressed high-dynamic-range (HDR) video, variable
+refresh rate (VRR), and multi-channel audio transmit smoothly over
+passive cables up to several meters in length.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

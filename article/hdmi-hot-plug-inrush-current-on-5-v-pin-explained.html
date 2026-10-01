@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Hot-Plug Inrush Current on 5V Pin Explained - hdmi</title>
+    <meta name="description" content="When an HDMI source is connected to an active sink device, the physical mating of the connectors triggers a sudden electrical transition known as a hot-plug event. During this millisecond-scale interaction, the HDMI Pin 18 (+5V Power) line frequently exp">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-hot-plug-inrush-current-on-5-v-pin-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Hot-Plug Inrush Current on 5V Pin Explained - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-hot-plug-inrush-current-on-5-v-pin-explained" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="When an HDMI source is connected to an active sink device, the physical mating of the connectors triggers a sudden electrical transition known as a hot-plug event. During this millisecond-scale interaction, the HDMI Pin 18 (+5V Power) line frequently exp" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-hot-plug-inrush-current-on-5v-pin-explained">HDMI Hot-Plug
+Inrush Current on 5V Pin Explained</h1>
+<p>When an HDMI source is connected to an active sink device, the
+physical mating of the connectors triggers a sudden electrical
+transition known as a hot-plug event. During this millisecond-scale
+interaction, the HDMI Pin 18 (+5V Power) line frequently experiences a
+massive inrush current spike that can significantly exceed normal
+operating limits. This article explores the root electrical causes
+behind this transient event, detailing the roles of uncharged capacitive
+loads, mechanical contact dynamics, and supply rail impedances, as well
+as the risks it poses to host hardware.</p>
+<h3 id="the-function-of-the-hdmi-5v-power-pin">The Function of the HDMI
+5V Power Pin</h3>
+<p>In the HDMI specification, Pin 18 delivers a +5V power rail from the
+source device (such as a computer or media console) to the sink device
+(such as a TV or monitor). This power rail is not intended to drive
+high-power display electronics; rather, it provides a minimum of 55 mA
+(typically rated up to 500 mA) to power the sink's Display Data Channel
+(DDC) circuitry and the Electrically Erasable Programmable Read-Only
+Memory (EEPROM) containing the Extended Display Identification Data
+(EDID). This ensures the source can query the display's capabilities
+even if the display is turned off or in standby.</p>
+<h3 id="primary-drivers-of-the-inrush-current-spike">Primary Drivers of
+the Inrush Current Spike</h3>
+<p>The inrush current spike during a hot-plug insertion is fundamentally
+driven by basic circuit transients and mechanical mating behavior:</p>
+<h4 id="1-charging-of-uncharged-sink-capacitance">1. Charging of
+Uncharged Sink Capacitance</h4>
+<p>The sink's internal HDMI receiver circuitry includes decoupling and
+bypass capacitors on the +5V line to filter high-frequency noise and
+maintain voltage stability during DDC communication. Prior to
+connection, these capacitors are at a zero-volt state (<span
+class="math inline">\(0\text{ V}\)</span>).</p>
+<p>When Pin 18 mates, the <span
+class="math inline">\(+5\text{V}\)</span> potential from the source is
+instantaneously applied across these discharged capacitors. The
+instantaneous current flowing into an ideal capacitor is governed
+by:</p>
+<p><span class="math display">\[I(t) = C \frac{dV}{dt}\]</span></p>
+<p>Because the mechanical contact closes the circuit within nanoseconds,
+the rate of voltage change (<span
+class="math inline">\(\frac{dV}{dt}\)</span>) is extremely steep. With
+no soft-start circuitry active on a passive connection, the uncharged
+capacitors present an effective short circuit to ground for a fraction
+of a microsecond, drawing several amperes of current until charged.</p>
+<h4 id="2-mechanical-contact-bounce">2. Mechanical Contact Bounce</h4>
+<p>HDMI connectors rely on friction-fit mechanical pins. During
+insertion, the pins do not make a smooth, continuous electrical
+connection. Instead, micro-scale irregularities on the metal contacts
+cause them to mechanically bounce against each other over tens to
+hundreds of microseconds before settling.</p>
+<p>Each bounce represents a rapid cycle of connection, disconnection,
+and reconnection. These rapid make-and-break cycles create
+high-frequency switching transients that cause repetitive current surges
+and localized voltage spikes due to parasitic inductances in the
+cable.</p>
+<h4 id="3-low-parasitic-impedance-of-the-interconnect">3. Low Parasitic
+Impedance of the Interconnect</h4>
+<p>The peak amplitude of the current spike is limited only by the loop
+impedance of the path, which includes:</p>
+<ul>
+<li>The source power supply internal resistance.</li>
+<li>The printed circuit board (PCB) trace resistance.</li>
+<li>The contact resistance of the HDMI connector.</li>
+<li>The HDMI cable wire gauge and length.</li>
+<li>The Equivalent Series Resistance (ESR) of the sink’s filter
+capacitors.</li>
+</ul>
+<p>In modern high-performance designs, these resistances are
+intentionally minimized to reduce DC drop, often totaling under a few
+hundred milliohms. Consequently, Ohm's law dictates that the peak
+instantaneous inrush current can briefly surge well above <span
+class="math inline">\(2\text{ to }5\text{ A}\)</span>, despite the pin
+being rated for a fraction of that load.</p>
+<h3 id="engineering-consequences-and-risks">Engineering Consequences and
+Risks</h3>
+<p>Without adequate suppression, this inrush spike can cause several
+system-level failures:</p>
+<ul>
+<li><strong>Voltage Rail Droop:</strong> The instantaneous current draw
+can pull down the source device's internal <span
+class="math inline">\(+5\text{V}\)</span> power rail, potentially
+resetting microcontrollers, corrupting bus transactions, or resetting
+other peripherals sharing the rail.</li>
+<li><strong>Electrical Overstress (EOS):</strong> The high current
+density and subsequent inductive voltage kickback can degrade or destroy
+ESD protection diodes and HDMI transceiver silicon.</li>
+<li><strong>Nuisance Tripping:</strong> Standard polymeric positive
+temperature coefficient (PPTC) resettable fuses or overcurrent
+protection (OCP) circuits may trip inadvertently, temporarily disabling
+the video interface.</li>
+</ul>
+<h3 id="mitigation-strategies">Mitigation Strategies</h3>
+<p>Hardware designers prevent hot-plug inrush damage by incorporating
+dedicated power distribution switches or current-limiting load switches
+between the host’s <span class="math inline">\(+5\text{V}\)</span> rail
+and Pin 18. These integrated circuits feature controlled slew-rate
+outputs (soft-start) that artificially constrain <span
+class="math inline">\(\frac{dV}{dt}\)</span>, along with active
+current-limiting architectures that cap current at safe thresholds
+(typically <span class="math inline">\(500\text{ mA}\)</span>) until the
+sink's capacitance is completely charged.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

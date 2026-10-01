@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI 2.0 Achieves 18 Gbps Bandwidth - hdmi</title>
+    <meta name="description" content="HDMI 2.0 achieves its 18 Gbps throughput without changing the legacy 19-pin connector by quadrupling the signaling efficiency on the existing physical copper lines. Instead of adding new pins or altering physical pin assignments, HDMI 2.0 increases the p">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-2-0-achieves-18-gbps-bandwidth">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI 2.0 Achieves 18 Gbps Bandwidth - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-2-0-achieves-18-gbps-bandwidth" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI 2.0 achieves its 18 Gbps throughput without changing the legacy 19-pin connector by quadrupling the signaling efficiency on the existing physical copper lines. Instead of adding new pins or altering physical pin assignments, HDMI 2.0 increases the p" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-20-achieves-18-gbps-bandwidth">How HDMI 2.0 Achieves 18
+Gbps Bandwidth</h1>
+<p>HDMI 2.0 achieves its 18 Gbps throughput without changing the legacy
+19-pin connector by quadrupling the signaling efficiency on the existing
+physical copper lines. Instead of adding new pins or altering physical
+pin assignments, HDMI 2.0 increases the per-channel transmission speed,
+optimizes the clock signaling method, and incorporates data scrambling
+to preserve signal integrity over legacy Category 2 wiring.</p>
+<h3 id="the-physical-architecture-tmds-channels">The Physical
+Architecture: TMDS Channels</h3>
+<p>The standard Type-A HDMI connector relies on 19 pins, which include
+four Transition-Minimized Differential Signaling (TMDS) twisted pairs:
+three dedicated data lanes (Channels 0, 1, and 2) and one dedicated TMDS
+clock lane.</p>
+<p>Under HDMI 1.4 specifications:</p>
+<ul>
+<li>Each of the three data channels ran at a maximum character rate of
+340 Mcsc (mega-characters per second).</li>
+<li>With standard 8b/10b encoding, this yielded 3.4 Gbps per
+channel.</li>
+<li>Multiplying 3.4 Gbps across the three data channels resulted in a
+maximum aggregate bandwidth of 10.2 Gbps.</li>
+</ul>
+<p>HDMI 2.0 leaves these four differential pairs completely untouched
+physically, meaning the hardware footprint, pin assignments, and
+differential impedance requirements remain identical to earlier
+versions.</p>
+<h3 id="boosting-the-channel-signaling-rate">Boosting the Channel
+Signaling Rate</h3>
+<p>To increase bandwidth to 18 Gbps, the HDMI Forum raised the maximum
+operational frequency of the three TMDS data channels. HDMI 2.0
+increases the TMDS character rate from 340 Mcsc up to 600 Mcsc.</p>
+<p>Because each character consists of 10 encoded bits:</p>
+<ul>
+<li>600 Mcsc translates directly to a bit rate of 6.0 Gbps per data
+lane.</li>
+<li>Across all three primary data lanes, the total throughput becomes:
+<span class="math display">\[\text{3 lanes} \times 6.0\text{ Gbps} =
+18.0\text{ Gbps}\]</span></li>
+</ul>
+<p>This single change provides an approximately 76% increase in raw data
+throughput without requiring extra data lines.</p>
+<h3 id="solving-emi-with-a-14-rate-tmds-clock">Solving EMI with a 1/4
+Rate TMDS Clock</h3>
+<p>Transmitting a 600 MHz clock signal across standard copper wiring
+poses severe signal attenuation and electromagnetic interference (EMI)
+problems. Under HDMI 1.4, the clock lane operated at a 1:1 ratio with
+the character rate (up to 340 MHz).</p>
+<p>For operational rates above 3.4 Gbps, HDMI 2.0 alters how the clock
+line functions:</p>
+<ul>
+<li><strong>Clock Divider:</strong> The transmitter divides the clock
+frequency by four, sending a 1/4-rate clock signal (150 MHz for a 600
+Mcsc rate) down the physical clock lane.</li>
+<li><strong>Clock Recovery:</strong> The display receiver uses an
+internal Phase-Locked Loop (PLL) to multiply the incoming clock by four,
+reconstructing the necessary 600 MHz clock on-chip.</li>
+</ul>
+<p>This 1/4-rate clocking drastically reduces high-frequency radiation,
+allowing legacy Category 2 (High Speed) cables to carry the signal
+without failing regulatory interference standards.</p>
+<h3 id="active-data-scrambling">Active Data Scrambling</h3>
+<p>Higher frequencies increase the risk of repetitive bit patterns
+generating localized radio-frequency energy spikes that violate FCC and
+CE limits. When operating above 3.4 Gbps, HDMI 2.0 mandates active data
+scrambling.</p>
+<p>Before the video data is encoded into 10-bit TMDS characters, a
+pseudo-random bit sequence scrambles the payload. This redistributes
+energy evenly across the frequency spectrum, reducing peak emissions and
+minimizing cross-talk between the tightly bundled twisted pairs inside
+the cable.</p>
+<h3 id="cable-compatibility">Cable Compatibility</h3>
+<p>Because these changes occur strictly at the signaling and protocol
+layers within the transmitter and receiver silicon, standard "High
+Speed" (Category 2) HDMI cables originally certified for HDMI 1.4 are
+electrically capable of carrying the 18 Gbps payload over reasonable
+distances, preserving complete backward compatibility with existing
+physical infrastructure.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

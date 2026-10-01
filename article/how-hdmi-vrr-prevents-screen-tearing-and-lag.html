@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI VRR Prevents Screen Tearing and Lag - hdmi</title>
+    <meta name="description" content="HDMI Variable Refresh Rate (VRR) is a display technology that dynamically synchronizes a monitor or television's refresh rate to the real-time frame rate delivered by a gaming console or graphics card. By bridging the gap between GPU output and display t">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-vrr-prevents-screen-tearing-and-lag">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI VRR Prevents Screen Tearing and Lag - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-vrr-prevents-screen-tearing-and-lag" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI Variable Refresh Rate (VRR) is a display technology that dynamically synchronizes a monitor or television's refresh rate to the real-time frame rate delivered by a gaming console or graphics card. By bridging the gap between GPU output and display t" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-vrr-prevents-screen-tearing-and-lag">How HDMI VRR
+Prevents Screen Tearing and Lag</h1>
+<p>HDMI Variable Refresh Rate (VRR) is a display technology that
+dynamically synchronizes a monitor or television's refresh rate to the
+real-time frame rate delivered by a gaming console or graphics card. By
+bridging the gap between GPU output and display timing, HDMI VRR
+eliminates the distracting visual artifacts of screen tearing while
+avoiding the heavy input latency penalties associated with traditional
+vertical sync (V-Sync). This article explains the technical mechanics
+behind screen tearing, how HDMI VRR coordinates display cycles to stop
+it, and why this process significantly decreases controller-to-screen
+response times.</p>
+<h3 id="the-conflict-screen-tearing-vs-v-sync">The Conflict: Screen
+Tearing vs. V-Sync</h3>
+<p>To understand HDMI VRR, it helps to understand the problem it solves.
+Traditional displays operate at a fixed refresh rate, typically 60Hz,
+120Hz, or 144Hz, meaning the screen draws a new image at rigid,
+predetermined intervals (e.g., every 16.6 milliseconds on a 60Hz panel).
+Conversely, a graphics processing unit (GPU) renders frames dynamically;
+complex game scenes take longer to render, while simple scenes render
+faster.</p>
+<p>When the GPU's frame generation does not align with the display's
+static refresh cycle, two problems arise:</p>
+<ol type="1">
+<li><strong>Screen Tearing:</strong> If the GPU sends a new frame while
+the monitor is in the middle of refreshing, the monitor draws part of
+the old frame and part of the new frame in a single scan. This appears
+horizontally as a visual "tear" or split across the screen.</li>
+<li><strong>Traditional V-Sync Latency:</strong> Conventional V-Sync
+solves tearing by forcing the GPU to hold a finished frame in a buffer
+until the monitor is ready to draw its next scheduled cycle. While this
+prevents tearing, holding frames creates noticeable input latency (input
+lag). Furthermore, if the frame rate dips below the display's fixed
+threshold, frames repeat, causing noticeable visual stutter.</li>
+</ol>
+<h3 id="how-hdmi-vrr-prevents-screen-tearing">How HDMI VRR Prevents
+Screen Tearing</h3>
+<p>HDMI VRR—standardized as part of the HDMI 2.1 specification—solves
+this mismatch by reversing the control dynamic. Instead of the GPU
+conforming to a rigid display timer, the display adjusts its refresh
+cycle to match the exact output of the GPU.</p>
+<ul>
+<li><strong>Dynamic Refresh Cycles:</strong> With HDMI VRR enabled, the
+display's hardware does not draw a new vertical scan until the GPU has
+fully completed rendering the next frame.</li>
+<li><strong>One-to-One Alignment:</strong> If your game runs at 48
+frames per second, the display dynamically drops to 48Hz. If the action
+slows and the GPU pushes 112 FPS, the display ramps up to 112Hz
+instantly.</li>
+<li><strong>Elimination of Partial Frames:</strong> Because the monitor
+never begins a refresh cycle during an incomplete frame draw, the
+horizontal seam that causes screen tearing is completely
+eliminated.</li>
+</ul>
+<h3 id="how-hdmi-vrr-reduces-input-latency">How HDMI VRR Reduces Input
+Latency</h3>
+<p>In competitive gaming, controller responsiveness is critical. HDMI
+VRR reduces input latency through two primary mechanisms:</p>
+<ul>
+<li><strong>Zero Frame Buffering:</strong> Unlike traditional V-Sync,
+which delays frame presentation by holding finished images in a display
+buffer to align with fixed clock ticks, HDMI VRR sends the frame to the
+display panel the precise microsecond it is finished rendering. This
+direct pipeline keeps the delay between an input action (such as
+pressing a button) and the visual result on screen to an absolute
+minimum.</li>
+<li><strong>Removal of V-Sync Stutter Halving:</strong> On a traditional
+60Hz monitor with V-Sync, dropping even one frame below 60 FPS forces
+the monitor to repeat frames, cutting effective output to 30 FPS. This
+introduces massive, variable input delay. HDMI VRR seamlessly adjusts to
+fractional frame rate drops (e.g., dropping from 60 FPS to 57 FPS),
+ensuring frame delivery remains consistent without input latency
+spikes.</li>
+</ul>
+<h3 id="the-vrr-window-and-lfc">The VRR Window and LFC</h3>
+<p>For HDMI VRR to function properly, the game's frame rate must stay
+within the display’s supported "VRR window" (commonly 40Hz to 120Hz on
+modern televisions). When frame rates fall below the lowest threshold of
+this window, many VRR implementations use Low Framerate Compensation
+(LFC). LFC duplicates frames (for example, displaying a 30 FPS image
+twice at 60Hz) to keep the refresh rate inside the active VRR range,
+maintaining tear-free visuals and consistent input response even during
+severe performance drops.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

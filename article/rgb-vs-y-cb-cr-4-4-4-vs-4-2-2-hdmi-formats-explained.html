@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGB vs YCbCr 4:4:4 vs 4:2:2: HDMI Formats Explained - hdmi</title>
+    <meta name="description" content="Choosing the correct HDMI pixel encoding—RGB, YCbCr 4:4:4, or YCbCr 4:2:2—determines how your display receives and processes color and brightness data. While RGB and YCbCr 4:4:4 deliver uncompressed color detail ideal for PC monitors and sharp text r">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/rgb-vs-y-cb-cr-4-4-4-vs-4-2-2-hdmi-formats-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="RGB vs YCbCr 4:4:4 vs 4:2:2: HDMI Formats Explained - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/rgb-vs-y-cb-cr-4-4-4-vs-4-2-2-hdmi-formats-explained" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Choosing the correct HDMI pixel encoding—RGB, YCbCr 4:4:4, or YCbCr 4:2:2—determines how your display receives and processes color and brightness data. While RGB and YCbCr 4:4:4 deliver uncompressed color detail ideal for PC monitors and sharp text r" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="rgb-vs-ycbcr-444-vs-422-hdmi-formats-explained">RGB vs YCbCr
+4:4:4 vs 4:2:2: HDMI Formats Explained</h1>
+<p>Choosing the correct HDMI pixel encoding—RGB, YCbCr 4:4:4, or YCbCr
+4:2:2—determines how your display receives and processes color and
+brightness data. While RGB and YCbCr 4:4:4 deliver uncompressed color
+detail ideal for PC monitors and sharp text rendering, YCbCr 4:2:2 uses
+chroma subsampling to reduce bandwidth demands, making it a valuable
+option for high-dynamic-range (HDR) video and high refresh rates on
+bandwidth-limited HDMI connections. This guide breaks down the core
+technical differences, bandwidth requirements, and optimal use cases for
+each format.</p>
+<h3 id="color-encoding-basics">Color Encoding Basics</h3>
+<p>Video signals transmitted over HDMI consist of brightness (luma) and
+color (chroma) information. Displays use one of two primary color
+models:</p>
+<ul>
+<li><strong>RGB:</strong> Represents images through independent Red,
+Green, and Blue color channels for every individual pixel.</li>
+<li><strong>YCbCr:</strong> Splits the image into luma
+(<strong>Y</strong>, brightness) and two chroma channels
+(<strong>Cb</strong> for blue difference, <strong>Cr</strong> for red
+difference). This model is designed for compression, taking advantage of
+the human eye's higher sensitivity to brightness variations than to fine
+color detail.</li>
+</ul>
+<h3 id="rgb-full-color-no-compression">RGB (Full Color, No
+Compression)</h3>
+<p>In an RGB signal, every pixel receives dedicated red, green, and blue
+values.</p>
+<ul>
+<li><strong>Color Resolution:</strong> Full resolution. No color data is
+discarded.</li>
+<li><strong>Visual Clarity:</strong> Essential for computer use. Fine
+elements like text, user interface lines, and high-contrast edges appear
+sharp with zero color fringing.</li>
+<li><strong>Bandwidth Usage:</strong> High. At 8-bit color depth, it
+requires 24 bits per pixel (bpp).</li>
+<li><strong>Quantization Range:</strong> Can be set to "Full" (0–255)
+for PC monitors or "Limited" (16–235) for standard TVs. Mismatching
+these ranges causes crushed blacks or washed-out colors.</li>
+</ul>
+<h3 id="ycbcr-444-uncompressed-chroma">YCbCr 4:4:4 (Uncompressed
+Chroma)</h3>
+<p>YCbCr 4:4:4 is mathematically equivalent in resolution to RGB. The
+numbers indicate the sampling grid: for every 4 horizontal pixels across
+2 rows, all 4 pixels receive their own unique chroma samples.</p>
+<ul>
+<li><strong>Color Resolution:</strong> Full resolution. Chroma is
+sampled at the same rate as luma.</li>
+<li><strong>Visual Clarity:</strong> Matches RGB in edge sharpness and
+text legibility.</li>
+<li><strong>Bandwidth Usage:</strong> Identical to RGB (24 bpp at 8-bit
+depth).</li>
+<li><strong>Native Context:</strong> Often used when sending a signal to
+a television whose internal video processing engine operates natively in
+YCbCr, avoiding an extra color-space conversion step from RGB.</li>
+</ul>
+<h3 id="ycbcr-422-chroma-subsampling">YCbCr 4:2:2 (Chroma
+Subsampling)</h3>
+<p>YCbCr 4:2:2 introduces chroma subsampling to save bandwidth. While
+every pixel retains full brightness (Y) data, the horizontal color
+resolution is halved. Two adjacent horizontal pixels share the same
+color information.</p>
+<ul>
+<li><strong>Color Resolution:</strong> Half horizontal chroma
+resolution; full vertical chroma resolution.</li>
+<li><strong>Visual Clarity:</strong> Virtually indistinguishable from
+4:4:4 in live-action video and movies, because natural imagery rarely
+has single-pixel color transitions. However, fine colored text on
+contrasting backgrounds (such as red text on a black background) will
+display noticeable blur or artifacting.</li>
+<li><strong>Bandwidth Usage:</strong> Lower. Requires roughly 33% less
+bandwidth than RGB or 4:4:4 (16 bpp at 8-bit depth).</li>
+<li><strong>Bandwidth Utility:</strong> This compression frees up HDMI
+bandwidth to allow higher color bit depths (10-bit or 12-bit for HDR) or
+higher refresh rates on older standards like HDMI 2.0, which cannot
+transmit 4K at 60Hz in 10-bit RGB.</li>
+</ul>
+<h3 id="direct-comparison">Direct Comparison</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Feature</th>
+<th style="text-align: left;">RGB</th>
+<th style="text-align: left;">YCbCr 4:4:4</th>
+<th style="text-align: left;">YCbCr 4:2:2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Chroma Compression</strong></td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">None</td>
+<td style="text-align: left;">50% horizontal reduction</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Bits Per Pixel
+(8-bit)</strong></td>
+<td style="text-align: left;">24 bpp</td>
+<td style="text-align: left;">24 bpp</td>
+<td style="text-align: left;">16 bpp</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Text &amp; UI
+Quality</strong></td>
+<td style="text-align: left;">Flawless</td>
+<td style="text-align: left;">Flawless</td>
+<td style="text-align: left;">Prone to color fringing</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Video Playback
+Quality</strong></td>
+<td style="text-align: left;">Excellent</td>
+<td style="text-align: left;">Excellent</td>
+<td style="text-align: left;">Excellent</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Bandwidth Demand</strong></td>
+<td style="text-align: left;">High</td>
+<td style="text-align: left;">High</td>
+<td style="text-align: left;">Moderate</td>
+</tr>
+</tbody>
+</table>
+<h3 id="recommended-settings">Recommended Settings</h3>
+<ul>
+<li><strong>Select RGB</strong> when connecting a PC or game console to
+a computer monitor or gaming TV supporting full HDMI 2.1 bandwidth. It
+ensures text, UI elements, and desktop graphics render cleanly without
+subpixel distortion.</li>
+<li><strong>Select YCbCr 4:4:4</strong> if your TV's internal processor
+handles YCbCr better than RGB, or if using RGB results in color mismatch
+issues between source and display.</li>
+<li><strong>Select YCbCr 4:2:2</strong> if your HDMI port lacks the
+bandwidth for 4:4:4 or RGB at your target resolution, refresh rate, and
+bit depth. It enables 10-bit or 12-bit HDR video playback on HDMI 2.0
+connections without sacrificing perceived picture quality in movies and
+television content.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

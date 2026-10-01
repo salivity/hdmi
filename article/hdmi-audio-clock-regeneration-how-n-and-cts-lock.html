@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Audio Clock Regeneration: How N and CTS Lock - hdmi</title>
+    <meta name="description" content="In an HDMI transmission, audio clock regeneration (ACR) allows a sink device to accurately reconstruct the source’s original audio sampling clock without requiring a dedicated physical clock line. Because HDMI carries audio packets interleaved within t">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-audio-clock-regeneration-how-n-and-cts-lock">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Audio Clock Regeneration: How N and CTS Lock - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-audio-clock-regeneration-how-n-and-cts-lock" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="In an HDMI transmission, audio clock regeneration (ACR) allows a sink device to accurately reconstruct the source’s original audio sampling clock without requiring a dedicated physical clock line. Because HDMI carries audio packets interleaved within t" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-audio-clock-regeneration-how-n-and-cts-lock">HDMI Audio
+Clock Regeneration: How N and CTS Lock</h1>
+<p>In an HDMI transmission, audio clock regeneration (ACR) allows a sink
+device to accurately reconstruct the source’s original audio sampling
+clock without requiring a dedicated physical clock line. Because HDMI
+carries audio packets interleaved within the video data stream during
+blanking intervals, the receiver relies on two values transmitted in ACR
+packets—the Numerator (<span class="math inline">\(N\)</span>) and the
+Cycle Time Stamp (<span class="math inline">\(CTS\)</span>)—along with
+the recovered Transition-Minimized Differential Signaling (TMDS) clock.
+By feeding these parameters into a localized Phase-Locked Loop (PLL) or
+frequency synthesizer, the receiver locks onto and regenerates a stable,
+jitter-free audio master clock (<span class="math inline">\(128 \times
+f_s\)</span>).</p>
+<h3 id="the-acr-mathematical-relationship">The ACR Mathematical
+Relationship</h3>
+<p>The relationship between the audio master clock (<span
+class="math inline">\(f_s \times 128\)</span>), the TMDS pixel clock
+(<span class="math inline">\(f_{TMDS}\)</span>), and the parameters
+<span class="math inline">\(N\)</span> and <span
+class="math inline">\(CTS\)</span> is defined by the formula:</p>
+<p><span class="math display">\[128 \times f_s = \frac{f_{TMDS} \times
+N}{CTS}\]</span></p>
+<ul>
+<li><strong><span class="math inline">\(N\)</span>:</strong> A static
+integer specified by the HDMI specification designed to yield an exact
+fractional frequency relationship for standard audio rates (such as 32
+kHz, 44.1 kHz, or 48 kHz).</li>
+<li><strong><span class="math inline">\(CTS\)</span>:</strong> A dynamic
+counter representing the exact number of TMDS clock cycles that elapsed
+during a specific number of audio clock cycles.</li>
+</ul>
+<h3 id="parsing-the-acr-packets">Parsing the ACR Packets</h3>
+<ol type="1">
+<li><strong>Packet Identification:</strong> The HDMI receiver
+continuously decodes the data island periods of the incoming TMDS
+stream. It identifies Audio Clock Regeneration packets by their specific
+packet header type code (<code>0x01</code>).</li>
+<li><strong>Payload Extraction:</strong> Each ACR packet contains four
+identical subpackets to protect against transmission errors. The
+receiver unpacks the 20-bit <span class="math inline">\(N\)</span> and
+20-bit <span class="math inline">\(CTS\)</span> values from these
+subpackets.</li>
+<li><strong>Mode Determination:</strong> The source operates in either
+coherent mode (where the audio and video clocks derive from a single
+master oscillator and <span class="math inline">\(CTS\)</span> is
+constant) or non-coherent mode (where clocks are independent and <span
+class="math inline">\(CTS\)</span> varies slightly over time). The
+receiver identifies fluctuations in <span
+class="math inline">\(CTS\)</span> to configure its tracking
+response.</li>
+</ol>
+<h3 id="the-locking-process-in-the-receiver-pll">The Locking Process in
+the Receiver PLL</h3>
+<p>To lock onto the audio clock, the receiver passes the recovered
+parameters through an on-chip frequency synthesis loop, typically
+implemented as an analog Phase-Locked Loop (PLL) or a Digitally
+Controlled Oscillator (DCO).</p>
+<ol type="1">
+<li><strong>Pre-Dividing Reference Signals:</strong> The receiver's TMDS
+clock recovery block first locks onto the physical video clock channel.
+The recovered TMDS clock is routed to a counter that divides the
+frequency by the extracted <span class="math inline">\(CTS\)</span>
+value.</li>
+<li><strong>Feedback Division:</strong> The output of the local audio
+Voltage-Controlled Oscillator (VCO)—which runs at the audio clock rate
+(<span class="math inline">\(128 \times f_s\)</span>)—is fed back
+through a frequency divider set to divide by <span
+class="math inline">\(N\)</span>.</li>
+<li><strong>Phase and Frequency Comparison:</strong> A Phase Frequency
+Detector (PFD) compares the divided TMDS reference signal (<span
+class="math inline">\(f_{TMDS} / CTS\)</span>) with the divided audio
+feedback signal (<span class="math inline">\(f_{audio} /
+N\)</span>).</li>
+<li><strong>Loop Filtering and Jitter Suppression:</strong> Because
+packet transmission jitter can introduce timing variance, and
+non-coherent sources cause the <span class="math inline">\(CTS\)</span>
+value to step incrementally between packets, the receiver passes the
+error signal through a low-bandwidth loop filter. This dampens rapid
+fluctuations and prevents jitter from affecting audio fidelity.</li>
+<li><strong>Phase Lock Acquisition:</strong> The loop filter drives the
+VCO until the phase and frequency error between the two divided signals
+reaches zero. Once equalized, the PLL asserts an internal "lock" status,
+providing an uninterrupted, phase-aligned master clock to the audio
+Digital-to-Analog Converters (DACs) or digital audio processors.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mixing 50Hz and 59.94Hz on a Video Switcher - hdmi</title>
+    <meta name="description" content="Mixing mismatched 50Hz and 59.94Hz HDMI sources on a single video switcher forces the hardware to perform real-time frame rate conversion (FRC) to match the switcher's designated master frame rate. Because a production switcher can only operate and outpu">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/mixing-50-hz-and-59-94-hz-on-a-video-switcher">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mixing 50Hz and 59.94Hz on a Video Switcher - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/mixing-50-hz-and-59-94-hz-on-a-video-switcher" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Mixing mismatched 50Hz and 59.94Hz HDMI sources on a single video switcher forces the hardware to perform real-time frame rate conversion (FRC) to match the switcher's designated master frame rate. Because a production switcher can only operate and outpu" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="mixing-50hz-and-5994hz-on-a-video-switcher">Mixing 50Hz and
+59.94Hz on a Video Switcher</h1>
+<p>Mixing mismatched 50Hz and 59.94Hz HDMI sources on a single video
+switcher forces the hardware to perform real-time frame rate conversion
+(FRC) to match the switcher's designated master frame rate. Because a
+production switcher can only operate and output at one unified
+resolution and refresh rate at a time, any input that does not natively
+match this master standard must be scaled and synchronized. This article
+breaks down the conversion methods used, how budget versus broadcast
+switchers process these signals, and the visual artifacts that result
+from frame rate mismatches.</p>
+<h3 id="the-master-timebase-requirement">The Master Timebase
+Requirement</h3>
+<p>A video switcher operates on a rigid internal master clock—typically
+configured globally as either a 50Hz standard (common in PAL regions) or
+a 59.94Hz standard (common in NTSC regions). The switcher's output,
+multi-view, and internal mixing bus run strictly at this chosen rate.
+When an HDMI source delivers video at a conflicting refresh rate, the
+switcher's internal frame synchronizers or scalers must continuously
+reconcile the temporal difference between the incoming video feed and
+the master clock.</p>
+<h3 id="converting-50hz-inputs-to-a-5994hz-master-output">Converting
+50Hz Inputs to a 59.94Hz Master Output</h3>
+<p>When a 50Hz HDMI input is connected to a switcher running at 59.94Hz,
+the switcher must make up a deficit of roughly 9.94 frames every
+second.</p>
+<p>To bridge this gap, standard switchers use <strong>frame
+duplication</strong> (frame repeating). The hardware captures the
+incoming frames into a buffer and periodically repeats every fifth frame
+to fill the 59.94Hz output timeline.</p>
+<ul>
+<li><strong>Visual Artifacts:</strong> This introduces noticeable
+"judder" or stuttering. While static shots remain clear, any horizontal
+panning, fast-moving subjects, or scrolling graphics will show a
+periodic hitch or uneven motion blur as the duplicated frames disrupt
+smooth motion cadences.</li>
+</ul>
+<h3 id="converting-5994hz-inputs-to-a-50hz-master-output">Converting
+59.94Hz Inputs to a 50Hz Master Output</h3>
+<p>When a 59.94Hz source is fed into a 50Hz switcher, the switcher
+receives approximately 9.94 excess frames per second.</p>
+<p>To maintain synchronization, the switcher employs <strong>frame
+dropping</strong> (decimation). The frame synchronizer skips roughly one
+out of every six frames, discarding the temporal data entirely to
+prevent buffer overflow.</p>
+<ul>
+<li><strong>Visual Artifacts:</strong> Dropping frames leads to jittery,
+choppy motion. In high-motion environments—such as live sports or
+musical performances—motion tracks will appear to skip forward
+intermittently, creating a strobe-like effect.</li>
+</ul>
+<h3 id="simple-frame-buffering-vs-motion-compensated-conversion">Simple
+Frame Buffering vs. Motion-Compensated Conversion</h3>
+<p>The exact quality of the conversion depends on the switcher’s
+hardware architecture:</p>
+<ul>
+<li><strong>Basic Frame Store Synchronizers (Standard
+Switchers):</strong> Most commercial and entry-level live streaming
+switchers rely on simple FIFO (First In, First Out) frame buffers. These
+units only duplicate or discard whole frames. While this adds minimal
+processing latency (typically 1 to 2 frames), it produces the most
+pronounced motion judder.</li>
+<li><strong>Motion-Compensated Standards Conversion (High-End
+Broadcast):</strong> Dedicated broadcast cross-converters and high-tier
+switchers use optical flow or motion estimation algorithms. Instead of
+duplicating or dropping entire frames, these systems analyze pixel
+movement vectors across consecutive frames and interpolate new
+intermediate frames to bridge the temporal gap. This produces fluid
+motion but introduces slight processing latency and occasional visual
+"ghosting" or edge tearing around complex, fast-moving objects.</li>
+</ul>
+<h3 id="audio-synchronization-impact">Audio Synchronization Impact</h3>
+<p>HDMI carries embedded audio alongside video. When a switcher performs
+frame rate conversion on the video stream, it must decouple the audio
+clock from the video clock. Quality switchers implement an asynchronous
+sample rate converter (ASRC) to resample the audio to 48kHz without
+pitch shifts, preventing audio clicks, pops, or cumulative sync drift
+over extended broadcasts.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

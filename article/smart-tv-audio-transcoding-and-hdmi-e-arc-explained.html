@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart TV Audio Transcoding and HDMI eARC Explained - hdmi</title>
+    <meta name="description" content="Modern smart TVs process incoming audio from internal streaming apps and connected source devices through an internal pipeline before transmitting it via HDMI eARC. This process involves identifying the target sound system’s capabilities, demuxing the">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/smart-tv-audio-transcoding-and-hdmi-e-arc-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Smart TV Audio Transcoding and HDMI eARC Explained - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/smart-tv-audio-transcoding-and-hdmi-e-arc-explained" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Modern smart TVs process incoming audio from internal streaming apps and connected source devices through an internal pipeline before transmitting it via HDMI eARC. This process involves identifying the target sound system’s capabilities, demuxing the" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="smart-tv-audio-transcoding-and-hdmi-earc-explained">Smart TV
+Audio Transcoding and HDMI eARC Explained</h1>
+<p>Modern smart TVs process incoming audio from internal streaming apps
+and connected source devices through an internal pipeline before
+transmitting it via HDMI eARC. This process involves identifying the
+target sound system’s capabilities, demuxing the audio stream, routing
+it through an onboard Digital Signal Processor (DSP), and determining
+whether to pass the stream untouched, decode it to Linear PCM, or
+transcode it into a different codec. Because HDMI eARC offers high
+bandwidth (up to 37 Mbps), the TV can deliver uncompressed multichannel
+sound or advanced spatial audio, provided the internal processing
+pipeline formats the data correctly for the connected audio receiver or
+soundbar.</p>
+<h3 id="1-edid-handshake-and-capability-discovery">1. EDID Handshake and
+Capability Discovery</h3>
+<p>Before any audio passes through the system, the smart TV and the eARC
+audio receiving device (such as an AV receiver or soundbar) execute a
+handshake using Extended Display Identification Data (EDID).</p>
+<ul>
+<li>The sound system communicates its supported formats, channel counts,
+and sample rates over the HDMI eARC Data Channel.</li>
+<li>The TV’s system-on-chip (SoC) stores this profile in memory to
+determine what formats can be safely output without errors or
+silence.</li>
+</ul>
+<h3 id="2-audio-stream-demuxing-and-ingestion">2. Audio Stream Demuxing
+and Ingestion</h3>
+<p>Audio enters the TV's processing pipeline from two main sources:</p>
+<ul>
+<li><strong>Internal Applications:</strong> Native streaming apps
+(Netflix, Prime Video, Disney+) typically output Dolby Digital Plus
+(E-AC-3), often carrying Dolby Atmos metadata.</li>
+<li><strong>External HDMI Inputs:</strong> Devices like game consoles or
+UHD Blu-ray players can send raw bitstreams of DTS-HD Master Audio,
+Dolby TrueHD, or multi-channel LPCM.</li>
+</ul>
+<p>The TV’s media framework demuxes the incoming container format (such
+as MP4 or MKV), separating the raw encoded audio bitstream from the
+video stream.</p>
+<h3 id="3-the-transcoding-decision-engine">3. The Transcoding Decision
+Engine</h3>
+<p>The TV checks its user-configured audio output settings
+(<code>Bitstream / Passthrough</code>, <code>Auto</code>, or
+<code>PCM</code>) against the capabilities declared in the receiver’s
+EDID.</p>
+<ul>
+<li><strong>Passthrough Mode:</strong> If the user selects Passthrough
+and the target device supports the native codec, the TV bypasses
+transcoding entirely, packaging the untouched bitstream for
+delivery.</li>
+<li><strong>Transcoding (Auto Mode):</strong> If a mismatch occurs—for
+example, if a native app outputs DTS or Dolby Digital Plus, but the
+soundbar only supports standard Dolby Digital (AC-3) or stereo PCM—the
+TV routes the audio to its internal DSP.</li>
+<li><strong>PCM Mode:</strong> The TV decodes the compressed bitstream
+entirely within its internal software or hardware decoders, converting
+it into uncompressed multi-channel LPCM.</li>
+</ul>
+<h3 id="4-dsp-processing-and-format-conversion">4. DSP Processing and
+Format Conversion</h3>
+<p>When transcoding is required, the TV’s SoC audio engine performs
+digital signal processing:</p>
+<ol type="1">
+<li><strong>Decoding:</strong> The native stream is unpacked and
+converted into raw uncompressed multi-channel PCM audio within the TV's
+memory buffer.</li>
+<li><strong>Metadata Handling:</strong> If spatial audio (such as Dolby
+Atmos) is present, the processor determines whether to preserve the
+spatial metadata. In cases involving Dolby Atmos from streaming apps,
+the TV can package the audio as Dolby Digital Plus with JOC (Joint
+Object Coding) or transcode it to Dolby MAT 2.0 (Metadata-enhanced Audio
+Transmission), which embeds Atmos metadata inside uncompressed
+multi-channel PCM.</li>
+<li><strong>Re-encoding:</strong> If the receiver requires a legacy or
+alternative format, the TV's encoder compresses the decoded PCM into the
+target format (typically AC-3 or DTS) in real time.</li>
+</ol>
+<h3 id="5-earc-packetization-and-transmission">5. eARC Packetization and
+Transmission</h3>
+<p>Once the audio is either prepared as an uncompressed multi-channel
+PCM stream or encapsulated as an encoded bitstream, it is formatted
+according to the IEC 61937 standard for compressed audio or the IEC
+60958 standard for uncompressed PCM.</p>
+<p>The eARC transmitter hardware packages these digital audio blocks and
+transmits them using differential signaling across dedicated pins on the
+HDMI cable (pin 14 and pin 19), sending the transcoded or direct stream
+to the external audio system with ultra-low latency and lip-sync
+correction.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

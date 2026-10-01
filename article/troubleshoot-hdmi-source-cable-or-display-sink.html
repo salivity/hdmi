@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troubleshoot HDMI: Source, Cable, or Display Sink - hdmi</title>
+    <meta name="description" content="Isolating the root cause of an HDMI signal failure requires a methodical process of elimination. When audio dropouts, flickering video, HDCP handshakes, or total blackouts occur, the issue typically resides in the source device, the transmission cable, o">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/troubleshoot-hdmi-source-cable-or-display-sink">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Troubleshoot HDMI: Source, Cable, or Display Sink - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/troubleshoot-hdmi-source-cable-or-display-sink" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Isolating the root cause of an HDMI signal failure requires a methodical process of elimination. When audio dropouts, flickering video, HDCP handshakes, or total blackouts occur, the issue typically resides in the source device, the transmission cable, o" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="troubleshoot-hdmi-source-cable-or-display-sink">Troubleshoot
+HDMI: Source, Cable, or Display Sink</h1>
+<p>Isolating the root cause of an HDMI signal failure requires a
+methodical process of elimination. When audio dropouts, flickering
+video, HDCP handshakes, or total blackouts occur, the issue typically
+resides in the source device, the transmission cable, or the display
+sink. By following a structured substitution workflow and inspecting
+specific error symptoms, installers can quickly pinpoint the failing
+component and restore the audiovisual signal without unnecessary
+equipment replacement.</p>
+<h3 id="step-1-identify-the-symptom">Step 1: Identify the Symptom</h3>
+<p>The nature of the failure often provides immediate clues regarding
+which component is malfunctioning:</p>
+<ul>
+<li><strong>Sparkles, digital noise, or intermittent dropouts:</strong>
+Usually indicates signal degradation or insufficient bandwidth, pointing
+toward a faulty, poorly shielded, or overly long cable.</li>
+<li><strong>Audio present, but black screen with an HDCP error:</strong>
+Typically points to an HDCP handshake failure between the source and the
+display sink, or an incompatible intermediary device.</li>
+<li><strong>No signal detected at all:</strong> Can indicate a missing
+5V hot-plug detection signal from the source, a severed conductor in the
+cable, or an unselected/faulty input on the display.</li>
+<li><strong>Incorrect resolution or pink/green tint:</strong> Often
+points to corrupted EDID communication between the display sink and the
+source.</li>
+</ul>
+<h3 id="step-2-isolate-the-cable">Step 2: Isolate the Cable</h3>
+<p>The cable is the most vulnerable physical link in the chain.</p>
+<ol type="1">
+<li>Disconnect the permanent in-wall or long-run HDMI cable.</li>
+<li>Bring the source device physically close to the display.</li>
+<li>Connect the source directly to the display using a short (under 6
+feet), certified high-speed or ultra-high-speed test cable known to
+work.</li>
+<li>If the system functions properly, the original cable is damaged,
+exceeds passive length limits for the desired bandwidth, or lacks the
+necessary rating (e.g., trying to pass 4K/120Hz or HDR over an older
+HDMI 1.4 cable).</li>
+</ol>
+<h3 id="step-3-isolate-the-source">Step 3: Isolate the Source</h3>
+<p>If swapping the cable does not resolve the issue, evaluate the source
+device:</p>
+<ol type="1">
+<li>Disconnect the original source and connect a known-working
+alternative, such as a test laptop, streaming device, or dedicated HDMI
+signal generator.</li>
+<li>Ensure the alternative source outputs the same resolution and
+refresh rate as the original unit.</li>
+<li>If the signal displays correctly, the original source is either
+failing, set to an unsupported resolution/color space, or failing to
+provide the required 5V power on Pin 18 to trigger the display's
+hot-plug detect.</li>
+<li>Attempt to lower the output resolution and disable HDR or deep color
+on the original source to verify if it can sustain a lower-bandwidth
+signal.</li>
+</ol>
+<h3 id="step-4-isolate-the-display-sink">Step 4: Isolate the Display
+Sink</h3>
+<p>If both the cable and the source have been tested and the issue
+persists, test the display sink:</p>
+<ol type="1">
+<li>Test different HDMI input ports on the display, as individual port
+boards or processor lanes can fail independently.</li>
+<li>Verify the display's port settings. Many modern displays require
+manually enabling "Enhanced Format," "HDMI 2.1," or "UHD Color" in the
+menu to accept full-bandwidth signals.</li>
+<li>Connect the original source and cable to a portable AV test monitor.
+If the test monitor displays the signal without errors, the primary
+display has a faulty input board, an EDID negotiation defect, or an HDCP
+compliance conflict.</li>
+</ol>
+<h3 id="step-5-verify-with-diagnostic-tools">Step 5: Verify with
+Diagnostic Tools</h3>
+<p>For complex installations involving extenders, switchers, or active
+optical cables (AOC):</p>
+<ul>
+<li>Use an HDMI signal generator and analyzer to independently verify
+the 5V line, Hot Plug Detect (HPD), EDID exchange, and HDCP handshaking
+at both ends of the run.</li>
+<li>Verify power delivery: Active optical cables and inline extenders
+draw power from the source's HDMI port; if the source fails to provide a
+stable 5V rail, an inline HDMI voltage inserter may be required.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

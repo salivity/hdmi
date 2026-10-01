@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Receivers Compensate for Intra-Pair Skew - hdmi</title>
+    <meta name="description" content="High-definition multimedia interface (HDMI) systems rely on high-speed differential signaling to transmit audio and video data across copper cables. As transmission speeds increase in standards like HDMI 2.0 and HDMI 2.1, physical mismatches between the">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-receivers-compensate-for-intra-pair-skew">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Receivers Compensate for Intra-Pair Skew - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-receivers-compensate-for-intra-pair-skew" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="High-definition multimedia interface (HDMI) systems rely on high-speed differential signaling to transmit audio and video data across copper cables. As transmission speeds increase in standards like HDMI 2.0 and HDMI 2.1, physical mismatches between the" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-receivers-compensate-for-intra-pair-skew">How HDMI
+Receivers Compensate for Intra-Pair Skew</h1>
+<p>High-definition multimedia interface (HDMI) systems rely on
+high-speed differential signaling to transmit audio and video data
+across copper cables. As transmission speeds increase in standards like
+HDMI 2.0 and HDMI 2.1, physical mismatches between the positive and
+negative traces of a differential pair introduce intra-pair skew, which
+distorts transition edges and closes the data eye. To maintain data
+integrity, modern HDMI receivers employ integrated equalization and
+deskew architectures that dynamically detect phase misalignments, apply
+differential delay adjustments, and shape distorted waveforms before
+decoding.</p>
+<h3 id="the-nature-of-intra-pair-skew">The Nature of Intra-Pair
+Skew</h3>
+<p>HDMI utilizes Transition Minimized Differential Signaling (TMDS) in
+legacy modes and Fixed Rate Link (FRL) in HDMI 2.1. Both architectures
+transmit data across complementary differential lines (<span
+class="math inline">\(D+\)</span> and <span
+class="math inline">\(D-\)</span>). Intra-pair skew occurs when signals
+traveling along these complementary lines arrive at the receiver at
+slightly different times.</p>
+<p>This phase difference is primarily caused by physical trace length
+variations, printed circuit board (PCB) fiber-weave effects, cable
+bends, and non-uniform dielectric constants. When <span
+class="math inline">\(D+\)</span> and <span
+class="math inline">\(D-\)</span> are out of phase, the differential
+voltage swing decreases, high-frequency common-mode noise increases, and
+deterministic jitter expands, severely shrinking the differential eye
+diagram.</p>
+<h3 id="phase-detection-and-variable-delay-adjustments">Phase Detection
+and Variable Delay Adjustments</h3>
+<p>To directly counteract intra-pair skew, modern HDMI receiver
+front-ends incorporate active deskew circuits placed before or alongside
+the main equalizer blocks:</p>
+<ol type="1">
+<li><strong>Common-Mode Sensing:</strong> When differential signals are
+perfectly balanced, their sum produces a steady DC common-mode voltage.
+Intra-pair skew causes asymmetric zero-crossings, resulting in
+high-frequency voltage spikes in the common-mode domain. On-chip sensing
+circuitry monitors these common-mode artifacts to calculate the
+magnitude and direction of the timing mismatch between <span
+class="math inline">\(D+\)</span> and <span
+class="math inline">\(D-\)</span>.</li>
+<li><strong>Independent Delay Tuning:</strong> Once the skew is
+detected, control logic adjusts programmable delay elements—such as
+digitally controlled delay lines (DCDLs), variable-capacitance varactor
+stages, or phase interpolators—embedded in the individual <span
+class="math inline">\(D+\)</span> or <span
+class="math inline">\(D-\)</span> analog input paths. By delaying the
+faster trace, the circuit realigns the rising edge of one line with the
+falling edge of its complement.</li>
+</ol>
+<h3 id="continuous-time-linear-equalization-ctle">Continuous-Time Linear
+Equalization (CTLE)</h3>
+<p>Following initial phase balancing, the differential signal enters an
+integrated Continuous-Time Linear Equalizer (CTLE). Intra-pair skew
+compounds channel loss by attenuating higher-frequency harmonics and
+slowing down edge transitions.</p>
+<p>The CTLE provides an active, frequency-dependent peaking response
+that boosts high-frequency components while attenuating low-frequency
+components. By sharpening the transition edges of the realigned
+differential pair, the CTLE reduces skew-induced transition spread and
+partially restores the vertical and horizontal openings of the eye
+diagram.</p>
+<h3 id="common-mode-filtering-and-termination">Common-Mode Filtering and
+Termination</h3>
+<p>Because skew converts differential energy into common-mode noise,
+receivers must eliminate common-mode reflections that could disrupt the
+input stage. Integrated circuits use center-tapped termination networks
+or active common-mode rejection filters at the front end. These circuits
+present a low-impedance path to ground for common-mode disturbances
+while maintaining standard 50-ohm termination for differential signals,
+effectively dissipating the energy generated by the temporal
+mismatch.</p>
+<h3 id="decision-feedback-equalization-dfe">Decision Feedback
+Equalization (DFE)</h3>
+<p>Residual intra-pair skew often produces complex inter-symbol
+interference (ISI) that linear filtering cannot fully resolve. HDMI 2.1
+receivers operating under FRL frequently implement Decision Feedback
+Equalizers (DFE).</p>
+<p>Unlike linear equalizers, a DFE evaluates previously decided bits,
+scales them through feedback taps, and subtracts their residual voltage
+from the current incoming bit. This nonlinear process neutralizes
+post-cursor ISI caused by residual skew and high-frequency dispersion
+without amplifying high-frequency noise.</p>
+<h3 id="clock-and-data-recovery-cdr-integration">Clock and Data Recovery
+(CDR) Integration</h3>
+<p>After the integrated equalization circuits align the phases, reject
+common-mode noise, and reopen the differential eye, the cleaned signal
+feeds into the Clock and Data Recovery (CDR) unit. The CDR locks onto
+the optimal sampling phase at the center of the restored eye diagram,
+ensuring low bit-error-rate (BER) data recovery even in the presence of
+severe upstream cable skew.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

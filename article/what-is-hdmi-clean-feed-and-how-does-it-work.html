@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is HDMI Clean Feed and How Does It Work? - hdmi</title>
+    <meta name="description" content="An HDMI clean feed is a raw, unencumbered video signal sent from a camera through its HDMI port without any on-screen display (OSD) elements like shutter speed, battery life, or focus boxes. This article explains what clean HDMI output is, how modern cam">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/what-is-hdmi-clean-feed-and-how-does-it-work">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Is HDMI Clean Feed and How Does It Work? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/what-is-hdmi-clean-feed-and-how-does-it-work" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="An HDMI clean feed is a raw, unencumbered video signal sent from a camera through its HDMI port without any on-screen display (OSD) elements like shutter speed, battery life, or focus boxes. This article explains what clean HDMI output is, how modern cam" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="what-is-hdmi-clean-feed-and-how-does-it-work">What Is HDMI Clean
+Feed and How Does It Work?</h1>
+<p>An HDMI clean feed is a raw, unencumbered video signal sent from a
+camera through its HDMI port without any on-screen display (OSD)
+elements like shutter speed, battery life, or focus boxes. This article
+explains what clean HDMI output is, how modern camera hardware and
+firmware technically isolate the pure video feed from the user
+interface, and why it is an essential feature for live streamers,
+broadcasters, and professional video creators.</p>
+<h3 id="understanding-clean-hdmi-output">Understanding Clean HDMI
+Output</h3>
+<p>When operating a digital camera, the built-in LCD screen and
+electronic viewfinder (EVF) typically display crucial shooting data.
+This includes exposure settings (ISO, aperture, shutter speed), audio
+meters, framing grids, battery levels, and autofocus tracking boxes.</p>
+<p>A standard HDMI output mirrors everything shown on that internal
+display. In contrast, an HDMI clean feed isolates the footage recorded
+by the camera sensor, transmitting only the pure video signal to
+external devices such as capture cards, monitors, or dedicated video
+recorders.</p>
+<h3 id="how-cameras-strip-on-screen-menus">How Cameras Strip On-Screen
+Menus</h3>
+<p>The removal of menus and status icons is not done by "erasing"
+graphics after they are drawn; instead, it is handled at the hardware
+and firmware processing levels through layered rendering:</p>
+<ol type="1">
+<li><strong>Separation of Video and Graphic Layers:</strong> Modern
+digital cameras utilize system-on-chip (SoC) image processors that
+maintain separate memory buffers. One buffer processes the raw sensor
+data into the video frame, while a secondary graphics processor
+generates the On-Screen Display (OSD) overlay.</li>
+<li><strong>The Compositing Stage:</strong> For the camera's built-in
+LCD or EVF, the processor combines these two layers into a single visual
+feed using an internal compositor.</li>
+<li><strong>Bypassing the Compositor for HDMI:</strong> When a clean
+HDMI output mode is enabled in the camera firmware, the video pipeline
+reroutes the output. Instead of pulling from the combined composite
+buffer, the camera directs the untouched video buffer straight to the
+HDMI transmitter chip. The OSD layer remains visible on the camera's
+physical display (on supported models) or is disabled entirely, leaving
+the external HDMI feed pristine.</li>
+</ol>
+<h3 id="why-hdmi-clean-feed-is-essential">Why HDMI Clean Feed Is
+Essential</h3>
+<ul>
+<li><strong>Live Streaming:</strong> Platforms like Twitch, YouTube, and
+Zoom require an unobscured view of the subject. A clean feed allows
+cameras to function as high-end webcams without cluttering the broadcast
+with technical readouts.</li>
+<li><strong>External Recording:</strong> Devices like external monitors
+and SSD recorders capture higher bitrates and formats (such as Apple
+ProRes) directly from the HDMI port. A clean feed guarantees the
+recorded master files are free of interface overlays.</li>
+<li><strong>Software-Driven Control:</strong> By sending a clean signal
+into production software like OBS Studio or vMix, creators can add their
+own professional overlays, lower thirds, and branding without clashing
+with the camera's built-in graphics.</li>
+</ul>
+<h3 id="enabling-clean-feed-on-your-camera">Enabling Clean Feed on Your
+Camera</h3>
+<p>Most modern mirrorless and DSLR cameras include an option for clean
+output within their setup or display menus. Look for settings labeled
+"HDMI Info Display," "HDMI Output Settings," or "Clean Out." Setting
+these options to "Off" or selecting an external recording preset ensures
+the camera suppresses interface elements across the HDMI pipeline.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

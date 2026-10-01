@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDCP Cipher Masking Protects HDMI Data - hdmi</title>
+    <meta name="description" content="High-bandwidth Digital Content Protection (HDCP) utilizes cipher masking to secure digital video and audio as they travel across physical HDMI circuit board traces and cables. By generating a continuously synchronized, pseudo-random keystream that encryp">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdcp-cipher-masking-protects-hdmi-data">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDCP Cipher Masking Protects HDMI Data - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdcp-cipher-masking-protects-hdmi-data" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="High-bandwidth Digital Content Protection (HDCP) utilizes cipher masking to secure digital video and audio as they travel across physical HDMI circuit board traces and cables. By generating a continuously synchronized, pseudo-random keystream that encryp" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdcp-cipher-masking-protects-hdmi-data">How HDCP Cipher
+Masking Protects HDMI Data</h1>
+<p>High-bandwidth Digital Content Protection (HDCP) utilizes cipher
+masking to secure digital video and audio as they travel across physical
+HDMI circuit board traces and cables. By generating a continuously
+synchronized, pseudo-random keystream that encrypts raw data at the
+pixel level before physical transmission, HDCP ensures that
+hardware-level snooping—such as probing or bus sniffing—yields only
+unintelligible cryptographic noise rather than usable digital
+content.</p>
+<h3 id="the-threat-to-physical-hdmi-traces">The Threat to Physical HDMI
+Traces</h3>
+<p>In hardware design, the high-speed data lanes connecting a media
+processor to an HDMI transmitter or display panel are exposed as
+microscopic conductive traces on printed circuit boards (PCBs). Without
+physical-layer protection, attackers can use high-bandwidth
+oscilloscopes, logic analyzers, or direct solder taps to record the
+electrical signals running along Transition-Minimized Differential
+Signaling (TMDS) or Fixed Rate Link (FRL) lines. Because digital video
+represents raw pixel matrices, unencrypted transmissions can be
+reconstructed frame-by-frame into a pristine digital copy.</p>
+<h3 id="the-cipher-generation-process">The Cipher Generation
+Process</h3>
+<p>To counter this, HDCP establishes a secure link through an initial
+cryptographic handshake between the transmitter (source) and receiver
+(sink). Once authentication is complete, both devices negotiate a shared
+secret:</p>
+<ul>
+<li><strong>HDCP 1.x:</strong> Relies on a proprietary stream cipher
+using linear-feedback shift registers (LFSRs) to generate a
+pseudo-random sequence.</li>
+<li><strong>HDCP 2.2 and Later:</strong> Employs Advanced Encryption
+Standard (AES) in Counter (CTR) mode with 128-bit keys, greatly
+enhancing cryptographic strength.</li>
+</ul>
+<p>Because both the source and display share identical internal states
+and synchronization counters, they generate identical, deterministic
+pseudo-random bit sequences (keystreams) in exact real-time alignment
+with the pixel clock.</p>
+<h3 id="applying-the-mask-via-xor-operations">Applying the Mask via XOR
+Operations</h3>
+<p>Cipher masking occurs immediately before the digital signal is
+converted to physical electrical signals for transmission. The source
+takes the native, uncompressed data (pixel values and audio samples) and
+applies a bitwise exclusive OR (XOR) operation using the generated
+keystream:</p>
+<p><span class="math display">\[\text{Ciphertext} = \text{Plaintext
+Pixel Data} \oplus \text{Keystream}\]</span></p>
+<p>This mathematical operation acts as the cipher mask. The resulting
+output completely obscures the underlying patterns, color palettes, and
+structured headers of the media stream. The masked data is then encoded
+via TMDS (8b/10b) or FRL (16b/18b) and dispatched over the differential
+pairs of the HDMI connector.</p>
+<h3 id="neutralizing-bus-snooping-and-extraction-attacks">Neutralizing
+Bus Snooping and Extraction Attacks</h3>
+<p>Because the data traversing the physical PCB traces is masked:</p>
+<ol type="1">
+<li><strong>Elimination of Statistical Patterns:</strong> Uncompressed
+video contains significant redundancy—consecutive pixels and consecutive
+frames often have identical values. The cipher mask flattens these
+statistical distributions into pure pseudo-random noise, preventing
+side-channel analysis and visual reconstruction.</li>
+<li><strong>Hardware Inseparability:</strong> The masking takes place
+directly inside the silicon of the HDMI transmitter. By the time the
+signal hits accessible physical copper, it is fully encrypted.</li>
+<li><strong>Real-Time Keystream Depletion:</strong> The keystream is
+transient and continuously evolving based on frame numbers and input
+counters. An attacker intercepting the data cannot reuse intercepted
+keys on subsequent frames or sessions.</li>
+</ol>
+<h3 id="sink-decryption-and-frame-synchronization">Sink Decryption and
+Frame Synchronization</h3>
+<p>Upon arriving at the authorized display, the receiver decodes the
+physical signal and applies the exact same keystream to the encrypted
+stream using an identical XOR operation:</p>
+<p><span class="math display">\[\text{Plaintext Pixel Data} =
+\text{Ciphertext} \oplus \text{Keystream}\]</span></p>
+<p>Because <span class="math inline">\(A \oplus B \oplus B = A\)</span>,
+the original pixel data is restored instantly with negligible latency,
+allowing the display controller to render the image on the screen while
+ensuring the raw content was never exposed in plaintext along any
+interceptable transmission line.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

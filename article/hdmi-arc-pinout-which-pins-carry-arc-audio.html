@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI ARC Pinout: Which Pins Carry ARC Audio? - hdmi</title>
+    <meta name="description" content="HDMI Audio Return Channel (ARC) enables a display to transmit audio back upstream to an AV receiver or soundbar over a standard HDMI cable, eliminating the need for a separate S/PDIF optical audio connection. Introduced in the HDMI 1.4 specification, ARC">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-arc-pinout-which-pins-carry-arc-audio">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI ARC Pinout: Which Pins Carry ARC Audio? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-arc-pinout-which-pins-carry-arc-audio" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI Audio Return Channel (ARC) enables a display to transmit audio back upstream to an AV receiver or soundbar over a standard HDMI cable, eliminating the need for a separate S/PDIF optical audio connection. Introduced in the HDMI 1.4 specification, ARC" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-arc-pinout-which-pins-carry-arc-audio">HDMI ARC Pinout:
+Which Pins Carry ARC Audio?</h1>
+<p>HDMI Audio Return Channel (ARC) enables a display to transmit audio
+back upstream to an AV receiver or soundbar over a standard HDMI cable,
+eliminating the need for a separate S/PDIF optical audio connection.
+Introduced in the HDMI 1.4 specification, ARC reuses specific non-video
+pins rather than the primary Transition-Minimized Differential Signaling
+(TMDS) channels. Specifically, ARC audio relies on Pin 14 and Pin 19,
+backed by Pin 17 as their ground reference.</p>
+<h3 id="the-physical-arc-pins">The Physical ARC Pins</h3>
+<p>Standard Type-A HDMI connectors feature 19 pins. ARC repurposes
+existing utility and detection wiring to transmit digital audio
+data:</p>
+<ul>
+<li><strong>Pin 14 (Utility / HEAC-):</strong> In HDMI specifications
+prior to version 1.4, Pin 14 was designated as "Reserved." With HDMI
+1.4, it was repurposed as the "Utility" pin and forms one half of the
+HDMI Ethernet and Audio Return Channel (HEAC) differential pair, serving
+as HEAC-.</li>
+<li><strong>Pin 19 (Hot Plug Detect / HEAC+):</strong> Traditionally
+dedicated to the Hot Plug Detect (HPD) function—allowing source devices
+to detect when a display is connected—this pin was upgraded to serve a
+dual role. It continues to handle HPD detection via DC signaling while
+simultaneously transmitting high-frequency AC audio data as the HEAC+
+line.</li>
+<li><strong>Pin 17 (DDC/CEC/HEAC Ground):</strong> This pin provides the
+dedicated ground return and shielding for the Consumer Electronics
+Control (CEC), Display Data Channel (DDC), and HEAC circuits, ensuring a
+stable reference and noise immunity for the ARC signal.</li>
+</ul>
+<h3 id="how-arc-uses-these-pins">How ARC Uses These Pins</h3>
+<p>The HDMI specification defines two transmission methods across these
+physical pins:</p>
+<ol type="1">
+<li><strong>Single-Mode ARC:</strong> Uses only Pin 14 (Utility) as an
+unbalanced signal line, referenced against Pin 17 (Ground). This mode
+allows basic S/PDIF-style digital audio transmission without interfering
+with the standard Hot Plug Detect voltage on Pin 19.</li>
+<li><strong>Common-Mode ARC:</strong> Utilizes both Pin 14 and Pin 19
+simultaneously as a balanced, differential pair (HEAC- and HEAC+). By
+isolating high-frequency AC audio data from the DC level of the Hot Plug
+Detect line, both ARC audio and HDMI Ethernet can operate concurrently
+across the pair without signal corruption.</li>
+</ol>
+<h3 id="relation-to-earc-hdmi-21">Relation to eARC (HDMI 2.1)</h3>
+<p>Enhanced Audio Return Channel (eARC), introduced in HDMI 2.1,
+utilizes the exact same physical pins: Pin 14 and Pin 19, with Pin 17 as
+the ground reference. Unlike legacy ARC, eARC strictly uses the
+differential HEAC pair at higher data rates (up to ~37 Mbps compared to
+ARC's ~1 Mbps limit), enabling the transport of uncompressed 5.1 and 7.1
+surround sound formats, as well as object-based formats such as Dolby
+Atmos and DTS:X.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

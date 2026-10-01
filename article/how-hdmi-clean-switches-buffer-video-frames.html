@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Clean Switches Buffer Video Frames - hdmi</title>
+    <meta name="description" content="An HDMI clean switch, commonly known as a seamless switcher, prevents video dropouts, tearing, and black screens during source transitions by continuously processing and standardizing incoming video feeds. Instead of routing physical signals directly, th">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-clean-switches-buffer-video-frames">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Clean Switches Buffer Video Frames - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-clean-switches-buffer-video-frames" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="An HDMI clean switch, commonly known as a seamless switcher, prevents video dropouts, tearing, and black screens during source transitions by continuously processing and standardizing incoming video feeds. Instead of routing physical signals directly, th" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-clean-switches-buffer-video-frames">How HDMI Clean
+Switches Buffer Video Frames</h1>
+<p>An HDMI clean switch, commonly known as a seamless switcher, prevents
+video dropouts, tearing, and black screens during source transitions by
+continuously processing and standardizing incoming video feeds. Instead
+of routing physical signals directly, the device captures incoming
+frames into internal digital memory buffers, synchronizes them to a
+unified internal clock, and presents an uninterrupted stream to the
+display. This ensures that the monitor or projector never loses its
+timing reference, HDCP encryption handshake, or resolution lock when
+switching between inputs.</p>
+<h3 id="the-problem-with-traditional-hdmi-switching">The Problem with
+Traditional HDMI Switching</h3>
+<p>Standard HDMI switches act as physical multiplexers. When an input is
+changed, the physical connection between the source and the display is
+temporarily broken. The receiving display must renegotiate the display
+data channel (DDC), read the Extended Display Identification Data
+(EDID), re-establish High-bandwidth Digital Content Protection (HDCP)
+encryption, and lock onto the new source’s pixel clock. This
+renegotiation process disrupts the video signal, resulting in a black
+screen, static, or delayed sync that can last several seconds.</p>
+<h3 id="frame-buffering-and-synchronization">Frame Buffering and
+Synchronization</h3>
+<p>A clean switch resolves this latency by terminating the connection
+from every connected source at its own input stage. Each input port
+possesses its own dedicated receiver chip that actively maintains EDID
+and HDCP connections with the source devices, regardless of which input
+is currently routed to the display.</p>
+<p>The incoming digital video stream is broken down into raw pixel data
+and loaded sequentially into high-speed memory buffers (typically DDR
+SDRAM). These frame buffers act as a temporary holding area for complete
+image frames.</p>
+<p>Because distinct video sources rarely share the exact same refresh
+timing—even if both output at 1080p at 60Hz—a frame synchronizer reads
+the frames out of the buffer using a single, stable master clock. If a
+source's clock is running slightly faster than the master clock, the
+buffer cleanly drops an occasional duplicate frame; if it is running
+slower, the buffer repeats a frame. This guarantees that all video feeds
+are phase-aligned before switching occurs.</p>
+<h3 id="internal-scaling-and-signal-standardization">Internal Scaling
+and Signal Standardization</h3>
+<p>Before video leaves the buffer for the output stage, it typically
+passes through an integrated video processor or scaler. Different HDMI
+sources often output varying resolutions, frame rates, and color spaces
+(such as RGB vs. YCbCr 4:4:4 or 4:2:2).</p>
+<p>The switcher's internal processing engine converts the pixel data
+stored in the frame buffers to match a predetermined output format. By
+normalizing all sources to a fixed resolution and refresh rate, the
+output stage never needs to change its TMDS (Transition-Minimized
+Differential Signaling) or FRL (Fixed Rate Link) transmission
+characteristics.</p>
+<h3 id="switching-during-the-vertical-blanking-interval">Switching
+During the Vertical Blanking Interval</h3>
+<p>The actual switch between two buffered feeds is timed to occur during
+the Vertical Blanking Interval (VBI)—the microscopic pause between the
+completion of one frame and the start of the next.</p>
+<p>Because the switcher manages two or more frame buffers
+simultaneously, the hardware control logic simply points the output
+transmitter from the memory location of Source A to the memory location
+of Source B precisely as the current frame finishes rendering. To the
+receiving display, the stream appears as a single, continuous broadcast
+from a single source, completely eliminating glitches, screen flicker,
+and handshake delays.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDCP 2.3 Locality Check Round-Trip Time Limit - hdmi</title>
+    <meta name="description" content="High-bandwidth Digital Content Protection (HDCP) 2.3 incorporates a locality check to ensure that receiving devices are physically co-located on the same local network or direct connection, rather than streaming over wide-area networks. This article cove">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdcp-2-3-locality-check-round-trip-time-limit">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDCP 2.3 Locality Check Round-Trip Time Limit - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdcp-2-3-locality-check-round-trip-time-limit" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="High-bandwidth Digital Content Protection (HDCP) 2.3 incorporates a locality check to ensure that receiving devices are physically co-located on the same local network or direct connection, rather than streaming over wide-area networks. This article cove" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdcp-23-locality-check-round-trip-time-limit">HDCP 2.3 Locality
+Check Round-Trip Time Limit</h1>
+<p>High-bandwidth Digital Content Protection (HDCP) 2.3 incorporates a
+locality check to ensure that receiving devices are physically
+co-located on the same local network or direct connection, rather than
+streaming over wide-area networks. This article covers the specific
+round-trip time limit enforced by the HDCP 2.3 specification, the
+mechanics of how the locality verification operates over HDMI and
+bridging interfaces, and the consequences of exceeding the timing
+window.</p>
+<h2 id="the-7-millisecond-round-trip-time-limit">The 7 Millisecond
+Round-Trip Time Limit</h2>
+<p>Under the HDCP 2.3 specification, the transmitter enforces a strict
+round-trip time (RTT) limit of <strong>7 milliseconds (7 ms)</strong>
+during the locality check.</p>
+<p>The verification begins when the transmitter issues an 8-byte random
+nonce (<code>r_tx</code>) to the receiver and immediately starts an
+internal watchdog timer. The receiver must process this nonce, compute
+the required cryptographic response, and return it to the transmitter.
+If the transmitter does not receive the response within the 7 ms window,
+the locality verification fails.</p>
+<h2 id="purpose-of-the-locality-check">Purpose of the Locality
+Check</h2>
+<p>The primary objective of the locality check is to prevent content
+piracy and unauthorized distribution. Without a timing constraint,
+protected content could be decrypted, re-encapsulated, and tunneled
+across the internet or remote cloud servers. Because transmission across
+the public internet almost universally incurs latencies greater than 7
+ms due to routing, propagation delays, and switching, the 7 ms threshold
+acts as an effective cryptographic boundary that restricts distribution
+to a local physical environment.</p>
+<h2 id="execution-and-failure-handling">Execution and Failure
+Handling</h2>
+<p>During the authentication phase:</p>
+<ol type="1">
+<li><strong>Initiation:</strong> The transmitter transmits the
+<code>LC_Init</code> message containing <code>r_tx</code> and starts the
+timer.</li>
+<li><strong>Response:</strong> The receiver calculates the response
+using its derived session keys and returns the
+<code>LC_Send_L_prime</code> message.</li>
+<li><strong>Validation:</strong> If the response arrives within 7 ms and
+the cryptographic signature (<code>L'</code>) matches the transmitter's
+independently computed value (<code>L</code>), the locality check
+succeeds.</li>
+<li><strong>Timeouts and Retries:</strong> If the response takes longer
+than 7 ms, the transmitter considers the check failed. The specification
+permits the transmitter to retry the locality check up to a maximum of
+1,024 attempts before abandoning the authentication handshake entirely,
+at which point content transmission is blocked.</li>
+</ol>
+<h2 id="relevance-to-hdmi-and-network-extensions">Relevance to HDMI and
+Network Extensions</h2>
+<p>While native, uncompressed point-to-point HDMI cables introduce
+latency measured in nanoseconds, modern HDMI distribution frequently
+relies on HDMI extenders, HDBaseT adapters, and AV-over-IP bridging
+systems. When HDCP 2.3 protected streams are transmitted through these
+systems, any network congestion, packet queuing, or processing overhead
+introduced by media converters must remain well below the 7 ms ceiling
+to prevent playback interruption.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

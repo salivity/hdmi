@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI 2.1 FRL Lane Configurations Explained - hdmi</title>
+    <meta name="description" content="Fixed Rate Link (FRL) is the signaling technology introduced in HDMI 2.1 to replace legacy TMDS (Transition-Minimized Differential Signaling), enabling bandwidths up to 48 Gbps. While the HDMI 2.1 specification supports both 3-lane and 4-lane structures,">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-2-1-frl-lane-configurations-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI 2.1 FRL Lane Configurations Explained - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-2-1-frl-lane-configurations-explained" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Fixed Rate Link (FRL) is the signaling technology introduced in HDMI 2.1 to replace legacy TMDS (Transition-Minimized Differential Signaling), enabling bandwidths up to 48 Gbps. While the HDMI 2.1 specification supports both 3-lane and 4-lane structures," />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-21-frl-lane-configurations-explained">HDMI 2.1 FRL Lane
+Configurations Explained</h1>
+<p>Fixed Rate Link (FRL) is the signaling technology introduced in HDMI
+2.1 to replace legacy TMDS (Transition-Minimized Differential
+Signaling), enabling bandwidths up to 48 Gbps. While the HDMI 2.1
+specification supports both 3-lane and 4-lane structures, the system
+defines four selectable 4-lane FRL configurations designed to deliver
+higher data rates by utilizing all four differential pairs for
+serialized data with embedded clocking. Below is an overview of these
+four selectable 4-lane configurations, their throughput, and their
+target display capabilities.</p>
+<h3 id="1-4-lanes-at-6-gbps-24-gbps-total-bandwidth">1. 4 Lanes at 6
+Gbps (24 Gbps Total Bandwidth)</h3>
+<p>In this configuration, each of the four data lanes operates at a
+fixed rate of 6 Gbps, yielding an aggregate raw bandwidth of 24 Gbps.
+Using the 16b/18b encoding scheme of FRL, this delivers an effective
+payload rate of approximately 21.33 Gbps. This level provides sufficient
+throughput for uncompressed 4K video at 60 Hz with 10-bit or 12-bit
+color, as well as 4K at 120 Hz when paired with VESA Display Stream
+Compression (DSC).</p>
+<h3 id="2-4-lanes-at-8-gbps-32-gbps-total-bandwidth">2. 4 Lanes at 8
+Gbps (32 Gbps Total Bandwidth)</h3>
+<p>Operating at 8 Gbps per lane, this setup achieves an aggregate
+bandwidth of 32 Gbps, resulting in an effective data throughput of
+approximately 28.44 Gbps after encoding overhead. This configuration
+natively supports uncompressed 4K video at 120 Hz using 8-bit color
+depth (4:2:0 or 4:2:2 chroma subsampling), making it suitable for
+mid-tier high-refresh-rate gaming setups and high-bandwidth multimedia
+playback.</p>
+<h3 id="3-4-lanes-at-10-gbps-40-gbps-total-bandwidth">3. 4 Lanes at 10
+Gbps (40 Gbps Total Bandwidth)</h3>
+<p>Each lane in this configuration transfers data at 10 Gbps, providing
+a cumulative raw throughput of 40 Gbps (approximately 35.56 Gbps
+effective). Widely implemented on modern home gaming consoles and
+premium consumer televisions, this mode supports uncompressed 4K at 120
+Hz with 10-bit HDR and 4:4:4 uncompressed chroma, as well as baseline 8K
+resolutions at 60 Hz when using DSC.</p>
+<h3 id="4-4-lanes-at-12-gbps-48-gbps-total-bandwidth">4. 4 Lanes at 12
+Gbps (48 Gbps Total Bandwidth)</h3>
+<p>Representing the maximum transmission capability of the HDMI 2.1
+specification, this configuration operates all four lanes at 12 Gbps to
+reach a peak raw bandwidth of 48 Gbps (approximately 42.67 Gbps
+effective). This tier enables uncompressed 4K at 120 Hz with full 12-bit
+color, uncompressed 8K at 30 Hz, and up to 8K at 60 Hz or 10K at 120 Hz
+with DSC.</p>
+<h3 id="negotiation-via-link-training">Negotiation via Link
+Training</h3>
+<p>The selection of these lane configurations occurs dynamically during
+the HDMI Link Training status and control protocol. The source device
+and sink (display) negotiate link capabilities via the Extended Display
+Identification Data (EDID) and Display Data Channel (DDC). If the cable
+or sink cannot reliably sustain the signal integrity required for higher
+configurations like 48 Gbps, the system steps down to a lower stable FRL
+configuration (such as 40 Gbps, 32 Gbps, or 24 Gbps) to ensure an
+uninterrupted audiovisual signal.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

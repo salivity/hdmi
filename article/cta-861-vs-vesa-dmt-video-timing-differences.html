@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTA-861 vs VESA DMT: Video Timing Differences - hdmi</title>
+    <meta name="description" content="This article provides an overview of the differences between the HDMI CTA-861 and VESA DMT timing standards. While both specifications define how video frames are transmitted from a source to a display, they were engineered for different device ecosystem">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/cta-861-vs-vesa-dmt-video-timing-differences">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="CTA-861 vs VESA DMT: Video Timing Differences - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/cta-861-vs-vesa-dmt-video-timing-differences" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides an overview of the differences between the HDMI CTA-861 and VESA DMT timing standards. While both specifications define how video frames are transmitted from a source to a display, they were engineered for different device ecosystem" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="cta-861-vs-vesa-dmt-video-timing-differences">CTA-861 vs VESA
+DMT: Video Timing Differences</h1>
+<p>This article provides an overview of the differences between the HDMI
+CTA-861 and VESA DMT timing standards. While both specifications define
+how video frames are transmitted from a source to a display, they were
+engineered for different device ecosystems. Understanding their
+distinctions in origin, target hardware, blanking intervals, signaling
+identification, and supported refresh rates is essential for hardware
+developers, display engineers, and AV professionals.</p>
+<h3 id="target-ecosystem-and-historical-origin">Target Ecosystem and
+Historical Origin</h3>
+<p>The Consumer Technology Association defines CTA-861 (formerly
+CEA-861). It was created specifically for consumer electronics,
+establishing standardized formats for televisions, set-top boxes, media
+players, AV receivers, and gaming consoles connecting via HDMI and
+DVI.</p>
+<p>The Video Electronics Standards Association developed VESA DMT
+(Display Monitor Timing). It was designed around the IT and computer
+display industry, serving as the timing standard for PC graphics cards,
+desktop monitors, and workstation displays utilizing VGA, DVI, and
+DisplayPort interfaces.</p>
+<h3 id="resolutions-and-refresh-rates">Resolutions and Refresh
+Rates</h3>
+<p>CTA-861 emphasizes television and broadcast resolutions. It covers
+consumer-centric formats such as 720p, 1080i, 1080p, 4K, and 8K,
+alongside broadcast refresh rates including 23.976 Hz, 24 Hz, 25 Hz,
+29.97 Hz, 30 Hz, 50 Hz, 59.94 Hz, and 60 Hz.</p>
+<p>VESA DMT defines conventional computer desktop resolutions, including
+legacy 4:3 and 5:4 aspect ratios (such as 640x480, 800x600, 1024x768,
+and 1280x1024) as well as earlier widescreen PC resolutions (such as
+1680x1050 and 1920x1200). Its refresh rates are typically geared around
+60 Hz, 75 Hz, 85 Hz, and other monitor-specific scanning
+frequencies.</p>
+<h3
+id="identification-via-metadata-vic-vs-standard-timings">Identification
+via Metadata (VIC vs. Standard Timings)</h3>
+<p>In HDMI implementations of CTA-861, video timings are identified
+using a Video Identification Code (VIC). When a source outputs a CTA-861
+format, it transmits the corresponding VIC inside the HDMI Auxiliary
+Video Information (AVI) InfoFrame. This numeric ID allows the receiving
+display to instantly identify incoming parameters like total
+horizontal/vertical pixels, active area, and aspect ratio without having
+to deduce them strictly from sync pulses.</p>
+<p>VESA DMT timings, by contrast, are established within the display’s
+Extended Display Identification Data (EDID) memory using standard timing
+bytes or detailed timing descriptors (DTDs). Sources interpret these
+directly from the display's EDID block rather than matching a
+standardized consumer broadcast code.</p>
+<h3 id="blanking-intervals-and-data-islands">Blanking Intervals and Data
+Islands</h3>
+<p>A key difference within HDMI implementations is how the blanking
+intervals (the periods when the video beam or raster resets between
+lines and frames) are utilized:</p>
+<ul>
+<li><strong>CTA-861:</strong> Defines blanking intervals that
+accommodate the insertion of audio data, dynamic range metadata (HDR),
+and system control information encapsulated into HDMI Data Island
+periods.</li>
+<li><strong>VESA DMT:</strong> Originates from analog CRT parameters,
+prioritizing fixed, predictable blanking intervals suited strictly for
+synchronization rather than digital packet transmission.</li>
+</ul>
+<h3 id="color-space-standards">Color Space Standards</h3>
+<p>CTA-861 natively integrates broad consumer color space
+configurations, mandating and detailing both RGB and YCbCr (4:4:4,
+4:2:2, and 4:2:0) color formats along with limited-range quantization
+levels (16–235) typical in video production. VESA DMT focuses almost
+exclusively on full-range RGB (0–255), which is the standard color
+domain for computer graphics processing.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

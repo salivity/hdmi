@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Audio Extractors Work Without Video Loss - hdmi</title>
+    <meta name="description" content="An HDMI audio extractor separates the audio signal from an HDMI stream and routes it to optical (S/PDIF) or analog outputs while simultaneously passing the video signal untouched to a display. This process allows older soundbars, AV receivers, and analog">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-audio-extractors-work-without-video-loss">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Audio Extractors Work Without Video Loss - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-audio-extractors-work-without-video-loss" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="An HDMI audio extractor separates the audio signal from an HDMI stream and routes it to optical (S/PDIF) or analog outputs while simultaneously passing the video signal untouched to a display. This process allows older soundbars, AV receivers, and analog" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-audio-extractors-work-without-video-loss">How HDMI
+Audio Extractors Work Without Video Loss</h1>
+<p>An HDMI audio extractor separates the audio signal from an HDMI
+stream and routes it to optical (S/PDIF) or analog outputs while
+simultaneously passing the video signal untouched to a display. This
+process allows older soundbars, AV receivers, and analog speakers to
+integrate seamlessly with modern gaming consoles, streaming devices, and
+media players. By using digital demultiplexing, dedicated
+digital-to-analog converters (DACs), and active video passthrough
+architectures, an extractor maintains full video resolution and frame
+rates without introducing lag or signal degradation.</p>
+<h3 id="the-anatomy-of-an-hdmi-signal">The Anatomy of an HDMI
+Signal</h3>
+<p>To understand how an extractor works, it helps to look at how HDMI
+transmits data. HDMI does not send audio and video over separate
+physical copper wires within the cable. Instead, it interleaves audio,
+video, and control data into digital packets across high-speed lanes
+using Transition-Minimized Differential Signaling (TMDS) or Fixed Rate
+Link (FRL).</p>
+<p>During transmission, the video signal is sent during "active display
+periods," while the audio data, metadata, and control signals are
+transmitted during "data island periods"—the brief intervals between
+frames and lines known as the blanking interval. Because the data is
+already segmented into distinct digital packets, the extractor can
+separate the sound without modifying the video data.</p>
+<h3 id="digital-demultiplexing-splitting-without-changing">Digital
+Demultiplexing: Splitting Without Changing</h3>
+<p>Inside the audio extractor sits an HDMI receiver chip. This chip
+reads the incoming serialized stream of 1s and 0s and demultiplexes
+it:</p>
+<ol type="1">
+<li><strong>Video Passthrough:</strong> The extractor identifies the
+video packets and immediately routes them to an onboard HDMI transmitter
+chip. The video is not decoded, compressed, or scaled. The digital bits
+remain identical to the original source. The transmitter simply
+regenerates the clock signal and sends the exact video bitstream out of
+the HDMI output port to the TV or monitor.</li>
+<li><strong>Audio Interception:</strong> Simultaneously, the receiver
+chip isolates the audio packets from the data islands. It copies this
+digital data and routes it toward the designated audio processing
+pipeline.</li>
+</ol>
+<p>Because digital data can be cloned perfectly without signal loss,
+pulling the audio out does not "drain" or alter the video packets.</p>
+<h3 id="processing-optical-and-analog-audio">Processing Optical and
+Analog Audio</h3>
+<p>Once the audio stream is isolated, the device routes it based on the
+available outputs:</p>
+<ul>
+<li><strong>Digital Optical (TOSLink):</strong> If outputting to optical
+S/PDIF, the extractor reformats the digital audio packets into the
+standard S/PDIF protocol (such as two-channel uncompressed PCM, Dolby
+Digital 5.1, or DTS 5.1). An optical LED transmitter then pulses this
+data through a fiber-optic cable. The audio remains entirely digital,
+preserving master-quality fidelity.</li>
+<li><strong>Analog Audio (3.5mm / RCA):</strong> If outputting to an
+analog jack, the digital audio is sent to an internal Digital-to-Analog
+Converter (DAC). The DAC decodes a stereo PCM stream into continuous
+electrical waveforms suitable for headphones or standard stereo
+amplifiers. Multichannel formats like Dolby Digital cannot output
+through simple analog jacks unless the extractor specifically features a
+multichannel downmixing processor.</li>
+</ul>
+<h3 id="edid-management-and-hdcp-handling">EDID Management and HDCP
+Handling</h3>
+<p>For an extractor to work without degrading the video, it must handle
+two critical communication layers:</p>
+<ul>
+<li><strong>Extended Display Identification Data (EDID):</strong> The
+extractor manages the handshake between the source (e.g., a console) and
+the destination (the TV). Most extractors feature an EDID switch (e.g.,
+2CH, 5.1CH, or TV/Pass). This tells the source device precisely what
+audio and video capabilities to output, preventing the source from
+sending an incompatible audio format that would result in silence.</li>
+<li><strong>High-Bandwidth Digital Content Protection (HDCP):</strong>
+Copyright-protected content requires an active handshake. A high-quality
+extractor complies with HDCP standards (such as HDCP 1.4 or 2.2/2.3),
+authenticating the display downstream so the source device does not
+downscale the video resolution to 1080p or block the signal
+entirely.</li>
+</ul>
+<h3 id="why-the-video-does-not-degrade">Why the Video Does Not
+Degrade</h3>
+<p>Traditional analog splitters degrade video quality by splitting
+electrical voltage, leading to ghosting, noise, or dimming. An HDMI
+audio extractor avoids this because it operates purely in the digital
+domain. As long as the extractor's internal HDMI transmitter supports
+the source's bandwidth requirements (such as 18 Gbps for HDMI 2.0 or 48
+Gbps for HDMI 2.1), the display receives the exact digital pixel values
+produced by the source, resulting in zero loss of resolution, color
+depth, or dynamic range.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

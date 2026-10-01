@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maximum HDMI 2.1 Bandwidth Using DSC - hdmi</title>
+    <meta name="description" content="This article provides a technical overview of HDMI 2.1 bandwidth capabilities when combined with Display Stream Compression (DSC). While the physical connection remains capped at 48 Gbps, DSC allows the transmission of video feeds that would typically re">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/maximum-hdmi-2-1-bandwidth-using-dsc">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Maximum HDMI 2.1 Bandwidth Using DSC - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/maximum-hdmi-2-1-bandwidth-using-dsc" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article provides a technical overview of HDMI 2.1 bandwidth capabilities when combined with Display Stream Compression (DSC). While the physical connection remains capped at 48 Gbps, DSC allows the transmission of video feeds that would typically re" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="maximum-hdmi-21-bandwidth-using-dsc">Maximum HDMI 2.1 Bandwidth
+Using DSC</h1>
+<p>This article provides a technical overview of HDMI 2.1 bandwidth
+capabilities when combined with Display Stream Compression (DSC). While
+the physical connection remains capped at 48 Gbps, DSC allows the
+transmission of video feeds that would typically require significantly
+higher data rates. Below, we examine the physical limits of HDMI 2.1,
+how DSC multiplies effective throughput, and the maximum equivalent
+bandwidth achievable.</p>
+<h3 id="physical-bandwidth-vs-effective-bandwidth">Physical Bandwidth
+vs. Effective Bandwidth</h3>
+<p>The physical architecture of HDMI 2.1 utilizes Fixed Rate Link (FRL)
+signaling, delivering a maximum raw transmission rate of 48 Gbps across
+four data lanes (12 Gbps per lane). Accounting for 16b/18b encoding
+overhead, the maximum usable uncompressed data payload is approximately
+42.66 Gbps. Utilizing DSC does not increase the physical signaling rate
+over the cable; instead, it compresses the video data prior to
+transmission so that higher-resolution signals can traverse the fixed 48
+Gbps pipeline.</p>
+<h3 id="the-role-of-display-stream-compression-dsc-12a">The Role of
+Display Stream Compression (DSC 1.2a)</h3>
+<p>HDMI 2.1 incorporates the VESA Display Stream Compression (DSC) 1.2a
+standard. DSC is a visually lossless, low-latency compression algorithm
+specifically designed for real-time display interfaces. The standard
+defines a target compression ratio of up to 3:1 (and up to 3.75:1
+depending on color format and slice configurations), reducing the
+required bit rate for high-resolution, high-refresh-rate video streams
+without introducing perceptible image artifacts or input lag.</p>
+<h3 id="maximum-supported-compressed-bandwidth">Maximum Supported
+Compressed Bandwidth</h3>
+<p>When operating at the maximum 3:1 compression ratio supported by the
+standard:</p>
+<ul>
+<li><strong>Equivalent Raw Bandwidth:</strong> Multiplying the physical
+48 Gbps link by the 3:1 ratio yields an effective equivalent throughput
+of <strong>144 Gbps</strong>.</li>
+<li><strong>Equivalent Usable Data Payload:</strong> Multiplying the
+effective data payload of 42.66 Gbps by the 3:1 ratio delivers an
+effective uncompressed payload capacity of approximately <strong>128
+Gbps</strong>.</li>
+</ul>
+<h3 id="practical-capabilities">Practical Capabilities</h3>
+<p>This expanded effective throughput allows HDMI 2.1 to transport
+extreme formats that exceed the uncompressed 48 Gbps boundary. With DSC
+active, HDMI 2.1 can deliver:</p>
+<ul>
+<li><strong>8K (7680 × 4320)</strong> at 60 Hz or 120 Hz with 10-bit or
+12-bit 4:4:4 HDR color.</li>
+<li><strong>10K (10240 × 4320)</strong> ultra-wide video at up to 120
+Hz.</li>
+<li><strong>4K (3840 × 2160)</strong> at refresh rates up to 240 Hz with
+uncompromised chroma and bit depth.</li>
+</ul>
+<p>Both the video source (such as a modern GPU or console) and the sink
+device (such as a TV or monitor) must support HDMI 2.1 and DSC 1.2a to
+negotiate this compressed pipeline.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Is HDMI Video Identification Code (VIC)? - hdmi</title>
+    <meta name="description" content="The HDMI Video Identification Code (VIC) is a standardized numerical value used in digital video systems to designate specific combinations of resolution, refresh rate, aspect ratio, and timing parameters. This article explains the origin and purpose of">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/what-is-hdmi-video-identification-code-vic">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="What Is HDMI Video Identification Code (VIC)? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/what-is-hdmi-video-identification-code-vic" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The HDMI Video Identification Code (VIC) is a standardized numerical value used in digital video systems to designate specific combinations of resolution, refresh rate, aspect ratio, and timing parameters. This article explains the origin and purpose of" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="what-is-hdmi-video-identification-code-vic">What Is HDMI Video
+Identification Code (VIC)?</h1>
+<p>The HDMI Video Identification Code (VIC) is a standardized numerical
+value used in digital video systems to designate specific combinations
+of resolution, refresh rate, aspect ratio, and timing parameters. This
+article explains the origin and purpose of the VIC under the CTA-861
+standard, how it abstracts complex display timings into simple integers,
+and how source devices and displays use it through EDID and AVI
+InfoFrames to establish a synchronized video connection.</p>
+<h2 id="what-is-a-video-identification-code">What Is a Video
+Identification Code?</h2>
+<p>A Video Identification Code (VIC) is an integer defined by the
+Consumer Technology Association within the CTA-861 (formerly CEA-861)
+standard, which is incorporated into HDMI specifications. In digital
+video transmission, establishing a video stream requires both the
+transmitting device (source) and the receiving display (sink) to agree
+on dozens of low-level parameters.</p>
+<p>Rather than continuously transmitting an entire table of signal
+timings, the standard assigns a static number to each standardized
+format. For example, VIC 16 maps to a 1080p signal at 60 Hz with a 16:9
+aspect ratio, while VIC 97 maps to a 4K UHD signal (3840x2160) at 60
+Hz.</p>
+<h2 id="how-vic-specifies-resolution">How VIC Specifies Resolution</h2>
+<p>The VIC maps directly to active video geometry, defining:</p>
+<ul>
+<li><strong>Active Horizontal and Vertical Pixels:</strong> The exact
+addressable display area (e.g., 1920×1080, 3840×2160, or 1280×720).</li>
+<li><strong>Scan Type:</strong> Whether the image is progressive (each
+line drawn sequentially, denoted as "p") or interlaced (alternating odd
+and even lines, denoted as "i").</li>
+<li><strong>Picture Aspect Ratio:</strong> The intended geometric ratio
+of the active picture, such as 4:3, 16:9, or 21:9.</li>
+</ul>
+<p>Because different formats can share the same pixel count but differ
+in aspect ratio, separate VICs exist for these variations. For instance,
+standard-definition 720x480p at 60 Hz uses VIC 2 for a 4:3 aspect ratio
+and VIC 3 for a 16:9 aspect ratio.</p>
+<h2 id="how-vic-specifies-timing-parameters">How VIC Specifies Timing
+Parameters</h2>
+<p>Resolution only describes the visible pixels. The underlying hardware
+requires strict electronic timings to synchronize the pixel stream. A
+VIC predefines all of these parameters in a standardized lookup
+table:</p>
+<ul>
+<li><strong>Pixel Clock Frequency:</strong> The rate at which individual
+pixels are transmitted, measured in megahertz (MHz).</li>
+<li><strong>Field/Frame Rate:</strong> The frequency at which complete
+frames are drawn (e.g., 24 Hz, 50 Hz, 59.94 Hz, or 60 Hz).</li>
+<li><strong>Blanking Intervals:</strong> The non-visible periods between
+lines and frames historically used for cathode-ray tube beam reset, now
+used in digital systems for data transmission (audio, metadata, and
+control packets). A VIC specifies:
+<ul>
+<li><strong>Front Porch:</strong> The period between the end of visible
+data and the sync pulse (both horizontal and vertical).</li>
+<li><strong>Sync Pulse Width:</strong> The duration of the
+synchronization signal that aligns the scan lines and frames.</li>
+<li><strong>Back Porch:</strong> The period between the sync pulse and
+the start of the next line or frame of active video.</li>
+</ul></li>
+<li><strong>Sync Polarities:</strong> Whether the horizontal and
+vertical synchronization pulses are active-high or active-low.</li>
+</ul>
+<p>By indexing these values, a source device outputs signals with exact
+microsecond tolerances without needing manual timing negotiation.</p>
+<h2 id="how-hdmi-devices-use-vic">How HDMI Devices Use VIC</h2>
+<p>The exchange of VIC data occurs through two primary mechanisms:</p>
+<ol type="1">
+<li><strong>EDID (Extended Display Identification Data):</strong> When
+an HDMI display connects to a source, it provides an EDID block. Within
+the CTA-861 Extension of this block, the display includes a Short Video
+Descriptor (SVD) list containing the VICs it natively supports.</li>
+<li><strong>AVI InfoFrame (Auxiliary Video Information):</strong> Once
+the source selects a supported mode, it transmits the video stream along
+with an AVI InfoFrame embedded during the horizontal blanking intervals.
+The InfoFrame contains the active VIC, informing the display precisely
+which predefined timing format is arriving so the display can
+immediately lock onto the signal.</li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDID Handshake Loop and HDMI Sleep Issues Explained - hdmi</title>
+    <meta name="description" content="An Extended Display Identification Data (EDID) handshake loop occurs when a video source and a display fail to finalize the configuration communication required to transmit a video signal, resulting in a continuous cycle of connection attempts. This arti">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/edid-handshake-loop-and-hdmi-sleep-issues-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="EDID Handshake Loop and HDMI Sleep Issues Explained - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/edid-handshake-loop-and-hdmi-sleep-issues-explained" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="An Extended Display Identification Data (EDID) handshake loop occurs when a video source and a display fail to finalize the configuration communication required to transmit a video signal, resulting in a continuous cycle of connection attempts. This arti" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="edid-handshake-loop-and-hdmi-sleep-issues-explained">EDID
+Handshake Loop and HDMI Sleep Issues Explained</h1>
+<p>An Extended Display Identification Data (EDID) handshake loop occurs
+when a video source and a display fail to finalize the configuration
+communication required to transmit a video signal, resulting in a
+continuous cycle of connection attempts. This article explains the
+fundamentals of the HDMI EDID exchange, the mechanics behind a handshake
+loop, and the specific reasons this issue prevents an HDMI display from
+successfully waking from sleep mode.</p>
+<h3 id="what-is-edid-and-the-hdmi-handshake">What is EDID and the HDMI
+Handshake?</h3>
+<p>EDID is a standardized metadata format developed by the Video
+Electronics Standards Association (VESA). Stored in an EEPROM chip
+inside the display, EDID contains essential capability data, including
+native resolutions, refresh rates, color spaces, audio capabilities, and
+manufacturer details.</p>
+<p>When an HDMI display connects to a source device (such as a PC or
+media player), the two engage in a process called the "handshake":</p>
+<ol type="1">
+<li><strong>Hot Plug Detect (HPD):</strong> The display pulls the HPD
+pin high (5V) to signal its presence to the source.</li>
+<li><strong>Data Exchange over DDC:</strong> The source reads the
+display's EDID over the I²C-based Display Data Channel (DDC).</li>
+<li><strong>Authentication (HDCP):</strong> If required, High-bandwidth
+Digital Content Protection (HDCP) keys are exchanged to establish
+encrypted content delivery.</li>
+<li><strong>Signal Transmission:</strong> The source configures its
+output to match a supported mode defined in the EDID and begins
+transmitting video via Transition-Minimized Differential Signaling
+(TMDS) or Fixed Rate Link (FRL).</li>
+</ol>
+<h3 id="how-an-edid-handshake-loop-occurs">How an EDID Handshake Loop
+Occurs</h3>
+<p>An EDID handshake loop happens when an interruption or error prevents
+the handshake from concluding. Rather than establishing a stable link,
+the devices endlessly repeat the connection sequence:</p>
+<ul>
+<li><strong>Communication Timeouts:</strong> If the source requests the
+EDID over the DDC bus and fails to receive a clean, timely response, it
+resets the connection attempt.</li>
+<li><strong>Corrupted Data:</strong> Signal degradation—often caused by
+poor shielding, long cable runs, or failing adapters—results in invalid
+checksums in the EDID data packet, prompting the source to reject it and
+request it again.</li>
+<li><strong>HPD Flapping:</strong> Unstable voltage on the Hot Plug
+Detect line causes the source to believe the cable is repeatedly being
+disconnected and reconnected, triggering continuous
+re-initialization.</li>
+</ul>
+<h3 id="why-the-loop-prevents-waking-from-sleep">Why the Loop Prevents
+Waking From Sleep</h3>
+<p>When a computer or monitor enters a low-power sleep state, high-speed
+video transmission ceases, and power on the HDMI lines is minimized.
+Waking up requires the reverse process: the source must restore power,
+detect the display, verify its capabilities, and send an active pixel
+clock. A handshake loop breaks this sequence in several specific
+ways:</p>
+<h4 id="1-inability-to-establish-active-video-clocks">1. Inability to
+Establish Active Video Clocks</h4>
+<p>Displays determine whether to stay awake based on the presence of a
+stable video timing signal. During a handshake loop, the source never
+advances past the capability negotiation stage. Because the graphics
+driver cannot confirm a valid target resolution and timing set, it never
+engages the TMDS or FRL transmitter. The display detects no active video
+signal on the input lines and immediately returns to standby mode.</p>
+<h4 id="2-power-state-desynchronization">2. Power State
+Desynchronization</h4>
+<p>Many modern monitors implement aggressive power-saving protocols that
+power down the internal scalar and DDC processing unit during sleep.
+When the computer wakes up and asserts power over the 5V line, the
+monitor's microcontroller may not initialize its DDC bus fast enough.
+The source times out, drops the wake attempt, and re-enters sleep mode,
+creating an asynchronous state where each device expects the other to
+respond first.</p>
+<h4 id="3-display-data-channel-ddc-bus-contention">3. Display Data
+Channel (DDC) Bus Contention</h4>
+<p>When waking, the operating system attempts to re-query display
+topologies via the graphics card driver. If an intermediate device—such
+as an Audio/Video Receiver (AVR), KVM switch, or soundbar—sits between
+the source and display, it must pass the EDID information transparently.
+If the intermediary introduces latency or alters the timing of the I²C
+bus signals, the host GPU driver drops the connection, drops the DDC
+link, and initiates a retry loop that never surfaces an active
+desktop.</p>
+<h4 id="4-hdcp-handshake-failures-on-wake">4. HDCP Handshake Failures on
+Wake</h4>
+<p>Waking from sleep requires re-authenticating HDCP encryption keys. If
+the display's internal HDCP state engine does not wake in sync with the
+source, the cryptographic handshake fails. Many modern GPU drivers
+deliberately shut down video output if an HDCP handshake fails
+unexpectedly, interpreting the error as an unauthorized tap into the
+signal path. This forces another connection reset, cementing the display
+in a black-screen loop.</p>
+<h3 id="resolving-the-issue">Resolving the Issue</h3>
+<p>Addressing an EDID handshake loop requires removing the factors that
+delay or corrupt the communication channel:</p>
+<ul>
+<li><strong>Use Direct Connections:</strong> Eliminate passive adapters,
+non-certified splitters, and unpowered KVMs that intercept or degrade
+DDC line voltages.</li>
+<li><strong>Disable Deep Sleep in Monitor Firmware:</strong> Using the
+monitor's On-Screen Display (OSD), disable settings labeled "Auto Source
+Switch," "Deep Sleep," or "Power Save" to keep the DDC and HPD circuits
+continuously powered.</li>
+<li><strong>Install Hardware EDID Emulators:</strong> An inline EDID
+passthrough device (EDID ghost/emulator) stores the monitor's profile
+and continuously feeds it to the source device, ensuring the computer
+always sees an active, properly configured display regardless of its
+physical power state.</li>
+<li><strong>Update Display and GPU Firmware:</strong> Install updated
+graphics drivers and monitor firmware patches, which frequently contain
+timing adjustments to resolve known DDC and HDCP sleep-wake
+incompatibilities.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

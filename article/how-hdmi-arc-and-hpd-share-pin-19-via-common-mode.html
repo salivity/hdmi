@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI ARC and HPD Share Pin 19 via Common-Mode - hdmi</title>
+    <meta name="description" content="This article explains how HDMI Audio Return Channel (ARC) transmits digital audio over the same physical line used for Hot Plug Detect (HPD) without signal interference. By taking advantage of electrical frequency separation, AC coupling, and differentia">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-arc-and-hpd-share-pin-19-via-common-mode">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI ARC and HPD Share Pin 19 via Common-Mode - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-arc-and-hpd-share-pin-19-via-common-mode" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how HDMI Audio Return Channel (ARC) transmits digital audio over the same physical line used for Hot Plug Detect (HPD) without signal interference. By taking advantage of electrical frequency separation, AC coupling, and differentia" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-arc-and-hpd-share-pin-19-via-common-mode">How HDMI ARC
+and HPD Share Pin 19 via Common-Mode</h1>
+<p>This article explains how HDMI Audio Return Channel (ARC) transmits
+digital audio over the same physical line used for Hot Plug Detect (HPD)
+without signal interference. By taking advantage of electrical frequency
+separation, AC coupling, and differential signaling across Pin 19 and
+Pin 14, HDMI devices simultaneously maintain connection status detection
+and high-speed audio transmission over a single wire.</p>
+<h3 id="the-roles-of-pin-14-and-pin-19">The Roles of Pin 14 and Pin
+19</h3>
+<p>In the original HDMI specification, Pin 19 was strictly dedicated to
+Hot Plug Detect (HPD), an essentially static DC signal. When a display
+(sink) is connected and powered, it pulls Pin 19 high (to roughly +5V),
+signaling to the media source that an active display is present. Pin 14
+was originally reserved and largely unused.</p>
+<p>With the introduction of HDMI 1.4, HDMI Licensing introduced the HDMI
+Ethernet and Audio Return Channel (HEAC). To transmit high-fidelity
+audio upstream from a TV to an AV receiver or soundbar without adding
+new physical pins to the connector, the specification paired Pin 14
+(designated as HEAC+) and Pin 19 (designated as HEAC-) into a hybrid
+transmission line.</p>
+<h3 id="frequency-division-dc-detection-vs-ac-audio">Frequency Division:
+DC Detection vs. AC Audio</h3>
+<p>The primary mechanism that allows ARC and HPD to coexist on Pin 19 is
+the stark difference in their operating frequencies:</p>
+<ul>
+<li><strong>Hot Plug Detect (DC):</strong> HPD relies on a steady-state
+DC voltage level (high or low) with transitions occurring only when
+cables are connected, disconnected, or power cycled.</li>
+<li><strong>ARC Audio (AC):</strong> ARC transmits audio as a
+high-frequency, AC-coupled digital stream (typically an IEC 60958-1 /
+S/PDIF format or differential Manchester-encoded data) running in the
+megahertz range.</li>
+</ul>
+<p>Because HPD operates at 0 Hz (DC) and the ARC signal operates at high
+radio frequencies (RF/AC), the two signals can occupy the same physical
+conductor simultaneously without corruption.</p>
+<h3 id="capacitive-isolation-and-bias-injection">Capacitive Isolation
+and Bias Injection</h3>
+<p>To separate these two signals at the hardware level, transmitter and
+receiver circuits employ reactive filtering:</p>
+<ol type="1">
+<li><strong>AC-Coupling Capacitors:</strong> The ARC transmitter and
+receiver connect to Pin 19 through series capacitors. Capacitors act as
+open circuits to direct current (DC), effectively blocking the +5V HPD
+signal from entering and damaging the sensitive high-frequency audio
+transceivers. However, these capacitors present very low impedance to
+high-frequency AC signals, allowing the audio stream to pass through
+freely.</li>
+<li><strong>DC Sense Resistors and Inductors:</strong> The HPD detection
+circuit monitors Pin 19 through high-impedance resistive networks or
+low-pass filtering. This circuit measures the average DC voltage to
+determine whether the display is attached while attenuating and ignoring
+the rapid AC fluctuations caused by the audio stream.</li>
+</ol>
+<h3 id="differential-and-common-mode-operation">Differential and
+Common-Mode Operation</h3>
+<p>HEAC utilizes Pin 14 and Pin 19 as a differential pair for audio and
+data. In differential signaling, the information is carried by the
+voltage <em>difference</em> between the two conductors (HEAC+ and
+HEAC-), rather than the voltage relative to ground:</p>
+<ul>
+<li><strong>Differential Mode (ARC Audio):</strong> The ARC audio signal
+is driven out-of-phase across Pin 14 and Pin 19 (<span
+class="math inline">\(V_{\text{diff}} = V_{14} - V_{19}\)</span>). The
+receiving differential amplifier amplifies only this difference, making
+the audio recovery immune to steady-state DC offsets.</li>
+<li><strong>Common-Mode / DC Offset (HPD):</strong> The HPD voltage sits
+on Pin 19 as a DC baseline. Because the differential receiver is
+designed to reject common-mode and constant DC offsets across the pair,
+the HPD voltage level has no impact on the extracted audio data.</li>
+</ul>
+<p>Through this combination of DC-blocking capacitors, differential
+decoding, and low-pass DC sensing, HDMI hardware cleanly isolates HPD
+detection from ARC audio data while sharing the single copper trace of
+Pin 19.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Can HDMI Output Multiple Displays Using MST? - hdmi</title>
+    <meta name="description" content="Unlike DisplayPort, a native HDMI port cannot output two distinct video streams to extend your desktop using Multi-Stream Transport (MST). HDMI architecture is fundamentally limited to Single Stream Transport (SST), meaning a standard HDMI port can only">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/can-hdmi-output-multiple-displays-using-mst">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Can HDMI Output Multiple Displays Using MST? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/can-hdmi-output-multiple-displays-using-mst" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Unlike DisplayPort, a native HDMI port cannot output two distinct video streams to extend your desktop using Multi-Stream Transport (MST). HDMI architecture is fundamentally limited to Single Stream Transport (SST), meaning a standard HDMI port can only" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="can-hdmi-output-multiple-displays-using-mst">Can HDMI Output
+Multiple Displays Using MST?</h1>
+<p>Unlike DisplayPort, a native HDMI port cannot output two distinct
+video streams to extend your desktop using Multi-Stream Transport (MST).
+HDMI architecture is fundamentally limited to Single Stream Transport
+(SST), meaning a standard HDMI port can only transmit one independent
+video feed at a time. This article explores why HDMI lacks native MST
+capability, how passive and active splitters behave, and the alternative
+technologies you can use to connect multiple extended displays.</p>
+<h3 id="the-technical-limitation-of-hdmi">The Technical Limitation of
+HDMI</h3>
+<p>DisplayPort introduced Multi-Stream Transport in version 1.2,
+allowing graphics cards to multiplex multiple independent video signals
+across a single cable. A compatible monitor or an MST hub can then
+demultiplex those signals and distribute them to separate displays,
+enabling an extended desktop.</p>
+<p>HDMI does not support this protocol. The HDMI specification was
+designed strictly around single-stream transmission for consumer
+electronics, such as connecting a Blu-ray player, console, or PC to a
+single television or monitor. Because the physical transmission layer
+and protocol lack native multiplexing capabilities, your graphics card
+cannot assign separate display identifiers (EDIDs) to multiple monitors
+through a single HDMI connector.</p>
+<h3 id="the-problem-with-hdmi-splitters">The Problem with HDMI
+Splitters</h3>
+<p>Users looking to connect two monitors to a single HDMI output often
+turn to inexpensive HDMI splitters. However, because the port only
+delivers a single video stream, these devices can only replicate the
+exact same image across multiple screens (mirror mode).</p>
+<p>An HDMI splitter takes the single incoming signal, duplicates the
+packets, and broadcasts them simultaneously. It cannot communicate back
+to your operating system to request a secondary, extended workspace.</p>
+<h3 id="what-about-hdmi-21-dual-view">What About HDMI 2.1 "Dual
+View"?</h3>
+<p>HDMI 2.1 introduced a feature known as "Dual View," which allows two
+independent video streams to be transmitted concurrently over the same
+link. However, this is not equivalent to MST for PC multi-monitor
+setups.</p>
+<p>Dual View is intended for a single display to show two different
+full-screen video feeds at the same time—such as two players seeing
+distinct perspectives on the same TV via specialized 3D glasses or
+split-view technology. Operating systems like Windows and macOS do not
+use Dual View to extend desktops across two separate physical
+monitors.</p>
+<h3 id="solutions-for-running-multiple-extended-displays">Solutions for
+Running Multiple Extended Displays</h3>
+<p>If your computer only has one video output or you need more displays
+than available physical ports, there are alternative methods:</p>
+<ul>
+<li><strong>USB-C with DisplayPort Alternate Mode:</strong> Many modern
+laptops feature USB-C ports that support "DP Alt Mode." USB-C docks that
+provide dual HDMI outputs do not actually run on HDMI from the host;
+they use the internal DisplayPort signal combined with an onboard MST
+hub to drive two extended HDMI screens. Note that macOS does not support
+MST over USB-C and will only mirror displays in this configuration.</li>
+<li><strong>DisplayLink (USB to Video Adapters):</strong>
+DisplayLink-enabled adapters connect to a standard USB-A or USB-C port.
+They use your computer's CPU and a software driver to encode display
+data as standard USB data packets, converting it into a separate video
+output at the adapter. This bypasses your GPU's port limitations
+entirely and supports extended mode.</li>
+<li><strong>Display Splitters / Processors:</strong> Specialized
+hardware, such as ultra-wide span controllers, can present itself to
+your operating system as one single ultra-wide display (for example,
+3840x1080). The hardware device then physically crops the image in half,
+sending the left half to one monitor and the right half to the other via
+separate HDMI cables.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

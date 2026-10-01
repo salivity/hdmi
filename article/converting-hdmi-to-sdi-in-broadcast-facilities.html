@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converting HDMI to SDI in Broadcast Facilities - hdmi</title>
+    <meta name="description" content="Integrating consumer or prosumer HDMI equipment into professional SDI-driven broadcast facilities is a common operational necessity. While HDMI is the ubiquitous standard for consumer computers, gaming consoles, and compact cameras, SDI (Serial Digital I">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/converting-hdmi-to-sdi-in-broadcast-facilities">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Converting HDMI to SDI in Broadcast Facilities - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/converting-hdmi-to-sdi-in-broadcast-facilities" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Integrating consumer or prosumer HDMI equipment into professional SDI-driven broadcast facilities is a common operational necessity. While HDMI is the ubiquitous standard for consumer computers, gaming consoles, and compact cameras, SDI (Serial Digital I" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="converting-hdmi-to-sdi-in-broadcast-facilities">Converting HDMI
+to SDI in Broadcast Facilities</h1>
+<p>Integrating consumer or prosumer HDMI equipment into professional
+SDI-driven broadcast facilities is a common operational necessity. While
+HDMI is the ubiquitous standard for consumer computers, gaming consoles,
+and compact cameras, SDI (Serial Digital Interface) remains the backbone
+of live production due to its robust, locking connectors and capability
+for long cable runs. This article outlines the essential technologies
+and strategies broadcast engineers use to bridge these disparate
+standards, focusing on hardware converters, signal scaling, frame
+synchronization, EDID management, and HDCP handling.</p>
+<h3 id="dedicated-hardware-converters">Dedicated Hardware
+Converters</h3>
+<p>The most direct solution for integrating HDMI into an SDI environment
+is the deployment of dedicated hardware micro-converters. Manufacturers
+such as Blackmagic Design, AJA Video Systems, and Decimator Design
+produce compact, low-latency cross-converters. These devices take an
+uncompressed digital HDMI feed and repackage it into standard
+SMPTE-compliant SDI (such as 3G-SDI, 6G-SDI, or 12G-SDI for 4K
+workflows). These converters are typically housed in rugged metal
+enclosures designed for field use or rack-mounted in high-density frames
+within central apparatus rooms (CAR).</p>
+<h3 id="scaling-and-frame-rate-standardization">Scaling and Frame Rate
+Standardization</h3>
+<p>Consumer HDMI devices frequently output non-standard broadcast
+signals. A laptop might output a 60 Hz refresh rate at an arbitrary
+resolution, whereas a broadcast environment in North America requires
+standard 59.94 Hz (or 50 Hz in PAL territories) at specific resolutions
+like 1080i, 1080p, or 2160p.</p>
+<p>To bridge this discrepancy, production facilities employ
+cross-converters equipped with hardware up/down/cross-scalers and frame
+rate converters. These devices dynamically resample and re-clock
+incoming video to match the facility's production format, preventing
+visual tearing, dropped frames, or total signal loss at the production
+switcher.</p>
+<h3 id="frame-synchronization-and-genlock">Frame Synchronization and
+Genlock</h3>
+<p>Professional broadcast switchers require all incoming video sources
+to be synchronized to a master clock (genlock/black burst/tri-level
+sync) to ensure glitch-free cutting and mixing. Consumer HDMI gear
+cannot receive an external reference signal.</p>
+<p>To solve this, advanced HDMI-to-SDI converters include internal frame
+synchronizers. The converter stores incoming video frames in a buffer
+and releases them in exact alignment with the facility's reference
+clock, making the consumer feed switchable alongside broadcast studio
+cameras.</p>
+<h3 id="edid-management-and-hdcp-compliance">EDID Management and HDCP
+Compliance</h3>
+<p>Two major obstacles when ingesting HDMI into professional pipelines
+are Extended Display Identification Data (EDID) and High-bandwidth
+Digital Content Protection (HDCP).</p>
+<ul>
+<li><strong>EDID Emulation:</strong> HDMI devices query the display
+device to determine supported resolutions and frame rates. In a
+broadcast setup, converting the signal can lead to incorrect EDID
+handshakes, causing the source to default to an unsupported format.
+Broadcast-grade HDMI interfaces utilize EDID emulators that force the
+source device to continuously output a specific resolution and refresh
+rate compatible with the facility's gear.</li>
+<li><strong>HDCP Restrictions:</strong> HDCP encrypts content to prevent
+unauthorized copying. Broadcast SDI infrastructure does not support
+HDCP. If an HDMI source engages HDCP encryption (common with computers
+displaying protected media or streaming devices), the converter will
+pass a black screen or an error. Facilities must ensure that content
+sources have HDCP disabled at the hardware level, or use dedicated
+non-HDCP distribution amplifiers to pass only legally clear,
+non-protected video feeds.</li>
+</ul>
+<h3 id="color-space-conversion">Color Space Conversion</h3>
+<p>Consumer HDMI gear typically outputs video using the RGB color space
+with full dynamic range (0–255). Conversely, professional SDI video
+utilizes the YCbCr (YUV) color space, often conforming to ITU-R BT.709
+or BT.2020 with limited legal range (16–235).</p>
+<p>Broadcast converters perform real-time mathematical color space
+conversion. Without this step, an HDMI source plugged directly into an
+SDI monitor or switcher will exhibit crushed blacks, blown-out
+highlights, or severe color distortion.</p>
+<h3 id="audio-embedding-and-mapping">Audio Embedding and Mapping</h3>
+<p>HDMI carries interleaved digital audio, usually formatted as
+uncompressed LPCM stereo or multichannel surround. Professional
+converters extract these audio streams and embed them into the
+standardized ancillary data space of the SDI stream according to SMPTE
+272M or SMPTE 299M standards. This ensures that audio travels
+synchronized with the video directly into SDI routing matrices and audio
+de-embedders for mixing.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

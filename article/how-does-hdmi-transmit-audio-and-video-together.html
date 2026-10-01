@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Does HDMI Transmit Audio and Video Together? - hdmi</title>
+    <meta name="description" content="HDMI transmits uncompressed video alongside uncompressed or compressed audio across a single cable by interleaving audio packets directly into the inactive blanking intervals of the video stream. Using high-speed differential signaling, HDMI alternates b">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-does-hdmi-transmit-audio-and-video-together">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Does HDMI Transmit Audio and Video Together? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-does-hdmi-transmit-audio-and-video-together" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI transmits uncompressed video alongside uncompressed or compressed audio across a single cable by interleaving audio packets directly into the inactive blanking intervals of the video stream. Using high-speed differential signaling, HDMI alternates b" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-does-hdmi-transmit-audio-and-video-together">How Does HDMI
+Transmit Audio and Video Together?</h1>
+<p>HDMI transmits uncompressed video alongside uncompressed or
+compressed audio across a single cable by interleaving audio packets
+directly into the inactive blanking intervals of the video stream. Using
+high-speed differential signaling, HDMI alternates between sending raw
+pixel values during active display moments and multi-channel audio data
+during the tiny pauses between lines and frames, guaranteeing seamless
+audio-video synchronization without requiring separate data paths.</p>
+<h2 id="the-physical-foundation-tmds-architecture">The Physical
+Foundation: TMDS Architecture</h2>
+<p>At the hardware layer of standard HDMI versions up to 2.0,
+transmission relies on Transition Minimized Differential Signaling
+(TMDS). A standard HDMI interface utilizes four primary physical
+lanes:</p>
+<ul>
+<li><strong>Three Data Lanes:</strong> Channels 0, 1, and 2 carry
+serialized color, audio, and metadata payloads.</li>
+<li><strong>One Clock Lane:</strong> A dedicated physical channel that
+maintains clock synchronization between the transmitter (source) and the
+receiver (sink).</li>
+</ul>
+<p>TMDS encodes 8-bit input bytes into 10-bit symbols. This 8b/10b
+encoding minimizes voltage transitions across the copper pairs, reducing
+electromagnetic interference and maintaining direct current balance
+across the differential wires.</p>
+<h2 id="the-three-operational-periods">The Three Operational
+Periods</h2>
+<p>Rather than dedicating separate physical pins to audio and video,
+HDMI divides its transmission time into three distinct operational
+periods across the three TMDS data lanes.</p>
+<h3 id="1-video-data-period">1. Video Data Period</h3>
+<p>During the Video Data Period, the display controller transmits
+active, uncompressed pixel color components. Channel 0 typically carries
+the blue component along with synchronization markers, Channel 1 carries
+green, and Channel 2 carries red (or luminance and chrominance values
+depending on the color space, such as RGB or YCbCr). Each active display
+pixel maps directly to the physical lines without lossy compression.</p>
+<h3 id="2-control-period">2. Control Period</h3>
+<p>The Control Period occurs between active lines and frames. In this
+phase, the interface transmits horizontal and vertical synchronization
+signals (HSYNC and VSYNC) as 2-bit values encoded into 10-bit control
+characters. These characters establish boundary lines for each frame and
+reset the raster scan timing on the display.</p>
+<h3 id="3-data-island-period">3. Data Island Period</h3>
+<p>The mechanism that enables audio to travel over the exact same wires
+as video is the <strong>Data Island Period</strong>. Cathode-ray tube
+displays originally required brief pauses between raster lines
+(horizontal blanking) and between full frames (vertical blanking) to
+reset the electron gun. Modern digital displays do not require physical
+beam resetting, but HDMI retains these blanking intervals.</p>
+<p>During horizontal and vertical blanking intervals, HDMI switches from
+sending video pixels to transmitting 32-byte data packets known as Data
+Islands:</p>
+<ul>
+<li><strong>Packet Structure:</strong> Each packet consists of a 4-byte
+header describing the packet type and 28 bytes of payload protected by
+error correction codes (BCH).</li>
+<li><strong>Audio Packing:</strong> Audio data—whether pulse-code
+modulated (PCM) uncompressed sound or bitstream compressed audio like
+Dolby Digital or DTS—is packetized into these 32-byte units.</li>
+<li><strong>Packet Types:</strong> Data islands also transport audio
+clock regeneration information, general control packets, and Consumer
+Electronics Control (CEC) metadata.</li>
+</ul>
+<p>Because data islands fit entirely within periods where the display is
+not rendering pixels, audio transmission consumes zero active video
+bandwidth.</p>
+<h2 id="clock-regeneration-and-audio-synchronization">Clock Regeneration
+and Audio Synchronization</h2>
+<p>Video pixel clocks run at frequencies tied directly to display
+resolution and refresh rate (such as 148.5 MHz for 1080p at 60 Hz),
+whereas audio clocks operate at standard acoustic sampling rates (such
+as 48 kHz, 96 kHz, or 192 kHz).</p>
+<p>To eliminate drift between the audio and video clocks without
+requiring an extra physical clock wire, HDMI uses an Audio Clock
+Regeneration architecture. The transmitter sends two integer values
+inside periodic data island packets:</p>
+<ul>
+<li><strong><span class="math inline">\(N\)</span> (Numerator):</strong>
+A fixed fractional multiplier.</li>
+<li><strong><span class="math inline">\(CTS\)</span> (Cycle Time
+Stamp):</strong> A measured counter value representing the exact number
+of video clock cycles elapsed over a set audio interval.</li>
+</ul>
+<p>The receiver’s internal Phase-Locked Loop (PLL) recreates the
+original audio master clock frequency (<span
+class="math inline">\(f_s\)</span>) by computing:</p>
+<p><span class="math display">\[f_s = f_{\text{TMDS\_clock}} \times
+\frac{N}{CTS}\]</span></p>
+<p>This continuous mathematical adjustment ensures that audio playback
+remains locked in phase with the incoming video frames.</p>
+<h2 id="modern-evolution-fixed-rate-link-hdmi-21">Modern Evolution:
+Fixed Rate Link (HDMI 2.1)</h2>
+<p>HDMI 2.1 introduced Fixed Rate Link (FRL), replacing TMDS for
+ultra-high-bandwidth transmissions up to 48 Gbps. FRL reclaims the
+physical clock lane as a fourth data lane and switches to an efficient
+16b/18b encoding scheme with embedded clock recovery.</p>
+<p>Despite the architectural shift in physical signaling, the underlying
+logical concept remains identical: active video, packetized audio, and
+supplementary display metadata are interleaved into high-speed serial
+packet bursts, allowing rich surround sound and pristine high-resolution
+frames to travel harmoniously through a single connection.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

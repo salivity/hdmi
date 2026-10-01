@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI Ethernet Channel HEC Pins 14 and 19 Explained - hdmi</title>
+    <meta name="description" content="This article explores the technical function of physical pins 14 and 19 in the HDMI 1.4 specification, focusing on how they operate as a differential pair to deliver the HDMI Ethernet Channel (HEC). It details the pin reassignment from earlier standards,">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-ethernet-channel-hec-pins-14-and-19-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI Ethernet Channel HEC Pins 14 and 19 Explained - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-ethernet-channel-hec-pins-14-and-19-explained" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explores the technical function of physical pins 14 and 19 in the HDMI 1.4 specification, focusing on how they operate as a differential pair to deliver the HDMI Ethernet Channel (HEC). It details the pin reassignment from earlier standards," />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-ethernet-channel-hec-pins-14-and-19-explained">HDMI
+Ethernet Channel HEC Pins 14 and 19 Explained</h1>
+<p>This article explores the technical function of physical pins 14 and
+19 in the HDMI 1.4 specification, focusing on how they operate as a
+differential pair to deliver the HDMI Ethernet Channel (HEC). It details
+the pin reassignment from earlier standards, the signaling mechanisms
+used to transmit bidirectional 100 Mbps network data, and how this pair
+simultaneously handles Hot Plug Detect and Audio Return Channel
+functions without signal interference.</p>
+<h3 id="the-role-of-physical-pins-14-and-19">The Role of Physical Pins
+14 and 19</h3>
+<p>In HDMI 1.4, the specification introduced the HDMI Ethernet Channel
+(HEC) to integrate standard networking capabilities into the existing
+audio/video interface. To achieve this without altering the 19-pin
+physical form factor of the standard Type-A connector, HDMI 1.4
+repurposed two existing lines:</p>
+<ul>
+<li><strong>Pin 14 (Utility / HEAC+):</strong> Previously designated as
+"Reserved" in HDMI 1.0 through 1.3, this pin was assigned as the Utility
+pin, serving as the positive line of the differential pair.</li>
+<li><strong>Pin 19 (Hot Plug Detect / HEAC-):</strong> Previously
+dedicated solely to standard Hot Plug Detect (HPD), this pin was
+repurposed to act as the negative line of the differential pair while
+retaining its original detection duties.</li>
+</ul>
+<p>Together, these two pins form a shielded twisted pair known
+collectively as <strong>HEAC</strong> (HDMI Ethernet and Audio Return
+Channel).</p>
+<h3 id="primary-functions-of-the-hec-differential-pair">Primary
+Functions of the HEC Differential Pair</h3>
+<h4 id="1-bidirectional-100-mbps-ethernet-hec">1. Bidirectional 100 Mbps
+Ethernet (HEC)</h4>
+<p>The primary function of the differential pair on pins 14 and 19 is to
+carry high-speed, bidirectional Ethernet traffic at speeds up to 100
+Mbps (equivalent to 100Base-TX). By operating as a balanced differential
+transmission line, the pair cancels out electromagnetic interference
+(EMI) and cross-talk from the adjacent high-speed Transition-Minimized
+Differential Signaling (TMDS) clock and data channels. This enables
+internet-connected devices—such as smart televisions—to share network
+connectivity directly with Blu-ray players, gaming consoles, or
+audio-video receivers without routing separate Cat5e/Cat6 Ethernet
+cables to each device.</p>
+<h4 id="2-signal-multiplexing-hec-arc-and-hpd">2. Signal Multiplexing
+(HEC, ARC, and HPD)</h4>
+<p>Pins 14 and 19 do not solely carry Ethernet data; they perform
+multiple functions simultaneously through frequency and signaling
+separation:</p>
+<ul>
+<li><strong>Hot Plug Detect (DC Signaling):</strong> Pin 19 maintains
+its traditional HPD role via DC voltage levels. A source device monitors
+the DC voltage on pin 19 (pulled high to +5V by the sink device) to
+detect when a display has been connected or disconnected.</li>
+<li><strong>HDMI Ethernet Channel (Differential AC Signaling):</strong>
+HEC network data is transmitted as an AC-coupled differential signal
+across both pins (HEAC+ and HEAC-), operating independently of the DC
+voltage used by the HPD mechanism.</li>
+<li><strong>Audio Return Channel (ARC):</strong> When configured for
+Common Mode ARC, downstream audio is sent back from the display to an AV
+receiver using both pins in a common-mode arrangement, or as a
+single-ended signal via Pin 14, depending on the implementation
+mode.</li>
+</ul>
+<h3 id="implementation-and-cable-requirements">Implementation and Cable
+Requirements</h3>
+<p>To utilize the HEC functionality of pins 14 and 19, the physical HDMI
+cable must be wired specifically to support it. Standard HDMI cables
+left pin 14 unconnected or unshielded. Cables supporting HEC are labeled
+as <strong>"High Speed HDMI Cable with Ethernet"</strong> or
+<strong>"Standard HDMI Cable with Ethernet."</strong> In these cables,
+pins 14 and 19 are manufactured as an internally shielded twisted pair
+with a controlled 100-ohm differential impedance, ensuring network
+signal integrity over extended cable lengths.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

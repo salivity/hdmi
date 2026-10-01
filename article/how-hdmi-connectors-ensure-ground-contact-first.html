@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Connectors Ensure Ground Contact First - hdmi</title>
+    <meta name="description" content="The HDMI Type A connector relies on a precise mechanical design featuring an extended outer metal shield and staggered internal contact sequencing to establish electrical grounding before any data pins make contact. This multi-tiered mating sequence is c">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-connectors-ensure-ground-contact-first">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Connectors Ensure Ground Contact First - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-connectors-ensure-ground-contact-first" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The HDMI Type A connector relies on a precise mechanical design featuring an extended outer metal shield and staggered internal contact sequencing to establish electrical grounding before any data pins make contact. This multi-tiered mating sequence is c" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-connectors-ensure-ground-contact-first">How HDMI
+Connectors Ensure Ground Contact First</h1>
+<p>The HDMI Type A connector relies on a precise mechanical design
+featuring an extended outer metal shield and staggered internal contact
+sequencing to establish electrical grounding before any data pins make
+contact. This multi-tiered mating sequence is critical for electrostatic
+discharge (ESD) protection and hot-plug reliability, ensuring that any
+residual voltage or static charge discharges safely to the chassis
+ground before sensitive High-Definition Multimedia Interface (HDMI)
+signal lines engage.</p>
+<h3 id="the-outer-metallic-shell">The Outer Metallic Shell</h3>
+<p>The primary mechanism for ensuring ground contact prior to pin
+engagement is the outer metallic shell (or shroud) of the HDMI Type A
+plug. The metal housing extends beyond the internal plastic tongue that
+houses the 19 electrical contact pins.</p>
+<p>When a male HDMI Type A connector is inserted into a female
+receptacle:</p>
+<ol type="1">
+<li><strong>Initial Contact:</strong> The leading edge of the male metal
+plug makes physical contact with the grounding fingers of the female
+receptacle's metal casing.</li>
+<li><strong>Static Dissipation:</strong> This early contact forms a
+low-impedance path directly to the device chassis ground, neutralizing
+any static potential difference between the two connected devices before
+internal electrical conductors meet.</li>
+<li><strong>Continuous Shielding:</strong> The shell maintains full
+contact throughout the insertion process, effectively creating a Faraday
+cage around the signal paths.</li>
+</ol>
+<h3 id="staggered-pin-depth-and-contact-geometry">Staggered Pin Depth
+and Contact Geometry</h3>
+<p>Once the outer shield has equalized chassis potentials, internal
+mechanical geometry manages the engagement of the internal pins. The
+HDMI specification governs the mechanical tolerances of both the male
+and female terminals to achieve stepped engagement.</p>
+<p>Inside the connector:</p>
+<ul>
+<li><strong>TMDS Shield and Ground Pins:</strong> Internal pins
+associated with ground and shield paths—such as the Transition-Minimized
+Differential Signaling (TMDS) clock and data shield pins (Pins 2, 5, 8,
+and 11), along with the DDC/CEC ground (Pin 17)—are positioned to engage
+with their corresponding receptacle springs.</li>
+<li><strong>Signal Pin Alignment:</strong> The internal contact springs
+in the receptacle are positioned so that reference ground planes engage
+simultaneously with, or fractionally ahead of, the active data and clock
+lines, preventing high-speed logic gates from floating.</li>
+</ul>
+<h3 id="hot-plug-detect-hpd-pin-sequencing">Hot Plug Detect (HPD) Pin
+Sequencing</h3>
+<p>To complement early ground contact, the HDMI Type A connector ensures
+that data transmission does not initialize prematurely. Pin 19, the Hot
+Plug Detect (HPD) line, is typically designed with a recessed contact or
+slightly shorter trace length within the mating interface.</p>
+<p>Because the HPD pin is the last to make contact, the source device
+will only sense a complete connection after the ground shell, ground
+pins, +5V power (Pin 18), and TMDS signal lines are fully seated. Once
+HPD goes high, the source activates the transmitter, guaranteeing that
+all signal lines operate with a stable ground reference already
+established.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

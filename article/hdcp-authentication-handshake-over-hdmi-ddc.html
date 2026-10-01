@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDCP Authentication Handshake Over HDMI DDC - hdmi</title>
+    <meta name="description" content="High-bandwidth Digital Content Protection (HDCP) relies on an initial cryptographic handshake executed over the HDMI Display Data Channel (DDC)—an I2C-based serial communication link. This article outlines the specific cryptographic exchange that takes">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdcp-authentication-handshake-over-hdmi-ddc">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDCP Authentication Handshake Over HDMI DDC - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdcp-authentication-handshake-over-hdmi-ddc" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="High-bandwidth Digital Content Protection (HDCP) relies on an initial cryptographic handshake executed over the HDMI Display Data Channel (DDC)—an I2C-based serial communication link. This article outlines the specific cryptographic exchange that takes" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdcp-authentication-handshake-over-hdmi-ddc">HDCP Authentication
+Handshake Over HDMI DDC</h1>
+<p>High-bandwidth Digital Content Protection (HDCP) relies on an initial
+cryptographic handshake executed over the HDMI Display Data Channel
+(DDC)—an I2C-based serial communication link. This article outlines the
+specific cryptographic exchange that takes place across the DDC line,
+detailing how the transmitter (source) and receiver (sink) exchange
+keys, verify credentials, derive shared secrets, and confirm
+synchronization before protected digital video is transmitted.</p>
+<h3 id="the-communication-medium-hdmi-ddc">The Communication Medium:
+HDMI DDC</h3>
+<p>The HDMI connector dedicates physical pins 15 (DDC Clock / SCL) and
+16 (DDC Data / SDA) to the DDC interface. While primarily used for
+reading Extended Display Identification Data (EDID), the DDC is also the
+transport mechanism for the HDCP control register interface (typically
+addressed at I2C slave address <code>0x74</code> for HDCP 1.x). The
+entire pre-encryption exchange occurs via byte-level reads and writes
+across this bus.</p>
+<h3 id="hdcp-1x-handshake-the-ksv-exchange-and-r_0-verification">HDCP
+1.x Handshake: The KSV Exchange and <span
+class="math inline">\(R_0\)</span> Verification</h3>
+<p>The traditional HDCP 1.x handshake consists of a three-step protocol
+carried out over the DDC:</p>
+<ol type="1">
+<li><p><strong>Exchange of Nonces and Key Selection Vectors
+(KSVs):</strong></p>
+<ul>
+<li>The source initiates authentication by generating a pseudo-random
+64-bit value (<span class="math inline">\(A_n\)</span>) and writing it
+to the sink via DDC.</li>
+<li>The source writes its 40-bit Key Selection Vector (<span
+class="math inline">\(A_{ksv}\)</span>) to the sink.</li>
+<li>The source reads the sink’s 40-bit Key Selection Vector (<span
+class="math inline">\(B_{ksv}\)</span>) over the DDC.</li>
+<li>Both devices verify that the received KSV contains exactly twenty
+<code>1</code>s and twenty <code>0</code>s to confirm standard format
+validity, and the source checks <span
+class="math inline">\(B_{ksv}\)</span> against a revocation list.</li>
+</ul></li>
+<li><p><strong>Derivation of the Shared Secret (<span
+class="math inline">\(K_m\)</span>):</strong></p>
+<ul>
+<li>Both devices maintain an internal array of forty 56-bit secret
+device keys.</li>
+<li>The source sums the secret keys indexed by the <code>1</code> bits
+in <span class="math inline">\(B_{ksv}\)</span>.</li>
+<li>The sink sums the secret keys indexed by the <code>1</code> bits in
+<span class="math inline">\(A_{ksv}\)</span>.</li>
+<li>If both sets of keys are mathematically valid, both calculations
+result in the exact same 56-bit shared secret value (<span
+class="math inline">\(K_m\)</span>).</li>
+</ul></li>
+<li><p><strong>Cipher Initialization and <span
+class="math inline">\(R_0\)</span> Verification:</strong></p>
+<ul>
+<li>Both devices load <span class="math inline">\(K_m\)</span>, <span
+class="math inline">\(A_n\)</span>, and optional repeater data into
+their internal HDCP cipher blocks to generate a stream cipher
+state.</li>
+<li>Both source and sink produce a 16-bit verification value, denoted as
+<span class="math inline">\(R_0\)</span> (on the source) and <span
+class="math inline">\(R_0&#39;\)</span> (on the sink).</li>
+<li>The source reads <span class="math inline">\(R_0&#39;\)</span> from
+the sink across the DDC within 100 milliseconds of transmitting <span
+class="math inline">\(A_n\)</span>.</li>
+<li>If <span class="math inline">\(R_0 == R_0&#39;\)</span>,
+authentication is successful, and uncompressed encrypted video
+transmission begins over the TMDS lines.</li>
+<li>To maintain link integrity, the source periodically reads updated
+16-bit values (<span class="math inline">\(R_i&#39;\)</span>) over the
+DDC roughly every 128 frames (or approximately every 2 seconds) and
+compares them to local <span class="math inline">\(R_i\)</span>
+values.</li>
+</ul></li>
+</ol>
+<h3 id="hdcp-2x-handshake-authentication-and-key-exchange-ake">HDCP 2.x
+Handshake: Authentication and Key Exchange (AKE)</h3>
+<p>For modern ultra-high-definition content using HDCP 2.2 or HDCP 2.3,
+the cryptographic protocol shifts from proprietary linear feedback shift
+registers to industry-standard asymmetric and symmetric cryptography,
+while still utilizing the DDC:</p>
+<ol type="1">
+<li><p><strong>Initiation and Public Key Exchange:</strong></p>
+<ul>
+<li>The source sends an <code>AKE_Init</code> message containing a
+64-bit random nonce (<span class="math inline">\(r_{tx}\)</span>) via
+DDC.</li>
+<li>The sink responds with <code>AKE_Send_Cert</code>, providing a
+public-key certificate containing an RSA 1024-bit (or 3072-bit in newer
+revisions) public key signed by the Digital Content Protection (DCP)
+LLC, alongside a 64-bit receiver nonce (<span
+class="math inline">\(r_{rx}\)</span>).</li>
+</ul></li>
+<li><p><strong>Master Key Exchange:</strong></p>
+<ul>
+<li>The source verifies the sink's DCP certificate signature.</li>
+<li>The source creates a 128-bit master key (<span
+class="math inline">\(k_m\)</span>) and encrypts it using the sink’s RSA
+public key.</li>
+<li>The source writes this encrypted payload
+(<code>AKE_No_Stored_km</code>) to the sink over DDC.</li>
+<li>The sink decrypts the payload using its private key, resulting in
+both devices holding <span class="math inline">\(k_m\)</span>.</li>
+</ul></li>
+<li><p><strong>Locality Check:</strong></p>
+<ul>
+<li>To prevent routing content across network extenders, the source
+writes <code>LC_Init</code> containing a 64-bit nonce (<span
+class="math inline">\(r_n\)</span>) to the DDC.</li>
+<li>The sink calculates a hash <span
+class="math inline">\(L&#39;\)</span> using HMAC-SHA256 based on <span
+class="math inline">\(r_n\)</span> and the derived keys, then sends it
+back via DDC.</li>
+<li>The source compares <span class="math inline">\(L\)</span> and <span
+class="math inline">\(L&#39;\)</span> while enforcing a strict
+round-trip response deadline (typically under 20 milliseconds).</li>
+</ul></li>
+<li><p><strong>Session Key Derivation:</strong></p>
+<ul>
+<li>Once the locality check succeeds, the source derives a 128-bit
+session key (<span class="math inline">\(k_s\)</span>) using AES-128-CTR
+and sends an encrypted session key message (<code>SKE_Send_Eks</code>)
+over DDC.</li>
+<li>This session key directly initializes the AES-128 engine that
+encrypts the main HDMI audio/video streams.</li>
+</ul></li>
+</ol></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

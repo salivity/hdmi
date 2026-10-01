@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How HDMI Sync Boxes Intercept Video Without Lag - hdmi</title>
+    <meta name="description" content="This article explains how ambient light HDMI sync boxes mirror on-screen colors to external LEDs without introducing noticeable input latency to your display. By employing hardware-level signal splitting, non-buffering passthrough architecture, and async">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-hdmi-sync-boxes-intercept-video-without-lag">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How HDMI Sync Boxes Intercept Video Without Lag - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-hdmi-sync-boxes-intercept-video-without-lag" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="This article explains how ambient light HDMI sync boxes mirror on-screen colors to external LEDs without introducing noticeable input latency to your display. By employing hardware-level signal splitting, non-buffering passthrough architecture, and async" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-hdmi-sync-boxes-intercept-video-without-lag">How HDMI Sync
+Boxes Intercept Video Without Lag</h1>
+<p>This article explains how ambient light HDMI sync boxes mirror
+on-screen colors to external LEDs without introducing noticeable input
+latency to your display. By employing hardware-level signal splitting,
+non-buffering passthrough architecture, and asynchronous processing,
+these devices allow high-bandwidth video to reach the display virtually
+untouched while analyzing a secondary feed in parallel for lighting
+effects.</p>
+<h3 id="hardware-level-signal-splitting">Hardware-Level Signal
+Splitting</h3>
+<p>The primary mechanism that prevents input delay is passive or active
+hardware-level signal replication. Inside the sync box, the incoming
+High-Definition Multimedia Interface (HDMI) signal does not pass through
+a central operating system or software queue before reaching the
+television.</p>
+<p>Instead, the hardware utilizes a dedicated HDMI receiver and
+transmitter chipset functioning as an active splitter. The physical
+circuit splits the high-speed differential pairs (TMDS or FRL lines
+carrying the audio and video data) directly at the hardware layer. One
+line routes immediately to the HDMI-out port via low-jitter redrivers or
+retimers, while the duplicate line routes to a dedicated
+image-processing coprocessor. Because the primary path requires no frame
+buffering, scaling, or color-space transformation, latency on the
+display-facing path is measured in nanoseconds—effectively zero to the
+human eye.</p>
+<h3 id="out-of-band-asynchronous-video-processing">Out-of-Band
+Asynchronous Video Processing</h3>
+<p>While the primary signal exits directly to the monitor, the cloned
+video data enters a dedicated microcontroller, Field Programmable Gate
+Array (FPGA), or Application-Specific Integrated Circuit (ASIC). This
+secondary pipeline operates entirely out-of-band.</p>
+<p>Even if this processor takes several milliseconds to decode the
+frame, determine edge colors, and transmit instructions to the LED
+driver, this computational time has zero bearing on the video output
+path. The monitor receives and renders the frame immediately, regardless
+of what the internal lighting processor is doing.</p>
+<h3 id="low-fidelity-downsampling">Low-Fidelity Downsampling</h3>
+<p>Ambient lighting does not require pixel-perfect 4K or 8K resolution;
+it only requires general regional color averages along the borders of
+the frame. The internal processor discards fine detail, audio tracks,
+and metadata immediately:</p>
+<ul>
+<li><strong>Hardware Downscaling:</strong> The processing chip decodes
+frames at dramatically reduced resolutions (such as 360p or lower).</li>
+<li><strong>Region-of-Interest (ROI) Sampling:</strong> Only the pixels
+along the perimeter of the screen are read, drastically cutting the
+computational load.</li>
+<li><strong>Low Computational Overhead:</strong> By sampling only a
+fraction of the frame's data, the FPGA or ASIC computes average color
+values in a fraction of a millisecond.</li>
+</ul>
+<h3 id="decoupled-led-latency">Decoupled LED Latency</h3>
+<p>Any latency present in an ambient lighting system exists strictly
+between the screen image and the physical illumination of the LEDs—not
+between the source device and the display. High-end sync boxes typically
+update their LED strips within 10 to 30 milliseconds of the image
+appearing on screen. Because this delay is confined to the peripheral
+lights, the user experiences no input lag when gaming or navigating
+menus.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

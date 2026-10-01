@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Does HDMI CEC Work? - hdmi</title>
+    <meta name="description" content="Consumer Electronics Control (CEC) is a feature of the HDMI standard that enables interconnected audiovisual devices to communicate and control one another through a single remote control. Operating over a dedicated bidirectional physical wire within the">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/how-does-hdmi-cec-work">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="How Does HDMI CEC Work? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/how-does-hdmi-cec-work" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Consumer Electronics Control (CEC) is a feature of the HDMI standard that enables interconnected audiovisual devices to communicate and control one another through a single remote control. Operating over a dedicated bidirectional physical wire within the" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="how-does-hdmi-cec-work">How Does HDMI CEC Work?</h1>
+<p>Consumer Electronics Control (CEC) is a feature of the HDMI standard
+that enables interconnected audiovisual devices to communicate and
+control one another through a single remote control. Operating over a
+dedicated bidirectional physical wire within the HDMI cable, CEC
+transmits low-speed command signals between sources, displays, and audio
+equipment. This article details the underlying architecture, signaling
+mechanics, addressing models, and operational capabilities that allow
+HDMI CEC to automate home theater systems.</p>
+<h2 id="the-physical-architecture-of-cec">The Physical Architecture of
+CEC</h2>
+<p>Standard HDMI cables contain 19 individual pins designed to carry
+high-speed digital audio and video signals alongside supplementary
+communication channels. CEC operates independently of the primary
+Transition-Minimized Differential Signaling (TMDS) or Fixed Rate Link
+(FRL) lines responsible for transmitting video data.</p>
+<p>Instead, CEC utilizes Pin 13, a single dedicated serial line that
+runs continuously across the entire connection path:</p>
+<ul>
+<li><strong>Pin 13 (CEC Line):</strong> Provides a single-wire, shared
+bidirectional bus carrying serial data packets between all connected
+HDMI devices.</li>
+<li><strong>Pin 17 (Ground):</strong> Acts as the dedicated ground
+reference for both the DDC (Display Data Channel) and the CEC line.</li>
+<li><strong>Operating Voltage:</strong> The line uses an
+open-collector/open-drain bus architecture pulled up to a nominal 3.3V
+via a passive resistor.</li>
+</ul>
+<p>Because the line is open-collector, any device on the bus can assert
+a logic low state by pulling the line down to 0V. When no device
+actively transmits, the pull-up resistor returns the line to the default
+high state (3.3V).</p>
+<h2 id="signaling-protocol-and-timing-mechanics">Signaling Protocol and
+Timing Mechanics</h2>
+<p>Because CEC is a single-wire bus shared across up to 15 active
+devices, it relies on strict timing constraints and a low-frequency data
+transfer rate of approximately 417 bits per second (roughly 2.4
+milliseconds per bit).</p>
+<h3 id="bit-timing-structure">Bit Timing Structure</h3>
+<p>Every bit transmitted across the CEC bus consists of a low period
+followed by a high period:</p>
+<ul>
+<li><strong>Logic 0:</strong> The bus is held low for approximately 1.5
+milliseconds, followed by a high period of 0.9 milliseconds.</li>
+<li><strong>Logic 1:</strong> The bus is held low for roughly 0.6
+milliseconds, followed by a high period of 1.8 milliseconds.</li>
+<li><strong>Start Bit:</strong> Every frame begins with a distinctive
+start sequence where the bus is held low for 3.7 milliseconds, followed
+by a 0.8-millisecond rise, signaling to all connected nodes to
+synchronize their internal clocks.</li>
+</ul>
+<h3 id="carrier-sense-and-collision-arbitration">Carrier Sense and
+Collision Arbitration</h3>
+<p>Since multiple devices can initiate transmission simultaneously, HDMI
+CEC implements Carrier Sense Multiple Access with Collision Detection
+(CSMA/CD). Before transmitting, a device must verify that the bus has
+remained idle for a defined nominal duration.</p>
+<p>If two devices begin transmitting simultaneously, the open-collector
+design acts as a wired-AND gate. If Device A transmits a logic 1
+(releasing the line to high) while Device B transmits a logic 0 (driving
+the line to low), the line remains low. Device A detects the discrepancy
+between its intended transmission and the actual bus state, recognizes
+that it lost arbitration, and immediately ceases transmission to allow
+Device B to complete its frame without corruption.</p>
+<h2 id="addressing-and-network-discovery">Addressing and Network
+Discovery</h2>
+<p>When a device connects via HDMI, it participates in a two-stage
+addressing mechanism: Physical Addressing and Logical Addressing.</p>
+<h3 id="physical-addressing">Physical Addressing</h3>
+<p>Physical addresses mirror the actual hardware hierarchy of the HDMI
+tree, using four 4-bit nibbles expressed in dot notation (such as
+1.0.0.0 or 2.1.0.0). The primary display (TV) is permanently designated
+as the root device at address 0.0.0.0. Downstream receivers, switches,
+and playback sources obtain their physical addresses during the initial
+Display Data Channel (DDC) handshake by reading the Extended Display
+Identification Data (EDID) provided by the upstream sink.</p>
+<h3 id="logical-addressing">Logical Addressing</h3>
+<p>Logical addresses determine device roles and routing endpoints on the
+CEC bus. The standard assigns distinct logical values (ranging from 0 to
+15) to specific categories of equipment:</p>
+<ul>
+<li><strong>Logical Address 0:</strong> TV / Primary Display</li>
+<li><strong>Logical Address 1, 2, and 9:</strong> Recording Devices</li>
+<li><strong>Logical Address 3, 6, 7, and 10:</strong> Tuners</li>
+<li><strong>Logical Address 4, 8, and 11:</strong> Playback Devices
+(Blu-ray players, streaming consoles)</li>
+<li><strong>Logical Address 5:</strong> Audio Systems (AVRs,
+soundbars)</li>
+<li><strong>Logical Address 14:</strong> Specific Reserved Features</li>
+<li><strong>Logical Address 15:</strong> Unregistered or Broadcast</li>
+</ul>
+<p>During network initialization, a newly powered device sends a "ping"
+message consisting solely of a header block directed to its desired
+logical address. If an acknowledgment (ACK) bit is returned, another
+device already claims that address, prompting the newcomer to attempt
+discovery using the next available address for its device class. If all
+compatible addresses are occupied, the device falls back to Address 15
+as an unregistered listener.</p>
+<h2 id="frame-structure-and-message-formats">Frame Structure and Message
+Formats</h2>
+<p>CEC messages are structured into standardized 10-bit blocks:</p>
+<ul>
+<li><strong>Header Block:</strong> Consists of 4 bits defining the
+Initiator logical address, 4 bits defining the Destination logical
+address, 1 End of Message (EOM) bit, and 1 Acknowledge (ACK) bit.</li>
+<li><strong>Opcode Block:</strong> Follows the header to define the
+specific command being executed, such as
+<code>&lt;Image On View&gt;</code>, <code>&lt;Active Source&gt;</code>,
+or <code>&lt;User Control Pressed&gt;</code>.</li>
+<li><strong>Operand Blocks:</strong> Additional optional 10-bit data
+blocks conveying parameters relevant to the preceding opcode, such as
+key codes, volume increments, or physical route identifiers.</li>
+</ul>
+<p>Broadcast transmissions specify Logical Address 15 as the
+destination, requiring all connected devices to read the payload without
+asserting an active ACK bit.</p>
+<h2 id="core-operational-features">Core Operational Features</h2>
+<p>By chaining standardized opcodes together, the HDMI CEC protocol
+automates day-to-day audiovisual workflows across equipment from
+different manufacturers:</p>
+<ul>
+<li><strong>One Touch Play:</strong> When a source device initiates
+playback, it transmits <code>&lt;Image On View&gt;</code> to wake the
+display, immediately followed by <code>&lt;Active Source&gt;</code>
+alongside its physical address, instructing switches and the television
+to change active input channels automatically.</li>
+<li><strong>System Standby:</strong> A single press of the power button
+sends a standby command to Address 15, switching the entire connected
+ecosystem into low-power sleep modes.</li>
+<li><strong>System Audio Control:</strong> Allows an AV receiver or
+soundbar to seize volume control from the television speakers. Volume
+adjustments triggered on the display remote are re-routed as CEC
+commands directly to the amplifier.</li>
+<li><strong>Routing Control:</strong> Automatically triggers upstream
+HDMI switch fabrics to route signals correctly when a secondary source
+is activated.</li>
+<li><strong>Remote Control Pass-Through:</strong> Translates standard
+directional, menu, numerical, and playback remote-control signals into
+generic key codes transmitted to the currently active source
+hardware.</li>
+</ul>
+<p>Through its dedicated bus wiring, arbitration rules, and structured
+command packets, HDMI CEC eliminates the need for separate remote
+controls and infrared blasters, creating an integrated home
+entertainment network across a standard HDMI cable.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

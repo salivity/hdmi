@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI CEC Bus Bit Timing for Zero and One Bits - hdmi</title>
+    <meta name="description" content="The HDMI Consumer Electronics Control (CEC) protocol operates over a single-wire, open-drain serial bus using pulse-width modulation to transmit data. Every data bit is framed within a nominal 2.4 ms period that begins with a falling edge (low transition">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-cec-bus-bit-timing-for-zero-and-one-bits">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI CEC Bus Bit Timing for Zero and One Bits - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-cec-bus-bit-timing-for-zero-and-one-bits" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="The HDMI Consumer Electronics Control (CEC) protocol operates over a single-wire, open-drain serial bus using pulse-width modulation to transmit data. Every data bit is framed within a nominal 2.4 ms period that begins with a falling edge (low transition" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-cec-bus-bit-timing-for-zero-and-one-bits">HDMI CEC Bus Bit
+Timing for Zero and One Bits</h1>
+<p>The HDMI Consumer Electronics Control (CEC) protocol operates over a
+single-wire, open-drain serial bus using pulse-width modulation to
+transmit data. Every data bit is framed within a nominal 2.4 ms period
+that begins with a falling edge (low transition), where the duration of
+the low state determines whether the bit is interpreted as a logical
+zero or a logical one. This article outlines the specific timing values,
+tolerances, and sampling intervals required to encode and decode zero
+and one bits according to the HDMI CEC specification.</p>
+<h2 id="bus-electrical-characteristics">Bus Electrical
+Characteristics</h2>
+<p>The CEC line uses passive pull-up resistors to maintain a default
+idle state of +3.3V (logic high). Transmitting devices communicate by
+actively pulling the line to ground (logic low). Because the bus is
+open-drain, a low level driven by any device overrides a high level,
+enabling collision detection and bit-level bus arbitration.</p>
+<h2 id="logical-0-bit-timing">Logical '0' Bit Timing</h2>
+<p>A logical '0' represents the dominant state on the CEC bus and is
+characterized by a longer low-level duration:</p>
+<ul>
+<li><strong>Low Duration (Nominal):</strong> 1.5 ms (valid range: 1.3 ms
+to 1.7 ms)</li>
+<li><strong>High Duration (Nominal):</strong> 0.9 ms</li>
+<li><strong>Total Bit Period (Nominal):</strong> 2.4 ms (valid range:
+2.05 ms to 2.75 ms)</li>
+</ul>
+<p>The initiator drives the bus low for 1.5 ms before releasing it to
+allow the pull-up resistor to return the bus to a high state for the
+remainder of the bit period.</p>
+<h2 id="logical-1-bit-timing">Logical '1' Bit Timing</h2>
+<p>A logical '1' represents the recessive state on the CEC bus and is
+characterized by a shorter low-level duration:</p>
+<ul>
+<li><strong>Low Duration (Nominal):</strong> 0.6 ms (valid range: 0.4 ms
+to 0.8 ms)</li>
+<li><strong>High Duration (Nominal):</strong> 1.8 ms</li>
+<li><strong>Total Bit Period (Nominal):</strong> 2.4 ms (valid range:
+2.05 ms to 2.75 ms)</li>
+</ul>
+<p>The initiator pulls the line low for only 0.6 ms before releasing the
+bus back to the high state for the remaining 1.8 ms.</p>
+<h2 id="bit-sampling-point">Bit Sampling Point</h2>
+<p>Receiving devices do not wait for the complete bit period to
+determine a bit's value. Instead, they sample the state of the line at a
+specific window referenced from the initial falling edge:</p>
+<ul>
+<li><strong>Sample Time (Nominal):</strong> 1.05 ms after the falling
+edge (valid window: 0.85 ms to 1.25 ms)</li>
+</ul>
+<p>Because the sample window occurs between the 0.6 ms transition of a
+logical '1' and the 1.5 ms transition of a logical '0':</p>
+<ul>
+<li>If the line is <strong>high</strong> at 1.05 ms, the bit is read as
+a <strong>1</strong>.</li>
+<li>If the line is <strong>low</strong> at 1.05 ms, the bit is read as a
+<strong>0</strong>.</li>
+</ul>
+<p>This timing structure allows receiving devices to reliably sample
+bits despite jitter and propagation delay, while enabling transmitters
+to detect bus collisions during header and arbitration phases.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

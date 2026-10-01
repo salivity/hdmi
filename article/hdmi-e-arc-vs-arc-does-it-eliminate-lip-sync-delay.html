@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HDMI eARC vs ARC: Does It Eliminate Lip Sync Delay? - hdmi</title>
+    <meta name="description" content="HDMI eARC (Enhanced Audio Return Channel) largely eliminates the audio lip-sync delay that plagued legacy HDMI ARC setups. By introducing mandatory automated lip-sync compensation and vastly expanding audio bandwidth, eARC addresses the root technical li">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/hdmi-e-arc-vs-arc-does-it-eliminate-lip-sync-delay">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="HDMI eARC vs ARC: Does It Eliminate Lip Sync Delay? - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/hdmi-e-arc-vs-arc-does-it-eliminate-lip-sync-delay" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="HDMI eARC (Enhanced Audio Return Channel) largely eliminates the audio lip-sync delay that plagued legacy HDMI ARC setups. By introducing mandatory automated lip-sync compensation and vastly expanding audio bandwidth, eARC addresses the root technical li" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="hdmi-earc-vs-arc-does-it-eliminate-lip-sync-delay">HDMI eARC vs
+ARC: Does It Eliminate Lip Sync Delay?</h1>
+<p>HDMI eARC (Enhanced Audio Return Channel) largely eliminates the
+audio lip-sync delay that plagued legacy HDMI ARC setups. By introducing
+mandatory automated lip-sync compensation and vastly expanding audio
+bandwidth, eARC addresses the root technical limitations that caused
+timing mismatches between video displays and external sound systems.
+While it drastically reduces latency across modern home theater setups,
+occasional edge cases—such as aggressive TV video processing or faulty
+firmware—can still introduce slight delays.</p>
+<h3 id="why-legacy-hdmi-arc-caused-lip-sync-delay">Why Legacy HDMI ARC
+Caused Lip-Sync Delay</h3>
+<p>Legacy HDMI ARC (introduced with HDMI 1.4) suffered from two primary
+flaws regarding audio-video synchronization:</p>
+<ol type="1">
+<li><strong>Optional Lip-Sync Correction:</strong> In the original HDMI
+ARC specification, the lip-sync compensation feature was entirely
+optional. Many TV and AV receiver manufacturers skipped implementing
+this handshake protocol to cut costs or simplify software development.
+Without automatic timing negotiation, displays and audio processors
+operated out of sync.</li>
+<li><strong>Bandwidth Limitations and Transcoding:</strong> Legacy ARC
+is limited to approximately 1 Mbps of bandwidth. This narrow pipe cannot
+transmit uncompressed multichannel audio formats (such as Dolby TrueHD,
+DTS-HD Master Audio, or uncompressed 5.1/7.1 PCM). As a result, modern
+TVs often had to transcode incoming high-bitrate audio signals into
+basic Dolby Digital or DTS on the fly. This real-time encoding process
+introduced processing lag, causing audio to trail behind video.</li>
+</ol>
+<h3 id="how-hdmi-earc-solves-the-problem">How HDMI eARC Solves the
+Problem</h3>
+<p>Introduced as part of the HDMI 2.1 specification, eARC fundamentally
+re-engineers how audio data flows between devices to eliminate timing
+discrepancies.</p>
+<ul>
+<li><strong>Mandatory Dynamic Lip-Sync Correction:</strong> Unlike
+standard ARC, eARC makes lip-sync compensation a mandatory feature.
+Connected devices continuously communicate timing packets back and
+forth, matching the audio playback precisely to the display’s video
+latency, even if the TV switches picture modes dynamically.</li>
+<li><strong>Massive Bandwidth Increase:</strong> eARC provides up to 37
+Mbps of bandwidth. This allows native, uncompressed audio—including
+lossless Dolby Atmos and 24-bit/192kHz multi-channel sound—to pass
+directly from the TV to a soundbar or receiver without any compression
+or transcoding delay.</li>
+<li><strong>Dedicated Data Channel:</strong> eARC utilizes two dedicated
+pins on the HDMI cable to transmit audio and control signals separately
+from the video signal, ensuring audio delivery remains unaffected by
+video processing pipelines.</li>
+</ul>
+<h3 id="when-can-lip-sync-issues-still-occur-with-earc">When Can
+Lip-Sync Issues Still Occur with eARC?</h3>
+<p>While eARC solves the architectural causes of audio lag, sync issues
+can still occasionally arise due to external factors:</p>
+<ul>
+<li><strong>Heavy Display Post-Processing:</strong> Modern TVs employ
+heavy video processing features, such as motion interpolation (soap
+opera effect), upscaling, and noise reduction. If a TV delays video
+frames by hundreds of milliseconds to process them, the auto-sync
+metadata can sometimes struggle to track drastic fluctuations.</li>
+<li><strong>Firmware and Handshake Glitches:</strong> Incompatibilities
+between different brands (e.g., a TV from one manufacturer and a
+soundbar from another) can lead to handshake errors where the lip-sync
+protocol fails to apply corrections properly.</li>
+<li><strong>Source-Level Delays:</strong> If a gaming console, streaming
+box, or Blu-ray player outputs an already desynchronized signal to the
+TV, eARC will faithfully reproduce that desynchronized timing
+downstream.</li>
+</ul>
+<h3 id="conclusion">Conclusion</h3>
+<p>HDMI eARC represents a major evolutionary leap over legacy ARC. For
+the vast majority of users, upgrading to fully compatible eARC hardware
+permanently resolves the audio lag and lip-sync issues common to older
+setups. To ensure optimal performance, both the TV and the sound system
+must explicitly support eARC, connected via a high-speed HDMI cable with
+Ethernet or an Ultra High Speed HDMI cable.</p></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>

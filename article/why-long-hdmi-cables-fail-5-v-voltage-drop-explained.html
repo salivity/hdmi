@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Long HDMI Cables Fail: 5V Voltage Drop Explained - hdmi</title>
+    <meta name="description" content="Long passive copper HDMI cables frequently fail to display a picture, not necessarily because the high-speed video data degrades, but due to a critical voltage drop across the thin +5V conductor. This article explains the role of the 5V line in the HDMI">
+    <link rel="canonical" href="https://salivity.github.io/hdmi/article/why-long-hdmi-cables-fail-5-v-voltage-drop-explained">
+    <link rel="search" type="application/opensearchdescription+xml" title="hdmi" href="/hdmi/opensearch.xml">
+    <link rel="icon" href="/hdmi/favicon.ico">
+    <link rel="stylesheet" href="/hdmi/css/style.css">
+    <link media="print" rel="stylesheet" href="/hdmi/css/print.css">
+    <script src="/hdmi/js/fuse.min.js"></script>
+    <script src="/hdmi/js/script.js"></script>
+    <script id="MathJax-script" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/4.1.3/tex-chtml.min.js" defer></script>
+    <script src="/monetize/monetize.js"></script>
+    <script src="/social/social.js"></script>
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Why Long HDMI Cables Fail: 5V Voltage Drop Explained - hdmi" />
+    <meta property="og:url" content="https://salivity.github.io/hdmi/article/why-long-hdmi-cables-fail-5-v-voltage-drop-explained" />
+    <meta property="og:image" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:secure_url" content="https://salivity.github.io/hdmi/images/open-graph/default.webp" />
+    <meta property="og:image:width" content="1120" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:description" content="Long passive copper HDMI cables frequently fail to display a picture, not necessarily because the high-speed video data degrades, but due to a critical voltage drop across the thin +5V conductor. This article explains the role of the 5V line in the HDMI" />
+    <link rel="manifest" href="/hdmi/pwa/manifest.json" />
+</head>
+<body>
+    <header>
+        <a href="/hdmi/" aria-label="Go To Home Page" title="Go To Home Page" id="logo">
+            <span>salivity.github.io/</span><span>hdmi</span>
+        </a>
+        <nav>
+            <ul class="header-links">
+                <li><a href="/hdmi/search" title="Search" aria-label="Go To Search Page"><svg class="svg-icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14"></path></svg></a></li>
+                <li><a id="theme-toggle" title="Theme" href="javascript:void(0);" aria-label="Toggle Website Theme"></a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        
+    <div class="article-layout">
+        <aside id="profile-sidebar" class="profile-column" aria-label="Author Profile"></aside>
+        <div class="article-main-column">
+            <article><h1 id="why-long-hdmi-cables-fail-5v-voltage-drop-explained">Why Long
+HDMI Cables Fail: 5V Voltage Drop Explained</h1>
+<p>Long passive copper HDMI cables frequently fail to display a picture,
+not necessarily because the high-speed video data degrades, but due to a
+critical voltage drop across the thin +5V conductor. This article
+explains the role of the 5V line in the HDMI handshake process, how
+electrical resistance in narrow-gauge copper wires causes power loss
+over distance, and why this drop triggers connection failures even when
+video signals remain intact.</p>
+<h3 id="the-function-of-pin-18-5v-power">The Function of Pin 18 (+5V
+Power)</h3>
+<p>Inside every standard HDMI cable is a dedicated line known as the +5V
+Power pin (Pin 18). This pin does not transmit video or audio data.
+Instead, it powers the initial communication between the source device
+(such as a PC, game console, or Blu-ray player) and the sink device
+(such as a TV or monitor).</p>
+<p>The receiving display's circuitry relies on this 5V rail to energize
+the Display Data Channel (DDC) and the Hot Plug Detect (HPD) line.
+Through this system, the source reads the display's Extended Display
+Identification Data (EDID) and establishes High-bandwidth Digital
+Content Protection (HDCP). If the 5V power fails to reach the display
+within acceptable limits, the handshake never completes, and the source
+refuses to output a video signal, resulting in a black screen.</p>
+<h3 id="how-voltage-drop-occurs">How Voltage Drop Occurs</h3>
+<p>Voltage drop is dictated by Ohm’s Law, which states that voltage loss
+across a conductor is proportional to the current and the conductor's
+resistance (<span class="math inline">\(V = I \times R\)</span>).</p>
+<p>Copper has inherent resistance that increases with length and
+decreases with conductor thickness. To keep HDMI cables flexible and
+cost-effective, manufacturers typically use thin conductors rated
+between 28 AWG and 30 AWG. While adequate for short runs of 3 to 6 feet,
+a 28 AWG wire presents substantial resistance across runs of 25, 35, or
+50 feet.</p>
+<p>As current travels along the narrow +5V wire, electrical energy
+dissipates as heat along the length of the run. By the time the current
+reaches the far end of the cable, the original 5-volt supply can drop
+significantly.</p>
+<h3 id="the-critical-operating-threshold">The Critical Operating
+Threshold</h3>
+<p>The official HDMI specification mandates that a source supply 5.0V
+with a tolerance allowing down to 4.7V, capable of supplying at least 55
+mA of current.</p>
+<p>However, many source devices—particularly laptops, streaming sticks,
+and graphics cards—barely output the nominal 5.0V at the port, sometimes
+starting as low as 4.8V. When this borderline voltage encounters the
+resistance of a 30-foot run of thin copper wire, the delivered voltage
+at the display end can drop to 4.4V or lower.</p>
+<p>At these reduced levels:</p>
+<ul>
+<li>The receiving display's EEPROM cannot power up to send its EDID
+information.</li>
+<li>The Hot Plug Detect mechanism fails to register that a cable is
+connected.</li>
+<li>HDCP handshakes fail or continuously reset, causing intermittent
+blackouts or a permanent "No Signal" state.</li>
+</ul>
+<h3
+id="compounding-factors-active-converters-and-high-current-sinks">Compounding
+Factors: Active Converters and High-Current Sinks</h3>
+<p>The issue is magnified when users attach inline accessories, such as
+HDMI switches, splitters, or audio extractors that do not have their own
+external power bricks. These devices draw operating power directly from
+Pin 18. Higher current draw (<span class="math inline">\(I\)</span>)
+through the same resistive line directly multiplies the voltage drop
+(<span class="math inline">\(V\)</span>), causing an immediate
+failure.</p>
+<h3 id="preventing-and-fixing-5v-drop">Preventing and Fixing 5V
+Drop</h3>
+<p>To prevent failure caused by voltage drop over long distances:</p>
+<ul>
+<li><strong>Use Thicker Conductors:</strong> Cables engineered with
+heavy 24 AWG or 26 AWG copper reduce resistance and maintain sufficient
+voltage over longer runs up to approximately 25 to 30 feet.</li>
+<li><strong>Power Injectors:</strong> Inline 5V voltage injectors can be
+placed near the destination to re-energize Pin 18 with an external power
+adapter.</li>
+<li><strong>Active Optical Cables (AOC):</strong> For runs exceeding 30
+feet, fiber-optic hybrid cables replace copper data lines and use
+dedicated power-management circuits or thicker copper purely for power
+delivery, effectively eliminating voltage-drop-induced handshake
+failures.</li>
+</ul></article>
+        <div id="comments-container"></div>
+        <script>
+            const utterancesScript = document.createElement('script');
+            utterancesScript.setAttribute('src', 'https://utteranc.es/client.js');
+            utterancesScript.setAttribute('repo', 'salivity/hdmi'); 
+            utterancesScript.setAttribute('issue-term', 'pathname'); 
+            utterancesScript.setAttribute('theme', localStorage.getItem('theme') === 'dark' ? 'github-dark' : 'github-light'); 
+            utterancesScript.setAttribute('crossorigin', 'anonymous');
+            utterancesScript.async = true;
+            document.getElementById('comments-container').appendChild(utterancesScript);
+        </script>
+    
+        </div>
+    </div>
+    
+    </main>
+    <footer>
+        <nav>
+            <ul class="social-links">
+            </ul>
+        </nav>
+        <nav>
+            <ul class="footer-links">
+                <li><a href="/hdmi/privacy-policy">Privacy Policy</a></li>
+                <li><a href="/hdmi/terms-and-conditions">Terms and Conditions</a></li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            Copyright &copy; <span id="current-year"></span>
+        </div>
+    </footer>
+</body>
+</html>
